@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+/* the Header styling*/
+.header {
+    background-color: #535352; 
+    color: #000000; 
+    padding: 15px 20px; 
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; /* space between logo and other */
+    border-bottom-left-radius: 20px; 
+    border-bottom-right-radius: 20px; 
+}
+
+.header .logo {
+    display: flex;
+    flex-direction: column; /* Logo and Text underneath each other */
+    align-items: center; 
+}
+#NameWeb{
+    font-weight: bold;
+}
+
+.header .search-container {
+    flex-grow: 1; /* takes the space that is free */
+    display: flex;
+    justify-content: center; 
+    margin: 0 20px;
+}
+
+
+.header .nav-buttons .btn-traditional {
+    border: none;
+    background-color: #A8865F; 
+    color: #ffffff; 
+    border-radius: 20px; 
+    margin-left: 10px; 
+    padding: 3px 15px;
+    font-weight: bold;
+}
+
+.header .nav-buttons .btn-traditional:hover {
+    background-color: #A8765F; /* Etwas dunklerer Farbton bei Hover */
+}
+
+
+/* Sidebar styling */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #535352; /* Hintergrundfarbe der Sidebar */
+    color: #ffffff; /* Textfarbe in der Sidebar */
+    padding: 15px;
+    z-index: 1050; /* Über den anderen Inhalten */
+}
+
+
+/* the footer styling */
+.footer {
+    background-image: url('src/assets/Kaffe_Footer.jpg'); /* our background */
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
+    min-height: 200px; /* Minimum height for the footer */
+    margin-top: 20px;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.footer-content {
+    position: relative;
+    z-index: 2;
+    max-width: 300px; /* Limit width on larger screens */
+    padding: 0 10px; /* Add padding for smaller screens */
+}
+
+.footer h5 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.footer a {
+    color: #e0c097;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 20px 10px;
+    }
+    .footer-content {
+        max-width: 100%; 
+    }
+}
