@@ -118,3 +118,39 @@ body {
         max-width: 100%; 
     }
 }
+
+
+/*
+Ab hier habe ich Scheiße gebaut Kuss Kuss Kuss
+*/
+.firstText {
+    position: relative;      /* Ermöglicht die absolute Positionierung des Textes */
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;            /* Breite auf 100% setzen, um den gesamten verfügbaren Platz zu nutzen */
+    max-width: 100%;       /* Maximalbreite auf einen Wert setzen, der den anderen Elementen entspricht */
+    height: 450px;         /* Höhe auf 450px setzen */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;      /* Schneidet Bild an den Containergrenzen ab */
+}
+
+.firstText img {
+    width: 100%;           /* Bild nimmt die volle Breite des Containers ein */
+    height: auto;          /* Höhe automatisch, um das Seitenverhältnis zu bewahren */
+    object-fit: cover;     /* Füllt den Container aus */
+    border-radius: 20px;   /* Abgerundete Ecken für das Bild */
+}
+
+.text {
+    position: absolute;      /* Absolut innerhalb des Containers positionieren */
+    top: 42%;                /* Positioniert den Text vertikal in der Mitte */
+    left: 25%;               /* Positioniert den Text horizontal in der Mitte */
+    transform: translate(-50%, -50%); /* Zentriert den Text */
+    color: white;            /* Textfarbe */
+    font-size: 24px;        /* Textgröße */
+    text-align: center;      /* Zentrierter Text */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Schatten für besseren Kontrast */
+}
