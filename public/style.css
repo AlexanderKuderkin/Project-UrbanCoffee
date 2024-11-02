@@ -283,3 +283,65 @@ body {
         max-width: 100%; 
     }
 }
+
+/*
+Florent Gjoshi
+*/
+.explanation-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin: 20px;
+    flex-wrap: wrap; /* Ermöglicht Umbruch bei kleineren Bildschirmen */
+}
+
+.OurStory-Container,
+.OurGoal-Container {
+    flex: 1;
+    min-width: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.KaffeePour {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 250px;
+}
+
+.KaffeePour img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px; /* Für abgerundete Ecken beim Bild */
+}
+
+h3 {
+    margin-top: 0;
+}
+
+/* Container für Our Story und Our Goal */
+.OurStory-Container,
+.OurGoal-Container {
+    flex: 1;
+    min-width: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;            /* Zentriert den Inhalt */
+    display: flex;
+    flex-direction: column;        /* Stellt sicher, dass Überschrift über dem Text bleibt */
+    align-items: center;           /* Zentriert Inhalt horizontal */
+}
+
+/* Überschrift und Text innerhalb des Containers zentrieren */
+.OurStory-Container h3,
+.OurGoal-Container h3,
+.OurStory-Container p,
+.OurGoal-Container p {
+    display: inline-block;         /* Nimmt nur die Breite des Inhalts ein */
+    text-align: center;            /* Zentriert den Text innerhalb des Elements */
+    margin: 0 auto;                /* Zentriert das Element im Container */
+}
