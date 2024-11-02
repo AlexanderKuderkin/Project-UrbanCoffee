@@ -46,17 +46,41 @@ body {
 }
 
 
-/* Sidebar styling */
+/* Sidebar Styling */
 .sidebar {
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px;
+    width: 170px;
     height: 100%;
-    background-color: #535352; /* Hintergrundfarbe der Sidebar */
-    color: #ffffff; /* Textfarbe in der Sidebar */
+    background-color: #535352;
+    color: #ffffff;
     padding: 15px;
-    z-index: 1050; /* Über den anderen Inhalten */
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Sidebar Body - Buttons untereinander anordnen */
+.sidebar-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-body .btn {
+    width: 100%; /* Buttons nehmen die gesamte Breite der Sidebar ein */
+    margin-bottom: 10px; /* Abstand zwischen den Buttons */
+    font-weight: bold;
+    color: #A8765F;
 }
 
 
