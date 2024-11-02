@@ -42,7 +42,7 @@ body {
 }
 
 .header .nav-buttons .btn-traditional:hover {
-    background-color: #A8765F; /* Etwas dunklerer Farbton bei Hover */
+    background-color: #A8765F;
 }
 
 
@@ -70,18 +70,168 @@ body {
     margin-bottom: 20px;
 }
 
-/* Sidebar Body - Buttons untereinander anordnen */
+/* Sidebar Body ~ buttons are underneath each other */
 .sidebar-body {
     display: flex;
     flex-direction: column;
 }
 
 .sidebar-body .btn {
-    width: 100%; /* Buttons nehmen die gesamte Breite der Sidebar ein */
-    margin-bottom: 10px; /* Abstand zwischen den Buttons */
+    width: 100%; 
+    margin-bottom: 10px; 
     font-weight: bold;
     color: #A8765F;
 }
+
+/* First picture and text*/
+.firstText {
+    position: relative; 
+    width: 100%;
+    min-height: 450px;
+    background-image: url('src/assets/StartseiteBild.png');
+    background-size: cover; 
+    background-position: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+
+/* style for the first text */
+.firstText .text {
+    position: absolute;
+    top: 47%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.viewMoreBtn{
+    border: none;
+    background-color: #735340; 
+    color: #ffffff; 
+    border-radius: 20px; 
+    margin-left: 10px; 
+    padding: 3px 15px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/*Between things*/
+.offer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0; 
+}
+
+.vertical-line {
+    width: 4px; /* thickness of the line */
+    height: 90px; /* how long the line is */
+    background-color: #D9B68b; 
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+.offer-container h5 {
+    color: #D9B68b; 
+    font-weight: bold; 
+}
+
+/*What we Offer container*/
+.description-container {
+    margin: 0px 30px;
+}
+
+.description-row {
+    display: flex; 
+    justify-content: space-between;
+    margin-bottom: 10px; 
+}
+
+.description-item {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    flex: 0 0 50%; 
+    margin-bottom: 20; 
+}
+
+.description-image {
+    width: 260px; 
+    height: 250px; 
+    border-radius: 20px; 
+    margin-right: 15px; 
+}
+
+.description-text h3 {
+    color: #A8865F; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center; 
+}
+
+.description-text p {
+    color: #000000; 
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .description-row {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .description-item {
+        flex: 1 0 100%; 
+        margin-bottom: 20px; 
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .description-image {
+        margin-right: 0; 
+        margin-bottom: 10px; 
+    }
+}
+
+/*Advertising container*/
+
+.advertising-container {
+    position: relative; 
+    margin: 20px 20px; /* Zentriert den Container und gibt vertikalen Abstand */
+    min-height: 200px;
+    background-image: url('src/assets/kaffeepulver_cleanup.jpg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    padding: 20px; 
+    text-align: center; 
+}
+
+.advertising-text {
+    position: relative; 
+    color: white;
+    font-size: 20px;
+    margin-bottom: 30px; /* Abstand unter dem Text */
+    font-size: xx-large;
+}
+
+.signInBtn {
+    border: none;
+    background-color: #735340; 
+    color: #ffffff; 
+    border-radius: 20px; 
+    padding: 10px 20px; /* Padding für den Button */
+    font-weight: bold;
+    cursor: pointer; 
+}
+
 
 
 /* the footer styling */
@@ -132,39 +282,4 @@ body {
     .footer-content {
         max-width: 100%; 
     }
-}
-
-
-.firstText {
-    position: relative; 
-    width: 100%;
-    min-height: 450px;
-    background-image: url('src/assets/StartseiteBild.png');
-    background-size: cover; 
-    background-position: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-repeat: no-repeat;
-}
-
-/* style for the first text */
-.firstText .text {
-    position: absolute;
-    top: 47%;
-    left: 35%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 20px;
-    text-align: center;
-}
-
-.viewMoreBtn{
-    border: none;
-    background-color: #A8865F; 
-    color: #ffffff; 
-    border-radius: 20px; 
-    margin-left: 10px; 
-    padding: 3px 15px;
-    font-weight: bold;
-    margin-top: 20px;
 }
