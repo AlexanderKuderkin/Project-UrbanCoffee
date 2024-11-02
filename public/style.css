@@ -96,22 +96,13 @@ body {
     flex-direction: column; 
     justify-content: flex-start; 
     align-items: flex-start; 
-    position: fixed; 
+    position: static; 
     bottom: 0;
     width: 100%;
     min-height: 200px; /* Minimum height for the footer */
     margin-top: 20px;
 }
 
-.footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-}
 
 .footer-content {
     position: relative;
@@ -144,37 +135,36 @@ body {
 }
 
 
-/*
-Ab hier habe ich Scheiße gebaut Kuss Kuss Kuss
-*/
 .firstText {
-    position: relative;      /* Ermöglicht die absolute Positionierung des Textes */
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;            /* Breite auf 100% setzen, um den gesamten verfügbaren Platz zu nutzen */
-    max-width: 100%;       /* Maximalbreite auf einen Wert setzen, der den anderen Elementen entspricht */
-    height: 450px;         /* Höhe auf 450px setzen */
+    position: relative; 
+    width: 100%;
+    min-height: 450px;
+    background-image: url('src/assets/StartseiteBild.png');
+    background-size: cover; 
+    background-position: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    overflow: hidden;      /* Schneidet Bild an den Containergrenzen ab */
+    background-repeat: no-repeat;
 }
 
-.firstText img {
-    width: 100%;           /* Bild nimmt die volle Breite des Containers ein */
-    height: auto;          /* Höhe automatisch, um das Seitenverhältnis zu bewahren */
-    object-fit: cover;     /* Füllt den Container aus */
-    border-radius: 20px;   /* Abgerundete Ecken für das Bild */
+/* style for the first text */
+.firstText .text {
+    position: absolute;
+    top: 47%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    text-align: center;
 }
 
-.text {
-    position: absolute;      /* Absolut innerhalb des Containers positionieren */
-    top: 42%;                /* Positioniert den Text vertikal in der Mitte */
-    left: 25%;               /* Positioniert den Text horizontal in der Mitte */
-    transform: translate(-50%, -50%); /* Zentriert den Text */
-    color: white;            /* Textfarbe */
-    font-size: 24px;        /* Textgröße */
-    text-align: center;      /* Zentrierter Text */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Schatten für besseren Kontrast */
+.viewMoreBtn{
+    border: none;
+    background-color: #A8865F; 
+    color: #ffffff; 
+    border-radius: 20px; 
+    margin-left: 10px; 
+    padding: 3px 15px;
+    font-weight: bold;
+    margin-top: 20px;
 }
