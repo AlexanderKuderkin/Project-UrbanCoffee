@@ -180,7 +180,7 @@ body {
     text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .description-row {
         flex-direction: column; 
         align-items: center; 
@@ -297,6 +297,13 @@ Florent Gjoshi
     flex-wrap: wrap; /* Ermöglicht Umbruch bei kleineren Bildschirmen */
 }
 
+@media (max-width: 860px) {
+    .explanation-container {
+        flex-direction: column; 
+        align-items: center; 
+    }
+}
+
 .KaffeePour {
     flex: 1;
     display: flex;
@@ -373,4 +380,45 @@ h3 {
     flex-direction: column;
     max-width: 150px;
     align-items: center;
+}
+
+
+
+/*Alex seins*/
+.card{
+    border-radius: 30px;
+}
+.star-color {
+    color: #735340; /* Farbe für Sterne */
+  }
+  .btn-view-more, .btn-buy-more {
+    margin-top: 10px;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; /* Button auf eine neue Zeile setzen */
+    width: 80%; /* Optional: Breite der Buttons für Klarheit */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 119px;
+    background-color: #735340;
+  }
+  .btn-view-more {
+    color: #fff;
+  }
+  .btn-view-more:hover {
+    background-color: #D9B68b;
+  }
+  .btn-buy-more {
+    background-color: #735340;
+    color: #fff;
+  }
+  .btn-buy-more:hover {
+    background-color: #D9B68b;
+  }
+  .mb-2 {
+    margin-bottom: 30px!important;
 }
