@@ -113,7 +113,7 @@ body {
     background-color: #735340; 
     color: #ffffff; 
     border-radius: 20px; 
-    margin-left: 10px; 
+    margin-left: 10px;
     padding: 3px 15px;
     font-weight: bold;
     margin-top: 20px;
@@ -297,20 +297,13 @@ Florent Gjoshi
     flex-wrap: wrap; /* Ermöglicht Umbruch bei kleineren Bildschirmen */
 }
 
-.OurStory-Container,
-.OurGoal-Container {
-    flex: 1;
-    min-width: 250px;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
 .KaffeePour {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 250px;
+    max-width: 280px;
 }
 
 .KaffeePour img {
@@ -327,6 +320,7 @@ h3 {
 .OurStory-Container,
 .OurGoal-Container {
     flex: 1;
+    color: #735340;
     min-width: 250px;
     padding: 20px;
     box-sizing: border-box;
@@ -344,4 +338,39 @@ h3 {
     display: inline-block;         /* Nimmt nur die Breite des Inhalts ein */
     text-align: center;            /* Zentriert den Text innerhalb des Elements */
     margin: 0 auto;                /* Zentriert das Element im Container */
+}
+
+.Reviews-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.NegativeRewiew-Container, 
+.PositivRewiew-Container{
+    position: relative; 
+    background-color: #EBE7E2;
+    border-radius: 20px;
+    height: 350px;
+    width:  450px;
+    margin: 0px 45px;
+    display: flex; /* Aktiviert Flexbox */
+    flex-direction: column; /* Ordnet die Inhalte vertikal an */
+}
+
+.NegativeRewiewText-Container,
+.PositivRewiewText-Container{
+    text-align: center;
+    color: #000000;
+}
+
+.PositivRewiewButtons-Container,
+.NegativeRewiewButtons-Container {
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+    align-items: center;
 }
