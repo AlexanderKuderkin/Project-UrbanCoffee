@@ -1,11 +1,11 @@
-import './assets/main.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router'; // Router importieren
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import './styles/main.css'; // Globale CSS-Datei (falls vorhanden)
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(router)
+app.use(router); // Router in die App einbinden
 
-app.mount('#app')
+app.mount('#app'); // App auf `#app` mounten

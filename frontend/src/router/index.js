@@ -1,26 +1,18 @@
-import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import NewCategoryView from "../views/NewCategoryView.vue";
-import AboutView from "../views/AboutView.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import HomePage from '@/views/HomePage.vue'; // Import der Homepage
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: HomePage,
+  },
+  // Weitere Routen können hier hinzugefügt werden
+];
+
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
-    routes: [
-        {
-            path: "/",
-            name: "home",
-            component: HomeView,
-        },
-        {
-            path: "/new",
-            name: "new",
-            component: NewCategoryView,
-        },
-        {
-            path: "/about",
-            name: "about",
-            component: AboutView,
-        },
-    ],
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;
