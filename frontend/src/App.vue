@@ -1,27 +1,36 @@
+<template>
+  <div id="app">
+    <Header />
+    <div class="content">
+      <!-- Dynamische Seiteninhalte über den Router -->
+      <router-view />
+    </div>
+    <Footer />
+  </div>
+</template>
+
 <script>
-import Header from "@/components/Header.vue";
-import Sidebar from "@/components/Sidebar.vue";
-import Footer from "@/components/Footer.vue";
+import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   components: {
     Header,
-    Sidebar,
     Footer,
   },
 };
 </script>
 
-<template>
-  <div id="app">
-    <Header />
-    <Sidebar />
-    <router-view /> <!-- Platzhalter für die gerenderte Seite (z. B. HomePage.vue) -->
-    <Footer />
-  </div>
-</template>
-
 <style>
-/* Hier können globale Styles hinzugefügt werden, falls notwendig */
-@import './styles/main.css';
+/* App-Container */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Nimmt die gesamte Bildschirmhöhe ein */
+}
+
+/* Hauptinhalt */
+.content {
+  flex: 1; /* Nimmt den restlichen verfügbaren Platz ein */
+}
 </style>

@@ -1,11 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import router from './router'; // Router importieren
-
-import './styles/main.css'; // Globale CSS-Datei (falls vorhanden)
+import router from './router';
 
 const app = createApp(App);
-
-app.use(router); // Router in die App einbinden
-
-app.mount('#app'); // App auf `#app` mounten
+app.use(router); // Router aktivieren
+app.mount('#app');

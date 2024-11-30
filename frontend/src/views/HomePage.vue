@@ -6,7 +6,7 @@
       <DescriptionSection />
       <AdvertisingSection />
       <AboutSection />
-      <ReviewSection />
+      <ReviewsSection /> 
       <Footer />
     </div>
   </template>
@@ -16,9 +16,9 @@
   import HeroSection from '@/components/HeroSection.vue';
   import OfferSection from '@/components/OfferSection.vue';
   import DescriptionSection from '@/components/DescriptionSection.vue';
-  import AdvertisingSection from '@/components/SdvertisingSection.vue';
+  import AdvertisingSection from '@/components/AdvertisingSection.vue';
   import AboutSection from '@/components/AboutSection.vue';
-  import ReviewSection from '@/components/ReviewSection.vue';
+  import ReviewsSection from '@/components/ReviewsSection.vue'; 
   import Footer from '@/components/Footer.vue';
   
   export default {
@@ -30,11 +30,8 @@
       DescriptionSection,
       AdvertisingSection,
       AboutSection,
-      ReviewSection,
-      Footer,
+      ReviewsSection, 
     },
   };
   </script>
-  
-
   
