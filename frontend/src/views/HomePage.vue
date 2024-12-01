@@ -17,7 +17,6 @@
   import AdvertisingSection from '@/components/AdvertisingSection.vue';
   import AboutSection from '@/components/AboutSection.vue';
   import ReviewsSection from '@/components/ReviewsSection.vue'; 
-  import Footer from '@/components/Footer.vue';
   
   export default {
     name: 'HomePage',
