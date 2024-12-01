@@ -25,7 +25,6 @@
   color: #ffffff; /* Weißer Text */
   padding: 40px 20px; /* Innenabstand */
   text-align: center; /* Zentriert den Text */
-  display: flex;
   flex-direction: column; /* Spaltenlayout */
   justify-content: center; /* Inhalte zentrieren */
   align-items: center; /* Inhalte horizontal zentrieren */

@@ -69,6 +69,15 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.card-body {
+  text-align: center; /* Zentriert den Inhalt innerhalb der Card */
+  display: flex;
+  flex-direction: column; /* Stellt sicher, dass die Buttons untereinander angezeigt werden */
+  justify-content: center; /* Zentriert den Inhalt entlang der vertikalen Achse */
+  align-items: center; /* Zentriert den Inhalt entlang der horizontalen Achse */
+  height: 100%; /* Stellt sicher, dass der Card-Body die ganze Höhe der Karte nutzt */
+}
+
 .star-color {
   color: #735340; /* Farbe für Sterne */
 }
