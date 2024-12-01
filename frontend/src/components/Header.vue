@@ -69,13 +69,17 @@
 
 .navbar-toggler-icon {
   display: inline-block;
-  width: 2em;
-  height: 2.1em;
-  vertical-align: middle;
-  background-color: #A8865F;
-  border-radius: 5px;
-  padding-top: 7px;
-  color: #ffffff;
-  font-weight: 500;
+    width: 2em;
+    height: 2.1em;
+    vertical-align: middle;
+    background-image: var(--bs-navbar-toggler-icon-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    background-color: #A8865F;
+    border-radius: 5px;
+    padding-top: 7px;
+    color: #ffffff;
+    font-weight: 500;
 }
 </style>

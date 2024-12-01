@@ -27,34 +27,41 @@ export default {
   width: 100%;
   min-height: 450px;
   background-image: url('@/assets/StartseiteBild.png'); /* Hintergrundbild */
-  background-size: cover;
+  background-size: cover; 
   background-position: center;
   margin-top: 20px;
   margin-bottom: 20px;
   background-repeat: no-repeat;
   border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .hero-text {
+
   position: absolute;
-  top: 50%;
-  left: 20%; /* Text weiter nach links verschieben */
-  transform: translateY(-50%); /* Vertikal zentrieren */
+  top: 47%;
+  left: 35%;
+  transform: translate(-50%, -50%);
   color: white;
   font-size: 20px;
-  text-align: left; /* Text linksbündig ausrichten */
-  font-family: 'Roboto', sans-serif;
+  text-align: center;
 }
 
 .view-more-btn {
   margin-top: 10px;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  background-color: #735340;
-  color: #ffffff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 119px;
+    background-color: #735340;
+    color: #ffffff;
 }
 
 .view-more-btn:hover {

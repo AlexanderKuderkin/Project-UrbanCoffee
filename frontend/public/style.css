@@ -3,6 +3,7 @@ body {
     padding: 0;
 }
 /* the Header styling*/
+/*done*/
 .header {
     background-color: #535352; 
     color: #000000; 
@@ -13,19 +14,23 @@ body {
     border-bottom-left-radius: 20px; 
     border-bottom-right-radius: 20px; 
 }
+/*done*/
 #NameWeb{
     font-family: 'Platypi', sans-serif;
 }
 
+/*done*/
 .header .logo {
     display: flex;
     flex-direction: column; /* Logo and Text underneath each other */
     align-items: center; 
 }
+/*done*/
 #NameWeb{
     font-weight: bold;
 }
 
+/*done*/
 .header .search-container {
     flex-grow: 1; /* takes the space that is free */
     display: flex;
@@ -33,7 +38,7 @@ body {
     margin: 0 20px;
 }
 
-
+/*done*/
 .header .nav-buttons .btn-traditional {
     border: none;
     background-color: #A8865F; 
@@ -44,9 +49,11 @@ body {
     font-weight: bold;
 }
 
+/*done*/
 .header .nav-buttons .btn-traditional:hover {
     background-color: #A8765F;
 }
+/*done*/
 .navbar-toggler-icon {
     display: inline-block;
     width: 2em;
@@ -66,6 +73,7 @@ body {
 
 
 /* Sidebar Styling */
+/*done*/
 .sidebar {
     position: fixed;
     top: 0;
@@ -80,12 +88,15 @@ body {
     flex-direction: column;
     justify-content: flex-start;
 }
+
+/*done*/
 .btn{
     color: white;
     font-weight: 700;
 }
 
 /* Sidebar Header */
+/*done*/
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -94,11 +105,13 @@ body {
 }
 
 /* Sidebar Body ~ buttons are underneath each other */
+/*done*/
 .sidebar-body {
     display: flex;
     flex-direction: column;
 }
 
+/*done*/
 .sidebar-body .btn {
     width: 70%; 
     margin-bottom: 10px; 
@@ -108,6 +121,7 @@ body {
 }
 
 /* First picture and text*/
+/*done*/
 .firstText {
     position: relative; 
     width: 100%;
@@ -123,6 +137,7 @@ body {
 }
 
 /* style for the first text */
+/*done*/
 .firstText .text {
     position: absolute;
     top: 47%;
@@ -133,6 +148,7 @@ body {
     text-align: center;
 }
 
+/*done*/
 .viewMoreBtn{
     margin-top: 10px;
     padding: 8px 12px;
@@ -151,6 +167,7 @@ body {
 }
 
 /*Between things*/
+/*done*/
 .offer-container {
     display: flex;
     flex-direction: column;
@@ -158,6 +175,7 @@ body {
     margin: 40px 0; 
 }
 
+/*done*/
 .vertical-line {
     width: 4px; /* thickness of the line */
     height: 90px; /* how long the line is */
@@ -166,22 +184,26 @@ body {
     border-radius: 20px;
 }
 
+/*done*/
 .offer-container h3 {
     color: #D9B68b; 
     font-weight: bold; 
 }
 
 /*What we Offer container*/
+/*done*/
 .description-container {
     margin: 0px 30px;
 }
 
+/*done*/
 .description-row {
     display: flex; 
     justify-content: space-between;
     margin-bottom: 10px; 
 }
 
+/*done*/
 .description-item {
     display: flex;
     flex-direction: row; 
@@ -190,6 +212,7 @@ body {
     margin-bottom: 20; 
 }
 
+/*done*/
 .description-image {
     width: 260px; 
     height: 250px; 
@@ -197,6 +220,7 @@ body {
     margin-right: 15px; 
 }
 
+/*done*/
 .description-text h3 {
     color: #A8865F; 
     margin-top: 5px;
@@ -205,6 +229,7 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
+/*done*/
 .description-text p {
     color: #000000; 
     padding-left: 30px;
@@ -213,6 +238,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+/*done*/
 @media (max-width: 1000px) {
     .description-row {
         flex-direction: column; 
@@ -233,7 +259,7 @@ body {
 }
 
 /*Advertising container*/
-
+/*done*/
 .advertising-container {
     position: relative; 
     margin: 20px 20px; /* Zentriert den Container und gibt vertikalen Abstand */
@@ -247,6 +273,7 @@ body {
     text-align: center; 
 }
 
+/*done*/
 .advertising-text {
     position: relative; 
     color: white;
@@ -256,6 +283,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+/*done*/
 .signInBtn, .btn-traditional {
     /* Übernehme exakt die gleichen Stile */
     border: none;
@@ -270,15 +298,13 @@ body {
     height: 37px;   /* Exakte Höhe des Header-Buttons */
 }
 
+/*done*/
 .signInBtn:hover, .btn-traditional:hover {
     background-color: #A8765F;
 }
 
-
-
-
-
 /* the footer styling */
+/*done*/
 .footer {
     background-image: url('src/assets/Kaffe_Footer.jpg'); /* our background */
     background-size: cover;
@@ -297,7 +323,7 @@ body {
     margin-top: 20px;
 }
 
-
+/*done*/
 .footer-content {
     position: relative;
     z-index: 2;
@@ -306,20 +332,24 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+/*done*/
 .footer h5 {
     color: #ffffff;
     margin-bottom: 10px;
 }
 
+/*done*/
 .footer a {
     color: #e0c097;
     text-decoration: none;
 }
 
+/*done*/
 .footer a:hover {
     text-decoration: underline;
 }
 
+/*done*/
 @media (max-width: 768px) {
     .footer {
         padding: 20px 10px;
@@ -332,6 +362,8 @@ body {
 /*
 Florent Gjoshi
 */
+
+/*done*/
 .explanation-container {
     display: flex;
     flex-direction: row;
@@ -342,6 +374,7 @@ Florent Gjoshi
     flex-wrap: wrap; /* Ermöglicht Umbruch bei kleineren Bildschirmen */
 }
 
+/*done*/
 @media (max-width: 860px) {
     .explanation-container {
         flex-direction: column; 
@@ -349,6 +382,7 @@ Florent Gjoshi
     }
 }
 
+/*done*/
 .KaffeePour {
     flex: 1;
     display: flex;
@@ -358,17 +392,20 @@ Florent Gjoshi
     max-width: 280px;
 }
 
+/*done*/
 .KaffeePour img {
     max-width: 100%;
     height: auto;
     border-radius: 20px; /* Für abgerundete Ecken beim Bild */
 }
 
+/*done*/
 h3 {
     margin-top: 0;
 }
 
 /* Container für Our Story und Our Goal */
+/*done*/
 .OurStory-Container,
 .OurGoal-Container {
     flex: 1;
@@ -384,6 +421,7 @@ h3 {
 }
 
 /* Überschrift und Text innerhalb des Containers zentrieren */
+/*done*/
 .OurStory-Container h3,
 .OurGoal-Container h3,
 .OurStory-Container p,
@@ -400,9 +438,13 @@ h3 {
 .card{
     border-radius: 30px;
 }
+
+/*done*/
 .star-color {
     color: #735340; /* Farbe für Sterne */
   }
+
+  /*done*/
   .btn-view-more, .btn-buy-more {
     margin-top: 10px;
     padding: 8px 20px;
@@ -418,19 +460,29 @@ h3 {
     width: 119px;
     background-color: #735340;
   }
+
+  /*done*/
   .btn-view-more {
     color: #fff;
   }
+
+  /*done*/
   .btn-view-more:hover {
     background-color: #D9B68b;
   }
+
+  /*done*/
   .btn-buy-more {
     background-color: #735340;
     color: #fff;
   }
+
+  /*done*/
   .btn-buy-more:hover {
     background-color: #D9B68b;
   }
+
+  /*done*/
   .mb-2 {
     margin-bottom: 30px!important;
     font-family: 'Roboto', sans-serif;

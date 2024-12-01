@@ -19,34 +19,36 @@
 
 <style scoped>
 .footer {
+  
   background-image: url('@/assets/Kaffe_Footer.jpg'); /* Hintergrundbild */
   background-size: cover;
   background-position: center;
-  color: #ffffff; /* Weißer Text */
-  padding: 40px 20px; /* Innenabstand */
-  text-align: center; /* Zentriert den Text */
-  flex-direction: column; /* Spaltenlayout */
-  justify-content: center; /* Inhalte zentrieren */
-  align-items: center; /* Inhalte horizontal zentrieren */
-  width: 100%; /* Volle Breite */
-  min-height: 200px; /* Mindesthöhe */
+  color: #ffffff;
+  padding: 40px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start; 
+  position: static; 
+  bottom: 0;
+  width: 100%;
+  min-height: 200px; /* Minimum height for the footer */
+  margin-top: 20px;
+  
 }
 
 .footer-content {
-  max-width: 600px; /* Maximalbreite für den Inhalt */
+  position: relative;
+  z-index: 2;
+  max-width: 300px; /* Limit width on larger screens */
+  padding: 0 10px; /* Add padding for smaller screens */
+  font-family: 'Roboto', sans-serif;
 }
 
 .footer h5 {
   color: #ffffff;
   margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.footer p {
-  color: #e0c097; /* Dezente Goldfarbe */
-  margin-bottom: 15px;
-  font-size: 16px;
 }
 
 .footer a {
@@ -60,9 +62,8 @@
 
 @media (max-width: 768px) {
   .footer {
-    padding: 20px;
+    padding: 20px 10px;
   }
-
   .footer-content {
     max-width: 100%; /* Für kleinere Bildschirme */
   }

@@ -72,55 +72,58 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  flex: 0 0 48%;
+  flex: 0 0 50%;
   margin-bottom: 20px;
 }
 
 .description-item.reverse {
-  flex-direction: row-reverse; /* Umkehrt Bild und Text */
+  flex-direction: row-reverse;
 }
 
 .description-image {
   width: 260px;
   height: 250px;
   border-radius: 20px;
-  margin: 0 15px;
+  margin-right: 15px;
 }
 
 .description-text {
   flex: 1;
 }
 
+
 .description-text h3 {
-  color: #a8865f;
-  margin: 10px 0;
-  text-align: left;
-  font-family: "Noto Sans", sans-serif;
+  color: #A8865F; 
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center; 
+  font-family: 'Noto Sans', sans-serif;
 }
 
 .description-text p {
-  color: #000000;
-  text-align: left;
-  font-family: "Roboto", sans-serif;
+  color: #000000; 
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 @media (max-width: 768px) {
   .description-row {
-    flex-direction: column;
-    align-items: center;
-  }
+        flex-direction: column; 
+        align-items: center; 
+    }
 
-  .description-item,
-  .description-item.reverse {
-    flex-direction: column;
-  }
+    .description-item {
+        flex: 1 0 100%; 
+        margin-bottom: 20px; 
+        flex-direction: column; 
+        align-items: center; 
+    }
 
-  .description-image {
-    margin: 15px 0;
-  }
-
-  .description-text {
-    text-align: center;
-  }
+    .description-image {
+        margin-right: 0; 
+        margin-bottom: 10px; 
+    }
 }
 </style>

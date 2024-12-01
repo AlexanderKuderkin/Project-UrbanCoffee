@@ -3,8 +3,11 @@
       <HeroSection />
       <OfferSection />
       <DescriptionSection />
+      <AdvertisingLine />
       <AdvertisingSection />
+      <AboutUs/>
       <AboutSection />
+      <PopularReviews/>
       <ReviewsSection /> 
     </div>
   </template>
@@ -13,8 +16,11 @@
   import HeroSection from '@/components/HeroSection.vue';
   import OfferSection from '@/components/OfferSection.vue';
   import DescriptionSection from '@/components/DescriptionSection.vue';
+  import AdvertisingLine from '@/AdvertisingLine.vue';
   import AdvertisingSection from '@/components/AdvertisingSection.vue';
+  import AboutUs from '@/AboutUs.vue';
   import AboutSection from '@/components/AboutSection.vue';
+  import PopularReviews from '@/components/PopularReviews.vue';
   import ReviewsSection from '@/components/ReviewsSection.vue'; 
   
   export default {
@@ -23,8 +29,11 @@
       HeroSection,
       OfferSection,
       DescriptionSection,
+      AdvertisingLine,
       AdvertisingSection,
+      AboutUs,
       AboutSection,
+      PopularReviews,
       ReviewsSection, 
     },
   };

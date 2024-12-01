@@ -90,19 +90,26 @@ export default {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  display: block;
+  display: block; /* Button auf eine neue Zeile setzen */
+  width: 80%; /* Optional: Breite der Buttons für Klarheit */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
   width: 119px;
   background-color: #735340;
-  color: #fff;
-  text-align: center;
 }
 
+.btn-view-more {
+    color: #fff;
+  }
+  
 .btn-view-more:hover {
   background-color: #d9b68b;
 }
 
 .btn-buy-more {
   background-color: #735340;
+  color: #fff;
 }
 
 .btn-buy-more:hover {

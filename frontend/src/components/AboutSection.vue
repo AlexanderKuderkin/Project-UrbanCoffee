@@ -64,9 +64,6 @@ export default {
 </script>
 
 <style scoped>
-.about-section {
-  margin: 20px 0;
-}
 
 .explanation-container {
   display: flex;
@@ -74,7 +71,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  flex-wrap: wrap; /* Ermöglicht Umbruch bei kleineren Bildschirmen */
+  margin: 20px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 860px) {
@@ -87,15 +85,16 @@ export default {
 .our-story-container,
 .our-goal-container {
   flex: 1;
-  color: #735340;
-  min-width: 250px;
-  padding: 20px;
-  box-sizing: border-box;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: "Roboto", sans-serif;
+    color: #735340;
+    min-width: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;            /* Zentriert den Inhalt */
+    display: flex;
+    flex-direction: column;        /* Stellt sicher, dass Überschrift über dem Text bleibt */
+    align-items: center;           /* Zentriert Inhalt horizontal */
+    font-family: 'Roboto', sans-serif;
+
 }
 
 .kaffee-pour {
@@ -113,14 +112,14 @@ export default {
   border-radius: 20px; /* Für abgerundete Ecken beim Bild */
 }
 
-h4 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  font-weight: bold;
+h4, p {
+  display: inline-block;         /* Nimmt nur die Breite des Inhalts ein */
+  text-align: center;            /* Zentriert den Text innerhalb des Elements */
+  margin: 0 auto;                /* Zentriert das Element im Container */
+  font-family: 'Roboto', sans-serif;
 }
 
-p {
-  margin: 0;
-  line-height: 1.6;
+h4 {
+  margin-top: 0;
 }
 </style>
