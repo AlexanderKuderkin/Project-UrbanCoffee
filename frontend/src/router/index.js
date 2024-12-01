@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 // Seiten-Imports
 import HomePage from '@/views/HomePage.vue';
+import Coffee from '@/views/Coffee.vue';
 // Falls später weitere Seiten benötigt werden, hier hinzufügen:
 // import AboutPage from '@/views/AboutPage.vue';
 // import LoginPage from '@/views/LoginPage.vue';
@@ -11,6 +12,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: HomePage, // Haupt-Startseite
+  },
+  {
+    path: '/coffee',
+    name: 'Coffee',
+    component: Coffee,
   },
   // Beispiel für zusätzliche Seiten:
   // {

@@ -10,7 +10,6 @@
   </template>
   
   <script>
-  import Header from '@/components/Header.vue';
   import HeroSection from '@/components/HeroSection.vue';
   import OfferSection from '@/components/OfferSection.vue';
   import DescriptionSection from '@/components/DescriptionSection.vue';
@@ -21,7 +20,6 @@
   export default {
     name: 'HomePage',
     components: {
-      Header,
       HeroSection,
       OfferSection,
       DescriptionSection,
