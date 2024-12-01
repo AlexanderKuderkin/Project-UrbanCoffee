@@ -1,18 +1,17 @@
 <template>
-    <div class="aboutUs-container">
+    <div class="advertisingLine-container">
       <div class="vertical-line"></div>
-      <h3>About us</h3>
     </div>
   </template>
   
   <script>
   export default {
-    name: "PopularReviews",
+    name: "AdvertisingLine",
   };
   </script>
   
   <style scoped>
-  .aboutUs-container {
+  .advertisingLine-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,11 +24,6 @@
     background-color: #D9B68b;
     margin-bottom: 10px;
     border-radius: 20px;
-  }
-  
-  .aboutUs-container h3 {
-    color: #D9B68b;
-    font-weight: bold;
   }
   </style>
   
