@@ -4,15 +4,17 @@
     <Sidebar :isVisible="isSidebarVisible" @close-sidebar="closeSidebar" />
     <router-view />
   </div>
+  <Footer />
 </template>
 
 <script>
 import Header from "./components/Header.vue";
 import Sidebar from "./components/Sidebar.vue";
+import Footer from './components/Footer.vue';
 
 export default {
   name: "App",
-  components: { Header, Sidebar },
+  components: { Header, Sidebar, Footer },
   data() {
     return {
       isSidebarVisible: false,
