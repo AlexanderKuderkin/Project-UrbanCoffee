@@ -1,13 +1,16 @@
 <template>
-  <div class="sidebar collapse" id="sidebarMenu">
+  <div
+    class="sidebar"
+    v-show="isVisible"
+    :class="{ 'sidebar-open': isVisible }"
+  >
     <div class="sidebar-header">
       <h5>Navigation</h5>
       <button
         type="button"
         class="btn-close"
         aria-label="Close"
-        id="closeSidebar"
-        @click="closeSidebar"
+        @click="$emit('close-sidebar')"
       ></button>
     </div>
     <div class="sidebar-body">
@@ -22,75 +25,21 @@
 <script>
 export default {
   name: "Sidebar",
-  methods: {
-    closeSidebar() {
-      const sidebarMenu = document.getElementById("sidebarMenu");
-      sidebarMenu.classList.remove("collapse");
+  props: {
+    isVisible: {
+      type: Boolean,
+      required: true,
     },
   },
 };
 </script>
 
-<style scoped>
-/* Sidebar Styling */
+<style>
 .sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 170px;
-  height: 100%;
-  background-color: #535352;
-  color: #ffffff;
-  padding: 15px;
-  z-index: 1050;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
 }
-
-.sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.sidebar-body {
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar-body .btn {
-  width: 70%;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: white;
-  margin-left: 10px;
-}
-
-.btn-traditional {
-  border: none;
-  background-color: #a8865f;
-  color: #ffffff;
-  border-radius: 20px;
-  padding: 3px 11px;
-  font-weight: bold;
-}
-
-.btn-traditional:hover {
-  background-color: #a8765f;
-}
-
-.btn {
-  color: white;
-  font-weight: 700;
-}
-
-.btn-close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #ffffff;
-  cursor: pointer;
+.sidebar-open {
+  transform: translateX(0);
 }
 </style>

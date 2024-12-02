@@ -1,37 +1,31 @@
 <template>
   <div id="app">
-    <Header />
-    <div class="content">
-      <!-- Dynamische Seiteninhalte über den Router -->
-      <router-view />
-    </div>
-    <Footer />
+    <Header @toggle-sidebar="toggleSidebar" />
+    <Sidebar :isVisible="isSidebarVisible" @close-sidebar="closeSidebar" />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
-import SideBar from './components/SideBar.vue';
+import Header from "./components/Header.vue";
+import Sidebar from "./components/Sidebar.vue";
 
 export default {
-  components: {
-    Header,
-    Footer,
+  name: "App",
+  components: { Header, Sidebar },
+  data() {
+    return {
+      isSidebarVisible: false,
+    };
+  },
+  methods: {
+    toggleSidebar() {
+      this.isSidebarVisible = !this.isSidebarVisible;
+    },
+    closeSidebar() {
+      this.isSidebarVisible = false;
+    },
   },
 };
 </script>
-
-<style>
-/* App-Container */
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Nimmt die gesamte Bildschirmhöhe ein */
-}
-
-/* Hauptinhalt */
-.content {
-  flex: 1; /* Nimmt den restlichen verfügbaren Platz ein */
-}
-</style>
+<style src="./public/style.css"></style>

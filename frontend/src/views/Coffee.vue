@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid mt-5 mb-5">
       <div class="row g-2">
-        <!-- Sidebar -->
+        <!--Sidebar-->
         <div class="col-md-3">
           <div class="t-products p-2">
             <h6 class="text-uppercase">Coffee Types</h6>
@@ -18,7 +18,7 @@
             </div>
           </div>
   
-          <!-- Brand Filter -->
+          <!--Brand-->
           <div class="brand p-2">
             <h6 class="text-uppercase">Brand</h6>
             <div class="d-flex justify-content-between mt-2">
@@ -40,14 +40,14 @@
             <h6 class="text-uppercase">Origin</h6>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="tchibo" />
+                <input class="form-check-input" type="checkbox" id="Europe" />
                 <label class="form-check-label" for="tchibo">Europe</label>
               </div>
               <span>5</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="jacobs" />
+                <input class="form-check-input" type="checkbox" id="Asia" />
                 <label class="form-check-label" for="jacobs">Asia</label>
               </div>
               <span>7</span>
@@ -83,7 +83,7 @@
                 </div>
               </div>
             </div>
-  
+
             <!-- Product 2 -->
             <div class="col-12 col-md-6">
               <div class="card shadow">
