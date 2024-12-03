@@ -278,10 +278,16 @@
                 />
                 <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
                   <a href="#" class="h5">Espresso Blend</a>
-                  <div class="d-flex mt-2">
-                    <span class="badge bg-primary me-2">Espresso</span>
-                    <span class="badge bg-primary">Blend</span>
-                  </div>
+                  <ul class="list-unstyled d-flex justify-content-center mb-3">
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                  </ul>
+                  <button class="btn btn-secondary view-more-btn">
+      <i class="fas fa-eye me-2"></i> View More
+    </button>
                   <div
                     class="d-flex justify-content-between align-items-center mt-3"
                   >
@@ -304,10 +310,16 @@
                 />
                 <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
                   <a href="#" class="h5">Latte Delight</a>
-                  <div class="d-flex mt-2">
-                    <span class="badge bg-primary me-2">Latte</span>
-                    <span class="badge bg-primary">Creamy</span>
-                  </div>
+                  <ul class="list-unstyled d-flex justify-content-center mb-3">
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                  </ul>
+                  <button class="btn btn-secondary view-more-btn">
+      <i class="fas fa-eye me-2"></i> View More
+    </button>
                   <div
                     class="d-flex justify-content-between align-items-center mt-3"
                   >
@@ -330,13 +342,17 @@
                 />
                 <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
                   <a href="#" class="h5">Cappuccino Classic</a>
-                  <div class="d-flex mt-2">
-                    <span class="badge bg-primary me-2">Cappuccino</span>
-                    <span class="badge bg-primary">Classic</span>
-                  </div>
-                  <div
-                    class="d-flex justify-content-between align-items-center mt-3"
-                  >
+                  <ul class="list-unstyled d-flex justify-content-center mb-3">
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                    <li><i class="fas fa-star fa-sm star-color"></i></li>
+                  </ul>
+                  <button class="btn btn-secondary view-more-btn">
+      <i class="fas fa-eye me-2"></i> View More
+    </button>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
                     <span class="h6 mb-0 text-gray">$13.99</span>
                     <button class="btn btn-xs btn-tertiary">
                       <i class="fas fa-cart-plus me-2"></i> Add to cart
@@ -361,19 +377,25 @@
   body {
     background-color: #eee;
   }
+  .h4{
+    text-align: center;
+  }
   .g-2{
     --bs-gutter-y: 1.5rem;
     background-color: rgb(212, 205, 205);
+    margin-bottom: 20px;
   }
   .col-12{
     flex: 0 0;
     padding-left: 20px;
     padding-right: 0px;
     padding-top: 35px;
+    margin-right: 1px;
   }
   .col-md-3{
     margin-bottom: 20px;
     padding-left: 20px;
+    padding-right: 20px;
   }
   .bg-primary {
     background-color: #a8865f !important;
@@ -391,37 +413,68 @@
   }
   .card {
   width: 300px; 
-  height: 400px; 
   border-radius: 5px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .card img {
-  width: 100%; /* Passt das Bild an die Breite der Karte an */
-  height: 234px; /* Feste Bildhöhe */
-  object-fit: cover; /* Schneidet das Bild proportional zu */
+  width: 100%; 
+  height: auto; 
+  object-fit: cover; 
 }
 
 .card-footer {
   padding: 15px;
   text-align: center;
-  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; 
 }
-.badge {
-  padding: 5px 10px;
-  font-size: 12px;
+
+.card-footer .additional-info {
+  font-size: 14px; 
+  color: #555; 
 }
 
 .btn {
   background-color: #735340;
   color: white;
-  border-radius: 5px;
-  padding: 8px 12px;
+  border-radius: 25px;
+  padding: 9px 12px;
 }
+
 .btn:hover {
   background-color: #a8865f;
 }
+.view-more-btn {
+  background-color: #1e160d; 
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.view-more-btn i {
+  margin-right: 8px;
+}
+
+.view-more-btn:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 768px) {
+  .g-2{
+    justify-content: center;
+  }
+}
+
   </style>
   
