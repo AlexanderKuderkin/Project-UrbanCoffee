@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '@/views/HomePage.vue';
 import Coffee from '@/views/Coffee.vue';
 import ManageCoffee from '@/views/ManageCoffee.vue';
+import Reviews from '@/views/Reviews.vue';
 // Falls später weitere Seiten benötigt werden, hier hinzufügen:
 // import AboutPage from '@/views/AboutPage.vue';
 // import LoginPage from '@/views/LoginPage.vue';
@@ -23,6 +24,11 @@ const routes = [
     path: '/manageCoffee',
     name: 'ManageCoffee',
     component: ManageCoffee,
+  },
+  {
+    path: '/reviews',
+    name: 'Reviews',
+    component: Reviews,
   },
   // Beispiel für zusätzliche Seiten:
   // {
