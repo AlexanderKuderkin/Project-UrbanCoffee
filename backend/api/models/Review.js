@@ -8,8 +8,6 @@
 module.exports = {
 
   attributes: {
-
-    reviewID: { type: 'number', required: true },
     comment: { type: 'string', columnType: 'text', required: true },
 //Rating von 0.5 bis 5
     rating: {type: 'number',columnType: 'decimal(2,1)',required: true,

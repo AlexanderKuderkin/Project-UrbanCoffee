@@ -8,8 +8,6 @@
 module.exports = {
 
   attributes: {
-
-    userID: { type: 'number', required: true },
     name: { type: 'string', columnType: 'varchar(100)', required: true },
     email: { type: 'string', columnType: 'varchar(255)', required: true },
     password: { type: 'string', columnType: 'varchar(255)', required: true },

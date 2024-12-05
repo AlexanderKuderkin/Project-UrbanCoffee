@@ -9,7 +9,6 @@ module.exports = {
 
   attributes: {
 
-    coffeeID: { type: 'number', required: true },
     name: { type: 'string', columnType: 'varchar(100)', required: true },
     price: { type: 'number', columnType: 'decimal(10,2)', required: true },
     description: { type: 'string', columnType: 'text', required: true },

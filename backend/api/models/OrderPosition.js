@@ -8,8 +8,6 @@
 module.exports = {
 
   attributes: {
-
-    positionID: { type: 'number', required: true },
     quantity: { type: 'number', required: true },
     totalPrice: { type: 'number', columnType: 'decimal(10,2)', required: true },
     orderID: { type: 'number', required: true, foreignKey: true },

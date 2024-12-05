@@ -8,8 +8,6 @@
 module.exports = {
 
   attributes: {
-
-    orderID: { type: 'number', required: true },
     orderDate: { type: 'ref', columnType: 'datetime', required: true },
     totalAmount: { type: 'number', columnType: 'decimal(10,2)', required: true },
     userID: { type: 'number', required: true, foreignKey: true },
