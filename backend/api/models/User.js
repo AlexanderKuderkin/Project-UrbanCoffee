@@ -11,8 +11,11 @@ module.exports = {
     name: { type: 'string', columnType: 'varchar(100)', required: true },
     email: { type: 'string', columnType: 'varchar(255)', required: true },
     password: { type: 'string', columnType: 'varchar(255)', required: true },
-    role: { type: 'string', columnType: 'varchar(50)', required: true },
-
+    role: { 
+      type: 'string', 
+      required: true, 
+      isIn: ['Administrator','RegisteredUser']
+    },
     addressStreet: { type: 'string', columnType: 'varchar(100)', required: true },
     addressCity: { type: 'string', columnType: 'varchar(100)', required: true },
     addressPostalCode: { type: 'string', columnType: 'varchar(10)', required: true },
