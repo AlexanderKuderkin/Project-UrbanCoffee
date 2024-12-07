@@ -6,6 +6,9 @@
         <div class="card">
           <div class="card-header">
             <h5>Manage Coffee</h5>
+            <router-link to="/AddProduct">
+            <button>Add product</button>
+            </router-link>
           </div>
           <div class="card-body">
             <!-- Wrapper für horizontales Scrollen -->
@@ -148,6 +151,7 @@ export default {
 .card-header {
   background-color: #a8865f;
   color: white;
+  border-radius: 10px;
 }
 
 .card-body {

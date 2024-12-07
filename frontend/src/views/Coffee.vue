@@ -265,113 +265,53 @@
           </div>
         </div>
   
-        <!-- Products Section -->
-        <div class="col-md-9">
-          <div class="row g-2">
-            <!-- Product 1 -->
-            <div class="col-12 col-md-6">
-              <div class="card shadow">
-                <img
-                  class="searchImg"
-                  src="/src/assets/Kaffe1.jpg"
-                  alt="Kaffe1"
-                />
-                <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
-                  <a href="#" class="h5">Espresso Blend</a>
-                  <ul class="list-unstyled d-flex justify-content-center mb-3">
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                  </ul>
-                  <button class="btn btn-secondary view-more-btn">
-      <i class="fas fa-eye me-2"></i> View More
-    </button>
-                  <div
-                    class="d-flex justify-content-between align-items-center mt-3"
-                  >
-                    <span class="h6 mb-0 text-gray">$12.99</span>
-                    <button class="btn btn-xs btn-tertiary">
-                      <i class="fas fa-cart-plus me-2"></i> Add to cart
-                    </button>
-                  </div>
-                </div>
+        <!-- Dynamische Kaffee-Liste -->
+      <div class="col-md-9">
+        <div class="row g-2">
+          <div v-for="coffee in coffees" :key="coffee.id" class="col-12 col-md-6">
+            <div class="card shadow">
+              <img
+                class="searchImg"
+                src="https://via.placeholder.com/300x200.png?text=Placeholder"
+                :alt="coffee.name"
+              />
+              <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
+                <h5>{{ coffee.name }}</h5>
+                <p>{{ coffee.description }}</p>
+                <p>Price: ${{ coffee.price }}</p>
               </div>
             </div>
-
-            <!-- Product 2 -->
-            <div class="col-12 col-md-6">
-              <div class="card shadow">
-                <img
-                  class="searchImg"
-                  src="/src/assets/Kaffe2.jpg"
-                  alt="Kaffe2"
-                />
-                <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
-                  <a href="#" class="h5">Latte Delight</a>
-                  <ul class="list-unstyled d-flex justify-content-center mb-3">
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                  </ul>
-                  <button class="btn btn-secondary view-more-btn">
-      <i class="fas fa-eye me-2"></i> View More
-    </button>
-                  <div
-                    class="d-flex justify-content-between align-items-center mt-3"
-                  >
-                    <span class="h6 mb-0 text-gray">$14.49</span>
-                    <button class="btn btn-xs btn-tertiary">
-                      <i class="fas fa-cart-plus me-2"></i> Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <!-- Product 3 -->
-            <div class="col-12 col-md-6">
-              <div class="card shadow">
-                <img
-                  class="searchImg"
-                  src="/src/assets/Kaffee3.jpg"
-                  alt="Kaffee3"
-                />
-                <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
-                  <a href="#" class="h5">Cappuccino Classic</a>
-                  <ul class="list-unstyled d-flex justify-content-center mb-3">
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                  </ul>
-                  <button class="btn btn-secondary view-more-btn">
-      <i class="fas fa-eye me-2"></i> View More
-    </button>
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-                    <span class="h6 mb-0 text-gray">$13.99</span>
-                    <button class="btn btn-xs btn-tertiary">
-                      <i class="fas fa-cart-plus me-2"></i> Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          </div>
+          <!-- Wenn keine Daten vorhanden -->
+          <div v-if="coffees.length === 0" class="col-12 text-center">
+            <p>No coffees available at the moment.</p>
           </div>
         </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
   
-  <script>
-  export default {
-    name: "Coffee",
-  };
-  </script>
+<script setup>
+import { ref, onMounted } from "vue";
+import axios from "axios";
+
+// Reaktive Variable für Kaffees
+const coffees = ref([]);
+
+// API-Aufruf beim Mounten der Komponente
+onMounted(() => {
+  axios
+    .get("/Coffee") // Auf Sails-Route GET /Coffee
+    .then((response) => {
+      coffees.value = response.data; // Daten speichern
+    })
+    .catch((error) => {
+      console.error("Error fetching coffees:", error);
+    });
+});
+</script>
+
   
   <style scoped>
   body {

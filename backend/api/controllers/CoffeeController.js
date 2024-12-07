@@ -6,37 +6,16 @@
  */
 
 module.exports = {
-  
-    find: async function (req, res) {
-        //sails.log.debug("List all categories....");
-        //let categories = await Category.find();
-        let coffee = [
-          {
-              "id": "001",
-              "name": "Caffee Crema",
-              "description": "Carabic Coffee from Brasil",
-              "brand": "Tchibo",
-              "rost level": "light",
-              "caffeine content": "low",
-              "bean variety": "Arabic",
-              "price": "10,00",
-              "grind size": "whole bean",
-              "certification": "direct trade",
-              "origin": "Europe"
-          }
-        ]
-        return res.json(coffee);
-    },
-/*
     find: async function (req, res) {
       sails.log.debug("List all coffees....");
       let coffees = await Coffee.find();
       return res.json(coffees);
     },
-
+  
+/*
     findOne: async function (req, res) {
       sails.log.debug("Find single coffee....");
-      let coffee = await Coffee.findOne({ coffeeID: req.params.id });
+      let coffee = await Coffee.findOne({ id: req.params.id });
       if (!coffee) {
         return res.notFound({ error: 'Coffee not found' });
       }
@@ -52,10 +31,10 @@ module.exports = {
 
     destroy: async function (req, res) {
       sails.log.debug("Delete coffee....");
-      await Coffee.destroy({ coffeeID: req.params.id });
+      await Coffee.destroy({ id: req.params.id });
       return res.ok();
     }
-
+/*
     uploadImage: async function (req, res) {
       req.file('image').upload({
         dirname: require('path').resolve(sails.config.appPath, 'assets/images'),
@@ -69,7 +48,7 @@ module.exports = {
       }).fetch();
 
       return res.json({ coffee, message: 'Image uploaded successfully!!!!!!' });
-    });
+    },);
   },
       */
 };

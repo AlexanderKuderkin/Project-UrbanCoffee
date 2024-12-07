@@ -10,7 +10,8 @@
 
 module.exports.routes = {
 
-  'GET /coffee': { controller: 'CoffeeController', action: 'find' },
+  //'GET /Coffee': { controller: 'CoffeeController', action: 'find' },
+  'GET /Coffee': 'Coffee.find',
 
   //'GET /coffee/:id': { controller: 'CoffeeController', action: 'findOne' },
   //'GET /manageCoffee': { controller: 'CoffeeController', action: 'find' },

@@ -27,14 +27,22 @@ module.exports = {
     beanType: { 
       type: 'string', 
       required: true, 
-      isIn: ['UTZ Certified', 'Fair Trade Certified', 'Rainforest Alliance Certified', 'Direct Trade', 'Bird-Friendly']
+      isIn: ['Arabica', 'Robusta', 'Lieberica', 'Excelsa']
     },
 
     certificates: {
       type: 'json',
       required: true,
-      description: 'List of certifications that the coffee has',
-      isIn: ['UTZ Certified', 'Fair Trade Certified', 'Rainforest Alliance Certified', 'Direct Trade', 'Bird-Friendly']
+      custom: function(value) {
+        const allowedCertificates = [
+          'UTZ Certified',
+          'Fair Trade Certified',
+          'Rainforest Alliance Certified',
+          'Direct Trade',
+          'Bird-Friendly'
+        ];
+        return Array.isArray(value) && value.every(cert => allowedCertificates.includes(cert));
+      }
     },
     origin: {
       type: 'string',
