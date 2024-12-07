@@ -1,122 +1,48 @@
 <template>
-    <div class="container">
-      <h2 class="text-center my-4">Edit Product</h2>
-      <form @submit.prevent="submitForm">
-        <!-- Bild hochladen -->
-        <div class="form-group mb-3">
-          <label for="productImage">Upload Image</label>
-          <input
-            type="file"
-            id="productImage"
-            class="form-control"
-            @change="handleImageUpload"
-          />
+    <div class="form-container">
+      <h1>Edit Product</h1>
+      <form @submit.prevent="saveChanges">
+        <div class="form-group">
+          <label for="image">Image</label>
+          <input type="file" id="image" @change="onFileChange" />
         </div>
-  
-        <!-- Eingabefelder -->
-        <div class="form-group mb-3">
+        <div class="form-group">
           <label for="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            v-model="product.name"
-            class="form-control"
-            placeholder="Enter product name"
-          />
+          <input type="text" id="name" v-model="product.name" required />
         </div>
-  
-        <div class="form-group mb-3">
+        <div class="form-group">
           <label for="brand">Brand</label>
-          <input
-            type="text"
-            id="brand"
-            v-model="product.brand"
-            class="form-control"
-            placeholder="Enter brand"
-          />
+          <input type="text" id="brand" v-model="product.brand" required />
         </div>
-  
-        <div class="form-group mb-3">
-          <label for="roastLevel">Roast Level</label>
-          <input
-            type="text"
-            id="roastLevel"
-            v-model="product.roastLevel"
-            class="form-control"
-            placeholder="Enter roast level"
-          />
+        <div class="form-group">
+          <label for="roast-level">Roast Level</label>
+          <input type="text" id="roast-level" v-model="product.roastLevel" required />
         </div>
-  
-        <div class="form-group mb-3">
-          <label for="caffeineContent">Caffeine Content</label>
-          <input
-            type="text"
-            id="caffeineContent"
-            v-model="product.caffeineContent"
-            class="form-control"
-            placeholder="Enter caffeine content"
-          />
+        <div class="form-group">
+          <label for="caffeine">Caffeine Content</label>
+          <input type="text" id="caffeine" v-model="product.caffeineContent" required />
         </div>
-  
-        <div class="form-group mb-3">
-          <label for="beanType">Bean Type</label>
-          <input
-            type="text"
-            id="beanType"
-            v-model="product.beanType"
-            class="form-control"
-            placeholder="Enter bean type"
-          />
+        <div class="form-group">
+          <label for="bean-type">Bean Variety</label>
+          <input type="text" id="bean-type" v-model="product.beanVariety" required />
         </div>
-  
-        <div class="form-group mb-3">
+        <div class="form-group">
           <label for="price">Price</label>
-          <input
-            type="number"
-            id="price"
-            v-model="product.price"
-            class="form-control"
-            placeholder="Enter price"
-          />
+          <input type="number" id="price" v-model="product.price" required />
         </div>
-  
-        <div class="form-group mb-3">
-          <label for="grindSize">Grind Size</label>
-          <input
-            type="text"
-            id="grindSize"
-            v-model="product.grindSize"
-            class="form-control"
-            placeholder="Enter grind size"
-          />
+        <div class="form-group">
+          <label for="grind">Grind Size</label>
+          <input type="text" id="grind" v-model="product.grindSize" required />
         </div>
-  
-        <div class="form-group mb-3">
+        <div class="form-group">
           <label for="origin">Origin</label>
-          <input
-            type="text"
-            id="origin"
-            v-model="product.origin"
-            class="form-control"
-            placeholder="Enter origin"
-          />
+          <input type="text" id="origin" v-model="product.origin" required />
         </div>
-  
-        <div class="form-group mb-3">
+        <div class="form-group">
           <label for="description">Description</label>
-          <textarea
-            id="description"
-            v-model="product.description"
-            class="form-control"
-            rows="4"
-            placeholder="Enter product description"
-          ></textarea>
+          <textarea id="description" v-model="product.description" rows="5" required></textarea>
         </div>
-  
-        <!-- Button -->
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Save Changes</button>
-        </div>
+        <button type="submit">Save Changes</button>
       </form>
     </div>
   </template>
@@ -131,41 +57,75 @@
           brand: "",
           roastLevel: "",
           caffeineContent: "",
-          beanType: "",
-          price: 0,
+          beanVariety: "",
+          price: null,
           grindSize: "",
           origin: "",
           description: "",
         },
-        image: null,
       };
     },
     methods: {
-      handleImageUpload(event) {
-        this.image = event.target.files[0];
+      saveChanges() {
+        console.log("Product changes saved:", this.product);
+        alert("Product changes have been saved!");
       },
-      submitForm() {
-        console.log("Edited Product:", this.product);
-        console.log("Uploaded Image:", this.image);
-        alert("Changes saved successfully!");
-        // Hier Backend-Aufruf einfügen
+      onFileChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+          console.log("Image selected:", file.name);
+        }
       },
     },
   };
   </script>
   
   <style scoped>
-  .container {
+  .form-container {
     max-width: 600px;
-    margin: auto;
-    background-color: #f8f9fa;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
-  button {
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input,
+  textarea {
     width: 100%;
-    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #a8865f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #8f724f;
   }
   </style>
+  
