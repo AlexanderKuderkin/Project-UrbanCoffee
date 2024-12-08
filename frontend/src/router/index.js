@@ -6,11 +6,7 @@ import Coffee from '@/views/Coffee.vue';
 import ManageCoffee from '@/views/ManageCoffee.vue';
 import Reviews from '@/views/Reviews.vue';
 import AddProduct from '@/views/AddProduct.vue'; // Import der neuen AddProduct-Seite
-import EditProduct from '@/views/EditProduct.vue';
-
-// Falls später weitere Seiten benötigt werden, hier hinzufügen:
-// import AboutPage from '@/views/AboutPage.vue';
-// import LoginPage from '@/views/LoginPage.vue';
+import EditProduct from '@/views/EditProduct.vue'; // Import der neuen EditProduct-Seite
 
 const routes = [
   {
@@ -39,21 +35,11 @@ const routes = [
     component: AddProduct,
   },
   {
-    path: '/EditProduct',
+    path: '/EditProduct/:id', // Dynamische Route mit einem Parameter (:id)
     name: 'EditProduct',
-    component: EditProduct, // Neue Route für EditProduct
+    component: EditProduct,
+    props: true, // Ermöglicht das Übergeben von "id" als Prop an die Komponente
   },
-  // Beispiel für zusätzliche Seiten:
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: AboutPage, // Über uns-Seite
-  // },
-  // {
-  //   path: '/login',
-  //   name: 'Login',
-  //   component: LoginPage, // Login-Seite
-  // },
 ];
 
 const router = createRouter({
