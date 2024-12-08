@@ -265,24 +265,18 @@
           </div>
         </div>
   
-        <!-- Dynamische Kaffee-Liste -->
         <div class="col-md-9">
           <div class="row g-2">
-            <!-- Dynamisch generierte Produkte -->
             <div v-for="coffee in coffees" :key="coffee.id" class="col-12 col-md-6">
               <div class="card shadow">
-                <!-- Platzhalter-Bild -->
                 <img
                   class="searchImg"
                   src="https://via.placeholder.com/300x200.png?text=Placeholder"
                   :alt="coffee.name"
                 />
-                <!-- Card-Footer -->
                 <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
-                  <!-- Produktname -->
                   <a href="#" class="h5">{{ coffee.name }}</a>
 
-                  <!-- Sterne-Bewertung (statisch, da keine dynamischen Ratings vorhanden) -->
                   <ul class="list-unstyled d-flex justify-content-center mb-3">
                     <li><i class="fas fa-star fa-sm star-color"></i></li>
                     <li><i class="fas fa-star fa-sm star-color"></i></li>
@@ -291,12 +285,10 @@
                     <li><i class="fas fa-star fa-sm star-color"></i></li>
                   </ul>
 
-                  <!-- View More Button -->
                   <button class="btn btn-secondary view-more-btn">
                     <i class="fas fa-eye me-2"></i> View More
                   </button>
 
-                  <!-- Preis und Add-to-Cart Button -->
                   <div class="d-flex justify-content-between align-items-center mt-3">
                     <span class="h6 mb-0 text-gray">${{ coffee.price.toFixed(2) }}</span>
                     <button class="btn btn-xs btn-tertiary">
@@ -307,7 +299,6 @@
               </div>
             </div>
 
-            <!-- Wenn keine Kaffees vorhanden sind -->
             <div v-if="coffees.length === 0" class="col-12 text-center">
               <p>No coffees available at the moment.</p>
             </div>
@@ -321,15 +312,13 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 
-// Reaktive Variable für Kaffees
 const coffees = ref([]);
 
-// API-Aufruf beim Mounten der Komponente
 onMounted(() => {
   axios
-    .get("/Coffee") // Auf Sails-Route GET /Coffee
+    .get("/Coffee") 
     .then((response) => {
-      coffees.value = response.data; // Daten speichern
+      coffees.value = response.data;
     })
     .catch((error) => {
       console.error("Error fetching coffees:", error);

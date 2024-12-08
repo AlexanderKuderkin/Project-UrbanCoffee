@@ -21,6 +21,9 @@ module.exports.routes = {
   'DELETE /Coffee/:id': { controller: 'CoffeeController', action: 'destroy' },
 
 
+  'PUT /Coffee/:id': { controller: 'CoffeeController', action: 'update' },
+  'GET /Coffee/:id': { controller: 'CoffeeController', action: 'findOne' },
+
   //'PUT /manageCoffee/:id': { controller: 'CoffeeController', action: 'update' },
 
   //'DELETE /manageCoffee/:id': { controller: 'CoffeeController', action: 'delete' },

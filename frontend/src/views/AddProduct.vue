@@ -2,9 +2,8 @@
   <div class="container mt-5">
     <h1 class="text-center mb-4">Add New Product</h1>
 
-    <!-- Formular für Produkt hinzufügen -->
     <form @submit.prevent="addProduct">
-      <!-- Name -->
+
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input
@@ -19,7 +18,6 @@
         />
       </div>
 
-      <!-- Description -->
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea
@@ -34,7 +32,6 @@
         ></textarea>
       </div>
 
-      <!-- Price -->
       <div class="mb-3">
         <label for="price" class="form-label">Price</label>
         <input
@@ -50,7 +47,6 @@
         />
       </div>
 
-      <!-- Caffeine Content -->
       <div class="mb-3">
         <label for="caffeine" class="form-label">Caffeine Content (mg)</label>
         <input
@@ -66,7 +62,6 @@
         />
       </div>
 
-      <!-- Brand -->
       <div class="mb-3">
         <label for="brand" class="form-label">Brand</label>
         <select
@@ -84,7 +79,6 @@
         </select>
       </div>
 
-      <!-- Roast Degree -->
       <div class="mb-3">
         <label for="roast" class="form-label">Roast Degree</label>
         <select
@@ -102,7 +96,6 @@
         </select>
       </div>
 
-      <!-- Bean Type -->
       <div class="mb-3">
         <label for="beanType" class="form-label">Bean Type</label>
         <select
@@ -120,7 +113,6 @@
         </select>
       </div>
 
-      <!-- Certificates (Checkboxes) -->
       <div class="mb-3">
         <label class="form-label">Certificates</label>
         <div
@@ -140,7 +132,6 @@
         </div>
       </div>
 
-      <!-- Origin -->
       <div class="mb-3">
         <label for="origin" class="form-label">Origin</label>
         <select
@@ -158,7 +149,6 @@
         </select>
       </div>
 
-      <!-- Grind Type -->
       <div class="mb-3">
         <label for="grindType" class="form-label">Grind Type</label>
         <select
@@ -176,7 +166,6 @@
         </select>
       </div>
 
-      <!-- Submit Button -->
       <button type="submit" class="btn btn-success">Add Product</button>
     </form>
   </div>

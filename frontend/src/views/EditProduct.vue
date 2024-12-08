@@ -1,226 +1,205 @@
 <template>
-  <div class="background-container">
-    <div class="add-product-container">
-      <h2 class="title">Edit Product</h2>
-      <form @submit.prevent="saveChanges" class="product-form">
-        <div class="form-group">
-          <label for="productImage">Product Image:</label>
-          <input type="file" id="productImage" @change="handleFileUpload" />
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Edit Product</h1>
+
+    <form @submit.prevent="updateProduct">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          id="name"
+          v-model="product.name"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          v-model="product.description"
+          class="form-control"
+          rows="3"
+          required
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+          type="number"
+          id="price"
+          v-model.number="product.price"
+          class="form-control"
+          step="0.01"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="caffeineContent" class="form-label">Caffeine Content</label>
+        <input
+          type="number"
+          id="caffeineContent"
+          v-model.number="product.caffeineContent"
+          class="form-control"
+          step="0.01"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="brand" class="form-label">Brand</label>
+        <select id="brand" v-model="product.brand" class="form-select" required>
+          <option v-for="brand in brands" :key="brand" :value="brand">
+            {{ brand }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="roastDegree" class="form-label">Roast Degree</label>
+        <select id="roastDegree" v-model="product.roastDegree" class="form-select" required>
+          <option v-for="degree in roastDegrees" :key="degree" :value="degree">
+            {{ degree }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="beanType" class="form-label">Bean Type</label>
+        <select id="beanType" v-model="product.beanType" class="form-select" required>
+          <option v-for="bean in beanTypes" :key="bean" :value="bean">
+            {{ bean }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Certificates</label>
+        <div v-for="certificate in certificatesOptions" :key="certificate" class="form-check">
+          <input
+            type="checkbox"
+            :id="certificate"
+            :value="certificate"
+            v-model="product.certificates"
+            class="form-check-input"
+          />
+          <label :for="certificate" class="form-check-label">{{ certificate }}</label>
         </div>
-        <div class="form-group">
-          <label for="productName">Name:</label>
-          <input type="text" id="productName" v-model="product.name" placeholder="Enter product name" />
-        </div>
-        <div class="form-group">
-          <label for="productBrand">Brand:</label>
-          <input type="text" id="productBrand" v-model="product.brand" placeholder="Enter brand name" />
-        </div>
-        <div class="form-group">
-          <label for="roastLevel">Roast Level:</label>
-          <input type="text" id="roastLevel" v-model="product.roastLevel" placeholder="Enter roast level" />
-        </div>
-        <div class="form-group">
-          <label for="caffeineContent">Caffeine Content:</label>
-          <input type="text" id="caffeineContent" v-model="product.caffeine" placeholder="Enter caffeine content" />
-        </div>
-        <div class="form-group">
-          <label for="beanType">Bean Variety:</label>
-          <input type="text" id="beanType" v-model="product.beanType" placeholder="Enter bean variety" />
-        </div>
-        <div class="form-group">
-          <label for="category">Category:</label>
-          <select id="category" v-model="product.category">
-            <option value="pulver">Pulver</option>
-            <option value="kapseln">Kapseln</option>
-            <option value="bohnen">Bohnen</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="certificates">Certificates:</label>
-          <div class="certificate-list">
-            <div v-for="certificate in certificates" :key="certificate" class="checkbox-group">
-              <input
-                type="checkbox"
-                :id="certificate"
-                :value="certificate"
-                v-model="product.certificates"
-              />
-              <label :for="certificate">{{ certificate }}</label>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="price">Price:</label>
-          <input type="number" id="price" v-model="product.price" placeholder="Enter price" />
-        </div>
-        <div class="form-group">
-          <label for="grindLevel">Grind Level:</label>
-          <input type="text" id="grindLevel" v-model="product.grindLevel" placeholder="Enter grind level" />
-        </div>
-        <div class="form-group">
-          <label for="origin">Origin:</label>
-          <input type="text" id="origin" v-model="product.origin" placeholder="Enter origin" />
-        </div>
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea id="description" v-model="product.description" placeholder="Enter product description"></textarea>
-        </div>
-        <button type="submit" class="submit-button">Save Changes</button>
-      </form>
-    </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="origin" class="form-label">Origin</label>
+        <select id="origin" v-model="product.origin" class="form-select" required>
+          <option v-for="origin in origins" :key="origin" :value="origin">
+            {{ origin }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="grindType" class="form-label">Grind Type</label>
+        <select id="grindType" v-model="product.grindType" class="form-select" required>
+          <option v-for="grind in grindTypes" :key="grind" :value="grind">
+            {{ grind }}
+          </option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Update Product</button>
+    </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { ref, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+
 export default {
   name: "EditProduct",
-  props: {
-    id: {
-      type: Number,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      product: {
-        name: "",
-        brand: "",
-        roastLevel: "",
-        caffeine: "",
-        beanType: "",
-        category: "pulver",
-        certificates: [],
-        price: 0,
-        grindLevel: "",
-        origin: "",
-        description: "",
-      },
-      certificates: [
-        "UTZ Certified",
-        "Fair Trade Certified",
-        "Rainforest Alliance Certified",
-        "Direct Trade",
-        "Bird Friendly",
-      ],
-    };
-  },
-  created() {
-    this.loadProduct(this.id);
-  },
-  methods: {
-    handleFileUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        console.log("File selected:", file.name);
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+    const product = ref({
+      name: "",
+      description: "",
+      price: 0,
+      caffeineContent: 0,
+      brand: "",
+      roastDegree: "",
+      beanType: "",
+      certificates: [],
+      origin: "",
+      grindType: "",
+    });
+
+    const brands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];
+    const roastDegrees = ["Light roast", "Medium roast", "Medium-dark roast", "Dark roast"];
+    const beanTypes = ["Arabica", "Robusta", "Lieberica", "Excelsa"];
+    const certificatesOptions = [
+      "UTZ Certified",
+      "Fair Trade Certified",
+      "Rainforest Alliance Certified",
+      "Direct Trade",
+      "Bird-Friendly",
+    ];
+    const origins = ["Europe", "Asia", "Africa", "North-America", "South-America", "Australia"];
+    const grindTypes = ["Whole bean", "Coarse", "Medium-coarse", "Medium", "Fine", "Extra fine"];
+
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:1337/Coffee/${route.params.id}`);
+        product.value = response.data;
+      } catch (error) {
+        console.error("Error fetching product:", error);
       }
-    },
-    loadProduct(id) {
-      // Hier wird das Produkt basierend auf der ID geladen
-      console.log(`Loading product with ID: ${id}`);
-      // Simulierte Daten für das Beispiel:
-      this.product = {
-        name: "Espresso Blend",
-        brand: "Premium Coffee Co.",
-        roastLevel: "Dark",
-        caffeine: "High",
-        beanType: "Arabica",
-        category: "bohnen",
-        certificates: ["UTZ Certified", "Fair Trade Certified"],
-        price: 15.99,
-        grindLevel: "Fine",
-        origin: "Colombia",
-        description: "A bold and rich espresso blend with a smooth finish.",
-      };
-    },
-    saveChanges() {
-      console.log("Saving product changes:", this.product);
-      alert("Changes saved successfully!");
-    },
+    };
+
+    const updateProduct = async () => {
+      try {
+        await axios.put(`http://localhost:1337/Coffee/${route.params.id}`, product.value);
+        alert("Product updated successfully!");
+        router.push("/ManageCoffee");
+      } catch (error) {
+        console.error("Error updating product:", error);
+      }
+    };
+
+    onMounted(() => {
+      fetchProduct();
+    });
+
+    return {
+      product,
+      brands,
+      roastDegrees,
+      beanTypes,
+      certificatesOptions,
+      origins,
+      grindTypes,
+      updateProduct,
+    };
   },
 };
 </script>
 
 <style scoped>
-.background-container {
-  background-color: rgb(212, 205, 205);
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  min-height: calc(100vh - 40px);
-  box-sizing: border-box;
-}
-
-.add-product-container {
+.container {
   max-width: 600px;
-  margin: 0 auto;
+  margin: auto;
+  background: #f9f9f9;
   padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-.title {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.product-form .form-group {
-  margin-bottom: 15px;
-}
-
-.product-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.product-form input,
-.product-form textarea,
-.product-form select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.product-form textarea {
-  resize: none;
-  height: 100px;
-}
-
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.checkbox-group input {
-  margin-right: 5px;
-}
-
-.certificate-list {
-  display: flex;
-  flex-direction: column;
-  width: 5%;
-}
-
-.submit-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #735340;
-  color: white;
+.btn-success {
+  background-color: #28a745;
   border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  cursor: pointer;
 }
-
-.submit-button:hover {
-  background-color: #a8765f;
+.btn-success:hover {
+  background-color: #218838;
 }
 </style>

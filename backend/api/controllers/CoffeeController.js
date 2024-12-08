@@ -32,7 +32,18 @@ module.exports = {
       sails.log.debug("Delete coffee....");
       await Coffee.destroy({ id: req.params.id });
       return res.ok();
-    }
+    },
+
+    update: async function (req, res) {
+      sails.log.debug("Updating coffee....");
+      const updatedCoffee = await Coffee.updateOne({ id: req.params.id }).set(req.body);
+    
+      if (!updatedCoffee) {
+        return res.notFound();
+      }
+      return res.ok();
+    },
+    
 /*
     uploadImage: async function (req, res) {
       req.file('image').upload({

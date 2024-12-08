@@ -2,14 +2,12 @@
   <div class="container mt-5">
     <h1 class="text-center mb-4">Manage Coffees</h1>
 
-    <!-- Add Product Button mit Router-Link -->
     <div class="mb-3 text-end">
       <router-link to="/AddProduct" class="btn btn-success">
         <i class="fas fa-plus"></i> Add Product
       </router-link>
     </div>
 
-    <!-- Tabelle mit table-responsive-wrapper -->
     <div class="table-responsive-wrapper">
       <table class="table table-striped table-bordered">
         <thead>
@@ -31,17 +29,15 @@
             <td>${{ coffee.price.toFixed(2) }}</td>
             <td>{{ coffee.beanType }}</td>
             <td>
-  <button @click="deleteCoffee(coffee.id)" class="btn btn-danger btn-sm">
-    Delete
-  </button>
-  <router-link :to="`/ViewCoffee/${coffee.id}`" class="btn btn-primary btn-sm">
-    View
-  </router-link>
-</td>
+            <button @click="deleteCoffee(coffee.id)" class="btn btn-danger btn-sm">
+              Delete
+            </button>
+            <router-link :to="`/EditProduct/${coffee.id}`" class="btn btn-warning btn-sm">
+              Edit
+            </router-link>
+          </td>
+        </tr>
 
-          </tr>
-
-          <!-- Keine Kaffees vorhanden -->
           <tr v-if="coffees.length === 0">
             <td colspan="6" class="text-center">
               No coffees available at the moment.
@@ -93,7 +89,7 @@ export default {
 
 <style scoped>
 .table-responsive-wrapper {
-  overflow-x: auto; /* Tabelle scrollbar machen bei kleinen Bildschirmen */
+  overflow-x: auto; 
 }
 
 .table th,
