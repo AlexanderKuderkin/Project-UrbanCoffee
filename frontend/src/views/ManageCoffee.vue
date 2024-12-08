@@ -7,7 +7,7 @@
           <div class="card-header">
             <h5>Manage Coffee</h5>
             <router-link to="/AddProduct">
-            <button>Add product</button>
+              <button>Add product</button>
             </router-link>
           </div>
           <div class="card-body">
@@ -36,7 +36,9 @@
                     <td>
                       <div class="btn-group">
                         <button class="btn btn-sm btn-info" @click="viewCoffee(coffee)">View</button>
-                        <button class="btn btn-sm btn-primary" @click="editCoffee(coffee)">Edit</button>
+                        <router-link :to="{ name: 'EditProduct', params: { id: coffee.id } }">
+                          <button class="btn btn-sm btn-primary">Edit</button>
+                        </router-link>
                         <button class="btn btn-sm btn-danger" @click="deleteCoffee(coffee)">Delete</button>
                       </div>
                     </td>
@@ -93,9 +95,6 @@ export default {
     viewCoffee(coffee) {
       alert(`Viewing coffee: ${coffee.name}`);
     },
-    editCoffee(coffee) {
-      console.log("Edit coffee:", coffee);
-    },
     deleteCoffee(coffee) {
       if (confirm(`Are you sure you want to delete ${coffee.name}?`)) {
         this.coffeeList = this.coffeeList.filter((c) => c.id !== coffee.id);
@@ -118,15 +117,15 @@ export default {
 }
 
 .table-responsive-wrapper {
-  overflow-x: auto; /* Ermöglicht horizontales Scrollen */
+  overflow-x: auto;
   margin-top: 20px;
   border-radius: 10px;
-  background-color: #f5f5f5; /* Hintergrundfarbe hinter der Tabelle */
-  padding: 10px; /* Abstand um die Tabelle */
+  background-color: #f5f5f5;
+  padding: 10px;
 }
 
 .table {
-  min-width: 1000px; /* Verhindert, dass die Tabelle bei kleinen Bildschirmen schrumpft */
+  min-width: 1000px;
 }
 
 .btn-group .btn {
