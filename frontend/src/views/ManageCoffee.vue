@@ -7,7 +7,7 @@
           <div class="card-header">
             <h5>Manage Coffee</h5>
             <router-link to="/AddProduct">
-            <button>Add product</button>
+              <button>Add product</button>
             </router-link>
           </div>
           <div class="card-body">
@@ -94,7 +94,7 @@ export default {
       alert(`Viewing coffee: ${coffee.name}`);
     },
     editCoffee(coffee) {
-      console.log("Edit coffee:", coffee);
+      this.$router.push({ name: 'EditProduct', params: { id: coffee.id } });
     },
     deleteCoffee(coffee) {
       if (confirm(`Are you sure you want to delete ${coffee.name}?`)) {
@@ -118,15 +118,15 @@ export default {
 }
 
 .table-responsive-wrapper {
-  overflow-x: auto; /* Ermöglicht horizontales Scrollen */
+  overflow-x: auto;
   margin-top: 20px;
   border-radius: 10px;
-  background-color: #f5f5f5; /* Hintergrundfarbe hinter der Tabelle */
-  padding: 10px; /* Abstand um die Tabelle */
+  background-color: #f5f5f5;
+  padding: 10px;
 }
 
 .table {
-  min-width: 1000px; /* Verhindert, dass die Tabelle bei kleinen Bildschirmen schrumpft */
+  min-width: 1000px;
 }
 
 .btn-group .btn {

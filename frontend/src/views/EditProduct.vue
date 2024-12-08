@@ -2,7 +2,7 @@
   <div class="background-container">
     <div class="add-product-container">
       <h2 class="title">Edit Product</h2>
-      <form @submit.prevent="editProduct" class="product-form">
+      <form @submit.prevent="saveChanges" class="product-form">
         <div class="form-group">
           <label for="productImage">Product Image:</label>
           <input type="file" id="productImage" @change="handleFileUpload" />
@@ -74,6 +74,12 @@
 <script>
 export default {
   name: "EditProduct",
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+  },
   data() {
     return {
       product: {
@@ -82,8 +88,8 @@ export default {
         roastLevel: "",
         caffeine: "",
         beanType: "",
-        category: "pulver", // Standardwert
-        certificates: [], // Zertifikate als Array
+        category: "pulver",
+        certificates: [],
         price: 0,
         grindLevel: "",
         origin: "",
@@ -98,6 +104,9 @@ export default {
       ],
     };
   },
+  created() {
+    this.loadProduct(this.id);
+  },
   methods: {
     handleFileUpload(event) {
       const file = event.target.files[0];
@@ -105,9 +114,27 @@ export default {
         console.log("File selected:", file.name);
       }
     },
-    editProduct() {
-      console.log("Editing product:", this.product);
-      alert("Product updated successfully!");
+    loadProduct(id) {
+      // Hier wird das Produkt basierend auf der ID geladen
+      console.log(`Loading product with ID: ${id}`);
+      // Simulierte Daten für das Beispiel:
+      this.product = {
+        name: "Espresso Blend",
+        brand: "Premium Coffee Co.",
+        roastLevel: "Dark",
+        caffeine: "High",
+        beanType: "Arabica",
+        category: "bohnen",
+        certificates: ["UTZ Certified", "Fair Trade Certified"],
+        price: 15.99,
+        grindLevel: "Fine",
+        origin: "Colombia",
+        description: "A bold and rich espresso blend with a smooth finish.",
+      };
+    },
+    saveChanges() {
+      console.log("Saving product changes:", this.product);
+      alert("Changes saved successfully!");
     },
   },
 };
@@ -178,6 +205,7 @@ export default {
 .certificate-list {
   display: flex;
   flex-direction: column;
+  width: 5%;
 }
 
 .submit-button {
