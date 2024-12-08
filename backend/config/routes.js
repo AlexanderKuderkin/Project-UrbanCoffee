@@ -17,7 +17,9 @@ module.exports.routes = {
   //'GET /manageCoffee': { controller: 'CoffeeController', action: 'find' },
   //'GET /manageCoffee/:id': { controller: 'CoffeeController', action: 'findOne' },
 
-  //'POST /manageCoffee': { controller: 'CoffeeController', action: 'create' },
+  'POST /ManageCoffee': { controller: 'CoffeeController', action: 'create' },
+  'DELETE /Coffee/:id': { controller: 'CoffeeController', action: 'destroy' },
+
 
   //'PUT /manageCoffee/:id': { controller: 'CoffeeController', action: 'update' },
 

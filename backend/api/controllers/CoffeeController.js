@@ -21,14 +21,13 @@ module.exports = {
       }
       return res.json(coffee);
     },
-
+*/
     create: async function (req, res) {
       sails.log.debug("Create coffee....");
       let params = req.allParams();
       await Coffee.create(params);
       return res.ok();
     },
-
     destroy: async function (req, res) {
       sails.log.debug("Delete coffee....");
       await Coffee.destroy({ id: req.params.id });

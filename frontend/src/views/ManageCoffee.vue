@@ -1,162 +1,153 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Main Content -->
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h5>Manage Coffee</h5>
-            <router-link to="/AddProduct">
-              <button>Add product</button>
-            </router-link>
-          </div>
-          <div class="card-body">
-            <!-- Wrapper für horizontales Scrollen -->
-            <div class="table-responsive-wrapper">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Bean Variety</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="coffee in coffeeList" :key="coffee.id">
-                    <td class="text-center">
-                      <img :src="coffee.image" alt="Coffee Image" class="coffee-image" />
-                    </td>
-                    <td>{{ coffee.name }}</td>
-                    <td>{{ coffee.description }}</td>
-                    <td>${{ coffee.price }}</td>
-                    <td>{{ coffee.beanVariety }}</td>
-                    <td>
-                      <div class="btn-group">
-                        <button class="btn btn-sm btn-info" @click="viewCoffee(coffee)">View</button>
-                        <button class="btn btn-sm btn-primary" @click="editCoffee(coffee)">Edit</button>
-                        <button class="btn btn-sm btn-danger" @click="deleteCoffee(coffee)">Delete</button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="pagination-container">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a href="#" class="page-link">Previous</a>
-                </li>
-                <li class="page-item active">
-                  <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link">Next</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Manage Coffees</h1>
+
+    <!-- Add Product Button mit Router-Link -->
+    <div class="mb-3 text-end">
+      <router-link to="/AddProduct" class="btn btn-success">
+        <i class="fas fa-plus"></i> Add Product
+      </router-link>
+    </div>
+
+    <!-- Tabelle mit table-responsive-wrapper -->
+    <div class="table-responsive-wrapper">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Bean Variety</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamische Zeilen -->
+          <tr v-for="coffee in coffees" :key="coffee.id">
+            <td>{{ coffee.id }}</td>
+            <td>{{ coffee.name }}</td>
+            <td>{{ coffee.description }}</td>
+            <td>${{ coffee.price.toFixed(2) }}</td>
+            <td>{{ coffee.beanType }}</td>
+            <td>
+  <button @click="deleteCoffee(coffee.id)" class="btn btn-danger btn-sm">
+    Delete
+  </button>
+  <router-link :to="`/ViewCoffee/${coffee.id}`" class="btn btn-primary btn-sm">
+    View
+  </router-link>
+</td>
+
+          </tr>
+
+          <!-- Keine Kaffees vorhanden -->
+          <tr v-if="coffees.length === 0">
+            <td colspan="6" class="text-center">
+              No coffees available at the moment.
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "ManageCoffee",
   data() {
     return {
-      coffeeList: [
-        {
-          id: 1,
-          image: "/path/to/image1.jpg",
-          name: "Espresso Blend",
-          description: "A bold and rich espresso blend.",
-          price: 12.99,
-          beanVariety: "Arabica",
-        },
-        {
-          id: 2,
-          image: "/path/to/image2.jpg",
-          name: "Latte Delight",
-          description: "Creamy and smooth latte beans.",
-          price: 14.49,
-          beanVariety: "Robusta",
-        },
-      ],
+      coffees: [],
     };
   },
   methods: {
-    viewCoffee(coffee) {
-      alert(`Viewing coffee: ${coffee.name}`);
+    fetchCoffees() {
+      axios
+        .get("http://localhost:1337/Coffee")
+        .then((response) => {
+          this.coffees = response.data;
+        })
+        .catch((error) => console.error("Error fetching coffees:", error));
     },
-    editCoffee(coffee) {
-      this.$router.push({ name: 'EditProduct', params: { id: coffee.id } });
-    },
-    deleteCoffee(coffee) {
-      if (confirm(`Are you sure you want to delete ${coffee.name}?`)) {
-        this.coffeeList = this.coffeeList.filter((c) => c.id !== coffee.id);
+    deleteCoffee(id) {
+      if (confirm("Are you sure you want to delete this coffee?")) {
+        axios
+          .delete(`http://localhost:1337/Coffee/${id}`)
+          .then(() => {
+            this.coffees = this.coffees.filter((coffee) => coffee.id !== id);
+            alert("Coffee deleted successfully!");
+          })
+          .catch((error) => console.error("Error deleting coffee:", error));
       }
     },
   },
+  mounted() {
+    this.fetchCoffees();
+  },
 };
+
 </script>
 
 <style scoped>
-.container-fluid {
-  margin-top: 20px;
-}
-
-.coffee-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 .table-responsive-wrapper {
-  overflow-x: auto;
-  margin-top: 20px;
-  border-radius: 10px;
-  background-color: #f5f5f5;
-  padding: 10px;
+  overflow-x: auto; /* Tabelle scrollbar machen bei kleinen Bildschirmen */
 }
 
-.table {
-  min-width: 1000px;
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
 }
 
-.btn-group .btn {
-  margin-right: 5px;
+.table thead {
+  background-color: #343a40;
+  color: #fff;
 }
 
-.pagination-container {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
+.btn {
+  margin: 0 5px;
 }
 
-.pagination .page-link {
-  color: #735340;
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
 }
 
-.pagination .page-item.active .page-link {
-  background-color: #a8865f;
-  border-color: #a8865f;
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
 }
 
-.card-header {
-  background-color: #a8865f;
-  color: white;
-  border-radius: 10px;
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
 
-.card-body {
-  background-color: rgb(212, 205, 205);
-  border-radius: 15px;
-  padding: 20px;
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
 }
 </style>
