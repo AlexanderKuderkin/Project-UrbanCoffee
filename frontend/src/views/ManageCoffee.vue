@@ -1,15 +1,27 @@
 <template>
   <div class="container mt-5">
-    <h1 class="text-center mb-4">Manage Coffees</h1>
+    <h1 class="text-center mb-4">Manage Coffee</h1>
 
-    <div class="mb-3 text-end">
+    <!-- Suchleiste -->
+    <div class="mb-3">
+      <input
+        type="text"
+        v-model="searchQuery"
+        placeholder="Search for coffee name ..."
+        class="form-control"
+      />
+    </div>
+
+    <!-- Add Product Button -->
+    <div class="d-flex justify-content-end mb-3">
       <router-link to="/AddProduct" class="btn btn-success">
-        <i class="fas fa-plus"></i> Add Product
+        Add Coffee
       </router-link>
     </div>
 
+    <!-- Tabelle -->
     <div class="table-responsive-wrapper">
-      <table class="table table-striped table-bordered">
+      <table class="table table-bordered table-hover">
         <thead>
           <tr>
             <th>ID</th>
@@ -21,27 +33,30 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Dynamische Zeilen -->
-          <tr v-for="coffee in coffees" :key="coffee.id">
+          <tr v-for="coffee in filteredCoffees" :key="coffee.id">
             <td>{{ coffee.id }}</td>
             <td>{{ coffee.name }}</td>
             <td>{{ coffee.description }}</td>
             <td>${{ coffee.price.toFixed(2) }}</td>
             <td>{{ coffee.beanType }}</td>
             <td>
-            <button @click="deleteCoffee(coffee.id)" class="btn btn-danger btn-sm">
-              Delete
-            </button>
-            <router-link :to="`/EditProduct/${coffee.id}`" class="btn btn-warning btn-sm">
-              Edit
-            </router-link>
-          </td>
-        </tr>
-
-          <tr v-if="coffees.length === 0">
-            <td colspan="6" class="text-center">
-              No coffees available at the moment.
+              <router-link
+                :to="`/EditProduct/${coffee.id}`"
+                class="btn btn-primary btn-sm me-2"
+              >
+                Edit
+              </router-link>
+              <button
+                class="btn btn-danger btn-sm"
+                @click="deleteCoffee(coffee.id)"
+              >
+                Delete
+              </button>
             </td>
+          </tr>
+          <!-- Wenn keine Daten vorhanden -->
+          <tr v-if="filteredCoffees.length === 0">
+            <td colspan="6" class="text-center">No coffees match your search.</td>
           </tr>
         </tbody>
       </table>
@@ -51,99 +66,64 @@
 
 <script>
 import axios from "axios";
+import { ref, onMounted, computed } from "vue";
 
 export default {
   name: "ManageCoffee",
-  data() {
+  setup() {
+    const coffees = ref([]);
+    const searchQuery = ref("");
+
+    const fetchCoffees = async () => {
+      try {
+        const response = await axios.get("http://localhost:1337/Coffee");
+        coffees.value = response.data;
+      } catch (error) {
+        console.error("Error fetching coffees:", error);
+      }
+    };
+
+    const deleteCoffee = async (id) => {
+      try {
+        await axios.delete(`http://localhost:1337/Coffee/${id}`);
+        coffees.value = coffees.value.filter((coffee) => coffee.id !== id);
+      } catch (error) {
+        console.error("Error deleting coffee:", error);
+      }
+    };
+
+    const filteredCoffees = computed(() => {
+      return coffees.value.filter((coffee) =>
+        coffee.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+      );
+    });
+
+    onMounted(() => {
+      fetchCoffees();
+    });
+
     return {
-      coffees: [],
+      coffees,
+      searchQuery,
+      deleteCoffee,
+      filteredCoffees,
     };
   },
-  methods: {
-    fetchCoffees() {
-      axios
-        .get("http://localhost:1337/Coffee")
-        .then((response) => {
-          this.coffees = response.data;
-        })
-        .catch((error) => console.error("Error fetching coffees:", error));
-    },
-    deleteCoffee(id) {
-      if (confirm("Are you sure you want to delete this coffee?")) {
-        axios
-          .delete(`http://localhost:1337/Coffee/${id}`)
-          .then(() => {
-            this.coffees = this.coffees.filter((coffee) => coffee.id !== id);
-            alert("Coffee deleted successfully!");
-          })
-          .catch((error) => console.error("Error deleting coffee:", error));
-      }
-    },
-  },
-  mounted() {
-    this.fetchCoffees();
-  },
 };
-
 </script>
 
 <style scoped>
-.table-responsive-wrapper {
-  overflow-x: auto; 
+.container {
+  max-width: 1200px;
 }
-
-.table th,
-.table td {
-  text-align: center;
-  vertical-align: middle;
-}
-
-.table thead {
-  background-color: #343a40;
-  color: #fff;
-}
-
-.btn {
-  margin: 0 5px;
-}
-
 .btn-success {
   background-color: #28a745;
-  border-color: #28a745;
+  border: none;
 }
-
 .btn-success:hover {
   background-color: #218838;
-  border-color: #1e7e34;
 }
-
-.btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-  border-color: #545b62;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
+.table-responsive-wrapper {
+  overflow-x: auto;
 }
 </style>

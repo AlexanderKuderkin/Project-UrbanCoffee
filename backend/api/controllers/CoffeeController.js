@@ -12,7 +12,6 @@ module.exports = {
       return res.json(coffees);
     },
   
-/*
     findOne: async function (req, res) {
       sails.log.debug("Find single coffee....");
       let coffee = await Coffee.findOne({ id: req.params.id });
@@ -21,7 +20,7 @@ module.exports = {
       }
       return res.json(coffee);
     },
-*/
+
     create: async function (req, res) {
       sails.log.debug("Create coffee....");
       let params = req.allParams();
@@ -42,7 +41,7 @@ module.exports = {
         return res.notFound();
       }
       return res.ok();
-    },
+    },  
     
 /*
     uploadImage: async function (req, res) {
