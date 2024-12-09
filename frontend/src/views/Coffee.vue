@@ -4,6 +4,15 @@
         <!--Sidebar-->
         <div class="col-md-3">
             <h4>Filter to find your coffee</h4>
+            <!-- Suchleiste -->
+            <div class="mb-3">
+              <input
+                type="text"
+                v-model="searchQuery"
+                placeholder="Search for coffee name ..."
+                class="form-control"
+              />
+            </div>
           <!--Brand-->
           <div class="origin p-2">
             <h6 class="text-uppercase">Brands</h6>
@@ -12,28 +21,24 @@
                 <input class="form-check-input" type="checkbox" id="tchibo" />
                 <label class="form-check-label" for="tchibo">Tchibo</label>
               </div>
-              <span>5</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="jacobs" />
                 <label class="form-check-label" for="jacobs">Jacobs</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="mellitta" />
                 <label class="form-check-label" for="mellitta">Mellitta</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="eduscho" />
                 <label class="form-check-label" for="eduscho">Eduscho</label>
               </div>
-              <span>7</span>
             </div>
           </div>
 
@@ -44,28 +49,24 @@
                 <input class="form-check-input" type="checkbox" id="lightRoast" />
                 <label class="form-check-label" for="lightRoast">Light roast (Cinnamon roast)</label>
               </div>
-              <span>5</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="mediumRoast" />
                 <label class="form-check-label" for="mediumRoast">Medium roast (City roast)</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="mediumDarkRoast" />
                 <label class="form-check-label" for="mediumDarkRoast">Medium-dark roast (Full City roast)</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="darkRoast" />
                 <label class="form-check-label" for="darkRoast">Dark roast (Espresso roast)</label>
               </div>
-              <span>7</span>
             </div>
           </div>
 
@@ -76,28 +77,24 @@
                 <input class="form-check-input" type="checkbox" id="low" />
                 <label class="form-check-label" for="low">Low (0-50mg)</label>
               </div>
-              <span>5</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="moderate" />
                 <label class="form-check-label" for="moderate">Moderate (51-100 mg)</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="high" />
                 <label class="form-check-label" for="high">High (101-150 mg)</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="veryHigh" />
                 <label class="form-check-label" for="veryHigh">Very high (150+ mg)</label>
               </div>
-              <span>7</span>
             </div>
           </div>
 
@@ -108,28 +105,24 @@
                 <input class="form-check-input" type="checkbox" id="arabica" />
                 <label class="form-check-label" for="arabica">Arabica</label>
               </div>
-              <span>5</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="robusta" />
                 <label class="form-check-label" for="robusta">Robusta</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="lieberica" />
                 <label class="form-check-label" for="lieberica">Lieberica</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="excelsa" />
                 <label class="form-check-label" for="excelsa">Excelsa</label>
               </div>
-              <span>7</span>
             </div>
           </div>
 
@@ -140,42 +133,36 @@
                 <input class="form-check-input" type="checkbox" id="wholeBean" />
                 <label class="form-check-label" for="wholeBean">Whole Bean</label>
               </div>
-              <span>5</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="coarseFrench" />
                 <label class="form-check-label" for="coarseFrench">Coarse (French press)</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="mediumChemex" />
                 <label class="form-check-label" for="mediumChemex">Medium-coarse (Chemex)</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="mediumDrip" />
                 <label class="form-check-label" for="mediumDrip">Medium (Drip coffee makers)</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="fine" />
                 <label class="form-check-label" for="fine">Fine (Esspresso)</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="extraFine" />
                 <label class="form-check-label" for="extraFine">Extra fine (Turkish coffee)</label>
               </div>
-              <span>7</span>
             </div>
           </div>
 
@@ -186,35 +173,30 @@
                 <input class="form-check-input" type="checkbox" id="utz" />
                 <label class="form-check-label" for="utz">UTZ Certified</label>
               </div>
-              <span>5</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="ftc" />
                 <label class="form-check-label" for="ftc">Fair Trade Certified</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="rac" />
                 <label class="form-check-label" for="rac">Rainforest Allience Certified</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="directTrade" />
                 <label class="form-check-label" for="directTrade">Direct Trade</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="bird" />
                 <label class="form-check-label" for="bird">Bird - Friendly</label>
               </div>
-              <span>7</span>
             </div>
           </div>
 
@@ -225,49 +207,43 @@
                 <input class="form-check-input" type="checkbox" id="europe" />
                 <label class="form-check-label" for="europe">Europe</label>
               </div>
-              <span>5</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="asia" />
                 <label class="form-check-label" for="asia">Asia</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="africa" />
                 <label class="form-check-label" for="africa">Africa</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="northAmerica" />
                 <label class="form-check-label" for="northAmerica">North-America</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="southAmerica" />
                 <label class="form-check-label" for="southAmerica">South-America</label>
               </div>
-              <span>7</span>
             </div>
             <div class="d-flex justify-content-between mt-2">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="australia" />
                 <label class="form-check-label" for="australia">Australia</label>
               </div>
-              <span>7</span>
             </div>
           </div>
         </div>
   
         <div class="col-md-9">
           <div class="row g-2">
-            <div v-for="coffee in coffees" :key="coffee.id" class="col-12 col-md-6">
+            <div v-for="coffee in filteredCoffees" :key="coffee.id" class="col-12 col-md-6">
               <div class="card shadow">
                 <img
                   class="searchImg"
@@ -284,6 +260,8 @@
                     <li><i class="fas fa-star fa-sm star-color"></i></li>
                     <li><i class="fas fa-star fa-sm star-color"></i></li>
                   </ul>
+
+                  <p>{{ coffee.description }}</p>
 
                   <button class="btn btn-secondary view-more-btn">
                     <i class="fas fa-eye me-2"></i> View More
@@ -308,22 +286,44 @@
   </div>
 </template>
   
-<script setup>
-import { ref, onMounted } from "vue";
+<script>
 import axios from "axios";
+import { ref, onMounted, computed } from "vue";
 
-const coffees = ref([]);
+export default {
+  name: "Coffee",
+  setup() {
+    const coffees = ref([]); // Alle Kaffees
+    const searchQuery = ref(""); // Suchbegriff für die Suche
 
-onMounted(() => {
-  axios
-    .get("/Coffee") 
-    .then((response) => {
-      coffees.value = response.data;
-    })
-    .catch((error) => {
-      console.error("Error fetching coffees:", error);
+    // Kaffees vom Server abrufen
+    const fetchCoffees = async () => {
+      try {
+        const response = await axios.get("http://localhost:1337/Coffee");
+        coffees.value = response.data;
+      } catch (error) {
+        console.error("Error fetching coffees:", error);
+      }
+    };
+
+    // Lokale Filterung basierend auf dem Suchbegriff
+    const filteredCoffees = computed(() => {
+      return coffees.value.filter((coffee) =>
+        coffee.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+      );
     });
-});
+
+    onMounted(() => {
+      fetchCoffees();
+    });
+
+    return {
+      coffees,
+      searchQuery,
+      filteredCoffees,
+    };
+  },
+};
 </script>
 
   
