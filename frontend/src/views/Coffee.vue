@@ -1,11 +1,11 @@
 <template>
   <div class="container-fluid mt-5 mb-5">
     <div class="row g-2">
-      <!-- Sidebar for filter -->
+      <!-- Sidebar for Filters -->
       <div class="col-md-3">
         <h4>Filter to find your coffee</h4>
 
-        <!-- searchbar -->
+        <!-- Searchbar -->
         <div class="mb-3">
           <input
             type="text"
@@ -42,21 +42,6 @@
               v-model="selectedRoasts"
             />
             <label class="form-check-label" :for="roast">{{ roast }}</label>
-          </div>
-        </div>
-
-        <!-- Filter: Caffeine Content -->
-        <div class="origin p-2">
-          <h6 class="text-uppercase">Caffeine Content</h6>
-          <div class="form-check" v-for="caffeine in availableCaffeine" :key="caffeine">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              :id="caffeine"
-              :value="caffeine"
-              v-model="selectedCaffeine"
-            />
-            <label class="form-check-label" :for="caffeine">{{ caffeine }}</label>
           </div>
         </div>
 
@@ -108,8 +93,20 @@
 
       <!-- Product List -->
       <div class="col-md-9">
+        <!-- Sort Options -->
+        <div class="mb-3 d-flex justify-content-end">
+          <label class="me-2 align-self-center">Sort by:</label>
+          <select v-model="sortOption" class="form-select w-auto">
+            <option value="name-asc">Name: A-Z</option>
+            <option value="name-desc">Name: Z-A</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+
+        <!-- Coffee Cards -->
         <div class="row g-2">
-          <div v-for="coffee in filteredCoffees" :key="coffee.id" class="col-12 col-md-6">
+          <div v-for="coffee in sortedAndFilteredCoffees" :key="coffee.id" class="col-12 col-md-6">
             <div class="card shadow">
               <img
                 class="searchImg"
@@ -142,7 +139,7 @@
               </div>
             </div>
           </div>
-          <div v-if="filteredCoffees.length === 0" class="col-12 text-center">
+          <div v-if="sortedAndFilteredCoffees.length === 0" class="col-12 text-center">
             <p>No coffees available at the moment.</p>
           </div>
         </div>
@@ -150,7 +147,7 @@
     </div>
   </div>
 </template>
-  
+
 <script>
 import axios from "axios";
 import { ref, onMounted, computed } from "vue";
@@ -158,26 +155,13 @@ import { ref, onMounted, computed } from "vue";
 export default {
   name: "Coffee",
   setup() {
-    const coffees = ref([]); 
+    const coffees = ref([]);
     const searchQuery = ref("");
+    const sortOption = ref("name-asc");
 
     const availableBrands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];
-    const availableRoasts = [
-      "Light roast",
-      "Medium roast",
-      "Medium-dark roast",
-      "Dark roast",
-    ];
-    const availableCaffeine = ["Low", "Moderate", "High", "Very high"];
+    const availableRoasts = ["Light roast", "Medium roast", "Medium-dark roast", "Dark roast"];
     const availableBeans = ["Arabica", "Robusta", "Lieberica", "Excelsa"];
-    const availableGrindSize = [
-      "Whole Bean",
-      "Coarse",
-      "Medium-coarse",
-      "Medium",
-      "Fine",
-      "Extra fine",
-    ];
     const availableCertificates = [
       "UTZ Certified",
       "Fair Trade Certified",
@@ -185,20 +169,11 @@ export default {
       "Direct Trade",
       "Bird-Friendly",
     ];
-    const availableOrigins = [
-      "Europe",
-      "Asia",
-      "Africa",
-      "North-America",
-      "South-America",
-      "Australia",
-    ];
+    const availableOrigins = ["Europe", "Asia", "Africa", "North-America", "South-America", "Australia"];
 
     const selectedBrands = ref([]);
     const selectedRoasts = ref([]);
-    const selectedCaffeine = ref([]);
     const selectedBeans = ref([]);
-    const selectedGrindSize = ref([]);
     const selectedCertificates = ref([]);
     const selectedOrigins = ref([]);
 
@@ -213,50 +188,33 @@ export default {
 
     const filteredCoffees = computed(() => {
       return coffees.value.filter((coffee) => {
-        const matchesSearch =
-          coffee.name.toLowerCase().includes(searchQuery.value.toLowerCase());
-
-        const matchesBrand =
-          selectedBrands.value.length === 0 ||
-          selectedBrands.value.includes(coffee.brand);
-
-        const matchesRoast =
-          selectedRoasts.value.length === 0 ||
-          selectedRoasts.value.includes(coffee.roastDegree);
-
-        const matchesCaffeine =
-          selectedCaffeine.value.length === 0 ||
-          selectedCaffeine.value.includes(coffee.caffeineContent);
-
-        const matchesBeans =
-          selectedBeans.value.length === 0 ||
-          selectedBeans.value.includes(coffee.beanType);
-
-        const matchesGrindSize =
-          selectedGrindSize.value.length === 0 ||
-          selectedGrindSize.value.includes(coffee.grindType);
-
+        const matchesSearch = coffee.name.toLowerCase().includes(searchQuery.value.toLowerCase());
+        const matchesBrand = selectedBrands.value.length === 0 || selectedBrands.value.includes(coffee.brand);
+        const matchesRoast = selectedRoasts.value.length === 0 || selectedRoasts.value.includes(coffee.roastDegree);
+        const matchesBeans = selectedBeans.value.length === 0 || selectedBeans.value.includes(coffee.beanType);
         const matchesCertificates =
           selectedCertificates.value.length === 0 ||
-          selectedCertificates.value.some((cert) =>
-            coffee.certificates.includes(cert)
-          );
+          selectedCertificates.value.some((cert) => coffee.certificates.includes(cert));
+        const matchesOrigins = selectedOrigins.value.length === 0 || selectedOrigins.value.includes(coffee.origin);
 
-        const matchesOrigin =
-          selectedOrigins.value.length === 0 ||
-          selectedOrigins.value.includes(coffee.origin);
-
-        return (
-          matchesSearch &&
-          matchesBrand &&
-          matchesRoast &&
-          matchesCaffeine &&
-          matchesBeans &&
-          matchesGrindSize &&
-          matchesCertificates &&
-          matchesOrigin
-        );
+        return matchesSearch && matchesBrand && matchesRoast && matchesBeans && matchesCertificates && matchesOrigins;
       });
+    });
+
+    const sortedAndFilteredCoffees = computed(() => {
+      const sorted = [...filteredCoffees.value];
+      switch (sortOption.value) {
+        case "name-asc":
+          return sorted.sort((a, b) => a.name.localeCompare(b.name));
+        case "name-desc":
+          return sorted.sort((a, b) => b.name.localeCompare(a.name));
+        case "price-asc":
+          return sorted.sort((a, b) => a.price - b.price);
+        case "price-desc":
+          return sorted.sort((a, b) => b.price - a.price);
+        default:
+          return sorted;
+      }
     });
 
     onMounted(() => {
@@ -266,66 +224,62 @@ export default {
     return {
       coffees,
       searchQuery,
+      sortOption,
       availableBrands,
-      selectedBrands,
       availableRoasts,
-      selectedRoasts,
-      availableCaffeine,
-      selectedCaffeine,
       availableBeans,
-      selectedBeans,
-      availableGrindSize,
-      selectedGrindSize,
       availableCertificates,
-      selectedCertificates,
       availableOrigins,
+      selectedBrands,
+      selectedRoasts,
+      selectedBeans,
+      selectedCertificates,
       selectedOrigins,
-      filteredCoffees,
+      sortedAndFilteredCoffees,
     };
   },
 };
 </script>
 
-  
-  <style scoped>
-  body {
-    background-color: #eee;
-  }
-  .h4{
-    text-align: center;
-  }
-  .g-2{
-    --bs-gutter-y: 1.5rem;
-    background-color: rgb(212, 205, 205);
-    margin-bottom: 20px;
-  }
-  .col-12{
-    flex: 0 0;
-    padding-left: 20px;
-    padding-right: 0px;
-    padding-top: 35px;
-    margin-right: 1px;
-  }
-  .col-md-3{
-    margin-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .bg-primary {
-    background-color: #a8865f !important;
-  }
-  .p-2{
-    background-color: white;
-  }
-  .mb-5{
-    padding: 0 0;
-  }
-  .brand {
-    background-color: #fff;
-    margin-top: 5px;
-    border-bottom: 1px solid #eee;
-  }
-  .card {
+<style scoped>
+body {
+  background-color: #eee;
+}
+.h4{
+  text-align: center;
+ }
+.g-2{
+  --bs-gutter-y: 1.5rem;
+  background-color: rgb(212, 205, 205);
+  margin-bottom: 20px;
+}
+.col-12{
+  flex: 0 0;
+  padding-left: 20px;
+  padding-right: 0px;
+  padding-top: 35px;
+  margin-right: 1px;
+}
+.col-md-3{
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.bg-primary {
+  background-color: #a8865f !important;
+}
+.p-2{
+  background-color: white;
+}
+.mb-5{
+  padding: 0 0;
+}
+.brand {
+  background-color: #fff;
+  margin-top: 5px;
+  border-bottom: 1px solid #eee;
+}
+.card {
   width: 300px; 
   border-radius: 5px;
   overflow: hidden;
@@ -389,6 +343,5 @@ export default {
     justify-content: center;
   }
 }
-
-  </style>
+</style>
   
