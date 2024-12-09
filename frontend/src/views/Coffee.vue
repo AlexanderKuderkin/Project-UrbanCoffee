@@ -1,287 +1,152 @@
 <template>
-    <div class="container-fluid mt-5 mb-5">
-      <div class="row g-2">
-        <!--Sidebar-->
-        <div class="col-md-3">
-            <h4>Filter to find your coffee</h4>
-            <!-- Suchleiste -->
-            <div class="mb-3">
-              <input
-                type="text"
-                v-model="searchQuery"
-                placeholder="Search for coffee name ..."
-                class="form-control"
-              />
-            </div>
-          <!--Brand-->
-          <div class="origin p-2">
-            <h6 class="text-uppercase">Brands</h6>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="tchibo" />
-                <label class="form-check-label" for="tchibo">Tchibo</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="jacobs" />
-                <label class="form-check-label" for="jacobs">Jacobs</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="mellitta" />
-                <label class="form-check-label" for="mellitta">Mellitta</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="eduscho" />
-                <label class="form-check-label" for="eduscho">Eduscho</label>
-              </div>
-            </div>
-          </div>
+  <div class="container-fluid mt-5 mb-5">
+    <div class="row g-2">
+      <!-- Sidebar for filter -->
+      <div class="col-md-3">
+        <h4>Filter to find your coffee</h4>
 
-          <div class="origin p-2">
-            <h6 class="text-uppercase">Roast Level</h6>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="lightRoast" />
-                <label class="form-check-label" for="lightRoast">Light roast (Cinnamon roast)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="mediumRoast" />
-                <label class="form-check-label" for="mediumRoast">Medium roast (City roast)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="mediumDarkRoast" />
-                <label class="form-check-label" for="mediumDarkRoast">Medium-dark roast (Full City roast)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="darkRoast" />
-                <label class="form-check-label" for="darkRoast">Dark roast (Espresso roast)</label>
-              </div>
-            </div>
-          </div>
+        <!-- searchbar -->
+        <div class="mb-3">
+          <input
+            type="text"
+            v-model="searchQuery"
+            placeholder="Search for coffee name ..."
+            class="form-control"
+          />
+        </div>
 
-          <div class="origin p-2">
-            <h6 class="text-uppercase">Caffeine content (in mg per 100ml)</h6>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="low" />
-                <label class="form-check-label" for="low">Low (0-50mg)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="moderate" />
-                <label class="form-check-label" for="moderate">Moderate (51-100 mg)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="high" />
-                <label class="form-check-label" for="high">High (101-150 mg)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="veryHigh" />
-                <label class="form-check-label" for="veryHigh">Very high (150+ mg)</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="origin p-2">
-            <h6 class="text-uppercase">Bean variaty</h6>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="arabica" />
-                <label class="form-check-label" for="arabica">Arabica</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="robusta" />
-                <label class="form-check-label" for="robusta">Robusta</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="lieberica" />
-                <label class="form-check-label" for="lieberica">Lieberica</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="excelsa" />
-                <label class="form-check-label" for="excelsa">Excelsa</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="origin p-2">
-            <h6 class="text-uppercase">Grind Size</h6>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="wholeBean" />
-                <label class="form-check-label" for="wholeBean">Whole Bean</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="coarseFrench" />
-                <label class="form-check-label" for="coarseFrench">Coarse (French press)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="mediumChemex" />
-                <label class="form-check-label" for="mediumChemex">Medium-coarse (Chemex)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="mediumDrip" />
-                <label class="form-check-label" for="mediumDrip">Medium (Drip coffee makers)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="fine" />
-                <label class="form-check-label" for="fine">Fine (Esspresso)</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="extraFine" />
-                <label class="form-check-label" for="extraFine">Extra fine (Turkish coffee)</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="origin p-2">
-            <h6 class="text-uppercase">Certification</h6>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="utz" />
-                <label class="form-check-label" for="utz">UTZ Certified</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="ftc" />
-                <label class="form-check-label" for="ftc">Fair Trade Certified</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="rac" />
-                <label class="form-check-label" for="rac">Rainforest Allience Certified</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="directTrade" />
-                <label class="form-check-label" for="directTrade">Direct Trade</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="bird" />
-                <label class="form-check-label" for="bird">Bird - Friendly</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="origin p-2">
-            <h6 class="text-uppercase">Origin</h6>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="europe" />
-                <label class="form-check-label" for="europe">Europe</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="asia" />
-                <label class="form-check-label" for="asia">Asia</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="africa" />
-                <label class="form-check-label" for="africa">Africa</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="northAmerica" />
-                <label class="form-check-label" for="northAmerica">North-America</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="southAmerica" />
-                <label class="form-check-label" for="southAmerica">South-America</label>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="australia" />
-                <label class="form-check-label" for="australia">Australia</label>
-              </div>
-            </div>
+        <!-- Filter: Brands -->
+        <div class="origin p-2">
+          <h6 class="text-uppercase">Brands</h6>
+          <div class="form-check" v-for="brand in availableBrands" :key="brand">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              :id="brand"
+              :value="brand"
+              v-model="selectedBrands"
+            />
+            <label class="form-check-label" :for="brand">{{ brand }}</label>
           </div>
         </div>
-  
-        <div class="col-md-9">
-          <div class="row g-2">
-            <div v-for="coffee in filteredCoffees" :key="coffee.id" class="col-12 col-md-6">
-              <div class="card shadow">
-                <img
-                  class="searchImg"
-                  src="https://via.placeholder.com/300x200.png?text=Placeholder"
-                  :alt="coffee.name"
-                />
-                <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
-                  <a href="#" class="h5">{{ coffee.name }}</a>
 
-                  <ul class="list-unstyled d-flex justify-content-center mb-3">
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                    <li><i class="fas fa-star fa-sm star-color"></i></li>
-                  </ul>
+        <!-- Filter: Roast Level -->
+        <div class="origin p-2">
+          <h6 class="text-uppercase">Roast Level</h6>
+          <div class="form-check" v-for="roast in availableRoasts" :key="roast">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              :id="roast"
+              :value="roast"
+              v-model="selectedRoasts"
+            />
+            <label class="form-check-label" :for="roast">{{ roast }}</label>
+          </div>
+        </div>
 
-                  <p>{{ coffee.description }}</p>
+        <!-- Filter: Caffeine Content -->
+        <div class="origin p-2">
+          <h6 class="text-uppercase">Caffeine Content</h6>
+          <div class="form-check" v-for="caffeine in availableCaffeine" :key="caffeine">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              :id="caffeine"
+              :value="caffeine"
+              v-model="selectedCaffeine"
+            />
+            <label class="form-check-label" :for="caffeine">{{ caffeine }}</label>
+          </div>
+        </div>
 
-                  <button class="btn btn-secondary view-more-btn">
-                    <i class="fas fa-eye me-2"></i> View More
+        <!-- Filter: Bean Variety -->
+        <div class="origin p-2">
+          <h6 class="text-uppercase">Bean Variety</h6>
+          <div class="form-check" v-for="bean in availableBeans" :key="bean">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              :id="bean"
+              :value="bean"
+              v-model="selectedBeans"
+            />
+            <label class="form-check-label" :for="bean">{{ bean }}</label>
+          </div>
+        </div>
+
+        <!-- Filter: Certification -->
+        <div class="origin p-2">
+          <h6 class="text-uppercase">Certification</h6>
+          <div class="form-check" v-for="cert in availableCertificates" :key="cert">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              :id="cert"
+              :value="cert"
+              v-model="selectedCertificates"
+            />
+            <label class="form-check-label" :for="cert">{{ cert }}</label>
+          </div>
+        </div>
+
+        <!-- Filter: Origin -->
+        <div class="origin p-2">
+          <h6 class="text-uppercase">Origin</h6>
+          <div class="form-check" v-for="origin in availableOrigins" :key="origin">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              :id="origin"
+              :value="origin"
+              v-model="selectedOrigins"
+            />
+            <label class="form-check-label" :for="origin">{{ origin }}</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product List -->
+      <div class="col-md-9">
+        <div class="row g-2">
+          <div v-for="coffee in filteredCoffees" :key="coffee.id" class="col-12 col-md-6">
+            <div class="card shadow">
+              <img
+                class="searchImg"
+                src="https://via.placeholder.com/300x200.png?text=Placeholder"
+                :alt="coffee.name"
+              />
+              <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
+                <a href="#" class="h5">{{ coffee.name }}</a>
+
+                <ul class="list-unstyled d-flex justify-content-center mb-3">
+                  <li><i class="fas fa-star fa-sm star-color"></i></li>
+                  <li><i class="fas fa-star fa-sm star-color"></i></li>
+                  <li><i class="fas fa-star fa-sm star-color"></i></li>
+                  <li><i class="fas fa-star fa-sm star-color"></i></li>
+                  <li><i class="fas fa-star fa-sm star-color"></i></li>
+                </ul>
+
+                <p>{{ coffee.description }}</p>
+
+                <button class="btn btn-secondary view-more-btn">
+                  <i class="fas fa-eye me-2"></i> View More
+                </button>
+
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                  <span class="h6 mb-0 text-gray">${{ coffee.price.toFixed(2) }}</span>
+                  <button class="btn btn-xs btn-tertiary">
+                    <i class="fas fa-cart-plus me-2"></i> Add to cart
                   </button>
-
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-                    <span class="h6 mb-0 text-gray">${{ coffee.price.toFixed(2) }}</span>
-                    <button class="btn btn-xs btn-tertiary">
-                      <i class="fas fa-cart-plus me-2"></i> Add to cart
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
-
-            <div v-if="coffees.length === 0" class="col-12 text-center">
-              <p>No coffees available at the moment.</p>
-            </div>
+          </div>
+          <div v-if="filteredCoffees.length === 0" class="col-12 text-center">
+            <p>No coffees available at the moment.</p>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </template>
@@ -293,10 +158,50 @@ import { ref, onMounted, computed } from "vue";
 export default {
   name: "Coffee",
   setup() {
-    const coffees = ref([]); // Alle Kaffees
-    const searchQuery = ref(""); // Suchbegriff für die Suche
+    const coffees = ref([]); 
+    const searchQuery = ref("");
 
-    // Kaffees vom Server abrufen
+    const availableBrands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];
+    const availableRoasts = [
+      "Light roast",
+      "Medium roast",
+      "Medium-dark roast",
+      "Dark roast",
+    ];
+    const availableCaffeine = ["Low", "Moderate", "High", "Very high"];
+    const availableBeans = ["Arabica", "Robusta", "Lieberica", "Excelsa"];
+    const availableGrindSize = [
+      "Whole Bean",
+      "Coarse",
+      "Medium-coarse",
+      "Medium",
+      "Fine",
+      "Extra fine",
+    ];
+    const availableCertificates = [
+      "UTZ Certified",
+      "Fair Trade Certified",
+      "Rainforest Alliance Certified",
+      "Direct Trade",
+      "Bird-Friendly",
+    ];
+    const availableOrigins = [
+      "Europe",
+      "Asia",
+      "Africa",
+      "North-America",
+      "South-America",
+      "Australia",
+    ];
+
+    const selectedBrands = ref([]);
+    const selectedRoasts = ref([]);
+    const selectedCaffeine = ref([]);
+    const selectedBeans = ref([]);
+    const selectedGrindSize = ref([]);
+    const selectedCertificates = ref([]);
+    const selectedOrigins = ref([]);
+
     const fetchCoffees = async () => {
       try {
         const response = await axios.get("http://localhost:1337/Coffee");
@@ -306,11 +211,52 @@ export default {
       }
     };
 
-    // Lokale Filterung basierend auf dem Suchbegriff
     const filteredCoffees = computed(() => {
-      return coffees.value.filter((coffee) =>
-        coffee.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-      );
+      return coffees.value.filter((coffee) => {
+        const matchesSearch =
+          coffee.name.toLowerCase().includes(searchQuery.value.toLowerCase());
+
+        const matchesBrand =
+          selectedBrands.value.length === 0 ||
+          selectedBrands.value.includes(coffee.brand);
+
+        const matchesRoast =
+          selectedRoasts.value.length === 0 ||
+          selectedRoasts.value.includes(coffee.roastDegree);
+
+        const matchesCaffeine =
+          selectedCaffeine.value.length === 0 ||
+          selectedCaffeine.value.includes(coffee.caffeineContent);
+
+        const matchesBeans =
+          selectedBeans.value.length === 0 ||
+          selectedBeans.value.includes(coffee.beanType);
+
+        const matchesGrindSize =
+          selectedGrindSize.value.length === 0 ||
+          selectedGrindSize.value.includes(coffee.grindType);
+
+        const matchesCertificates =
+          selectedCertificates.value.length === 0 ||
+          selectedCertificates.value.some((cert) =>
+            coffee.certificates.includes(cert)
+          );
+
+        const matchesOrigin =
+          selectedOrigins.value.length === 0 ||
+          selectedOrigins.value.includes(coffee.origin);
+
+        return (
+          matchesSearch &&
+          matchesBrand &&
+          matchesRoast &&
+          matchesCaffeine &&
+          matchesBeans &&
+          matchesGrindSize &&
+          matchesCertificates &&
+          matchesOrigin
+        );
+      });
     });
 
     onMounted(() => {
@@ -320,6 +266,20 @@ export default {
     return {
       coffees,
       searchQuery,
+      availableBrands,
+      selectedBrands,
+      availableRoasts,
+      selectedRoasts,
+      availableCaffeine,
+      selectedCaffeine,
+      availableBeans,
+      selectedBeans,
+      availableGrindSize,
+      selectedGrindSize,
+      availableCertificates,
+      selectedCertificates,
+      availableOrigins,
+      selectedOrigins,
       filteredCoffees,
     };
   },
