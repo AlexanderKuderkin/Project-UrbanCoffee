@@ -89,6 +89,31 @@
             <label class="form-check-label" :for="origin">{{ origin }}</label>
           </div>
         </div>
+
+        <!-- Filter: Price-->
+        <div class="origin p-2">
+          <h6 class="text-uppercase">Price Range</h6>
+          <div class="mb-2">
+            <label for="minPrice">Min Price:</label>
+            <input
+              type="number"
+              id="minPrice"
+              v-model.number="minPrice"
+              placeholder="0"
+              class="form-control"
+            />
+          </div>
+          <div>
+            <label for="maxPrice">Max Price:</label>
+            <input
+              type="number"
+              id="maxPrice"
+              v-model.number="maxPrice"
+              placeholder="100"
+              class="form-control"
+            />
+          </div>
+        </div>
       </div>
 
       <!-- Product List -->
@@ -116,14 +141,6 @@
               <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
                 <a href="#" class="h5">{{ coffee.name }}</a>
 
-                <ul class="list-unstyled d-flex justify-content-center mb-3">
-                  <li><i class="fas fa-star fa-sm star-color"></i></li>
-                  <li><i class="fas fa-star fa-sm star-color"></i></li>
-                  <li><i class="fas fa-star fa-sm star-color"></i></li>
-                  <li><i class="fas fa-star fa-sm star-color"></i></li>
-                  <li><i class="fas fa-star fa-sm star-color"></i></li>
-                </ul>
-
                 <p>{{ coffee.description }}</p>
 
                 <button class="btn btn-secondary view-more-btn">
@@ -148,6 +165,7 @@
   </div>
 </template>
 
+
 <script>
 import axios from "axios";
 import { ref, onMounted, computed } from "vue";
@@ -157,6 +175,8 @@ export default {
   setup() {
     const coffees = ref([]);
     const searchQuery = ref("");
+    const minPrice = ref(null);
+    const maxPrice = ref(null);
     const sortOption = ref("name-asc");
 
     const availableBrands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];
@@ -186,35 +206,29 @@ export default {
       }
     };
 
-    const filteredCoffees = computed(() => {
-      return coffees.value.filter((coffee) => {
-        const matchesSearch = coffee.name.toLowerCase().includes(searchQuery.value.toLowerCase());
-        const matchesBrand = selectedBrands.value.length === 0 || selectedBrands.value.includes(coffee.brand);
-        const matchesRoast = selectedRoasts.value.length === 0 || selectedRoasts.value.includes(coffee.roastDegree);
-        const matchesBeans = selectedBeans.value.length === 0 || selectedBeans.value.includes(coffee.beanType);
-        const matchesCertificates =
-          selectedCertificates.value.length === 0 ||
-          selectedCertificates.value.some((cert) => coffee.certificates.includes(cert));
-        const matchesOrigins = selectedOrigins.value.length === 0 || selectedOrigins.value.includes(coffee.origin);
-
-        return matchesSearch && matchesBrand && matchesRoast && matchesBeans && matchesCertificates && matchesOrigins;
-      });
-    });
-
     const sortedAndFilteredCoffees = computed(() => {
-      const sorted = [...filteredCoffees.value];
-      switch (sortOption.value) {
-        case "name-asc":
-          return sorted.sort((a, b) => a.name.localeCompare(b.name));
-        case "name-desc":
-          return sorted.sort((a, b) => b.name.localeCompare(a.name));
-        case "price-asc":
-          return sorted.sort((a, b) => a.price - b.price);
-        case "price-desc":
-          return sorted.sort((a, b) => b.price - a.price);
-        default:
-          return sorted;
-      }
+      return coffees.value
+        .filter((coffee) => {
+          const matchesSearch = coffee.name.toLowerCase().includes(searchQuery.value.toLowerCase());
+          const matchesBrand = selectedBrands.value.length === 0 || selectedBrands.value.includes(coffee.brand);
+          const matchesRoast = selectedRoasts.value.length === 0 || selectedRoasts.value.includes(coffee.roastDegree);
+          const matchesBeans = selectedBeans.value.length === 0 || selectedBeans.value.includes(coffee.beanType);
+          const matchesCertificates =
+            selectedCertificates.value.length === 0 ||
+            selectedCertificates.value.some((cert) => coffee.certificates.includes(cert));
+          const matchesOrigins = selectedOrigins.value.length === 0 || selectedOrigins.value.includes(coffee.origin);
+          const matchesPrice =
+            (!minPrice.value || coffee.price >= minPrice.value) &&
+            (!maxPrice.value || coffee.price <= maxPrice.value);
+
+          return matchesSearch && matchesBrand && matchesRoast && matchesBeans && matchesCertificates && matchesOrigins && matchesPrice;
+        })
+        .sort((a, b) => {
+          if (sortOption.value === "name-asc") return a.name.localeCompare(b.name);
+          if (sortOption.value === "name-desc") return b.name.localeCompare(a.name);
+          if (sortOption.value === "price-asc") return a.price - b.price;
+          if (sortOption.value === "price-desc") return b.price - a.price;
+        });
     });
 
     onMounted(() => {
@@ -224,6 +238,8 @@ export default {
     return {
       coffees,
       searchQuery,
+      minPrice,
+      maxPrice,
       sortOption,
       availableBrands,
       availableRoasts,
@@ -240,6 +256,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 body {
