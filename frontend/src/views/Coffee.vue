@@ -15,6 +15,17 @@
           />
         </div>
 
+        <!-- Sort Options -->
+        <div class="mb-3">
+          <label class="me-2 align-self-center">Sort by:</label>
+          <select v-model="sortOption" class="form-select">
+            <option value="name-asc">Name: A-Z</option>
+            <option value="name-desc">Name: Z-A</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+
         <!-- Filter: Brands -->
         <div class="origin p-2">
           <h6 class="text-uppercase">Brands</h6>
@@ -118,17 +129,6 @@
 
       <!-- Product List -->
       <div class="col-md-9">
-        <!-- Sort Options -->
-        <div class="mb-3 d-flex justify-content-end">
-          <label class="me-2 align-self-center">Sort by:</label>
-          <select v-model="sortOption" class="form-select w-auto">
-            <option value="name-asc">Name: A-Z</option>
-            <option value="name-desc">Name: Z-A</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-          </select>
-        </div>
-
         <!-- Coffee Cards -->
         <div class="row g-2">
           <div v-for="coffee in sortedAndFilteredCoffees" :key="coffee.id" class="col-12 col-md-6">
@@ -166,7 +166,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import axios from "axios";
@@ -258,7 +257,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 body {
@@ -363,4 +361,3 @@ body {
   }
 }
 </style>
-  
