@@ -5,14 +5,15 @@ import HomePage from '@/views/HomePage.vue';
 import Coffee from '@/views/Coffee.vue';
 import ManageCoffee from '@/views/ManageCoffee.vue';
 import Reviews from '@/views/Reviews.vue';
-import AddProduct from '@/views/AddProduct.vue'; // Import der neuen AddProduct-Seite
-import EditProduct from '@/views/EditProduct.vue'; // Import der neuen EditProduct-Seite
+import AddProduct from '@/views/AddProduct.vue';
+import EditProduct from '@/views/EditProduct.vue';
+import CoffeeView from "@/views/CoffeeView.vue";
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomePage, // Haupt-Startseite
+    component: HomePage,
   },
   {
     path: '/Coffee',
@@ -30,21 +31,26 @@ const routes = [
     component: Reviews,
   },
   {
-    path: '/AddProduct', // Pfad zur AddProduct-Seite
+    path: '/AddProduct',
     name: 'AddProduct',
     component: AddProduct,
   },
   {
-    path: '/EditProduct/:id', // Dynamische Route mit einem Parameter (:id)
+    path: '/EditProduct/:id',
     name: 'EditProduct',
     component: EditProduct,
-    props: true, // Ermöglicht das Übergeben von "id" als Prop an die Komponente
+    props: true,
+  },
+  {
+    path: '/coffee/:id',
+    name: 'CoffeeView',
+    component: CoffeeView,
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(), // Aktiviert HTML5-History-Modus für saubere URLs
-  routes, // Routen-Definitionen
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;

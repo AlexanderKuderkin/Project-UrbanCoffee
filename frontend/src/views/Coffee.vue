@@ -144,7 +144,9 @@
                 <p>{{ coffee.description }}</p>
 
                 <button class="btn btn-secondary view-more-btn">
-                  <i class="fas fa-eye me-2"></i> View More
+                  <router-link :to="`/coffee/${coffee.id}`" class="btn btn-secondary view-more-btn text-white text-decoration-none">
+                    <i class="fas fa-eye me-2"></i> View More
+                  </router-link>
                 </button>
 
                 <div class="d-flex justify-content-between align-items-center mt-3">
