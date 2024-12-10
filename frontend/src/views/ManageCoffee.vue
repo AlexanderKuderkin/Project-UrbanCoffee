@@ -113,17 +113,51 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-color: #eee;
+}
+
 .container {
   max-width: 1200px;
 }
+
+.table-responsive-wrapper {
+  overflow-x: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  padding: 10px;
+}
+
+.table {
+  min-width: 1000px;
+}
+
 .btn-success {
   background-color: #28a745;
   border: none;
 }
+
 .btn-success:hover {
   background-color: #218838;
 }
-.table-responsive-wrapper {
-  overflow-x: auto;
+
+.btn {
+  margin-right: 5px;
+}
+
+.pagination-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination .page-link {
+  color: #735340;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #a8865f;
+  border-color: #a8865f;
 }
 </style>
