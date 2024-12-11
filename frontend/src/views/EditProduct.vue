@@ -1,123 +1,129 @@
 <template>
-  <div class="container mt-5">
-    <h1 class="text-center mb-4">Edit Product</h1>
-
-    <form @submit.prevent="updateProduct">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input
-          type="text"
-          id="name"
-          v-model="product.name"
-          class="form-control"
-          required
-        />
+  <div class="background-container">
+    <div class="container mt-5">
+      <!-- Header Section -->
+      <div class="header-section text-white mb-4 p-3 mx-auto">
+        <h1 class="text-center mb-0">Edit Product</h1>
       </div>
 
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea
-          id="description"
-          v-model="product.description"
-          class="form-control"
-          rows="3"
-          required
-        ></textarea>
-      </div>
-
-      <div class="mb-3">
-        <label for="price" class="form-label">Price</label>
-        <input
-          type="number"
-          id="price"
-          v-model.number="product.price"
-          class="form-control"
-          step="0.01"
-          required
-        />
-      </div>
-
-      <div class="mb-3">
-        <label for="caffeineContent" class="form-label">Caffeine Content</label>
-        <input
-          type="number"
-          id="caffeineContent"
-          v-model.number="product.caffeineContent"
-          class="form-control"
-          step="0.01"
-          required
-        />
-      </div>
-
-      <div class="mb-3">
-        <label for="brand" class="form-label">Brand</label>
-        <select id="brand" v-model="product.brand" class="form-select" required>
-          <option v-for="brand in brands" :key="brand" :value="brand">
-            {{ brand }}
-          </option>
-        </select>
-      </div>
-
-      <div class="mb-3">
-        <label for="roastDegree" class="form-label">Roast Degree</label>
-        <select id="roastDegree" v-model="product.roastDegree" class="form-select" required>
-          <option v-for="degree in roastDegrees" :key="degree" :value="degree">
-            {{ degree }}
-          </option>
-        </select>
-      </div>
-
-      <div class="mb-3">
-        <label for="beanType" class="form-label">Bean Type</label>
-        <select id="beanType" v-model="product.beanType" class="form-select" required>
-          <option v-for="bean in beanTypes" :key="bean" :value="bean">
-            {{ bean }}
-          </option>
-        </select>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Certificates</label>
-        <div v-for="certificate in certificatesOptions" :key="certificate" class="form-check">
+      <form @submit.prevent="updateProduct">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
           <input
-            type="checkbox"
-            :id="certificate"
-            :value="certificate"
-            v-model="product.certificates"
-            class="form-check-input"
+            type="text"
+            id="name"
+            v-model="product.name"
+            class="form-control"
+            required
           />
-          <label :for="certificate" class="form-check-label">{{ certificate }}</label>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label for="origin" class="form-label">Origin</label>
-        <select id="origin" v-model="product.origin" class="form-select" required>
-          <option v-for="origin in origins" :key="origin" :value="origin">
-            {{ origin }}
-          </option>
-        </select>
-      </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            id="description"
+            v-model="product.description"
+            class="form-control"
+            rows="3"
+            required
+          ></textarea>
+        </div>
 
-      <div class="mb-3">
-        <label for="grindType" class="form-label">Grind Type</label>
-        <select id="grindType" v-model="product.grindType" class="form-select" required>
-          <option v-for="grind in grindTypes" :key="grind" :value="grind">
-            {{ grind }}
-          </option>
-        </select>
-      </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            id="price"
+            v-model.number="product.price"
+            class="form-control"
+            step="0.01"
+            required
+          />
+        </div>
 
-      <div class="mb-3">
-        <label for="category" class="form-label">Category</label>
-        <select id="category" v-model="product.category" class="form-select" required>
-          <option v-for="category in categories" :key="category.id" :value="category.id">
-            {{ category.name }}
-          </option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-success w-100">Update Product</button>
-    </form>
+        <div class="mb-3">
+          <label for="caffeineContent" class="form-label">Caffeine Content</label>
+          <input
+            type="number"
+            id="caffeineContent"
+            v-model.number="product.caffeineContent"
+            class="form-control"
+            step="0.01"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="brand" class="form-label">Brand</label>
+          <select id="brand" v-model="product.brand" class="form-select" required>
+            <option v-for="brand in brands" :key="brand" :value="brand">
+              {{ brand }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="roastDegree" class="form-label">Roast Degree</label>
+          <select id="roastDegree" v-model="product.roastDegree" class="form-select" required>
+            <option v-for="degree in roastDegrees" :key="degree" :value="degree">
+              {{ degree }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="beanType" class="form-label">Bean Type</label>
+          <select id="beanType" v-model="product.beanType" class="form-select" required>
+            <option v-for="bean in beanTypes" :key="bean" :value="bean">
+              {{ bean }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Certificates</label>
+          <div v-for="certificate in certificatesOptions" :key="certificate" class="form-check">
+            <input
+              type="checkbox"
+              :id="certificate"
+              :value="certificate"
+              v-model="product.certificates"
+              class="form-check-input"
+            />
+            <label :for="certificate" class="form-check-label">{{ certificate }}</label>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="origin" class="form-label">Origin</label>
+          <select id="origin" v-model="product.origin" class="form-select" required>
+            <option v-for="origin in origins" :key="origin" :value="origin">
+              {{ origin }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="grindType" class="form-label">Grind Type</label>
+          <select id="grindType" v-model="product.grindType" class="form-select" required>
+            <option v-for="grind in grindTypes" :key="grind" :value="grind">
+              {{ grind }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select id="category" v-model="product.category" class="form-select" required>
+            <option v-for="category in categories" :key="category.id" :value="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-update-product">Update Product</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -208,19 +214,46 @@ export default {
 </script>
 
 <style scoped>
+.background-container {
+  background-color: rgb(212, 205, 205);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
 .container {
   max-width: 600px;
   margin: auto;
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.btn-success {
-  background-color: #28a745;
+
+.header-section {
+  background-color: #735340;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+}
+
+label {
+  font-weight: bold;
+}
+
+button.btn-update-product {
+  background-color: #A8865F;
+  color: white;
+  width: 100%;
   border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.btn-success:hover {
-  background-color: #218838;
+
+button.btn-update-product:hover {
+  background-color: #A8765F;
 }
 </style>
