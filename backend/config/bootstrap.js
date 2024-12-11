@@ -16,7 +16,6 @@ module.exports.bootstrap = async function() {
     return;
   }
 
-  // Create three new categories based on earlier discussion
   const categories = await Category.createEach([
     {
       name: "Whole Beans - Espresso Roast",
