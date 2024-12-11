@@ -2,7 +2,7 @@
   <div class="container mt-5">
     <h1 class="text-center mb-4">Manage Coffee</h1>
 
-    <!-- Suchleiste -->
+    <!-- Search -->
     <div class="mb-3">
       <input
         type="text"
@@ -19,7 +19,7 @@
       </router-link>
     </div>
 
-    <!-- Tabelle -->
+    <!-- Table -->
     <div class="table-responsive-wrapper">
       <table class="table table-bordered table-hover">
         <thead>
@@ -54,7 +54,7 @@
               </button>
             </td>
           </tr>
-          <!-- Wenn keine Daten vorhanden -->
+          <!-- No data -->
           <tr v-if="filteredCoffees.length === 0">
             <td colspan="6" class="text-center">No coffees match your search.</td>
           </tr>
