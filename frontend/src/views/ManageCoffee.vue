@@ -40,10 +40,10 @@
             <td>${{ coffee.price.toFixed(2) }}</td>
             <td>{{ coffee.beanType }}</td>
             <td>
-              <router-link
-                :to="`/EditProduct/${coffee.id}`"
-                class="btn btn-primary btn-sm me-2"
-              >
+              <router-link :to="`/coffee/${coffee.id}`" class="btn btn-secondary view-more-btn text-white text-decoration-none">
+                    <i class="fas fa-eye me-2"></i> View More
+              </router-link>
+              <router-link :to="`/EditProduct/${coffee.id}`" class="btn btn-primary btn-sm me-2">
                 Edit
               </router-link>
               <button
@@ -144,6 +144,7 @@ body {
 
 .btn {
   margin-right: 5px;
+  border-radius: 10px;
 }
 
 .pagination-container {
@@ -159,5 +160,8 @@ body {
 .pagination .page-item.active .page-link {
   background-color: #a8865f;
   border-color: #a8865f;
+}
+.btn-secondary{
+  background-color: #735340;
 }
 </style>
