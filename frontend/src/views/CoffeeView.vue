@@ -10,6 +10,9 @@
           <h2 class="card-title">{{ coffee.name }}</h2>
           <p class="card-text">{{ coffee.description }}</p>
             <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <strong>Category:</strong> {{ coffee.category ? coffee.category.name : 'N/A' }}
+                </li>
             <li class="list-group-item"><strong>Price:</strong> ${{ coffee.price.toFixed(2) }}</li>
             <li class="list-group-item"><strong>Caffeine Content:</strong> {{ coffee.caffeineContent }} mg</li>
             <li class="list-group-item"><strong>Brand:</strong> {{ coffee.brand }}</li>
@@ -52,7 +55,7 @@ export default {
 
     const fetchCoffee = async () => {
       try {
-        const response = await axios.get(`http://localhost:1337/Coffee/${route.params.id}`);
+        const response = await axios.get(`http://localhost:1337/Coffee/${route.params.id}?populate=category`);
         coffee.value = response.data;
       } catch (error) {
         console.error("Error fetching coffee details:", error);

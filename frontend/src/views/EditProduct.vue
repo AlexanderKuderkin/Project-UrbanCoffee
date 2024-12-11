@@ -108,6 +108,14 @@
         </select>
       </div>
 
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select id="category" v-model="product.category" class="form-select" required>
+          <option v-for="category in categories" :key="category.id" :value="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
       <button type="submit" class="btn btn-success w-100">Update Product</button>
     </form>
   </div>
@@ -134,8 +142,10 @@ export default {
       certificates: [],
       origin: "",
       grindType: "",
+      category: null,
     });
 
+    const categories = ref([]);
     const brands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];
     const roastDegrees = ["Light roast", "Medium roast", "Medium-dark roast", "Dark roast"];
     const beanTypes = ["Arabica", "Robusta", "Lieberica", "Excelsa"];
@@ -158,6 +168,15 @@ export default {
       }
     };
 
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("http://localhost:1337/Category");
+        categories.value = response.data;
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
     const updateProduct = async () => {
       try {
         await axios.put(`http://localhost:1337/Coffee/${route.params.id}`, product.value);
@@ -170,10 +189,12 @@ export default {
 
     onMounted(() => {
       fetchProduct();
+      fetchCategories();
     });
 
     return {
       product,
+      categories,
       brands,
       roastDegrees,
       beanTypes,

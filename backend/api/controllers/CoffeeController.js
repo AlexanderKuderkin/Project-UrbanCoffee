@@ -14,7 +14,7 @@ module.exports = {
   
     findOne: async function (req, res) {
       sails.log.debug("Find single coffee....");
-      let coffee = await Coffee.findOne({ id: req.params.id });
+      let coffee = await Coffee.findOne({ id: req.params.id }).populate('category');
       if (!coffee) {
         return res.notFound({ error: 'Coffee not found' });
       }
@@ -41,7 +41,7 @@ module.exports = {
         return res.notFound();
       }
       return res.ok();
-    },  
+    },      
     
 /*
     uploadImage: async function (req, res) {

@@ -54,6 +54,9 @@ module.exports = {
       required: true,
       isIn: ['Whole bean','Coarse','Medium-coarse','Medium','Fine','Extra fine']
     },
+    category: {
+      model: 'Category'
+  }
     //imagePath: { type: 'string', required: false }
 /*
     reviews: {

@@ -11,9 +11,10 @@ module.exports = {
 
     name: { type: 'string', columnType: 'varchar(80)', required: true },
     description: { type: 'string', columnType: 'varchar(255)' },
-    coffee: {
-      model: 'coffee'
-    }
+    coffees: {
+      collection: 'Coffee',
+      via: 'category'
+  }
   },
 
 };

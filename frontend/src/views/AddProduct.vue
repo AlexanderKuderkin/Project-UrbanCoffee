@@ -165,6 +165,24 @@
           </option>
         </select>
       </div>
+      
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select
+          id="category"
+          name="category"
+          autocomplete="off"
+          v-model="newProduct.category"
+          class="form-select"
+          required
+        >
+          <option disabled value="">Select Category</option>
+          <option v-for="category in categories" :key="category.id" :value="category.id">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+
 
       <button type="submit" class="btn btn-success">Add Product</button>
     </form>
@@ -173,7 +191,7 @@
 
 <script>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 export default {
   name: "AddProduct",
@@ -189,8 +207,10 @@ export default {
       certificates: [],
       origin: "",
       grindType: "",
+      category: null,
     });
 
+    const categories = ref([]);
     const brands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];
     const roasts = ["Light roast", "Medium roast", "Medium-dark roast", "Dark roast"];
     const beanTypes = ["Arabica", "Robusta", "Lieberica", "Excelsa"];
@@ -202,24 +222,42 @@ export default {
       "Bird-Friendly",
     ];
     const origins = ["Europe", "Asia", "Africa", "North-America", "South-America", "Australia"];
-    const grindTypes = [
-      "Whole bean",
-      "Coarse",
-      "Medium-coarse",
-      "Medium",
-      "Fine",
-      "Extra fine",
-    ];
+    const grindTypes = ["Whole bean", "Coarse", "Medium-coarse", "Medium", "Fine", "Extra fine"];
+
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("http://localhost:1337/Category"); // API-Aufruf
+        categories.value = response.data;
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
 
     const addProduct = async () => {
       try {
         await axios.post("http://localhost:1337/Coffee", newProduct.value);
         alert("Product added successfully!");
-        newProduct.value = {};
+        newProduct.value = {
+          name: "",
+          description: "",
+          price: null,
+          caffeineContent: null,
+          brand: "",
+          roastDegree: "",
+          beanType: "",
+          certificates: [],
+          origin: "",
+          grindType: "",
+          category: null,
+        };
       } catch (error) {
         console.error("Error adding product:", error);
       }
     };
+
+    onMounted(() => {
+      fetchCategories();
+    });
 
     return {
       newProduct,
@@ -229,10 +267,12 @@ export default {
       certificates,
       origins,
       grindTypes,
+      categories, // Rückgabe der dynamischen Kategorien
       addProduct,
     };
   },
 };
+
 </script>
 
 <style scoped>
