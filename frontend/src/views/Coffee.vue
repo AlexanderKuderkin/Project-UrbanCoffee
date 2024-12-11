@@ -292,6 +292,9 @@ body {
 .mb-5{
   padding: 0 0;
 }
+.form-select{
+  max-width: 150px;
+}
 .brand {
   background-color: #fff;
   margin-top: 5px;
