@@ -269,6 +269,7 @@ body {
   --bs-gutter-y: 1.5rem;
   background-color: rgb(212, 205, 205);
   margin-bottom: 20px;
+  margin-right: 0px;
 }
 .col-12{
   flex: 0 0;
