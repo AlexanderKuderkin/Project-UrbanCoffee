@@ -8,8 +8,8 @@
       <input type="text" class="form-control" placeholder="Search" aria-label="Search">
     </div>
     <div class="nav-buttons d-none d-md-flex">
-      <button class="btn">Coffee</button>
-      <button class="btn">Admin</button>
+      <router-link to="/Coffee" class="btn">Coffee</router-link>
+      <router-link to="/ManageCoffee" class="btn">Manage Coffee</router-link>
       <button class="btn btn-traditional">Login</button>
       <button class="btn btn-traditional">Sign up</button>
     </div>
