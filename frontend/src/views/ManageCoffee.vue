@@ -1,65 +1,66 @@
 <template>
-  <div class="container mt-5">
-    <h1 class="text-center mb-4">Manage Coffee</h1>
+  <div class="background-container">
+    <div class="container mt-5">
+      <!-- Header Section -->
+      <div class="header-section mb-4 p-3 text-white">
+        <h1 class="text-center mb-3">Manage Coffee</h1>
+        <div>
+          <!-- Search -->
+          <input
+            type="text"
+            v-model="searchQuery"
+            placeholder="Search for coffee name ..."
+            class="form-control mb-3"
+          />
+          <!-- Add Product Button -->
+          <router-link to="/AddProduct" class="btn btn-success">
+            Add Coffee
+          </router-link>
+        </div>
+      </div>
 
-    <!-- Search -->
-    <div class="mb-3">
-      <input
-        type="text"
-        v-model="searchQuery"
-        placeholder="Search for coffee name ..."
-        class="form-control"
-      />
-    </div>
-
-    <!-- Add Product Button -->
-    <div class="d-flex justify-content-end mb-3">
-      <router-link to="/AddProduct" class="btn btn-success">
-        Add Coffee
-      </router-link>
-    </div>
-
-    <!-- Table -->
-    <div class="table-responsive-wrapper">
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Bean Variety</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="coffee in filteredCoffees" :key="coffee.id">
-            <td>{{ coffee.id }}</td>
-            <td>{{ coffee.name }}</td>
-            <td>{{ coffee.description }}</td>
-            <td>${{ coffee.price.toFixed(2) }}</td>
-            <td>{{ coffee.beanType }}</td>
-            <td>
-              <router-link :to="`/coffee/${coffee.id}`" class="btn btn-secondary view-more-btn text-white text-decoration-none">
-                    <i class="fas fa-eye me-2"></i> View More
-              </router-link>
-              <router-link :to="`/EditProduct/${coffee.id}`" class="btn btn-primary btn-sm me-2">
-                Edit
-              </router-link>
-              <button
-                class="btn btn-danger btn-sm"
-                @click="deleteCoffee(coffee.id)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-          <!-- No data -->
-          <tr v-if="filteredCoffees.length === 0">
-            <td colspan="6" class="text-center">No coffees match your search.</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- Table -->
+      <div class="table-responsive-wrapper">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Bean Variety</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="coffee in filteredCoffees" :key="coffee.id">
+              <td>{{ coffee.id }}</td>
+              <td>{{ coffee.name }}</td>
+              <td>{{ coffee.description }}</td>
+              <td>${{ coffee.price.toFixed(2) }}</td>
+              <td>{{ coffee.beanType }}</td>
+              <td>
+                <router-link :to="`/coffee/${coffee.id}`" class="btn btn-secondary view-more-btn text-white text-decoration-none">
+                  <i class="fas fa-eye me-2"></i> View More
+                </router-link>
+                <router-link :to="`/EditProduct/${coffee.id}`" class="btn btn-primary btn-sm me-2">
+                  Edit
+                </router-link>
+                <button
+                  class="btn btn-danger btn-sm"
+                  @click="deleteCoffee(coffee.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+            <!-- No data -->
+            <tr v-if="filteredCoffees.length === 0">
+              <td colspan="6" class="text-center">No coffees match your search.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -117,8 +118,21 @@ body {
   background-color: #eee;
 }
 
+.background-container {
+  background-color: rgb(212, 205, 205);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
 .container {
   max-width: 1200px;
+}
+
+.header-section {
+  background-color: #735340;
+  border-radius: 10px;
 }
 
 .table-responsive-wrapper {
@@ -134,12 +148,12 @@ body {
 }
 
 .btn-success {
-  background-color: #28a745;
+  background-color: #A8865F;
   border: none;
 }
 
 .btn-success:hover {
-  background-color: #218838;
+  background-color: #A8765F;
 }
 
 .btn {
@@ -161,7 +175,8 @@ body {
   background-color: #a8865f;
   border-color: #a8865f;
 }
-.btn-secondary{
+
+.btn-secondary {
   background-color: #735340;
 }
 </style>
