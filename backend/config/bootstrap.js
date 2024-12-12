@@ -11,6 +11,12 @@
 
 module.exports.bootstrap = async function() {
 
+    await User.createEach([ 
+      { 
+    emailAddress: 'admin@example.com', fullName: 'Ryan Dahl', isSuperAdmin: true, password: await 
+    sails.helpers.passwords.hashPassword('abc123') }, 
+    ]);
+
   // Check if data already exists
   if (await Coffee.count() > 0) {
     return;
