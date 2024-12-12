@@ -64,5 +64,12 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
+/*
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+  if (to.name !== 'login' && to.name !== 'signup' && to.name !== 'home' && 
+    to.name !== 'about' && userStore.user == null) next({ name: 'login' })
+  else next()
+})
+  */
 export default router;
