@@ -8,6 +8,8 @@ import Reviews from '@/views/Reviews.vue';
 import AddProduct from '@/views/AddProduct.vue';
 import EditProduct from '@/views/EditProduct.vue';
 import CoffeeView from "@/views/CoffeeView.vue";
+import SignUp from "@/views/SignUp.vue";
+import Login from "@/views/Login.vue";
 
 const routes = [
   {
@@ -45,6 +47,16 @@ const routes = [
     path: '/coffee/:id',
     name: 'CoffeeView',
     component: CoffeeView,
+  },
+  {
+    path: '/SignUp',
+    name: 'SignUp',
+    component: SignUp,
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: Login,
   },
 ];
 
