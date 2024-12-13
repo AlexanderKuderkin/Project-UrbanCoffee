@@ -15,11 +15,11 @@ module.exports.routes = {
   'DELETE /Coffee/:id': { controller: 'CoffeeController', action: 'destroy' },
   'PUT /Coffee/:id': { controller: 'CoffeeController', action: 'update' },
   'GET /Coffee/:id': { controller: 'CoffeeController', action: 'findOne' },
-  //'PUT /manageCoffee/:id': { controller: 'CoffeeController', action: 'update' },
 
-  //'DELETE /manageCoffee/:id': { controller: 'CoffeeController', action: 'delete' },
-
-  //'POST /manageCoffee': { controller: 'CoffeeController.uploadImage', action: 'create' },
+  'POST /login': 'LoginController.login',
+  'POST /register': 'LoginController.register',
+  'GET /logout': 'LoginController.logout',
+  'GET /restricted': 'RestrictedController.example',
 
 };
 

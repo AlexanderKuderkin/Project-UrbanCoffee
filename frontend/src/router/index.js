@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { useUserStore } from "../stores/user";
 
 // Seiten-Imports
 import HomePage from '@/views/HomePage.vue';
@@ -28,7 +29,7 @@ const routes = [
     component: ManageCoffee,
   },
   {
-    path: '/reviews',
+    path: '/Reviews',
     name: 'Reviews',
     component: Reviews,
   },
@@ -64,12 +65,25 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-/*
+
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
-  if (to.name !== 'login' && to.name !== 'signup' && to.name !== 'home' && 
-    to.name !== 'about' && userStore.user == null) next({ name: 'login' })
-  else next()
-})
-  */
+  const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView', 'Reviews'];
+
+  if (publicRoutes.includes(to.name)) {
+    next(); 
+  } else {
+    if (!userStore.user) {
+      next({ name: 'Login' });
+    } else {
+      if (to.name === 'ManageCoffee' && !userStore.user.isSuperAdmin) {
+        next({ name: 'Home' });
+      } else {
+        next(); 
+      }
+    }
+  }
+});
+
+
 export default router;

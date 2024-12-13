@@ -1,93 +1,129 @@
 <template>
-        <div class="sidebar collapse" id="sidebarMenu">
-        <div class="sidebar-header">
-            <h5>Navigation</h5>
-            <button type="button" class="btn-close" aria-label="Close" id="closeSidebar"></button>
-        </div>
-        <div class="sidebar-body">
-            <button class="btn btn-traditional">Sign up</button> 
-            <button class="btn btn-traditional">Login</button>
-            <button class="btn">Coffee</button> 
-            <button class="btn">Admin</button>
-        </div>
-    </div>
-
-    <section class="vh-100 bg-image"
-  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-
-              <form>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">Email</label>
+    <section
+      class="vh-100 bg-image"
+      style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');"
+    >
+      <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body p-5">
+                  <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+  
+                  <form @submit.prevent="register">
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input
+                        type="text"
+                        v-model="fullName" required
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Full Name</label>
+                    </div>
+  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input
+                        type="email"
+                        v-model="email" required
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Email</label>
+                    </div>
+  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input
+                        type="password"
+                        v-model="password" required
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Password</label>
+                    </div>
+  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input
+                        type="text"
+                        v-model="addressCountry" required
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Country</label>
+                    </div>
+  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input
+                        type="text"
+                        v-model="addressCity" required
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">City</label>
+                    </div>
+  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input
+                        type="text"
+                        v-model="addressPostalCode" required
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">PLZ</label>
+                    </div>
+  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input
+                        type="text"
+                        v-model="addressStreet" required
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Street-name + Number</label>
+                    </div>
+  
+                    <div class="d-flex justify-content-center">
+                      <button
+                        type="submit"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+                      >
+                        Sign up
+                      </button>
+                    </div>
+  
+                    <p class="text-center text-muted mt-5 mb-0">
+                      Have already an account?
+                      <a href="/Login" class="fw-bold text-body"
+                        ><u>Login here</u></a
+                      >
+                    </p>
+                  </form>
                 </div>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example3cg">Password</label>
-                </div>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cg">Firstname</label>
-                </div>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cdg">Lastname</label>
-                </div>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example4cdg">Country</label>
-                </div>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example4cdg">City</label>
-                </div>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example4cdg">PLZ</label>
-                </div>
-                
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example4cdg">Street-name</label>
-                </div>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                    <label class="form-label" for="form3Example4cdg">Street-number</label>
-                </div>
-
-
-                <div class="d-flex justify-content-center">
-                  <button  type="button" data-mdb-button-init
-                    data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Sign up</button>
-                </div>
-
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
-
-              </form>
-
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-</template>
+    </section>
+  </template>
+
+<script setup>
+import { ref } from 'vue'
+import { useUserStore } from "../stores/user";
+const userStore = useUserStore();
+let fullName =ref("");
+let email = ref("");
+let password =ref("");
+let addressCountry =ref("");
+let addressCity =ref("");
+let addressPostalCode =ref("");
+let addressStreet =ref("");
+
+async function register() {
+      userStore.signUp(fullName.value, email.value, 
+      password.value, addressCountry.value, 
+      addressCity.value, addressPostalCode.value, 
+      addressStreet.value);
+      if (useUserStore.user) {
+        console.log("Logged in")
+      }
+}
+</script>
 
 <style scoped>
 .gradient-custom-3 {

@@ -10,8 +10,9 @@
     <div class="nav-buttons d-none d-md-flex">
       <router-link to="/Coffee" class="btn">Coffee</router-link>
       <router-link to="/ManageCoffee" class="btn">Manage Coffee</router-link>
-      <button class="btn btn-traditional">Login</button>
-      <button class="btn btn-traditional">Sign up</button>
+      <router-link to="/Login" class="btn btn-traditional">Login</router-link>
+      <router-link to="/SignUp" class="btn btn-traditional">SignUp</router-link>
+      <button class="btn btn-danger" @click="logout" v-if="userStore.user">Logout</button>
     </div>
     <button
       class="navbar-toggler d-md-none"
@@ -22,9 +23,19 @@
     </button>
   </header>
 </template>
-
+<!--
 <script>
 export default {
   name: "Header",
 };
+</script>
+-->
+<script setup>
+import { useUserStore } from "@/stores/user";
+
+const userStore = useUserStore();
+
+function logout() {
+  userStore.logout();
+}
 </script>

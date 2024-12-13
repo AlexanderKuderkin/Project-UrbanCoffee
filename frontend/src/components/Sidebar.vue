@@ -14,15 +14,18 @@
       ></button>
     </div>
     <div class="sidebar-body">
-      <button class="btn btn-traditional">Sign up</button>
-      <button class="btn btn-traditional">Login</button>
+      <router-link to="/Login" class="btn btn-traditional">Login</router-link>
+      <router-link to="/SignUp" class="btn btn-traditional">SignUp</router-link>
       <router-link to="/Coffee" class="btn">Coffee</router-link>
       <router-link to="/ManageCoffee" class="btn">Manage Coffee</router-link>
+      <button class="btn btn-danger" @click="logout" v-if="userStore.user">Logout</button>
     </div>
   </div>
 </template>
 
 <script>
+import { useUserStore } from "@/stores/user";
+
 export default {
   name: "Sidebar",
   props: {
@@ -30,6 +33,15 @@ export default {
       type: Boolean,
       required: true,
     },
+  },
+  setup() {
+    const userStore = useUserStore();
+
+    function logout() {
+      userStore.logout(); 
+    }
+
+    return { userStore, logout };
   },
 };
 </script>

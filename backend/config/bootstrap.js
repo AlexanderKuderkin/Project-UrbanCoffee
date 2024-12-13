@@ -11,10 +11,17 @@
 
 module.exports.bootstrap = async function() {
 
-    await User.createEach([ 
-      { 
-    emailAddress: 'admin@example.com', fullName: 'Ryan Dahl', isSuperAdmin: true, password: await 
-    sails.helpers.passwords.hashPassword('abc123') }, 
+  await User.createEach([
+    { emailAddress: 'Alexander.Kuderkin@htwg-konstanz.de', 
+      fullName: 'Alexander Kuderkin', isSuperAdmin:true, 
+      addressStreet: "Meinerstraße 2", addressCity: 'Konstanz',
+      addressPostalCode: '78462', addressCountry: "Germany",
+     password: await sails.helpers.passwords.hashPassword("223331"),
+     },
+    { emailAddress: 'florent@example.com', fullName: 'Florent Müller', 
+      addressStreet: '456 User Avenue', addressCity: 'Berlin',
+      addressPostalCode: '10115', addressCountry: "Germany",
+      password: await sails.helpers.passwords.hashPassword("11111")},
     ]);
 
   // Check if data already exists
