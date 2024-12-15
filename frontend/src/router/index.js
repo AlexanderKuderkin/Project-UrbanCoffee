@@ -12,6 +12,7 @@ import CoffeeView from "@/views/CoffeeView.vue";
 import SignUp from "@/views/SignUp.vue";
 import Login from "@/views/Login.vue";
 import ShoppingCart from "@/views/ShoppingCart.vue";
+import Profile from "@/views/Profile.vue";
 
 const routes = [
   {
@@ -65,6 +66,11 @@ const routes = [
     name: 'ShoppingCart',
     component: ShoppingCart,
   },
+  {
+    path: '/Profile',
+    name: 'Profile',
+    component: Profile,
+  },
 ];
 
 const router = createRouter({
@@ -74,7 +80,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
-  const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView', 'Reviews', 'ShoppingCart'];
+  const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView', 'Reviews', 'ShoppingCart', 'Profile'];
 
   if (publicRoutes.includes(to.name)) {
     next(); 
