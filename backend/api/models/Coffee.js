@@ -56,7 +56,13 @@ module.exports = {
     },
     category: {
       model: 'Category'
-  }
+  },
+    reviews: {
+      collection: 'Review',
+      via: 'coffee',
+      description: 'The reviews associated with this coffee.'
+    },
+  
     //imagePath: { type: 'string', required: false }
 /*
     reviews: {

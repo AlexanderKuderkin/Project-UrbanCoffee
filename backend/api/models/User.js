@@ -53,5 +53,11 @@ by a large team, those administrative features might be split across a few diffe
 So, while this \`isSuperAdmin\` demarcation might not be the right approach forever, it's a good place to start.`
     },
   },
+  reviews: {
+    collection: 'Review',
+    via: 'user',
+    description: 'The reviews written by this user.'
+  },
+  
 
 };

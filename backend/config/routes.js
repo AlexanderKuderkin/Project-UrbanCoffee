@@ -21,5 +21,7 @@ module.exports.routes = {
   'GET /logout': 'LoginController.logout',
   'GET /restricted': 'RestrictedController.example',
 
+  'POST /review': 'ReviewController.create',
+  'GET /reviews/:id': 'ReviewController.findReviewsForCoffee',
 };
 
