@@ -167,7 +167,7 @@ export default {
 
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:1337/Coffee/${route.params.id}`);
+        const response = await axios.get(`/Coffee/${route.params.id}`);
         product.value = response.data;
       } catch (error) {
         console.error("Error fetching product:", error);
@@ -176,7 +176,7 @@ export default {
 
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:1337/Category");
+        const response = await axios.get("/Category");
         categories.value = response.data;
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -185,7 +185,7 @@ export default {
 
     const updateProduct = async () => {
       try {
-        await axios.put(`http://localhost:1337/Coffee/${route.params.id}`, product.value);
+        await axios.put(`/Coffee/${route.params.id}`, product.value);
         alert("Product updated successfully!");
         router.push("/ManageCoffee");
       } catch (error) {

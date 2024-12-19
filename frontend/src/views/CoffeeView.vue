@@ -55,7 +55,7 @@ export default {
 
     const fetchCoffee = async () => {
       try {
-        const response = await axios.get(`http://localhost:1337/Coffee/${route.params.id}?populate=category`);
+        const response = await axios.get(`/Coffee/${route.params.id}?populate=category`);
         coffee.value = response.data;
       } catch (error) {
         console.error("Error fetching coffee details:", error);

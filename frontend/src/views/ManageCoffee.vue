@@ -77,7 +77,7 @@ export default {
 
     const fetchCoffees = async () => {
       try {
-        const response = await axios.get("http://localhost:1337/Coffee");
+        const response = await axios.get("/Coffee");
         coffees.value = response.data;
       } catch (error) {
         console.error("Error fetching coffees:", error);
@@ -86,7 +86,7 @@ export default {
 
     const deleteCoffee = async (id) => {
       try {
-        await axios.delete(`http://localhost:1337/Coffee/${id}`);
+        await axios.delete(`/Coffee/${id}`);
         coffees.value = coffees.value.filter((coffee) => coffee.id !== id);
       } catch (error) {
         console.error("Error deleting coffee:", error);

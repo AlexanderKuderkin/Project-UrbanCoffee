@@ -200,7 +200,7 @@ export default {
 
     const fetchCoffees = async () => {
       try {
-        const response = await axios.get("http://localhost:1337/Coffee");
+        const response = await axios.get("/Coffee");
         coffees.value = response.data;
       } catch (error) {
         console.error("Error fetching coffees:", error);

@@ -229,7 +229,7 @@ export default {
 
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:1337/Category"); // API-Aufruf
+        const response = await axios.get("/Category"); // API-Aufruf
         categories.value = response.data;
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -238,7 +238,7 @@ export default {
 
     const addProduct = async () => {
       try {
-        await axios.post("http://localhost:1337/Coffee", newProduct.value);
+        await axios.post("/Coffee", newProduct.value);
         alert("Product added successfully!");
         newProduct.value = {
           name: "",
