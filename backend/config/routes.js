@@ -10,6 +10,8 @@
 
 module.exports.routes = {
 
+  '/': { view: 'pages/homepage' },
+
   'GET /Coffee': { controller: 'CoffeeController', action: 'find' },
   'POST /Coffee': { controller: 'CoffeeController', action: 'create' },
   'DELETE /Coffee/:id': { controller: 'CoffeeController', action: 'destroy' },

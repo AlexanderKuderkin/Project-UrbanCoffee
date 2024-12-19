@@ -47,17 +47,11 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     default: {
-      // adapter: 'sails-mysql',
-      // url: 'mysql://user:password@host:port/database',
-      //--------------------------------------------------------------------------
-      //  /\   To avoid checking it in to version control, you might opt to set
-      //  ||   sensitive credentials like `url` using an environment variable.
-      //
-      //  For example:
-      //  ```
-      //  sails_datastores__default__url=mysql://admin:myc00lpAssw2D@db.example.com:3306/my_prod_db
-      //  ```
-      //--------------------------------------------------------------------------
+      adapter: 'sails-mysql',
+      host: '193.196.53.194',
+      port: 33061,
+      user: 'user1_prod', // replace  
+      database: 'urbancoffee_prod' // replace 
 
       /****************************************************************************
       *                                                                           *
@@ -265,10 +259,7 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    // onlyAllowOrigins: [
-    //   'https://example.com',
-    //   'https://staging.example.com',
-    // ],
+     onlyAllowOrigins: [],
 
 
     /***************************************************************************
@@ -340,7 +331,7 @@ module.exports = {
     * (https://sailsjs.com/config/http)                                        *
     *                                                                          *
     ***************************************************************************/
-    // trustProxy: true,
+    trustProxy: true,
 
   },
 
@@ -355,7 +346,7 @@ module.exports = {
   * this, just try deploying without setting it and see if it works.)       *
   *                                                                         *
   ***************************************************************************/
-  // port: 80,
+  port: 10000,
 
 
 
