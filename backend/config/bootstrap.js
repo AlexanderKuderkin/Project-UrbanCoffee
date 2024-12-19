@@ -11,6 +11,9 @@
 
 module.exports.bootstrap = async function() {
 
+  if (await User.count() > 0) {
+    return;
+  }
   await User.createEach([
     { emailAddress: 'Alexander.Kuderkin@htwg-konstanz.de', 
       fullName: 'Alexander Kuderkin', isSuperAdmin:true, 
