@@ -20,8 +20,9 @@ module.exports.routes = {
 
   'POST /login': 'LoginController.login',
   'POST /register': 'LoginController.register',
-  'GET /logout': 'LoginController.logout',
+  'GET /logout': "login.logout",
   'GET /restricted': 'RestrictedController.example',
+  'GET /sessionUser': "login.sessionUser",
 
   'POST /review': 'ReviewController.create',
   'GET /reviews/:id': 'ReviewController.findReviewsForCoffee',

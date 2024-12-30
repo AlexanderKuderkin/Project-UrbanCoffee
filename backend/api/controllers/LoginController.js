@@ -31,6 +31,25 @@ module.exports = {
       isSuperAdmin: user.isSuperAdmin,
     });
   },
+  sessionUser: async function (req, res) {
+    console.log("Session userId:", req.session.userId);
+    console.log("Session:", req.session);
+  
+    if (!req.session.userId) {
+      return res.status(403).json({ message: "Not logged in" });
+    }
+  
+    try {
+      const user = await User.findOne({ id: req.session.userId });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      return res.json(user);
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  },
+  
   
   register: async function (req, res) {
     let params = req.body;
@@ -56,12 +75,8 @@ module.exports = {
   },
   
   logout: async function (req, res) {
-    try {
-      delete req.session.userId;
-      delete req.session.user;
-      return res.json({ message: "Logged out successfully" });
-    } catch (error) {
-      return res.status(500).json({ message: "Error during logout" });
-    }
-  },
+    delete req.session.user;
+    delete req.session.userId;
+    return res.ok();
+  }, 
 };

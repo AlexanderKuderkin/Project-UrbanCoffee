@@ -11,6 +11,7 @@
 import Header from "./components/Header.vue";
 import Sidebar from "./components/Sidebar.vue";
 import Footer from './components/Footer.vue';
+import { useUserStore } from "@/stores/user";
 
 export default {
   name: "App",
@@ -27,6 +28,11 @@ export default {
     closeSidebar() {
       this.isSidebarVisible = false;
     },
+  },
+  created() {
+    // Rufe fetchUser auf, um den Benutzerstatus beim Laden der App zu überprüfen
+    const userStore = useUserStore();
+    userStore.fetchUser();
   },
 };
 </script>

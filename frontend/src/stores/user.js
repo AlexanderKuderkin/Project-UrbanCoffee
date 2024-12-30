@@ -8,6 +8,18 @@ export const useUserStore = defineStore("user", {
   }),
 
   actions: {
+    async fetchUser() {
+        console.log("fetchUser wird aufgerufen");
+        try {
+          const response = await axios.get("/sessionUser");
+          console.log("Antwort vom Server:", response.data);
+          this.user = response.data; // Speichere die Benutzerdaten
+        } catch (error) {
+          console.error("Fehler bei fetchUser:", error);
+          this.user = null;
+        }
+      },      
+      
     async signIn(email, password) {
       let loginInformation = { emailAddress: email, password: password };
       axios
@@ -49,11 +61,11 @@ export const useUserStore = defineStore("user", {
       },
       
       
-      logout() {
+      async logout() {
+        const response = await axios.get("/logout")
         this.user = null;
-        localStorage.removeItem("user");
-        router.push({ name: "Home" });
-      }
+        router.push("/");
+    }
       
   },
 });
