@@ -151,7 +151,7 @@
 
                 <div class="d-flex justify-content-between align-items-center mt-3">
                   <span class="h6 mb-0 text-gray">${{ coffee.price.toFixed(2) }}</span>
-                  <button class="btn btn-xs btn-tertiary">
+                  <button @click="handleAddToCart(coffee)" class="btn btn-xs btn-tertiary">
                     <i class="fas fa-cart-plus me-2"></i> Add to cart
                   </button>
                 </div>
@@ -170,6 +170,8 @@
 <script>
 import axios from "axios";
 import { ref, onMounted, computed } from "vue";
+import { useUserStore } from "@/stores/user"; // Importiere den User-Store
+import { useRouter } from "vue-router"; // Für Navigation
 
 export default {
   name: "Coffee",
@@ -232,6 +234,47 @@ export default {
         });
     });
 
+    const userStore = useUserStore(); // Benutzer-Store initialisieren
+    const router = useRouter(); // Router für Navigation
+
+    const isLoggedIn = computed(() => !!userStore.user); // Prüfen, ob der Benutzer eingeloggt ist
+
+    async function handleAddToCart(coffee) {
+      if (isLoggedIn.value) {
+        try {
+          // Sende Anfrage an die API
+          const response = await axios.post("/cart", {
+            userId: userStore.user.id, // Eingeloggter Benutzer
+            productId: coffee.id,
+            quantity: 1,
+          });
+
+          // Log API-Antwort
+          console.log("Server response:", response.data);
+
+          // Artikel auch im ShoppingCartStore hinzufügen
+          shoppingCartStore.addToCart({
+            id: coffee.id,
+            name: coffee.name,
+            price: coffee.price,
+          });
+
+          // Warenkorb in localStorage speichern
+          shoppingCartStore.saveToLocalStorage();
+
+          alert(`${coffee.name} was added to the cart.`);
+        } catch (error) {
+          console.error("Failed to add to cart:", error);
+          alert("Failed to add item to cart.");
+        }
+      } else {
+        alert("You must be logged in to add items to the cart!");
+        router.push("/login");
+      }
+    }
+
+
+
     onMounted(() => {
       fetchCoffees();
     });
@@ -253,6 +296,7 @@ export default {
       selectedCertificates,
       selectedOrigins,
       sortedAndFilteredCoffees,
+      handleAddToCart,
     };
   },
 };
