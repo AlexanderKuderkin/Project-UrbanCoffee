@@ -170,8 +170,9 @@
 <script>
 import axios from "axios";
 import { ref, onMounted, computed } from "vue";
-import { useUserStore } from "@/stores/user"; // Importiere den User-Store
-import { useRouter } from "vue-router"; // Für Navigation
+import { useUserStore } from "@/stores/user";
+import { useShoppingCartStore } from "@/stores/shoppingCart";
+import { useRouter } from "vue-router";
 
 export default {
   name: "Coffee",
@@ -236,33 +237,39 @@ export default {
 
     const userStore = useUserStore(); // Benutzer-Store initialisieren
     const router = useRouter(); // Router für Navigation
+    const shopCart = useShoppingCartStore();
 
     const isLoggedIn = computed(() => !!userStore.user); // Prüfen, ob der Benutzer eingeloggt ist
 
     async function handleAddToCart(coffee) {
       if (isLoggedIn.value) {
         try {
-          // Sende Anfrage an die API
-          const response = await axios.post("/cart", {
-            userId: userStore.user.id, // Eingeloggter Benutzer
-            productId: coffee.id,
-            quantity: 1,
-          });
+          //shopCart.addToCart = ({productId: coffee.id, name:coffee.id, quantity: 1,userId: userStore.user.id})
 
-          // Log API-Antwort
-          console.log("Server response:", response.data);
-
-          // Artikel auch im ShoppingCartStore hinzufügen
-          shoppingCartStore.addToCart({
+          shopCart.addToCart({
             id: coffee.id,
             name: coffee.name,
             price: coffee.price,
           });
+          // Sende Anfrage an die API
+          /*const response = await axios.post("/cart", {
+            userId: userStore.user.id, // Eingeloggter Benutzer
+            productId: coffee.id,
+            quantity: 1,
+          });
+*/
+          // Log API-Antwort
+          //console.log("Server response:", response.data);
 
+          // Artikel auch im ShoppingCartStore hinzufügen
+          /*shoppingCartStore.addToCart({
+            id: coffee.id,
+            name: coffee.name,
+            price: coffee.price,
+          });
+*/
           // Warenkorb in localStorage speichern
-          shoppingCartStore.saveToLocalStorage();
-
-          alert(`${coffee.name} was added to the cart.`);
+          //shopCart.saveToLocalStorage();
         } catch (error) {
           console.error("Failed to add to cart:", error);
           alert("Failed to add item to cart.");
