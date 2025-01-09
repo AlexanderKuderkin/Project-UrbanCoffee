@@ -137,7 +137,8 @@
   
   // Remove item function
   function removeItem(index) {
-    cartItems.value.splice(index, 1);
+    shoppingCartStore.cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(shoppingCartStore.cart));
   }
   
   // Checkout function

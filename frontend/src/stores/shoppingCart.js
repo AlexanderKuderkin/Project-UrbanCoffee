@@ -38,6 +38,7 @@ actions: {
     async clearCart() {
         try {
             this.cart = [];
+            localStorage.removeItem("cart");
             } catch (error) {
             console.error("Error clearing cart:", error);
           }
