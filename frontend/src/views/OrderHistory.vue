@@ -1,144 +1,188 @@
 <template>
-    <div class="container mt-5">
-      <!-- Header Section -->
-      <div class="header-section mb-4 p-3 text-white">
-        <h1 class="text-center mb-3">Order History</h1>
-      </div>
   
-      <!-- Order Table -->
-      <div class="table-responsive-wrapper">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>Order Number</th>
-              <th>Date</th>
-              <th>Total Price</th>
-              <th>Items</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="order in orders" :key="order.orderNumber">
-              <td>{{ order.orderNumber }}</td>
-              <td>{{ formatDate(order.date) }}</td>
-              <td>${{ order.totalPrice.toFixed(2) }}</td>
-              <td>
-                <ul>
-                  <li v-for="item in order.items" :key="item.id">
-                    {{ item.name }} (x{{ item.quantity }})
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <!-- No data -->
-            <tr v-if="orders.length === 0">
-              <td colspan="4" class="text-center">No orders found.</td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="bg-container" style="margin: 20px 0;">
+    <div class="order-summary">
+      <div class="px-6 py-4 bg-gray-800 text-white flex items-center justify-between rounded-t-2xl">
+        <h2 class="text-xl font-semibold">Order Summary</h2>
+        <button class="text-2xl" style="background-color: #735340; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Review</button>
+      </div>
+
+      <div v-if="products.length === 0" class="p-6 text-center text-gray-500">
+        No products in the order
+      </div>
+
+      <div v-else class="divide-y divide-gray-300">
+        <div
+          v-for="product in products"
+          :key="product.id"
+          class="p-6 hover:bg-gray-50 transition duration-150 ease-in-out border-b border-gray-300 flex justify-between"
+        >
+          <div>
+            <h3 class="text-lg font-medium text-gray-900">{{ product.name }}</h3>
+            <div class="mt-1 text-sm text-gray-500">
+              <p>Price: ${{ product.price.toFixed(2) }}</p>
+              <p>Quantity: {{ product.quantity }}</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-lg font-semibold text-gray-900">
+              ${{ (product.price * product.quantity).toFixed(2) }}
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 bg-gray-50">
+          <div class="flex justify-between items-center">
+            <p class="text-xl font-semibold text-gray-900">Total</p>
+            <p class="text-2xl font-bold text-gray-900">${{ calculateTotal() }}</p>
+          </div>
+        </div>
       </div>
     </div>
-  </template>
-  
-  <script>
-  import { ref, onMounted } from "vue";
-  
-  export default {
-    name: "OrderHistory",
-    setup() {
-      const orders = ref([]);
-  
-      const fetchOrders = async () => {
-        try {
-          // Simulierte API-Antwort
-          const response = await new Promise((resolve) =>
-            setTimeout(
-              () =>
-                resolve([
-                  {
-                    orderNumber: "12345",
-                    date: "2024-12-11T10:30:00",
-                    totalPrice: 49.99,
-                    items: [
-                      { id: 1, name: "Espresso Blend", quantity: 2 },
-                      { id: 2, name: "Latte Beans", quantity: 1 },
-                    ],
-                  },
-                  {
-                    orderNumber: "12346",
-                    date: "2024-12-10T14:20:00",
-                    totalPrice: 29.99,
-                    items: [
-                      { id: 3, name: "Dark Roast", quantity: 1 },
-                    ],
-                  },
-                ]),
-              500
-            )
-          );
-  
-          orders.value = response;
-        } catch (error) {
-          console.error("Error fetching orders:", error);
-        }
-      };
-  
-      const formatDate = (date) => {
-        const options = { year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit" };
-        return new Date(date).toLocaleDateString(undefined, options);
-      };
-  
-      onMounted(() => {
-        fetchOrders();
-      });
-  
-      return {
-        orders,
-        formatDate,
-      };
+  </div>
+</template>
+
+<script>
+import { ref } from "vue";
+
+export default {
+name: "OrderSummary",
+setup() {
+  const products = ref([
+    {
+      id: 1,
+      name: "Premium Leather Wallet",
+      price: 79.99,
+      quantity: 2,
+      image: "",
     },
+    {
+      id: 2,
+      name: "Wireless Headphones",
+      price: 199.99,
+      quantity: 1,
+      image: "",
+    },
+    {
+      id: 3,
+      name: "Smart Watch",
+      price: 299.99,
+      quantity: 1,
+      image: "",
+    },
+  ]);
+
+  const calculateTotal = () => {
+    return products.value
+      .reduce((total, product) => total + product.price * product.quantity, 0)
+      .toFixed(2);
   };
-  </script>
-  
-  <style scoped>
-  .container {
-    max-width: 1200px;
-    background-color: rgb(212, 205, 205);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .header-section {
-    background-color: #735340;
-    border-radius: 10px;
-  }
-  
-  .table-responsive-wrapper {
-    overflow-x: auto;
-    margin-top: 20px;
-    border-radius: 10px;
-    background-color: #f5f5f5;
-    padding: 10px;
-  }
-  
-  .table {
-    min-width: 1000px;
-  }
-  
-  th, td {
-    text-align: center;
-    vertical-align: middle;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  li {
-    text-align: left;
-  }
-  </style>
-  
+
+  return {
+    products,
+    calculateTotal,
+  };
+},
+};
+</script>
+
+<style>
+.min-h-screen {
+min-height: 100vh;
+}
+.bg-gray-100 {
+background-color: #f7fafc;
+}
+.bg-gray-800 {
+background-color: #1e160d; 
+}
+.text-white {
+color: #fff;
+}
+.text-gray-500 {
+color: #a0aec0;
+}
+.text-gray-900 {
+color: #1a202c;
+}
+.bg-white {
+background-color: #fff;
+}
+.shadow-lg {
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+.rounded-lg {
+border-radius: 0.5rem;
+}
+.overflow-hidden {
+overflow: hidden;
+}
+.px-6 {
+padding-left: 1.5rem;
+padding-right: 1.5rem;
+}
+.py-4 {
+padding-top: 1rem;
+padding-bottom: 1rem;
+}
+.p-6 {
+padding: 1.5rem;
+}
+.hover\:bg-gray-50:hover {
+background-color: #f9fafb;
+}
+.transition {
+transition: all 0.2s ease-in-out;
+}
+.duration-150 {
+transition-duration: 150ms;
+}
+.ease-in-out {
+transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flex {
+display: flex;
+}
+.items-center {
+align-items: center;
+}
+.justify-between {
+justify-content: space-between;
+}
+.text-xl {
+font-size: 1.25rem;
+line-height: 1.75rem;
+}
+.font-semibold {
+font-weight: 600;
+}
+.text-2xl {
+font-size: 1.5rem;
+line-height: 2rem;
+}
+.font-bold {
+font-weight: 700;
+}
+.bg-gray-300 {
+background-color: #e2e8f0;
+}
+.order-summary {
+border: 1px solid #ccc;
+border-radius: 20px;
+background-color: #fff;
+margin: 40px 40px;
+}
+.bg-container {
+background-color: rgb(212, 205, 205);
+padding: 20px;
+border-radius: 20px;
+margin-bottom: 20px;
+}
+.divide-gray-300 > :not(:last-child) {
+border-bottom: 1px solid #d1d5db;
+}
+.rounded-t-2xl {
+border-top-left-radius: 20px;
+border-top-right-radius: 20px;
+}
+</style>
