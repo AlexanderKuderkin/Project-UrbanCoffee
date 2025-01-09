@@ -86,7 +86,7 @@
   
                           <div class="d-flex justify-content-between">
                             <p class="mb-2">Shipping</p>
-                            <p class="mb-2">$20.00</p>
+                            <p class="mb-2">$2.00</p>
                           </div>
   
                           <div class="d-flex justify-content-between mb-4">
@@ -97,7 +97,7 @@
                           <button type="submit" class="btn btn-info btn-block btn-lg">
                             <div class="d-flex justify-content-between">
                               <span>${{ total }}</span>
-                              <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                              <span> Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                             </div>
                           </button>
                         </form>
@@ -116,14 +116,12 @@
   
   <script setup>
   import { ref, computed } from "vue";
+  import { useShoppingCartStore } from "@/stores/shoppingCart";
   
-  // Dummy cart data
-  const cartItems = ref([
-    { name: "Iphone 11 Pro", description: "256GB, Navy Blue", quantity: 2, price: 900, image: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp" },
-    { name: "Samsung Galaxy Note 10", description: "256GB, Navy Blue", quantity: 2, price: 900, image: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp" },
-    { name: "Canon EOS M50", description: "Onyx Black", quantity: 1, price: 1199, image: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img3.webp" },
-    { name: "MacBook Pro", description: "1TB, Graphite", quantity: 1, price: 1799, image: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp" },
-  ]);
+  const shoppingCartStore = useShoppingCartStore();
+
+  // Zugriff auf die Warenkorb-Daten
+  const cartItems = computed(() => shoppingCartStore.cart);
   
   // Payment form data
   const payment = ref({
@@ -135,7 +133,7 @@
   const subtotal = computed(() =>
     cartItems.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
   );
-  const total = computed(() => subtotal.value + 20);
+  const total = computed(() => subtotal.value + 2);
   
   // Remove item function
   function removeItem(index) {

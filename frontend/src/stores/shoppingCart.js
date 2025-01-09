@@ -3,18 +3,27 @@ import { defineStore } from "pinia";
 
 export const useShoppingCartStore = defineStore("shoppingCart", {
   state: () => ({
-    cart: [],
-  }),
-  actions: {
+    cart: JSON.parse(localStorage.getItem("cart")) || [], // Lade Daten aus localStorage
+}),
+actions: {
     async addToCart(coffee) {
-      try {
-        this.cart.push = ({productId: coffee.id, name:coffee.id, quantity: 1,})
-
-        alert(`${coffee.name} was added to the cart.`);
-      } catch (error) {
-        console.error("Failed to add to cart:", error);
-        alert("Failed to add item to cart.");
+      const existingItem = this.cart.find(item => item.productId === coffee.id);
+  
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        this.cart.push({
+          productId: coffee.id,
+          name: coffee.name,
+          price: coffee.price,
+          quantity: 1,
+        });
       }
+  
+      // Speichere den aktuellen Warenkorb in localStorage
+      localStorage.setItem("cart", JSON.stringify(this.cart));
+  
+      alert(`${coffee.name} was added to the cart.`);
     },
     /*
     async removeFromCart(productId) {

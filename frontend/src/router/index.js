@@ -78,9 +78,13 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
   const userStore = useUserStore();
   const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView', 'Reviews'];
+
+  if (!userStore.user) {
+    await userStore.fetchUser(); // Warte, bis fetchUser abgeschlossen ist
+  }
 
   if (publicRoutes.includes(to.name)) {
     next(); 

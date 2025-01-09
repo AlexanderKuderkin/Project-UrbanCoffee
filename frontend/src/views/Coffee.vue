@@ -256,18 +256,9 @@ export default {
             quantity: 1,
           });
 */
-          // Log API-Antwort
-          //console.log("Server response:", response.data);
+        console.log("Current cart:", shopCart.cart);
 
-          // Artikel auch im ShoppingCartStore hinzufügen
-          /*shoppingCartStore.addToCart({
-            id: coffee.id,
-            name: coffee.name,
-            price: coffee.price,
-          });
-*/
-          // Warenkorb in localStorage speichern
-          //shopCart.saveToLocalStorage();
+
         } catch (error) {
           console.error("Failed to add to cart:", error);
           alert("Failed to add item to cart.");
