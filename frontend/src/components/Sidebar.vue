@@ -14,8 +14,11 @@
       ></button>
     </div>
     <div class="sidebar-body">
-      <router-link to="/Login" class="btn btn-traditional">Login</router-link>
-      <router-link to="/SignUp" class="btn btn-traditional">SignUp</router-link>
+      <router-link to="/Login" class="btn btn-traditional" v-if="!userStore.user">Login</router-link>
+      <router-link to="/SignUp" class="btn btn-traditional" v-if="!userStore.user">SignUp</router-link>
+      <router-link to="/" class="btn">Homepage</router-link>
+      <router-link to="/Profile" class="btn">Profile</router-link>
+      <router-link to="/ShoppingCart" class="btn">Shopping Cart</router-link>
       <router-link to="/Coffee" class="btn">Coffee</router-link>
       <router-link to="/ManageCoffee" class="btn">Manage Coffee</router-link>
       <button class="btn btn-danger" @click="logout" v-if="userStore.user">Logout</button>

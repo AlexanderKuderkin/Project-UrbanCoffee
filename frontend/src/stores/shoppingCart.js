@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 export const useShoppingCartStore = defineStore("shoppingCart", {
   state: () => ({
-    cart: [], // Warenkorb-Daten im Frontend
+    cart: [],
   }),
   actions: {
     async addToCart(coffee) {
@@ -32,12 +32,6 @@ export const useShoppingCartStore = defineStore("shoppingCart", {
             } catch (error) {
             console.error("Error clearing cart:", error);
           }
-      /*try {
-        const response = await axios.delete("/cart"); // Alle Artikel löschen
-        this.cart = response.data.cart; // Leeren Warenkorb synchronisieren
-      } catch (error) {
-        console.error("Error clearing cart:", error);
-      }*/
     },
   },
   getters: {

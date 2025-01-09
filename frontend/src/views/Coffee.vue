@@ -235,17 +235,15 @@ export default {
         });
     });
 
-    const userStore = useUserStore(); // Benutzer-Store initialisieren
-    const router = useRouter(); // Router für Navigation
+    const userStore = useUserStore();
+    const router = useRouter(); 
     const shopCart = useShoppingCartStore();
 
-    const isLoggedIn = computed(() => !!userStore.user); // Prüfen, ob der Benutzer eingeloggt ist
+    const isLoggedIn = computed(() => !!userStore.user);
 
     async function handleAddToCart(coffee) {
       if (isLoggedIn.value) {
         try {
-          //shopCart.addToCart = ({productId: coffee.id, name:coffee.id, quantity: 1,userId: userStore.user.id})
-
           shopCart.addToCart({
             id: coffee.id,
             name: coffee.name,
