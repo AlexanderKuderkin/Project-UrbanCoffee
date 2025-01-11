@@ -30,5 +30,28 @@ module.exports = {
         return res.serverError({ error: 'Failed to create order' });
       }
     },
+
+    findByUser: async function (req, res) {
+        try {
+          const userId = req.query.userId;
+    
+          if (!userId) {
+            return res.badRequest({ error: 'User ID is required.' });
+          }
+    
+          const orders = await Order.find({ user: userId }).populate('orderPosition');
+    
+          for (const order of orders) {
+            for (const position of order.orderPosition) {
+              const coffee = await Coffee.findOne({ id: position.coffee });
+              position.coffee = coffee;
+            }
+          }
+          return res.ok(orders);
+        } catch (error) {
+          console.error('Error fetching orders:', error);
+          return res.serverError({ error: 'Failed to fetch orders.' });
+        }
+      },
   };
   

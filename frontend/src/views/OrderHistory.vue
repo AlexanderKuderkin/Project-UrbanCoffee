@@ -1,23 +1,23 @@
 <template>
   <div class="bg-container" style="margin: 40px auto; width: 100%;">
-    <div v-for="order in orders" :key="order.id" class="order-summary" style="margin: 40px;">
+    <div v-if="orders.length > 0" v-for="order in orders" :key="order.id" class="order-summary" style="margin: 40px;">
       <div class="px-6 py-4 bg-gray-800 text-white flex items-center justify-between rounded-t-lg">
-        <h2 class="text-base font-semibold">{{ order.date }} / {{ order.orderNumber }}</h2>
+        <h2 class="text-base font-semibold">{{ order.orderDate }} / {{ order.id }}</h2>
         <button class="text-xs review-button">Review</button>
       </div>
 
-      <div v-if="order.products.length === 0" class="p-3 text-center text-gray-500">
+      <div v-if="order.orderPosition.length === 0" class="p-3 text-center text-gray-500">
         No products in the order
       </div>
 
       <div v-else class="divide-y divide-gray-300">
         <div
-          v-for="product in order.products"
+          v-for="product in order.orderPosition"
           :key="product.id"
           class="p-3 hover:bg-gray-50 transition duration-150 ease-in-out flex justify-between"
         >
           <div>
-            <h3 class="text-sm font-medium text-gray-900">{{ product.name }}</h3>
+            <h3 class="text-sm font-medium text-gray-900">{{ product.coffee.name }}</h3>
             <div class="mt-1 text-xs text-gray-500">
               <p>Price: ${{ product.price.toFixed(2) }}</p>
               <p>Quantity: {{ product.quantity }}</p>
@@ -33,89 +33,55 @@
         <div class="p-3 bg-gray-50">
           <div class="flex justify-between items-center">
             <p class="text-base font-semibold text-gray-900">Total</p>
-            <p class="text-lg font-bold text-gray-900">${{ calculateTotal(order.products) }}</p>
+            <p class="text-lg font-bold text-gray-900">${{ calculateTotal(order.orderPosition) }}</p>
           </div>
         </div>
       </div>
     </div>
+    <div v-else class="text-center">
+      <p>No orders found.</p>
+    </div>
   </div>
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup>
+import { ref, onMounted } from "vue";
+import { useUserStore } from "@/stores/user";
+import axios from "axios";
 
-export default {
-  name: "OrderSummary",
-  setup() {
-    const orders = ref([
-      {
-        id: 1,
-        date: "24.12.2024",
-        orderNumber: "738463846384",
-        products: [
-          {
-            id: 1,
-            name: "Premium Leather Wallet",
-            price: 79.99,
-            quantity: 2,
-          },
-          {
-            id: 2,
-            name: "Wireless Headphones",
-            price: 199.99,
-            quantity: 1,
-          },
-        ],
-      },
-      {
-        id: 2,
-        date: "25.12.2024",
-        orderNumber: "123456789012",
-        products: [
-          {
-            id: 3,
-            name: "Smart Watch",
-            price: 299.99,
-            quantity: 1,
-          },
-          {
-            id: 4,
-            name: "Gaming Mouse",
-            price: 49.99,
-            quantity: 1,
-          },
-        ],
-      },
-      {
-        id: 3,
-        date: "26.12.2024",
-        orderNumber: "987654321098",
-        products: [
-          {
-            id: 5,
-            name: "Bluetooth Speaker",
-            price: 99.99,
-            quantity: 2,
-          },
-        ],
-      },
-    ]);
+const userStore = useUserStore();
+const orders = ref([]);
 
-    const calculateTotal = (products) => {
-      return products
-        .reduce((total, product) => total + product.price * product.quantity, 0)
-        .toFixed(2);
-    };
-
-    return {
-      orders,
-      calculateTotal,
-    };
-  },
+const calculateTotal = (products) => {
+  return products
+    .reduce((total, product) => total + product.price * product.quantity, 0)
+    .toFixed(2);
 };
+
+async function fetchOrders() {
+  try {
+    const userId = userStore.user?.id;
+
+    if (!userId) {
+      console.error("No user is logged in.");
+      return;
+    }
+
+    const response = await axios.get(`/api/orders?userId=${userId}`);
+
+    orders.value = response.data;
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    orders.value = [];
+  }
+}
+
+onMounted(() => {
+  fetchOrders();
+});
 </script>
 
-<style>
+<style scoped>
 .min-h-screen {
   min-height: 100vh;
 }
@@ -123,7 +89,7 @@ export default {
   background-color: #f7fafc;
 }
 .bg-gray-800 {
-  background-color: #1e160d; 
+  background-color: #1e160d;
 }
 .text-white {
   color: #fff;
