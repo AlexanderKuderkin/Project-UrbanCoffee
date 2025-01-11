@@ -13,6 +13,7 @@ import SignUp from "@/views/SignUp.vue";
 import Login from "@/views/Login.vue";
 import ShoppingCart from "@/views/ShoppingCart.vue";
 import Profile from "@/views/Profile.vue";
+import OrderHistory from "@/views/OrderHistory.vue";
 
 const routes = [
   {
@@ -70,6 +71,11 @@ const routes = [
     path: '/Profile',
     name: 'Profile',
     component: Profile,
+  },
+  {
+  path: '/OrderHistory',
+    name: 'OrderHistory',
+    component: OrderHistory,
   },
 ];
 
