@@ -107,7 +107,7 @@
                       :class="{ 'is-invalid': !validStreet }"
                       @input="validateStreet"
                     />
-                    <label class="form-label">Street-name + Number</label>
+                    <label class="form-label">Street-name + House number</label>
                     <div v-if="!validStreet" class="text-danger small">Enter a valid street name and number (e.g., "Main St 123").</div>
                   </div>
 
@@ -160,7 +160,7 @@ const validPostalCode = ref(true);
 const validStreet = ref(true);
 
 function validateFullName() {
-  validFullName.value = /^[a-zA-Z\s]+$/.test(fullName.value);
+  validFullName.value = /^[a-zA-ZÀ-ÿ\s]+$/.test(fullName.value);
 }
 function validateEmail() {
   validEmail.value = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
@@ -172,13 +172,13 @@ function validateCountry() {
   validCountry.value = /^[a-zA-Z\s]+$/.test(addressCountry.value);
 }
 function validateCity() {
-  validCity.value = /^[a-zA-Z\s]+$/.test(addressCity.value);
+  validCity.value = /^[a-zA-ZÀ-ÿ\s]+$/.test(addressCity.value);
 }
 function validatePostalCode() {
   validPostalCode.value = /^\d{4,6}$/.test(addressPostalCode.value);
 }
 function validateStreet() {
-  validStreet.value = /^[a-zA-Z0-9\s]+$/.test(addressStreet.value);
+  validStreet.value = /^[a-zA-ZÀ-ÿ\s]+ \d{1,5}$/.test(addressStreet.value);
 }
 
 const allValid = computed(() =>

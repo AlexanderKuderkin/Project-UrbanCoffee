@@ -8,13 +8,18 @@
 module.exports = {
 
   attributes: {
+
     fullName: {
       type: 'string',
       required: true,
       description: 'Full representation of the user\'s name.',
       columnType: 'varchar(120)',
+      custom: function (value) {
+        return /^[a-zA-ZÀ-ÿ\s]+$/u.test(value);
+      },
       example: 'Mary Sue van der McHenst'
     },
+
       emailAddress: {
       type: 'string',
       required: true,
@@ -23,6 +28,7 @@ module.exports = {
       columnType: 'varchar(120)',
       example: 'mary.sue@example.com'
     },
+
     password: {
       type: 'string',
       required: true,
@@ -30,10 +36,41 @@ module.exports = {
       protect: true,
       example: '2$28a8eabna301089103-13948134nad'
     },    
-    addressStreet: { type: 'string', columnType: 'varchar(100)', required: true },
-    addressCity: { type: 'string', columnType: 'varchar(100)', required: true },
-    addressPostalCode: { type: 'string', columnType: 'varchar(10)', required: true },
-    addressCountry: { type: 'string', columnType: 'varchar(100)', required: true },
+
+    addressStreet: { 
+      type: 'string', 
+      columnType: 'varchar(100)', 
+      required: true, 
+      custom: function (value) {
+        return /^[a-zA-ZÀ-ÿ\s]+ \d{1,3}$/u.test(value);
+      },
+      
+     },
+
+    addressCity: { type: 'string', 
+      columnType: 'varchar(100)', 
+      required: true,
+      custom: function (value) {
+        return /^[a-zA-ZÀ-ÿ\s]+$/u.test(value);
+      },
+    },
+
+    addressPostalCode: { type: 'string', 
+      columnType: 'varchar(10)', 
+      required: true,
+      custom: function (value) {
+        return /^\d{4,6}$/u.test(value);
+      },
+    },
+
+    addressCountry: { 
+      type: 'string', 
+      columnType: 'varchar(100)', 
+      required: true, 
+      custom: function (value) {
+        return /^[a-zA-Z\s]+$/u.test(value);
+      },
+    },
 
     isSuperAdmin: {
       type: 'boolean',

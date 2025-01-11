@@ -19,12 +19,12 @@ module.exports.bootstrap = async function() {
       fullName: 'Alexander Kuderkin', isSuperAdmin:true, 
       addressStreet: "Meinerstraße 2", addressCity: 'Konstanz',
       addressPostalCode: '78462', addressCountry: "Germany",
-     password: await sails.helpers.passwords.hashPassword("223331"),
+     password: await sails.helpers.passwords.hashPassword("Alex221333"),
      },
     { emailAddress: 'florent@example.com', fullName: 'Florent Müller', 
-      addressStreet: '456 User Avenue', addressCity: 'Berlin',
+      addressStreet: 'User Avenue 456', addressCity: 'Berlin',
       addressPostalCode: '10115', addressCountry: "Germany",
-      password: await sails.helpers.passwords.hashPassword("11111")},
+      password: await sails.helpers.passwords.hashPassword("Flo55555")},
     ]);
 
   // Check if data already exists
