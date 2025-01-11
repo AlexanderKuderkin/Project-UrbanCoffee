@@ -16,6 +16,41 @@
           <router-link to="/AddProduct" class="btn btn-success">
             Add Coffee
           </router-link>
+          <button class="primary" onclick="window.dialog.showModal();">Add category</button>
+            <dialog id="dialog">
+              <h2>Create a new category</h2>
+              <form @submit.prevent="createCategory">
+                <div class="form-group">
+                  <label for="categoryName">Name:</label>
+                  <input
+                    type="text"
+                    id="categoryName"
+                    v-model="categoryName"
+                    required
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="categoryDescription">Description:</label>
+                  <textarea
+                    id="categoryDescription"
+                    v-model="categoryDescription"
+                    class="form-control"
+                    rows="3"
+                  ></textarea>
+                </div>
+                <div class="form-actions mt-3">
+                  <button type="submit" class="btn btn-success">Save</button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary ms-2"
+                    @click="closeDialog"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </dialog>
         </div>
       </div>
 
@@ -75,6 +110,9 @@ export default {
     const coffees = ref([]);
     const searchQuery = ref("");
 
+    const categoryName = ref("");
+    const categoryDescription = ref("");
+
     const fetchCoffees = async () => {
       try {
         const response = await axios.get("/Coffee");
@@ -82,6 +120,31 @@ export default {
       } catch (error) {
         console.error("Error fetching coffees:", error);
       }
+    };
+
+
+    const createCategory = async () => {
+      try {
+        const newCategory = {
+          name: categoryName.value,
+          description: categoryDescription.value,
+        };
+
+        await axios.post("/Category", newCategory);
+
+        categoryName.value = "";
+        categoryDescription.value = "";
+        closeDialog();
+
+        alert("Category created successfully!");
+      } catch (error) {
+        console.error("Error creating category:", error);
+        alert("Failed to create category.");
+      }
+    };
+
+    const closeDialog = () => {
+      document.getElementById("dialog").close();
     };
 
     const deleteCoffee = async (id) => {
@@ -108,6 +171,10 @@ export default {
       searchQuery,
       deleteCoffee,
       filteredCoffees,
+      categoryName,
+      categoryDescription,
+      createCategory,
+      closeDialog,
     };
   },
 };
@@ -179,4 +246,29 @@ body {
 .btn-secondary {
   background-color: #735340;
 }
+
+dialog {
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 90%;
+  background-color: white;
+  text-align: center;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 </style>
