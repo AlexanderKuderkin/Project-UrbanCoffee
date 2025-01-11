@@ -70,12 +70,43 @@
             v-for="category in filteredCategories"
             :key="category.id"
           >
-            <span>{{ category.name }}</span>
+            <div v-if="!category.isEditing">
+              <span>{{ category.name }}</span>
+              <span class="ms-2">{{ category.description }}</span>
+            </div>
+            <div v-else>
+              <input
+                type="text"
+                v-model="category.editName"
+                placeholder="Edit name"
+                class="form-control me-2"
+              />
+              <input
+                type="text"
+                v-model="category.editDescription"
+                placeholder="Edit description"
+                class="form-control"
+              />
+            </div>
             <button
               class="btn btn-danger btn-sm"
               @click="deleteCategory(category.id)"
             >
               Delete
+            </button>
+            <button
+              class="btn btn-primary btn-sm"
+              v-if="!category.isEditing"
+              @click="enableEditCategory(category)"
+            >
+              Edit
+            </button>
+            <button
+              class="btn btn-success btn-sm"
+              v-if="category.isEditing"
+              @click="saveEditCategory(category)"
+            >
+              Save
             </button>
           </li>
         </ul>
@@ -161,7 +192,12 @@ export default {
     const fetchCategories = async () => {
       try {
         const response = await axios.get("/Category");
-        categories.value = response.data;
+        categories.value = response.data.map((category) => ({
+          ...category,
+          isEditing: false,
+          editName: category.name,
+          editDescription: category.description,
+        }));
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -196,6 +232,26 @@ export default {
         );
       } catch (error) {
         console.error("Error deleting category:", error);
+      }
+    };
+
+    const enableEditCategory = (category) => {
+      category.isEditing = true;
+    };
+
+    const saveEditCategory = async (category) => {
+      try {
+        await axios.put(`/Category/${category.id}`, {
+          name: category.editName,
+          description: category.editDescription,
+        });
+        category.name = category.editName;
+        category.description = category.editDescription;
+        category.isEditing = false;
+        alert("Category updated successfully!");
+      } catch (error) {
+        console.error("Error updating category:", error);
+        alert("Failed to update category.");
       }
     };
 
@@ -245,6 +301,8 @@ export default {
       categorySearchQuery,
       deleteCoffee,
       deleteCategory,
+      enableEditCategory,
+      saveEditCategory,
       filteredCoffees,
       filteredCategories,
       categoryName,
