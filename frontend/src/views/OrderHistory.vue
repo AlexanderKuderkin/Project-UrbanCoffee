@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-container" style="margin: 40px auto; width: 100%;">
+  <div class="bg-container" style="margin: 20px auto; width: 100%;">
     <div v-if="orders.length > 0" v-for="order in orders" :key="order.id" class="order-summary" style="margin: 40px;">
       <div class="px-6 py-4 bg-gray-800 text-white flex items-center justify-between rounded-t-lg">
         <h2 class="text-base font-semibold">{{ order.orderDate }} / {{ order.id }}</h2>
