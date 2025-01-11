@@ -1,143 +1,131 @@
 <template>
-    <section
-      class="vh-100 bg-image"
-      style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');"
-    >
-      <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-        <div class="container h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-              <div class="card" style="border-radius: 15px;">
-                <div class="card-body p-5">
-                  <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-  
-                  <form @submit.prevent="register">
-                    <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      type="text"
-                      v-model="fullName"
-                      required
-                      class="form-control form-control-lg"
-                      :class="{ 'is-invalid': !validFullName }"
-                      @input="validateFullName"
-                    />
-                    <label class="form-label">Full Name</label>
-                    <div v-if="!validFullName" class="text-danger small">Name must only contain letters and spaces.</div>
-                  </div>
-  
-                    <!-- Email -->
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      type="email"
-                      v-model="email"
-                      required
-                      class="form-control form-control-lg"
-                      :class="{ 'is-invalid': !validEmail }"
-                      @input="validateEmail"
-                    />
-                    <label class="form-label">Email</label>
-                    <div v-if="!validEmail" class="text-danger small">Enter a valid email address.</div>
-                  </div>
+  <section class="signup-container">
+    <div class="card text-white">
+      <div class="card-body p-5">
+        <h2 class="fw-bold mb-2 text-uppercase text-center">Create an account</h2>
+        <p class="text-white mb-5 text-center">Please fill in the details to create your account!</p>
 
-                  <!-- Password -->
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      type="password"
-                      v-model="password"
-                      required
-                      class="form-control form-control-lg"
-                      :class="{ 'is-invalid': !validPassword }"
-                      @input="validatePassword"
-                    />
-                    <label class="form-label">Password</label>
-                    <div v-if="!validPassword" class="text-danger small">
-                      Password must be at least 8 characters long and include one uppercase, one lowercase, and one number.
-                    </div>
-                  </div>
+        <form @submit.prevent="register">
+          <!-- Full Name -->
+          <div class="form-outline form-white mb-4">
+            <input
+              type="text"
+              v-model="fullName"
+              required
+              class="form-control form-control-lg"
+              :class="{ 'is-invalid': !validFullName }"
+              @input="validateFullName"
+            />
+            <label class="form-label">Full Name</label>
+            <div v-if="!validFullName" class="text-danger small">Name must only contain letters and spaces.</div>
+          </div>
 
-                  <!-- Country -->
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      type="text"
-                      v-model="addressCountry"
-                      required
-                      class="form-control form-control-lg"
-                      :class="{ 'is-invalid': !validCountry }"
-                      @input="validateCountry"
-                    />
-                    <label class="form-label">Country</label>
-                    <div v-if="!validCountry" class="text-danger small">Country must only contain letters.</div>
-                  </div>
+          <!-- Email -->
+          <div class="form-outline form-white mb-4">
+            <input
+              type="email"
+              v-model="email"
+              required
+              class="form-control form-control-lg"
+              :class="{ 'is-invalid': !validEmail }"
+              @input="validateEmail"
+            />
+            <label class="form-label">Email</label>
+            <div v-if="!validEmail" class="text-danger small">Enter a valid email address.</div>
+          </div>
 
-                  <!-- City -->
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      type="text"
-                      v-model="addressCity"
-                      required
-                      class="form-control form-control-lg"
-                      :class="{ 'is-invalid': !validCity }"
-                      @input="validateCity"
-                    />
-                    <label class="form-label">City</label>
-                    <div v-if="!validCity" class="text-danger small">City must only contain letters.</div>
-                  </div>
-
-                  <!-- Postal Code -->
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      type="text"
-                      v-model="addressPostalCode"
-                      required
-                      class="form-control form-control-lg"
-                      :class="{ 'is-invalid': !validPostalCode }"
-                      @input="validatePostalCode"
-                    />
-                    <label class="form-label">PLZ</label>
-                    <div v-if="!validPostalCode" class="text-danger small">Postal Code must be 4-6 digits.</div>
-                  </div>
-
-                  <!-- Street -->
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <input
-                      type="text"
-                      v-model="addressStreet"
-                      required
-                      class="form-control form-control-lg"
-                      :class="{ 'is-invalid': !validStreet }"
-                      @input="validateStreet"
-                    />
-                    <label class="form-label">Street-name + House number</label>
-                    <div v-if="!validStreet" class="text-danger small">Enter a valid street name and number (e.g., "Main St 123").</div>
-                  </div>
-
-                  <!-- Submit Button -->
-                  <div class="d-flex justify-content-center">
-                    <button
-                      type="submit"
-                      data-mdb-button-init
-                      data-mdb-ripple-init
-                      class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                      :disabled="!allValid"
-                    >
-                      Sign up
-                    </button>
-                  </div>
-  
-                    <p class="text-center text-muted mt-5 mb-0">
-                      Have already an account?
-                      <a href="/Login" class="fw-bold text-body"
-                        ><u>Login here</u></a>
-                    </p>
-                  </form>
-                </div>
-              </div>
+          <!-- Password -->
+          <div class="form-outline form-white mb-4">
+            <input
+              type="password"
+              v-model="password"
+              required
+              class="form-control form-control-lg"
+              :class="{ 'is-invalid': !validPassword }"
+              @input="validatePassword"
+            />
+            <label class="form-label">Password</label>
+            <div v-if="!validPassword" class="text-danger small">
+              Password must be at least 8 characters long and include one uppercase, one lowercase, and one number.
             </div>
           </div>
-        </div>
+
+          <!-- Country -->
+          <div class="form-outline form-white mb-4">
+            <input
+              type="text"
+              v-model="addressCountry"
+              required
+              class="form-control form-control-lg"
+              :class="{ 'is-invalid': !validCountry }"
+              @input="validateCountry"
+            />
+            <label class="form-label">Country</label>
+            <div v-if="!validCountry" class="text-danger small">Country must only contain letters.</div>
+          </div>
+
+          <!-- City -->
+          <div class="form-outline form-white mb-4">
+            <input
+              type="text"
+              v-model="addressCity"
+              required
+              class="form-control form-control-lg"
+              :class="{ 'is-invalid': !validCity }"
+              @input="validateCity"
+            />
+            <label class="form-label">City</label>
+            <div v-if="!validCity" class="text-danger small">City must only contain letters.</div>
+          </div>
+
+          <!-- Postal Code -->
+          <div class="form-outline form-white mb-4">
+            <input
+              type="text"
+              v-model="addressPostalCode"
+              required
+              class="form-control form-control-lg"
+              :class="{ 'is-invalid': !validPostalCode }"
+              @input="validatePostalCode"
+            />
+            <label class="form-label">Postal Code</label>
+            <div v-if="!validPostalCode" class="text-danger small">Postal Code must be 4-6 digits.</div>
+          </div>
+
+          <!-- Street -->
+          <div class="form-outline form-white mb-4">
+            <input
+              type="text"
+              v-model="addressStreet"
+              required
+              class="form-control form-control-lg"
+              :class="{ 'is-invalid': !validStreet }"
+              @input="validateStreet"
+            />
+            <label class="form-label">Street-name + House number</label>
+            <div v-if="!validStreet" class="text-danger small">Enter a valid street name and number (e.g., "Main St 123").</div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="d-flex justify-content-center">
+            <button
+              type="submit"
+              class="btn btn-signup btn-lg px-5"
+              :disabled="!allValid"
+            >
+              Sign up
+            </button>
+          </div>
+
+          <p class="text-white mt-5 mb-0 text-center">
+            Have an account?
+            <a href="/Login" class="text-white fw-bold">Login here</a>
+          </p>
+        </form>
       </div>
-    </section>
-  </template>
+    </div>
+  </section>
+</template>
 
 <script setup>
 import { ref, computed } from "vue";
@@ -160,7 +148,7 @@ const validPostalCode = ref(true);
 const validStreet = ref(true);
 
 function validateFullName() {
-  validFullName.value = /^[a-zA-ZÀ-ÿ\s]+$/.test(fullName.value);
+  validFullName.value = /^[a-zA-Z\s]+$/.test(fullName.value);
 }
 function validateEmail() {
   validEmail.value = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
@@ -172,13 +160,13 @@ function validateCountry() {
   validCountry.value = /^[a-zA-Z\s]+$/.test(addressCountry.value);
 }
 function validateCity() {
-  validCity.value = /^[a-zA-ZÀ-ÿ\s]+$/.test(addressCity.value);
+  validCity.value = /^[a-zA-Z\s]+$/.test(addressCity.value);
 }
 function validatePostalCode() {
   validPostalCode.value = /^\d{4,6}$/.test(addressPostalCode.value);
 }
 function validateStreet() {
-  validStreet.value = /^[a-zA-ZÀ-ÿ\s]+ \d{1,5}$/.test(addressStreet.value);
+  validStreet.value = /^[a-zA-Z\s]+ \d{1,5}$/.test(addressStreet.value);
 }
 
 const allValid = computed(() =>
@@ -210,24 +198,42 @@ async function register() {
 </script>
 
 <style scoped>
-.gradient-custom-3 {
-    /* fallback for old browsers */
-    background: #84fab0;
-    
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
-    }
-    .gradient-custom-4 {
-    /* fallback for old browsers */
-    background: #84fab0;
-    
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.signup-container {
+  margin: 20px auto; /* Margin oben und unten zum nächsten Container */
+  background-color: rgb(212, 205, 205); /* Hintergrundfarbe */
+  border-radius: 20px; /* Abgerundete Ecken */
+  padding: 20px; /* Abstand innerhalb */
+  min-height: calc(100vh - 40px); /* Dynamische Höhe */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  margin: 40px auto; /* Margin oben und unten */
+  background-color: #735340; /* Neue Hintergrundfarbe */
+  border-radius: 20px; /* Card-Rundung für Konsistenz */
+  width: 100%;
+  max-width: 500px; /* Breite wie bei der Login-Seite */
+}
+
+.btn-signup {
+  background-color: #A8865F; /* Button-Farbe */
+  color: white;
+  border: none;
+  border-radius: 15px; /* Rundung des Buttons */
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-signup:hover {
+  background-color: #A8765F; /* Hover-Farbe */
+}
 </style>
