@@ -9,7 +9,7 @@
                 <!-- Shopping Cart Section -->
                 <div class="col-lg-7">
                   <h5 class="mb-3">
-                    <router-link to="/" class="text-body continue-shopping-button">
+                    <router-link to="/Coffee" class="text-body continue-shopping-button">
                       <i class="fas fa-long-arrow-alt-left me-2"></i> Continue shopping
                     </router-link>
                   </h5>
