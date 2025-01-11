@@ -44,7 +44,7 @@
                           />
                           <!-- Price -->
                           <div style="width: 80px; margin-left: 15px;">
-                            <h5 class="mb-0">${{ item.price * item.quantity }}</h5>
+                            <h5 class="mb-0">${{ (item.price * item.quantity).toFixed(2) }}</h5>
                           </div>
                           <!-- Remove Item -->
                           <button @click="removeItem(index)" class="btn-remove ms-3">
@@ -60,28 +60,17 @@
                 <div class="col-lg-5">
                   <div class="card bg-primary text-white rounded-3">
                     <div class="card-body d-flex flex-column">
-                      <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h5 class="mb-0">Card details</h5>
-                      </div>
+                      
 
                       <!-- Payment Form -->
                       <form @submit.prevent="checkout">
-                        <div class="form-outline form-white mb-4">
-                          <input type="text" id="typeName" class="form-control form-control-lg"
-                                 placeholder="Cardholder's Name" v-model="payment.cardholderName" required />
-                          <label class="form-label" for="typeName">Cardholder's Name</label>
-                        </div>
+                        
 
-                        <div class="form-outline form-white mb-4">
-                          <input type="text" id="typeText" class="form-control form-control-lg"
-                                 placeholder="1234 5678 9012 3457" minlength="16" maxlength="19"
-                                 v-model="payment.cardNumber" required />
-                          <label class="form-label" for="typeText">Card Number</label>
-                        </div>
+                        
 
                         <div class="d-flex justify-content-between">
                           <p class="mb-2">Subtotal</p>
-                          <p class="mb-2">${{ subtotal }}</p>
+                          <p class="mb-2">${{ subtotal.toFixed(2) }}</p>
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -91,12 +80,12 @@
 
                         <div class="d-flex justify-content-between mb-4">
                           <p class="mb-2">Total (Incl. taxes)</p>
-                          <p class="mb-2">${{ total }}</p>
+                          <p class="mb-2">${{ total.toFixed(2) }}</p>
                         </div>
 
-                        <button type="submit" class="btn btn-lg checkout-button mt-4 align-self-center">
+                        <button type="submit" class="btn btn-lg checkout-button mt-4 align-self-center" :disabled="cartItems.length === 0">
                           <div class="d-flex justify-content-between align-items-center">
-                            <span>${{ total }}</span>
+                            <span>${{ total.toFixed(2) }}</span>
                             <span>&nbsp;Checkout&nbsp;<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                           </div>
                         </button>
@@ -116,11 +105,52 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { useUserStore } from "@/stores/user";
 import { useShoppingCartStore } from "@/stores/shoppingCart";
+import axios from "axios";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
+const userStore = useUserStore();
 const shoppingCartStore = useShoppingCartStore();
 
-// Zugriff auf die Warenkorb-Daten
+
+async function checkout() {
+  try {
+    const userId = userStore.user?.id;
+
+    if (!userId) {
+      alert("You need to log in to proceed with the checkout.");
+      router.push("/Login");
+      return;
+    }
+
+    // Bereite die Daten für die Bestellung vor
+    const payload = {
+      userId: userId,
+      items: shoppingCartStore.cart.map(item => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        price: item.price
+      })),
+      totalAmount: shoppingCartStore.cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    };
+
+    const response = await axios.post("/api/order/createOrder", payload);
+
+    if (response.status === 200) {
+      alert("Order placed successfully!");
+      shoppingCartStore.clearCart();
+      router.push("/Coffee");
+    } else {
+      alert("Failed to place order.");
+    }
+  } catch (error) {
+    console.error("Checkout error:", error);
+    alert("An error occurred while placing the order.");
+  }
+}
+
 const cartItems = computed(() => shoppingCartStore.cart);
 
 // Payment form data
@@ -141,12 +171,6 @@ function removeItem(index) {
   localStorage.setItem("cart", JSON.stringify(shoppingCartStore.cart));
 }
 
-// Checkout function
-function checkout() {
-  alert("Checkout successful!");
-  console.log("Payment Info:", payment.value);
-  console.log("Cart Items:", cartItems.value);
-}
 </script>
 
 <style scoped>

@@ -26,5 +26,8 @@ module.exports.routes = {
 
   'POST /review': 'ReviewController.create',
   'GET /reviews/:id': 'ReviewController.findReviewsForCoffee',
+
+  'POST /api/order/createOrder': 'OrderController.createOrder',
+
 };
 

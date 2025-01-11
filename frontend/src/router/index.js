@@ -83,7 +83,7 @@ router.beforeEach(async(to, from, next) => {
   const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView', 'Reviews'];
 
   if (!userStore.user) {
-    await userStore.fetchUser(); // Warte, bis fetchUser abgeschlossen ist
+    await userStore.fetchUser(); 
   }
 
   if (publicRoutes.includes(to.name)) {
