@@ -27,7 +27,7 @@
         <!-- Buttons -->
         <div class="button-group">
           <button id="back" class="back-button">Back</button>
-          <button id="submit">Submit</button>
+          <button id="submit" class="btn-success">Submit</button>
         </div>
   
         <div class="reviews" id="reviews"></div>
@@ -219,7 +219,7 @@
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 25px;
+    border-radius: 15px;
     cursor: pointer;
     width: 85px;
   }
@@ -234,6 +234,10 @@
   
   .back-button:hover {
     background-color: #5a6268;
+  }
+
+  .btn-success:hover {
+  background-color: #A8765F;
   }
   
   .reviews {
