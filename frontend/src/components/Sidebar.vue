@@ -17,10 +17,11 @@
       <router-link to="/Login" class="btn btn-traditional" v-if="!userStore.user">Login</router-link>
       <router-link to="/SignUp" class="btn btn-traditional" v-if="!userStore.user">SignUp</router-link>
       <router-link to="/" class="btn">Homepage</router-link>
-      <router-link to="/Profile" class="btn">Profile</router-link>
-      <router-link to="/ShoppingCart" class="btn">Shopping Cart</router-link>
+      <router-link to="/Profile" class="btn" v-if="userStore.user">Profile</router-link>
+      <router-link to="/ShoppingCart" class="btn" v-if="userStore.user">Shopping Cart</router-link>
+      <router-link to="/OrderHistory" class="btn" v-if="userStore.user">Order History</router-link>
       <router-link to="/Coffee" class="btn">Coffee</router-link>
-      <router-link to="/ManageCoffee" class="btn">Manage Coffee</router-link>
+      <router-link to="/ManageCoffee" class="btn" v-if="userStore.user">Manage Coffee</router-link>
       <button class="btn btn-danger" @click="logout" v-if="userStore.user">Logout</button>
     </div>
   </div>
