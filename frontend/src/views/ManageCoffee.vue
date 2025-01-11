@@ -17,42 +17,76 @@
             Add Coffee
           </router-link>
           <button class="primary" onclick="window.dialog.showModal();">Add category</button>
-            <dialog id="dialog">
-              <h2>Create a new category</h2>
-              <form @submit.prevent="createCategory">
-                <div class="form-group">
-                  <label for="categoryName">Name:</label>
-                  <input
-                    type="text"
-                    id="categoryName"
-                    v-model="categoryName"
-                    required
-                    class="form-control"
-                  />
-                </div>
-                <div class="form-group mt-3">
-                  <label for="categoryDescription">Description:</label>
-                  <textarea
-                    id="categoryDescription"
-                    v-model="categoryDescription"
-                    class="form-control"
-                    rows="3"
-                  ></textarea>
-                </div>
-                <div class="form-actions mt-3">
-                  <button type="submit" class="btn btn-success">Save</button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary ms-2"
-                    @click="closeDialog"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            </dialog>
+          <button class="btn btn-info" @click="toggleViewCategories">View Categories</button>
+          <dialog id="dialog">
+            <h2>Create a new category</h2>
+            <form @submit.prevent="createCategory">
+              <div class="form-group">
+                <label for="categoryName">Name:</label>
+                <input
+                  type="text"
+                  id="categoryName"
+                  v-model="categoryName"
+                  required
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group mt-3">
+                <label for="categoryDescription">Description:</label>
+                <textarea
+                  id="categoryDescription"
+                  v-model="categoryDescription"
+                  class="form-control"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="form-actions mt-3">
+                <button type="submit" class="btn btn-success">Save</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary ms-2"
+                  @click="closeDialog"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </dialog>
         </div>
       </div>
+
+      <!-- View Categories Modal -->
+      <dialog id="categoriesDialog">
+        <h2>Categories</h2>
+        <input
+          type="text"
+          v-model="categorySearchQuery"
+          placeholder="Search for category name ..."
+          class="form-control mb-3"
+        />
+        <ul class="list-group">
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center"
+            v-for="category in filteredCategories"
+            :key="category.id"
+          >
+            <span>{{ category.name }}</span>
+            <button
+              class="btn btn-danger btn-sm"
+              @click="deleteCategory(category.id)"
+            >
+              Delete
+            </button>
+          </li>
+        </ul>
+        <button
+          type="button"
+          class="btn btn-secondary mt-3"
+          @click="closeCategoriesDialog"
+        >
+          Close
+        </button>
+      </dialog>
 
       <!-- Table -->
       <div class="table-responsive-wrapper">
@@ -108,7 +142,9 @@ export default {
   name: "ManageCoffee",
   setup() {
     const coffees = ref([]);
+    const categories = ref([]);
     const searchQuery = ref("");
+    const categorySearchQuery = ref("");
 
     const categoryName = ref("");
     const categoryDescription = ref("");
@@ -122,6 +158,14 @@ export default {
       }
     };
 
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("/Category");
+        categories.value = response.data;
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
 
     const createCategory = async () => {
       try {
@@ -135,6 +179,7 @@ export default {
         categoryName.value = "";
         categoryDescription.value = "";
         closeDialog();
+        fetchCategories();
 
         alert("Category created successfully!");
       } catch (error) {
@@ -143,8 +188,28 @@ export default {
       }
     };
 
+    const deleteCategory = async (id) => {
+      try {
+        await axios.delete(`/Category/${id}`);
+        categories.value = categories.value.filter(
+          (category) => category.id !== id
+        );
+      } catch (error) {
+        console.error("Error deleting category:", error);
+      }
+    };
+
     const closeDialog = () => {
       document.getElementById("dialog").close();
+    };
+
+    const toggleViewCategories = () => {
+      fetchCategories();
+      document.getElementById("categoriesDialog").showModal();
+    };
+
+    const closeCategoriesDialog = () => {
+      document.getElementById("categoriesDialog").close();
     };
 
     const deleteCoffee = async (id) => {
@@ -162,19 +227,32 @@ export default {
       );
     });
 
+    const filteredCategories = computed(() => {
+      return categories.value.filter((category) =>
+        category.name.toLowerCase().includes(categorySearchQuery.value.toLowerCase())
+      );
+    });
+
     onMounted(() => {
       fetchCoffees();
+      fetchCategories();
     });
 
     return {
       coffees,
+      categories,
       searchQuery,
+      categorySearchQuery,
       deleteCoffee,
+      deleteCategory,
       filteredCoffees,
+      filteredCategories,
       categoryName,
       categoryDescription,
       createCategory,
       closeDialog,
+      toggleViewCategories,
+      closeCategoriesDialog,
     };
   },
 };
@@ -270,5 +348,4 @@ dialog::backdrop {
   display: flex;
   justify-content: flex-end;
 }
-
 </style>
