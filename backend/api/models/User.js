@@ -91,7 +91,7 @@ So, while this \`isSuperAdmin\` demarcation might not be the right approach fore
     },
   },
   reviews: {
-    collection: 'Review',
+    collection: 'Reviews',
     via: 'user',
     description: 'The reviews written by this user.'
   },

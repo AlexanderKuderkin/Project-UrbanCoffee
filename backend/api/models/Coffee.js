@@ -58,7 +58,7 @@ module.exports = {
       model: 'Category'
   },
     reviews: {
-      collection: 'Review',
+      collection: 'Reviews',
       via: 'coffee',
       description: 'The reviews associated with this coffee.'
     },
