@@ -18,6 +18,7 @@
       <router-link to="/SignUp" class="btn btn-traditional" v-if="!userStore.user">SignUp</router-link>
       <router-link to="/" class="btn">Homepage</router-link>
       <router-link to="/Profile" class="btn" v-if="userStore.user">Profile</router-link>
+      <router-link to="/Reviews" class="btn" v-if="userStore.user">Review</router-link>
       <router-link to="/ShoppingCart" class="btn" v-if="userStore.user">Shopping Cart</router-link>
       <router-link to="/OrderHistory" class="btn" v-if="userStore.user">Order History</router-link>
       <router-link to="/Coffee" class="btn">Coffee</router-link>

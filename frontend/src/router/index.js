@@ -86,7 +86,7 @@ const router = createRouter({
 
 router.beforeEach(async(to, from, next) => {
   const userStore = useUserStore();
-  const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView', 'Reviews'];
+  const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView'];
 
   if (!userStore.user) {
     await userStore.fetchUser(); 
