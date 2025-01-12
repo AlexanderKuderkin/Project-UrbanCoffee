@@ -3,7 +3,6 @@
     <div class="container">
       <h1>Give us your Review</h1>
 
-      <!-- Dropdown für die Kaffeesorten -->
       <select id="coffeeSelect" class="coffee-select">
         <option value="" disabled selected>Which coffee do you want to review?</option>
         <option v-for="coffee in coffees" :key="coffee.id" :value="coffee.id">
@@ -11,7 +10,6 @@
         </option>
       </select>
 
-      <!-- Sternebewertung -->
       <div class="stars" id="stars">
         <span class="star" data-value="1">★</span>
         <span class="star" data-value="2">★</span>
@@ -22,7 +20,6 @@
 
       <textarea id="review" placeholder="Write your review here"></textarea>
 
-      <!-- Buttons -->
       <div class="button-group">
         <button id="back" class="back-button">Back</button>
         <button id="submit" class="btn-success">Submit</button>
@@ -41,12 +38,12 @@ export default {
   name: "Reviews",
   data() {
     return {
-      coffees: [], // Liste der Kaffees
+      coffees: [],
     };
   },
   async mounted() {
-    const userStore = useUserStore(); // Zugriff auf Pinia Store
-    const userId = userStore.user?.id; // Benutzer-ID
+    const userStore = useUserStore();
+    const userId = userStore.user?.id;
 
     if (!userId) {
       console.error("No user logged in. Cannot fetch coffees.");
@@ -55,7 +52,6 @@ export default {
     }
 
     try {
-      // Kaffees des Benutzers abrufen
       const response = await axios.get("/api/reviews/user-coffees", {
         params: { userId },
       });
@@ -114,7 +110,7 @@ export default {
         }
 
         try {
-          const userStore = useUserStore(); // Benutzer-Store
+          const userStore = useUserStore();
           const userId = userStore.user?.id;
 
           if (!userId) {
@@ -122,7 +118,6 @@ export default {
             return;
           }
 
-          // Review an das Backend senden
           const response = await axios.post("/api/reviews/create", {
             rating,
             comment: review,
@@ -132,11 +127,15 @@ export default {
 
           if (response.status === 201) {
             alert("Review submitted successfully!");
+
+            const updatedResponse = await axios.get("/api/reviews/user-coffees", {
+              params: { userId },
+            });
+            this.coffees = updatedResponse.data.coffees;
           } else {
             alert("Something went wrong. Please try again.");
           }
 
-          // Reset-Logik
           coffeeSelect.selectedIndex = 0;
           reviewText.value = "";
           rating = 0;
@@ -172,6 +171,7 @@ export default {
   },
 };
 </script>
+
   
 <style scoped>
   body {
