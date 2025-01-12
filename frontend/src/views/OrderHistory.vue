@@ -169,7 +169,7 @@ onMounted(() => {
 .bg-container {
   background-color: rgb(212, 205, 205);
   padding: 5px;
-  border-radius: 12px;
+  border-radius: 20px;
 }
 .divide-gray-300 > :not(:last-child) {
   border-bottom: 1px solid #d1d5db;
