@@ -9,7 +9,7 @@
 			  <span>No Image</span>
 			</div>
 			<h4 class="mt-3">John Doe</h4>
-			<button class="btn order-history-button mt-3">Order History</button>
+			<RouterLink to="/OrderHistory" class="btn order-history-button mt-3">Order History</RouterLink>
 		  </div>
 		</div>
   
