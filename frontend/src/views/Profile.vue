@@ -1,7 +1,6 @@
 <template>
     <div class="profile-container">
       <div class="row">
-        <!-- left side -->
         <div class="col-lg-4">
           <div class="card profile-card">
             <div class="profile-placeholder">
@@ -12,7 +11,6 @@
           </div>
         </div>
   
-        <!-- Right side -->
         <div class="col-lg-8">
           <div class="card">
             <div class="card-body">
@@ -23,7 +21,10 @@
                     type="text"
                     class="form-control"
                     v-model="form.fullName"
+                    :class="{ 'is-invalid': !validFullName }"
+                    @input="validateFullName"
                   >
+                  <div v-if="!validFullName" class="text-danger small">Name must only contain letters and spaces.</div>
                 </div>
               </div>
               <div class="mb-3 row">
@@ -33,7 +34,10 @@
                     type="text"
                     class="form-control"
                     v-model="form.emailAddress"
+                    :class="{ 'is-invalid': !validEmail }"
+                    @input="validateEmail"
                   >
+                  <div v-if="!validEmail" class="text-danger small">Enter a valid email address.</div>
                 </div>
               </div>
               <div class="mb-3 row">
@@ -43,7 +47,10 @@
                     type="text"
                     class="form-control"
                     v-model="form.addressStreet"
+                    :class="{ 'is-invalid': !validStreet }"
+                    @input="validateStreet"
                   >
+                  <div v-if="!validStreet" class="text-danger small">Enter a valid street (e.g., "Main St 123").</div>
                 </div>
               </div>
               <div class="mb-3 row">
@@ -53,7 +60,10 @@
                     type="text"
                     class="form-control"
                     v-model="form.addressCity"
+                    :class="{ 'is-invalid': !validCity }"
+                    @input="validateCity"
                   >
+                  <div v-if="!validCity" class="text-danger small">City must only contain letters.</div>
                 </div>
               </div>
               <div class="mb-3 row">
@@ -63,7 +73,10 @@
                     type="text"
                     class="form-control"
                     v-model="form.addressPostalCode"
+                    :class="{ 'is-invalid': !validPostalCode }"
+                    @input="validatePostalCode"
                   >
+                  <div v-if="!validPostalCode" class="text-danger small">Postal Code must be 4-6 digits.</div>
                 </div>
               </div>
               <div class="mb-3 row">
@@ -73,7 +86,10 @@
                     type="text"
                     class="form-control"
                     v-model="form.addressCountry"
+                    :class="{ 'is-invalid': !validCountry }"
+                    @input="validateCountry"
                   >
+                  <div v-if="!validCountry" class="text-danger small">Country must only contain letters.</div>
                 </div>
               </div>
               <div class="row">
@@ -84,13 +100,13 @@
                     class="btn save-changes-button px-4"
                     value="Save Changes"
                     @click="saveChanges"
+                    :disabled="!allValid"
                   >
                 </div>
               </div>
             </div>
           </div>
   
-          <!-- Review -->
           <div class="card mt-4">
             <div class="card-body">
               <h5 class="mb-3">Customer Review</h5>
@@ -114,6 +130,7 @@
   <script>
   import { useUserStore } from "@/stores/user";
   import axios from "axios";
+  import { ref, computed } from "vue";
   
   export default {
     data() {
@@ -127,7 +144,25 @@
           addressPostalCode: "",
           addressCountry: "",
         },
+        validFullName: ref(true),
+        validEmail: ref(true),
+        validStreet: ref(true),
+        validCity: ref(true),
+        validPostalCode: ref(true),
+        validCountry: ref(true),
       };
+    },
+    computed: {
+      allValid() {
+        return (
+          this.validFullName &&
+          this.validEmail &&
+          this.validStreet &&
+          this.validCity &&
+          this.validPostalCode &&
+          this.validCountry
+        );
+      },
     },
     async created() {
       const userStore = useUserStore();
@@ -145,6 +180,24 @@
           this.form.addressPostalCode = this.user.addressPostalCode;
           this.form.addressCountry = this.user.addressCountry;
         }
+      },
+      validateFullName() {
+        this.validFullName = /^[a-zA-Z\s]+$/.test(this.form.fullName);
+      },
+      validateEmail() {
+        this.validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.emailAddress);
+      },
+      validateStreet() {
+        this.validStreet = /^[a-zA-Z\s]+ \d{1,5}$/.test(this.form.addressStreet);
+      },
+      validateCity() {
+        this.validCity = /^[a-zA-Z\s]+$/.test(this.form.addressCity);
+      },
+      validatePostalCode() {
+        this.validPostalCode = /^\d{4,6}$/.test(this.form.addressPostalCode);
+      },
+      validateCountry() {
+        this.validCountry = /^[a-zA-Z\s]+$/.test(this.form.addressCountry);
       },
       async saveChanges() {
         try {
