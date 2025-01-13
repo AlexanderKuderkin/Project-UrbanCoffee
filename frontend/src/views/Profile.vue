@@ -1,67 +1,96 @@
 <template>
     <div class="profile-container">
       <div class="row">
-        <!-- Linkes Profil-Panel -->
+        <!-- left side -->
         <div class="col-lg-4">
           <div class="card profile-card">
             <div class="profile-placeholder">
               <span>No Image</span>
             </div>
-            <h4 class="mt-3">{{ user?.fullName || "No Name" }}</h4>
+            <h4 class="mt-3">{{ form.fullName || "No Name" }}</h4>
             <RouterLink to="/OrderHistory" class="btn order-history-button mt-3">Order History</RouterLink>
           </div>
         </div>
   
-        <!-- Rechtes Detail-Panel -->
+        <!-- Right side -->
         <div class="col-lg-8">
           <div class="card">
             <div class="card-body">
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Full Name</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" :value="user?.fullName || ''" disabled>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="form.fullName"
+                  >
                 </div>
               </div>
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" :value="user?.emailAddress || ''" disabled>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="form.emailAddress"
+                  >
                 </div>
               </div>
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Street</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" :value="user?.addressStreet || ''" disabled>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="form.addressStreet"
+                  >
                 </div>
               </div>
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">City</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" :value="user?.addressCity || ''" disabled>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="form.addressCity"
+                  >
                 </div>
               </div>
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Postal Code</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" :value="user?.addressPostalCode || ''" disabled>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="form.addressPostalCode"
+                  >
                 </div>
               </div>
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Country</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" :value="user?.addressCountry || ''" disabled>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="form.addressCountry"
+                  >
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-9">
-                  <input type="button" class="btn save-changes-button px-4" value="Save Changes">
+                  <input
+                    type="button"
+                    class="btn save-changes-button px-4"
+                    value="Save Changes"
+                    @click="saveChanges"
+                  >
                 </div>
               </div>
             </div>
           </div>
   
-          <!-- Kundenrezension -->
+          <!-- Review -->
           <div class="card mt-4">
             <div class="card-body">
               <h5 class="mb-3">Customer Review</h5>
@@ -84,17 +113,50 @@
   
   <script>
   import { useUserStore } from "@/stores/user";
+  import axios from "axios";
   
   export default {
     data() {
       return {
         user: null,
+        form: {
+          fullName: "",
+          emailAddress: "",
+          addressStreet: "",
+          addressCity: "",
+          addressPostalCode: "",
+          addressCountry: "",
+        },
       };
     },
     async created() {
       const userStore = useUserStore();
       await userStore.fetchUser();
       this.user = userStore.user;
+      this.populateForm();
+    },
+    methods: {
+      populateForm() {
+        if (this.user) {
+          this.form.fullName = this.user.fullName;
+          this.form.emailAddress = this.user.emailAddress;
+          this.form.addressStreet = this.user.addressStreet;
+          this.form.addressCity = this.user.addressCity;
+          this.form.addressPostalCode = this.user.addressPostalCode;
+          this.form.addressCountry = this.user.addressCountry;
+        }
+      },
+      async saveChanges() {
+        try {
+          const response = await axios.put("/updateUser", this.form);
+          this.user = response.data;
+          this.populateForm();
+          alert("Changes saved successfully!");
+        } catch (error) {
+          console.error("Failed to save changes:", error);
+          alert("Failed to save changes. Please try again.");
+        }
+      },
     },
   };
   </script>
@@ -130,7 +192,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center; /* Inhalte komplett zentrieren */
+	justify-content: center; 
   }
   
   .profile-placeholder {
@@ -159,7 +221,6 @@
 	border: 1px solid #ccc;
   }
   
-  /* Order History Button */
   .order-history-button {
 	background-color: #1e160d;
 	color: #fff;

@@ -73,6 +73,32 @@ module.exports = {
     req.session.user = user;
     return res.json(user);
   },
+
+  updateUser: async function (req, res) {
+    if (!req.session.userId) {
+      return res.status(403).json({ message: "Not logged in" });
+    }
+  
+    try {
+      const updatedUser = await User.updateOne({ id: req.session.userId }).set({
+        fullName: req.body.fullName,
+        emailAddress: req.body.emailAddress,
+        addressStreet: req.body.addressStreet,
+        addressCity: req.body.addressCity,
+        addressPostalCode: req.body.addressPostalCode,
+        addressCountry: req.body.addressCountry,
+      });
+  
+      if (!updatedUser) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      req.session.user = updatedUser;
+      return res.json(updatedUser); 
+    } catch (error) {
+      return res.status(500).json({ message: "Server error", error });
+    }
+  },  
   
   logout: async function (req, res) {
     delete req.session.user;

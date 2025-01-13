@@ -27,6 +27,7 @@ module.exports.routes = {
   'GET /api/reviews/user-coffees': 'ReviewsController.getUserCoffees',
   'POST /api/reviews/create': 'ReviewsController.createReview',
 
+  'PUT /updateUser': 'LoginController.updateUser',
 
   'POST /api/order/createOrder': 'OrderController.createOrder',
   'GET /api/orders': 'OrderController.findByUser',
