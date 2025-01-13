@@ -103,13 +103,29 @@
                     :disabled="!hasChanges || !allValid"
                   >
                 </div>
-              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="mb-3">Customer Review</h5>
+            <p><strong>Coffee Name:</strong> Espresso Deluxe</p>
+            <p><strong>Date:</strong> 2025-01-10</p>
+            <p><strong>Rating:</strong> 4/5</p>
+            <p>
+              "The Espresso Deluxe had a rich and bold flavor, but it was slightly too bitter for my taste. Still, a great choice for espresso lovers!"
+            </p>
+            <div class="d-flex justify-content-end gap-2">
+              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-outline-primary">Edit</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
   
   <script>
   import { useUserStore } from "@/stores/user";
@@ -119,7 +135,7 @@
     data() {
       return {
         user: null,
-        originalData: null, // Speichert die ursprünglichen Daten
+        originalData: null,
         form: {
           fullName: "",
           emailAddress: "",
