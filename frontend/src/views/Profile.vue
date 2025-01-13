@@ -100,25 +100,9 @@
                     class="btn save-changes-button px-4"
                     value="Save Changes"
                     @click="saveChanges"
-                    :disabled="!allValid"
+                    :disabled="!hasChanges || !allValid"
                   >
                 </div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="card mt-4">
-            <div class="card-body">
-              <h5 class="mb-3">Customer Review</h5>
-              <p><strong>Coffee Name:</strong> Espresso Deluxe</p>
-              <p><strong>Date:</strong> 2025-01-10</p>
-              <p><strong>Rating:</strong> 4/5</p>
-              <p>
-                "The Espresso Deluxe had a rich and bold flavor, but it was slightly too bitter for my taste. Still, a great choice for espresso lovers!"
-              </p>
-              <div class="d-flex justify-content-end gap-2">
-                <button class="btn btn-danger">Delete</button>
-                <button class="btn btn-outline-primary">Edit</button>
               </div>
             </div>
           </div>
@@ -130,12 +114,12 @@
   <script>
   import { useUserStore } from "@/stores/user";
   import axios from "axios";
-  import { ref, computed } from "vue";
   
   export default {
     data() {
       return {
         user: null,
+        originalData: null, // Speichert die ursprünglichen Daten
         form: {
           fullName: "",
           emailAddress: "",
@@ -144,12 +128,12 @@
           addressPostalCode: "",
           addressCountry: "",
         },
-        validFullName: ref(true),
-        validEmail: ref(true),
-        validStreet: ref(true),
-        validCity: ref(true),
-        validPostalCode: ref(true),
-        validCountry: ref(true),
+        validFullName: true,
+        validEmail: true,
+        validStreet: true,
+        validCity: true,
+        validPostalCode: true,
+        validCountry: true,
       };
     },
     computed: {
@@ -163,6 +147,9 @@
           this.validCountry
         );
       },
+      hasChanges() {
+        return JSON.stringify(this.form) !== JSON.stringify(this.originalData);
+      },
     },
     async created() {
       const userStore = useUserStore();
@@ -173,12 +160,8 @@
     methods: {
       populateForm() {
         if (this.user) {
-          this.form.fullName = this.user.fullName;
-          this.form.emailAddress = this.user.emailAddress;
-          this.form.addressStreet = this.user.addressStreet;
-          this.form.addressCity = this.user.addressCity;
-          this.form.addressPostalCode = this.user.addressPostalCode;
-          this.form.addressCountry = this.user.addressCountry;
+          this.form = { ...this.user };
+          this.originalData = { ...this.user };
         }
       },
       validateFullName() {
@@ -188,7 +171,7 @@
         this.validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.emailAddress);
       },
       validateStreet() {
-        this.validStreet = /^[a-zA-Z\s]+ \d{1,5}$/.test(this.form.addressStreet);
+        this.validStreet = /^[a-zA-ZÀ-ÿß\s\-]+\s\d{1,5}$/.test(this.form.addressStreet);
       },
       validateCity() {
         this.validCity = /^[a-zA-Z\s]+$/.test(this.form.addressCity);
@@ -212,7 +195,7 @@
       },
     },
   };
-  </script>
+  </script>  
   
   
   <style scoped>

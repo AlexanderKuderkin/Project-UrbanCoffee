@@ -166,7 +166,7 @@ function validatePostalCode() {
   validPostalCode.value = /^\d{4,6}$/.test(addressPostalCode.value);
 }
 function validateStreet() {
-  validStreet.value = /^[a-zA-Z\s]+ \d{1,5}$/.test(addressStreet.value);
+  validStreet.value = /^[a-zA-ZÀ-ÿß\s\-]+\s\d{1,5}$/.test(addressStreet.value);
 }
 
 const allValid = computed(() =>
