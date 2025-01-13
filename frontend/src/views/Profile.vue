@@ -1,81 +1,104 @@
 <template>
-	<div class="profile-container">
-	  <div class="row">
-		<!-- Linkes Profil-Panel -->
-		<div class="col-lg-4">
-		  <div class="card profile-card">
-			<!-- Platzhalter für Profilbild -->
-			<div class="profile-placeholder">
-			  <span>No Image</span>
-			</div>
-			<h4 class="mt-3">John Doe</h4>
-			<RouterLink to="/OrderHistory" class="btn order-history-button mt-3">Order History</RouterLink>
-		  </div>
-		</div>
+    <div class="profile-container">
+      <div class="row">
+        <!-- Linkes Profil-Panel -->
+        <div class="col-lg-4">
+          <div class="card profile-card">
+            <div class="profile-placeholder">
+              <span>No Image</span>
+            </div>
+            <h4 class="mt-3">{{ user?.fullName || "No Name" }}</h4>
+            <RouterLink to="/OrderHistory" class="btn order-history-button mt-3">Order History</RouterLink>
+          </div>
+        </div>
   
-		<!-- Rechtes Detail-Panel -->
-		<div class="col-lg-8">
-		  <div class="card">
-			<div class="card-body">
-			  <div class="mb-3 row">
-				<label class="col-sm-3 col-form-label">Full Name</label>
-				<div class="col-sm-9">
-				  <input type="text" class="form-control" value="John Doe">
-				</div>
-			  </div>
-			  <div class="mb-3 row">
-				<label class="col-sm-3 col-form-label">Email</label>
-				<div class="col-sm-9">
-				  <input type="text" class="form-control" value="john@example.com">
-				</div>
-			  </div>
-			  <div class="mb-3 row">
-				<label class="col-sm-3 col-form-label">Phone</label>
-				<div class="col-sm-9">
-				  <input type="text" class="form-control" value="(239) 816-9029">
-				</div>
-			  </div>
-			  <div class="mb-3 row">
-				<label class="col-sm-3 col-form-label">Mobile</label>
-				<div class="col-sm-9">
-				  <input type="text" class="form-control" value="(320) 380-4539">
-				</div>
-			  </div>
-			  <div class="mb-3 row">
-				<label class="col-sm-3 col-form-label">Address</label>
-				<div class="col-sm-9">
-				  <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
-				</div>
-			  </div>
-			  <div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-9">
-				  <input type="button" class="btn save-changes-button px-4" value="Save Changes">
-				</div>
-			  </div>
-			</div>
-		  </div>
+        <!-- Rechtes Detail-Panel -->
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Full Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" :value="user?.fullName || ''" disabled>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" :value="user?.emailAddress || ''" disabled>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Street</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" :value="user?.addressStreet || ''" disabled>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">City</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" :value="user?.addressCity || ''" disabled>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Postal Code</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" :value="user?.addressPostalCode || ''" disabled>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Country</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" :value="user?.addressCountry || ''" disabled>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                  <input type="button" class="btn save-changes-button px-4" value="Save Changes">
+                </div>
+              </div>
+            </div>
+          </div>
   
-		  <!-- Kundenrezension -->
-		  <div class="card mt-4">
-			<div class="card-body">
-			  <h5 class="mb-3">Customer Review</h5>
-			  <p><strong>Coffee Name:</strong> Espresso Deluxe</p>
-			  <p><strong>Date:</strong> 2025-01-10</p>
-			  <p><strong>Rating:</strong> 4/5</p>
-			  <p>
-				"The Espresso Deluxe had a rich and bold flavor, but it was slightly too bitter for my taste. Still, a great choice for espresso lovers!"
-			  </p>
-			  <div class="d-flex justify-content-end gap-2">
-				<button class="btn btn-danger">Delete</button>
-				<button class="btn btn-outline-primary">Edit</button>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</div>
+          <!-- Kundenrezension -->
+          <div class="card mt-4">
+            <div class="card-body">
+              <h5 class="mb-3">Customer Review</h5>
+              <p><strong>Coffee Name:</strong> Espresso Deluxe</p>
+              <p><strong>Date:</strong> 2025-01-10</p>
+              <p><strong>Rating:</strong> 4/5</p>
+              <p>
+                "The Espresso Deluxe had a rich and bold flavor, but it was slightly too bitter for my taste. Still, a great choice for espresso lovers!"
+              </p>
+              <div class="d-flex justify-content-end gap-2">
+                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-outline-primary">Edit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </template>
+  
+  <script>
+  import { useUserStore } from "@/stores/user";
+  
+  export default {
+    data() {
+      return {
+        user: null,
+      };
+    },
+    async created() {
+      const userStore = useUserStore();
+      await userStore.fetchUser();
+      this.user = userStore.user;
+    },
+  };
+  </script>
+  
   
   <style scoped>
   body {
