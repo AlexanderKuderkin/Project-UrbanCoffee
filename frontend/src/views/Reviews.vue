@@ -21,7 +21,6 @@
       <textarea id="review" placeholder="Write your review here"></textarea>
 
       <div class="button-group">
-        <button id="back" class="back-button">Back</button>
         <button id="submit" class="btn-success">Submit</button>
       </div>
     </div>
@@ -220,9 +219,6 @@ export default {
         }
       });
 
-      backBtn.addEventListener("click", () => {
-        alert("Going back!");
-      });
     },
 
     getStarColorClass(value) {

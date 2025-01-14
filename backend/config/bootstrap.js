@@ -27,6 +27,25 @@ module.exports.bootstrap = async function() {
       password: await sails.helpers.passwords.hashPassword("Flo55555")},
     ]);
 
+    if (await Reviews.count() > 0) {
+      return;
+    }
+    
+    await Reviews.createEach([
+      {
+        rating: 5,
+        comment: 'The perfect coffee to start my day! Smooth and flavorful.',
+        user: 1,
+        coffee: 12
+      },
+      {
+        rating: 4,
+        comment: 'Great coffee with a rich aroma. Could use a little less acidity.',
+        user: 2, 
+        coffee: 2 
+      }
+    ]);    
+
   // Check if data already exists
   if (await Coffee.count() > 0) {
     return;
