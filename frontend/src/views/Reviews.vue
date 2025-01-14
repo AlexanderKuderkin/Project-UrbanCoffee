@@ -44,7 +44,20 @@
           </ul>
 
           <div v-if="review.isEditing">
+            <div class="stars" id="edit-stars">
+              <span
+                class="star"
+                v-for="n in 5"
+                :key="n"
+                :class="{ selected: n <= review.rating }"
+                @click="updateRating(review, n)"
+              >
+                ★
+              </span>
+            </div>
+
             <textarea v-model="review.comment" class="edit-textarea"></textarea>
+
             <div class="button-group">
               <button class="btn-save" @click="saveReview(review)">Save</button>
               <button class="btn-cancel" @click="cancelEdit(review)">Cancel</button>
@@ -189,7 +202,7 @@ export default {
               ...review,
               coffeeName: review.coffee.name,
               userName: review.user.fullName,
-              isEditing: false, // Initialisiere Bearbeitungsmodus
+              isEditing: false,
             }));
           } else {
             alert("Something went wrong. Please try again.");
@@ -237,7 +250,7 @@ export default {
             (review) => review.id !== reviewId
           );
           alert("Review deleted successfully.");
-          this.fetchUserReviews(); // Aktualisiere die Liste
+          this.fetchUserReviews();
         } else {
           alert("Could not delete the review. Please try again.");
         }
@@ -251,19 +264,20 @@ export default {
     },
 
     editReview(review) {
-      this.userReviews.forEach((r) => (r.isEditing = false)); // Deaktiviere andere Bearbeitungsmodi
-      review.isEditing = true; // Aktiviere Bearbeitungsmodus
+      this.userReviews.forEach((r) => (r.isEditing = false));
+      review.isEditing = true;
     },
 
     async saveReview(review) {
       try {
         const response = await axios.put(`/api/reviews/${review.id}`, {
           comment: review.comment,
+          rating: review.rating,
         });
         if (response.status === 200) {
           alert("Review updated successfully!");
-          review.isEditing = false; // Deaktiviere Bearbeitungsmodus
-          this.fetchUserReviews(); // Aktualisiere Daten
+          review.isEditing = false;
+          this.fetchUserReviews();
         } else {
           alert("Failed to update the review. Please try again.");
         }
@@ -274,8 +288,12 @@ export default {
     },
 
     cancelEdit(review) {
-      review.isEditing = false; // Deaktiviere Bearbeitungsmodus
-      this.fetchUserReviews(); // Lade ursprüngliche Daten erneut
+      review.isEditing = false;
+      this.fetchUserReviews();
+    },
+
+    updateRating(review, newRating) {
+      review.rating = newRating;
     },
   },
 };
