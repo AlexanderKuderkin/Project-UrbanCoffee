@@ -24,37 +24,48 @@
         <button id="back" class="back-button">Back</button>
         <button id="submit" class="btn-success">Submit</button>
       </div>
-
     </div>
   </div>
+
   <div class="reviews">
-        <div
-          v-for="review in userReviews"
-          :key="review.id"
-          class="col-md-6 mb-4"
-        >
-          <div class="card">
-            <div class="card-body py-4 mt-2">
-              <h5 class="font-weight-bold">{{ review.userName }}</h5>
-              <h6 class="font-weight-bold my-3">{{ review.coffeeName }}</h6>
-              <ul class="list-unstyled d-flex justify-content-center mb-3">
-                <li v-for="n in review.rating" :key="n">
-                  <i class="fas fa-star star-color"></i>
-                </li>
-              </ul>
-              <p class="mb-2">
-                <i class="fas fa-quote-left pe-2"></i>{{ review.comment }}
-              </p>
-              <button class="btn-view-more" @click="deleteReview(review.id)">
-                Delete
-              </button>
-              <button class="btn-buy-more" @click="editReview(review)">
-                Edit
-              </button>
+    <div
+      v-for="review in userReviews"
+      :key="review.id"
+      class="col-md-6 mb-4"
+    >
+      <div class="card">
+        <div class="card-body py-4 mt-2">
+          <h5 class="font-weight-bold">{{ review.userName }}</h5>
+          <h6 class="font-weight-bold my-3">{{ review.coffeeName }}</h6>
+          <ul class="list-unstyled d-flex justify-content-center mb-3">
+            <li v-for="n in review.rating" :key="n">
+              <i class="fas fa-star star-color"></i>
+            </li>
+          </ul>
+
+          <div v-if="review.isEditing">
+            <textarea v-model="review.comment" class="edit-textarea"></textarea>
+            <div class="button-group">
+              <button class="btn-save" @click="saveReview(review)">Save</button>
+              <button class="btn-cancel" @click="cancelEdit(review)">Cancel</button>
             </div>
+          </div>
+
+          <div v-else>
+            <p class="mb-2">
+              <i class="fas fa-quote-left pe-2"></i>{{ review.comment }}
+            </p>
+            <button class="btn-view-more" @click="deleteReview(review.id)">
+              Delete
+            </button>
+            <button class="btn-buy-more" @click="editReview(review)">
+              Edit
+            </button>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -70,37 +81,41 @@ export default {
     };
   },
   async mounted() {
-    const userStore = useUserStore();
-    const userId = userStore.user?.id;
-
-    if (!userId) {
-      console.error("No user logged in. Cannot fetch coffees.");
-      alert("You must be logged in to see your reviews.");
-      return;
-    }
-
-    try {
-      const coffeeResponse = await axios.get("/api/reviews/user-coffees", {
-        params: { userId },
-      });
-      this.coffees = coffeeResponse.data.coffees;
-
-      const reviewResponse = await axios.get(`/api/reviews/user-reviews`, {
-        params: { userId },
-      });
-      this.userReviews = reviewResponse.data.reviews.map((review) => ({
-        ...review,
-        coffeeName: review.coffee.name,
-        userName: review.user.fullName,
-      }));
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      alert("Could not load data. Please try again later.");
-    }
-
+    this.fetchUserReviews();
     this.initEventListeners();
   },
   methods: {
+    async fetchUserReviews() {
+      const userStore = useUserStore();
+      const userId = userStore.user?.id;
+
+      if (!userId) {
+        console.error("No user logged in. Cannot fetch coffees.");
+        alert("You must be logged in to see your reviews.");
+        return;
+      }
+
+      try {
+        const coffeeResponse = await axios.get("/api/reviews/user-coffees", {
+          params: { userId },
+        });
+        this.coffees = coffeeResponse.data.coffees;
+
+        const reviewResponse = await axios.get(`/api/reviews/user-reviews`, {
+          params: { userId },
+        });
+        this.userReviews = reviewResponse.data.reviews.map((review) => ({
+          ...review,
+          coffeeName: review.coffee.name,
+          userName: review.user.fullName,
+          isEditing: false,
+        }));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        alert("Could not load data. Please try again later.");
+      }
+    },
+
     initEventListeners() {
       const stars = document.querySelectorAll(".star");
       const reviewText = document.getElementById("review");
@@ -174,6 +189,7 @@ export default {
               ...review,
               coffeeName: review.coffee.name,
               userName: review.user.fullName,
+              isEditing: false, // Initialisiere Bearbeitungsmodus
             }));
           } else {
             alert("Something went wrong. Please try again.");
@@ -195,6 +211,7 @@ export default {
         alert("Going back!");
       });
     },
+
     getStarColorClass(value) {
       switch (value) {
         case 1:
@@ -211,23 +228,54 @@ export default {
           return "";
       }
     },
+
     async deleteReview(reviewId) {
       try {
         const response = await axios.delete(`/api/reviews/${reviewId}`);
         if (response.status === 200) {
-          this.userReviews = this.userReviews.filter((review) => review.id !== reviewId);
+          this.userReviews = this.userReviews.filter(
+            (review) => review.id !== reviewId
+          );
           alert("Review deleted successfully.");
-          window.location.reload();
+          this.fetchUserReviews(); // Aktualisiere die Liste
         } else {
           alert("Could not delete the review. Please try again.");
         }
       } catch (error) {
-        console.error("Error deleting review:", error.response ? error.response.data : error.message);
+        console.error(
+          "Error deleting review:",
+          error.response ? error.response.data : error.message
+        );
         alert("Could not delete the review. Please try again.");
       }
     },
+
     editReview(review) {
-      alert(`Editing review for: ${review.coffeeName}`);
+      this.userReviews.forEach((r) => (r.isEditing = false)); // Deaktiviere andere Bearbeitungsmodi
+      review.isEditing = true; // Aktiviere Bearbeitungsmodus
+    },
+
+    async saveReview(review) {
+      try {
+        const response = await axios.put(`/api/reviews/${review.id}`, {
+          comment: review.comment,
+        });
+        if (response.status === 200) {
+          alert("Review updated successfully!");
+          review.isEditing = false; // Deaktiviere Bearbeitungsmodus
+          this.fetchUserReviews(); // Aktualisiere Daten
+        } else {
+          alert("Failed to update the review. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error updating review:", error);
+        alert("Could not update the review. Please try again.");
+      }
+    },
+
+    cancelEdit(review) {
+      review.isEditing = false; // Deaktiviere Bearbeitungsmodus
+      this.fetchUserReviews(); // Lade ursprüngliche Daten erneut
     },
   },
 };

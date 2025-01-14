@@ -101,6 +101,27 @@ module.exports = {
           return res.status(500).json({ error: "An error occurred.", details: err.message });
         }
       },    
+      async updateReview(req, res) {
+        try {
+          const reviewId = req.params.id;
+          const { comment } = req.body;
+      
+          if (!reviewId || !comment) {
+            return res.status(400).json({ error: "Review ID and comment are required." });
+          }
+      
+          const updatedReview = await Reviews.updateOne({ id: reviewId }).set({ comment });
+      
+          if (!updatedReview) {
+            return res.status(404).json({ error: "Review not found." });
+          }
+      
+          return res.status(200).json({ message: "Review updated successfully.", review: updatedReview });
+        } catch (err) {
+          console.error("Error updating review:", err);
+          return res.status(500).json({ error: "An error occurred.", details: err.message });
+        }
+      },
   };
   
   
