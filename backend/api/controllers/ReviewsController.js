@@ -82,6 +82,25 @@ module.exports = {
           return res.status(500).json({ error: "An error occurred.", details: err.message });
         }
       },
+      async deleteReview(req, res) {
+        try {
+          const reviewId = req.params.id;          
+          if (!reviewId) {
+            return res.status(400).json({ error: "Review ID is required." });
+          }
+    
+          const deletedReview = await Reviews.destroyOne({ id: reviewId });
+    
+          if (!deletedReview) {
+            return res.status(404).json({ error: "Review not found." });
+          }
+    
+          return res.status(200).json({ message: "Review deleted successfully." });
+        } catch (err) {
+          console.error("Error deleting review:", err);
+          return res.status(500).json({ error: "An error occurred.", details: err.message });
+        }
+      },    
   };
   
   

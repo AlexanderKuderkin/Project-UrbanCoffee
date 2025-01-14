@@ -213,12 +213,16 @@ export default {
     },
     async deleteReview(reviewId) {
       try {
-        await axios.delete(`/api/reviews/${reviewId}`);
-        this.userReviews = this.userReviews.filter(
-          (review) => review.id !== reviewId
-        );
+        const response = await axios.delete(`/api/reviews/${reviewId}`);
+        if (response.status === 200) {
+          this.userReviews = this.userReviews.filter((review) => review.id !== reviewId);
+          alert("Review deleted successfully.");
+          window.location.reload();
+        } else {
+          alert("Could not delete the review. Please try again.");
+        }
       } catch (error) {
-        console.error("Error deleting review:", error);
+        console.error("Error deleting review:", error.response ? error.response.data : error.message);
         alert("Could not delete the review. Please try again.");
       }
     },

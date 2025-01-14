@@ -27,6 +27,7 @@ module.exports.routes = {
   'GET /api/reviews/user-reviews': 'ReviewsController.getUserReviews',
   'GET /api/reviews/user-coffees': 'ReviewsController.getUserCoffees',
   'POST /api/reviews/create': 'ReviewsController.createReview',
+  'DELETE /api/reviews/:id': 'ReviewsController.deleteReview',
 
   'PUT /updateUser': 'LoginController.updateUser',
 
