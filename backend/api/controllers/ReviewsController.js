@@ -134,6 +134,25 @@ module.exports = {
         }
     },
 
+    async getReviewsByCoffee(req, res) {
+        try {
+          const coffeeId = req.query.coffeeId;
+          if (!coffeeId) {
+            return res.status(400).json({ error: "Coffee ID is required." });
+          }
+      
+          const reviews = await Reviews.find({ coffee: coffeeId })
+            .populate("user")
+            .populate("coffee");
+      
+          return res.json({ reviews });
+        } catch (err) {
+          console.error("Error fetching reviews for coffee:", err);
+          return res.status(500).json({ error: "An error occurred.", details: err.message });
+        }
+      }
+      
+
 };
   
   
