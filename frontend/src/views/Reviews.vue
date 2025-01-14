@@ -25,30 +25,36 @@
         <button id="submit" class="btn-success">Submit</button>
       </div>
 
-      <div class="reviews" id="reviews"></div>
     </div>
   </div>
-  <div class="col-md-6 mb-4">
+  <div class="reviews">
+        <div
+          v-for="review in userReviews"
+          :key="review.id"
+          class="col-md-6 mb-4"
+        >
           <div class="card">
             <div class="card-body py-4 mt-2">
-              <h5 class="font-weight-bold">Florent Gjoshi</h5>
-              <h6 class="font-weight-bold my-3">Tchibo Cafe Crema</h6>
+              <h5 class="font-weight-bold">{{ review.userName }}</h5>
+              <h6 class="font-weight-bold my-3">{{ review.coffeeName }}</h6>
               <ul class="list-unstyled d-flex justify-content-center mb-3">
-                <li><i class="fas fa-star star-color"></i></li>
-                <li><i class="fas fa-star star-color"></i></li>
-                <li><i class="fas fa-star star-color"></i></li>
-                <li><i class="fas fa-star star-color"></i></li>
-                <li><i class="fas fa-star star-color"></i></li>
+                <li v-for="n in review.rating" :key="n">
+                  <i class="fas fa-star star-color"></i>
+                </li>
               </ul>
               <p class="mb-2">
-                <i class="fas fa-quote-left pe-2"></i>
-                The best coffee I've ever had in my life! OMG WOW!!! The coffee strength is just right when you want to stay awake, and with this aroma, you can really enjoy the coffee.
+                <i class="fas fa-quote-left pe-2"></i>{{ review.comment }}
               </p>
-              <button class="btn-view-more">Delete</button>
-              <button class="btn-buy-more">Edit</button>
+              <button class="btn-view-more" @click="deleteReview(review.id)">
+                Delete
+              </button>
+              <button class="btn-buy-more" @click="editReview(review)">
+                Edit
+              </button>
             </div>
           </div>
         </div>
+      </div>
 </template>
 
 <script>
@@ -60,6 +66,7 @@ export default {
   data() {
     return {
       coffees: [],
+      userReviews: [],
     };
   },
   async mounted() {
@@ -68,18 +75,27 @@ export default {
 
     if (!userId) {
       console.error("No user logged in. Cannot fetch coffees.");
-      alert("You must be logged in to see your coffees.");
+      alert("You must be logged in to see your reviews.");
       return;
     }
 
     try {
-      const response = await axios.get("/api/reviews/user-coffees", {
+      const coffeeResponse = await axios.get("/api/reviews/user-coffees", {
         params: { userId },
       });
-      this.coffees = response.data.coffees;
+      this.coffees = coffeeResponse.data.coffees;
+
+      const reviewResponse = await axios.get(`/api/reviews/user-reviews`, {
+        params: { userId },
+      });
+      this.userReviews = reviewResponse.data.reviews.map((review) => ({
+        ...review,
+        coffeeName: review.coffee.name,
+        userName: review.user.fullName,
+      }));
     } catch (error) {
-      console.error("Error fetching user coffees:", error);
-      alert("Could not load coffees. Please try again later.");
+      console.error("Error fetching data:", error);
+      alert("Could not load data. Please try again later.");
     }
 
     this.initEventListeners();
@@ -90,7 +106,6 @@ export default {
       const reviewText = document.getElementById("review");
       const coffeeSelect = document.getElementById("coffeeSelect");
       const submitBtn = document.getElementById("submit");
-      const reviewsContainer = document.getElementById("reviews");
       const backBtn = document.getElementById("back");
 
       let rating = 0;
@@ -149,10 +164,17 @@ export default {
           if (response.status === 201) {
             alert("Review submitted successfully!");
 
-            const updatedResponse = await axios.get("/api/reviews/user-coffees", {
-              params: { userId },
-            });
-            this.coffees = updatedResponse.data.coffees;
+            const updatedResponse = await axios.get(
+              "/api/reviews/user-reviews",
+              {
+                params: { userId },
+              }
+            );
+            this.userReviews = updatedResponse.data.reviews.map((review) => ({
+              ...review,
+              coffeeName: review.coffee.name,
+              userName: review.user.fullName,
+            }));
           } else {
             alert("Something went wrong. Please try again.");
           }
@@ -188,6 +210,20 @@ export default {
         default:
           return "";
       }
+    },
+    async deleteReview(reviewId) {
+      try {
+        await axios.delete(`/api/reviews/${reviewId}`);
+        this.userReviews = this.userReviews.filter(
+          (review) => review.id !== reviewId
+        );
+      } catch (error) {
+        console.error("Error deleting review:", error);
+        alert("Could not delete the review. Please try again.");
+      }
+    },
+    editReview(review) {
+      alert(`Editing review for: ${review.coffeeName}`);
     },
   },
 };

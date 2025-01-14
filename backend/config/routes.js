@@ -24,6 +24,7 @@ module.exports.routes = {
   'GET /restricted': 'RestrictedController.example',
   'GET /sessionUser': "login.sessionUser",
 
+  'GET /api/reviews/user-reviews': 'ReviewsController.getUserReviews',
   'GET /api/reviews/user-coffees': 'ReviewsController.getUserCoffees',
   'POST /api/reviews/create': 'ReviewsController.createReview',
 

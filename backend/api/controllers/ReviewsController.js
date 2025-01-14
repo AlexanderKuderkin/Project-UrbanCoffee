@@ -65,6 +65,23 @@ module.exports = {
           return res.status(500).json({ error: "An error occurred.", details: err.message });
         }
       },
+      async getUserReviews(req, res) {
+        try {
+          const userId = req.query.userId;
+          if (!userId) {
+            return res.status(400).json({ error: "User ID is required." });
+          }
+    
+          const reviews = await Reviews.find({ user: userId })
+            .populate("coffee")
+            .populate("user");
+    
+          return res.json({ reviews });
+        } catch (err) {
+          console.error("Error fetching user reviews:", err);
+          return res.status(500).json({ error: "An error occurred.", details: err.message });
+        }
+      },
   };
   
   
