@@ -3,7 +3,7 @@
     <div v-if="orders.length > 0" v-for="order in orders" :key="order.id" class="order-summary" style="margin: 40px;">
       <div class="px-6 py-4 bg-gray-800 text-white flex items-center justify-between rounded-t-lg">
         <h2 class="text-base font-semibold">{{ order.orderDate }} / {{ order.id }}</h2>
-        <button class="text-xs review-button">Review</button>
+        <RouterLink to="/Reviews" class="text-xs review-button">Review</RouterLink>
       </div>
 
       <div v-if="order.orderPosition.length === 0" class="p-3 text-center text-gray-500">
