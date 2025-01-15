@@ -26,6 +26,22 @@
           </select>
         </div>
 
+        
+        <!-- Filter: Category -->
+        <div class="origin p-2">
+          <h6 class="text-uppercase">Category</h6>
+          <div class="form-check" v-for="category in availableCategories" :key="category.id">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              :id="`category-${category.id}`"
+              :value="category.id"
+              v-model="selectedCategories"
+            />
+            <label class="form-check-label" :for="`category-${category.id}`">{{ category.name }}</label>
+          </div>
+        </div>
+        
         <!-- Filter: Brands -->
         <div class="origin p-2">
           <h6 class="text-uppercase">Brands</h6>
@@ -200,6 +216,8 @@ export default {
     const selectedBeans = ref([]);
     const selectedCertificates = ref([]);
     const selectedOrigins = ref([]);
+    const availableCategories = ref([]); // Verfügbare Kategorien
+    const selectedCategories = ref([]); // Ausgewählte Kategorien
 
     const fetchCoffees = async () => {
       try {
@@ -207,6 +225,15 @@ export default {
         coffees.value = response.data;
       } catch (error) {
         console.error("Error fetching coffees:", error);
+      }
+    };
+
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("/Category");
+        availableCategories.value = response.data;
+      } catch (error) {
+        console.error("Error fetching categories:", error);
       }
     };
 
@@ -221,11 +248,22 @@ export default {
             selectedCertificates.value.length === 0 ||
             selectedCertificates.value.some((cert) => coffee.certificates.includes(cert));
           const matchesOrigins = selectedOrigins.value.length === 0 || selectedOrigins.value.includes(coffee.origin);
+          const matchesCategory =
+            selectedCategories.value.length === 0 || selectedCategories.value.includes(coffee.category);
           const matchesPrice =
             (!minPrice.value || coffee.price >= minPrice.value) &&
             (!maxPrice.value || coffee.price <= maxPrice.value);
 
-          return matchesSearch && matchesBrand && matchesRoast && matchesBeans && matchesCertificates && matchesOrigins && matchesPrice;
+          return (
+            matchesSearch &&
+            matchesBrand &&
+            matchesRoast &&
+            matchesBeans &&
+            matchesCertificates &&
+            matchesOrigins &&
+            matchesCategory &&
+            matchesPrice
+          );
         })
         .sort((a, b) => {
           if (sortOption.value === "name-asc") return a.name.localeCompare(b.name);
@@ -236,7 +274,7 @@ export default {
     });
 
     const userStore = useUserStore();
-    const router = useRouter(); 
+    const router = useRouter();
     const shopCart = useShoppingCartStore();
 
     const isLoggedIn = computed(() => !!userStore.user);
@@ -249,16 +287,7 @@ export default {
             name: coffee.name,
             price: coffee.price,
           });
-          // Sende Anfrage an die API
-          /*const response = await axios.post("/cart", {
-            userId: userStore.user.id, // Eingeloggter Benutzer
-            productId: coffee.id,
-            quantity: 1,
-          });
-*/
-        console.log("Current cart:", shopCart.cart);
-
-
+          console.log("Current cart:", shopCart.cart);
         } catch (error) {
           console.error("Failed to add to cart:", error);
           alert("Failed to add item to cart.");
@@ -269,10 +298,9 @@ export default {
       }
     }
 
-
-
     onMounted(() => {
       fetchCoffees();
+      fetchCategories();
     });
 
     return {
@@ -286,11 +314,13 @@ export default {
       availableBeans,
       availableCertificates,
       availableOrigins,
+      availableCategories,
       selectedBrands,
       selectedRoasts,
       selectedBeans,
       selectedCertificates,
       selectedOrigins,
+      selectedCategories,
       sortedAndFilteredCoffees,
       handleAddToCart,
     };
