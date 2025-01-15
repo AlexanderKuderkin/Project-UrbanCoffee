@@ -413,6 +413,8 @@ export default {
   .reviews {
     margin-top: 20px;
     text-align: left;
+    display: grid;
+  place-items: center;
   }
 
   .review {

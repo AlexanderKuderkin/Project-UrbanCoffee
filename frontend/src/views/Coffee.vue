@@ -135,7 +135,7 @@
             <div class="card shadow">
               <img
                 class="searchImg"
-                src="https://via.placeholder.com/300x200.png?text=Placeholder"
+                src="https://dummyimage.com/300x200/cccccc/000000&text=Coffee+Placeholder"
                 :alt="coffee.name"
               />
               <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">

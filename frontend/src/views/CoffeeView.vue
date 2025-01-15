@@ -3,7 +3,7 @@
     <div v-if="coffee" class="card shadow-lg">
       <img
         class="card-img-top"
-        src="https://via.placeholder.com/600x300.png?text=Coffee+Image"
+        src="https://dummyimage.com/300x200/cccccc/000000&text=Coffee+Placeholder"
         :alt="coffee.name"
       />
       <div class="card-body">
