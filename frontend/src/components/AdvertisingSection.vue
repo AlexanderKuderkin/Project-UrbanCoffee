@@ -3,7 +3,7 @@
       <div class="advertising-text">
         Don't wait long and look for your perfect coffee now
       </div>
-      <button class="signInBtn">Sign up</button>
+      <RouterLink to="/SignUp" class="signInBtn">Sign up</RouterLink>
     </div>
   </template>
   

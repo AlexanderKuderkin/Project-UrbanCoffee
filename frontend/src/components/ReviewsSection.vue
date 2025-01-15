@@ -20,7 +20,6 @@
                 The best coffee I've ever had in my life! OMG WOW!!! The coffee strength is just right when you want to stay awake, and with this aroma, you can really enjoy the coffee.
               </p>
               <button class="btn-view-more">View More</button>
-              <button class="btn-buy-more">Buy Coffee</button>
             </div>
           </div>
         </div>
@@ -43,7 +42,6 @@
                 Unfortunately, I cannot recommend it at all. The taste is far too dry and makes you feel sick.
               </p>
               <button class="btn-view-more">View More</button>
-              <button class="btn-buy-more">Buy Coffee</button>
             </div>
           </div>
         </div>

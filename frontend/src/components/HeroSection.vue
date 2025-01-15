@@ -1,16 +1,8 @@
 <template>
   <div class="hero-section">
     <div class="hero-text">
-      Discover Tchibo Café Crema <br />
-      Full-Bodied: With a coffee <br />
-      strength of 4/6, this <br />
-      harmonious coffee offers an <br />
-      intense, rounded aroma and <br />
-      a velvety crema—perfect for <br />
-      automatic coffee machines <br />
-      and moments of pure <br />
-      enjoyment.<br />
-      <button class="view-more-btn">View more</button>
+      Discover the finest selection of coffee, from premium coffee beans and ground coffee to convenient pods, all tailored to your taste. Use our advanced filter to explore options by sustainability, coffee strength, and customer reviews, ensuring the perfect cup every time.
+      <RouterLink to="/Coffee" class="view-more-btn">View more</RouterLink>
     </div>
   </div>
 </template>
@@ -41,7 +33,7 @@ export default {
   position: absolute;
   top: 47%;
   left: 35%;
-  transform: translate(-50%, -50%);
+  transform: translate(-40%, -50%);
   color: white;
   font-size: 20px;
   text-align: center;
