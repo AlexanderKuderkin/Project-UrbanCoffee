@@ -229,12 +229,12 @@
   }
   
   .card {
-	background-color: #735340;
-	color: #fff;
+	background-color: white;
+	color: black;
 	border: 0;
 	border-radius: 20px;
 	margin-bottom: 1.5rem;
-	box-shadow: 0 2px 6px rgba(218, 218, 253, 0.65), 0 2px 6px rgba(206, 206, 238, 0.54);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten hinzugefügt */
   }
   
   .profile-card {
@@ -262,20 +262,20 @@
   }
   
   .card-body {
-	color: #fff;
+	color: black;
 	border-radius: 20px;
 	padding: 20px;
   }
   
   .card-body input {
 	background-color: #fff;
-	color: #000;
+	color: black;
 	border: 1px solid #ccc;
   }
   
   .order-history-button {
 	background-color: #1e160d;
-	color: #fff;
+	color: white;
 	border: none;
 	border-radius: 15px;
 	padding: 10px 20px;
@@ -289,7 +289,7 @@
   
   .save-changes-button {
 	background-color: #A8865F !important;
-	color: #fff !important;
+	color: black !important;
 	border: none;
 	border-radius: 15px !important;
 	padding: 10px 20px;
@@ -302,14 +302,14 @@
   
   .btn-danger {
 	background-color: #dc3545 !important;
-	color: #fff !important;
+	color: black !important;
 	border: none;
 	border-radius: 15px;
 	padding: 5px 15px;
   }
   
   .btn-outline-primary {
-	color: #007bff !important;
+	color: black !important;
 	border-color: #007bff;
 	border-radius: 15px;
 	padding: 5px 15px;
@@ -317,7 +317,6 @@
   
   .btn-outline-primary:hover {
 	background-color: #007bff;
-	color: #fff !important;
+	color: black !important;
   }
   </style>
-  
