@@ -117,6 +117,32 @@
           </div>
         </div>
 
+        <!-- Filter: Caffeine Content -->
+        <div class="origin p-2">
+          <h6 class="text-uppercase">Caffeine Content (mg)</h6>
+          <div class="mb-2">
+            <label for="minCaffeineContent">Min Caffeine:</label>
+            <input
+              type="number"
+              id="minCaffeineContent"
+              v-model.number="minCaffeineContent"
+              placeholder="0"
+              class="form-control"
+            />
+          </div>
+          <div>
+            <label for="maxCaffeineContent">Max Caffeine:</label>
+            <input
+              type="number"
+              id="maxCaffeineContent"
+              v-model.number="maxCaffeineContent"
+              placeholder="500"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+
         <!-- Filter: Price-->
         <div class="origin p-2">
           <h6 class="text-uppercase">Price Range</h6>
@@ -197,6 +223,8 @@ export default {
     const searchQuery = ref("");
     const minPrice = ref(null);
     const maxPrice = ref(null);
+    const minCaffeineContent = ref(null); // Neuer Filter für minimalen Koffeingehalt
+    const maxCaffeineContent = ref(null); // Neuer Filter für maximalen Koffeingehalt
     const sortOption = ref("name-asc");
 
     const availableBrands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];
@@ -210,14 +238,14 @@ export default {
       "Bird-Friendly",
     ];
     const availableOrigins = ["Europe", "Asia", "Africa", "North-America", "South-America", "Australia"];
+    const availableCategories = ref([]); // Verfügbare Kategorien
 
     const selectedBrands = ref([]);
     const selectedRoasts = ref([]);
     const selectedBeans = ref([]);
     const selectedCertificates = ref([]);
     const selectedOrigins = ref([]);
-    const availableCategories = ref([]); // Verfügbare Kategorien
-    const selectedCategories = ref([]); // Ausgewählte Kategorien
+    const selectedCategories = ref([]);
 
     const fetchCoffees = async () => {
       try {
@@ -250,6 +278,9 @@ export default {
           const matchesOrigins = selectedOrigins.value.length === 0 || selectedOrigins.value.includes(coffee.origin);
           const matchesCategory =
             selectedCategories.value.length === 0 || selectedCategories.value.includes(coffee.category);
+          const matchesCaffeineContent =
+            (!minCaffeineContent.value || coffee.caffeineContent >= minCaffeineContent.value) &&
+            (!maxCaffeineContent.value || coffee.caffeineContent <= maxCaffeineContent.value);
           const matchesPrice =
             (!minPrice.value || coffee.price >= minPrice.value) &&
             (!maxPrice.value || coffee.price <= maxPrice.value);
@@ -262,6 +293,7 @@ export default {
             matchesCertificates &&
             matchesOrigins &&
             matchesCategory &&
+            matchesCaffeineContent && // Koffeingehalt-Filter
             matchesPrice
           );
         })
@@ -308,6 +340,8 @@ export default {
       searchQuery,
       minPrice,
       maxPrice,
+      minCaffeineContent,
+      maxCaffeineContent,
       sortOption,
       availableBrands,
       availableRoasts,
