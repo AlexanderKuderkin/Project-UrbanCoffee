@@ -103,29 +103,68 @@
                     :disabled="!hasChanges || !allValid"
                   >
                 </div>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="card mt-4">
-          <div class="card-body">
-            <h5 class="mb-3">Customer Review</h5>
-            <p><strong>Coffee Name:</strong> Espresso Deluxe</p>
-            <p><strong>Date:</strong> 2025-01-10</p>
-            <p><strong>Rating:</strong> 4/5</p>
-            <p>
-              "The Espresso Deluxe had a rich and bold flavor, but it was slightly too bitter for my taste. Still, a great choice for espresso lovers!"
-            </p>
-            <div class="d-flex justify-content-end gap-2">
-              <button class="btn btn-danger">Delete</button>
-              <button class="btn btn-outline-primary">Edit</button>
+  
+          <!-- Reviews Section -->
+          <div class="reviews">
+            <div
+              v-for="review in userReviews"
+              :key="review.id"
+              class="col-md-6 mb-4"
+            >
+              <div class="card">
+                <div class="card-body py-4 mt-2">
+                  <h5 class="font-weight-bold">{{ review.userName }}</h5>
+                  <h6 class="font-weight-bold my-3">{{ review.coffeeName }}</h6>
+                  <ul class="list-unstyled d-flex justify-content-center mb-3">
+                    <li v-for="n in review.rating" :key="n">
+                      <i class="fas fa-star star-color"></i>
+                    </li>
+                  </ul>
+  
+                  <div v-if="review.isEditing">
+                    <div class="stars" id="edit-stars">
+                      <span
+                        class="star"
+                        v-for="n in 5"
+                        :key="n"
+                        :class="{ selected: n <= review.rating }"
+                        @click="updateRating(review, n)"
+                      >
+                        ★
+                      </span>
+                    </div>
+  
+                    <textarea v-model="review.comment" class="edit-textarea"></textarea>
+  
+                    <div class="button-group">
+                      <button class="btn-save" @click="saveReview(review)">Save</button>
+                      <button class="btn-cancel" @click="cancelEdit(review)">Cancel</button>
+                    </div>
+                  </div>
+  
+                  <div v-else>
+                    <p class="mb-2">
+                      <i class="fas fa-quote-left pe-2"></i>{{ review.comment }}
+                    </p>
+                    <button class="btn-view-more" @click="deleteReview(review.id)">
+                      Delete
+                    </button>
+                    <button class="btn-buy-more" @click="editReview(review)">
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <!-- End Reviews Section -->
         </div>
       </div>
     </div>
-  </div>
-</template>
+  </template>
   
   <script>
   import { useUserStore } from "@/stores/user";
@@ -150,6 +189,7 @@
         validCity: true,
         validPostalCode: true,
         validCountry: true,
+        userReviews: [],
       };
     },
     computed: {
@@ -172,6 +212,7 @@
       await userStore.fetchUser();
       this.user = userStore.user;
       this.populateForm();
+      this.fetchUserReviews();
     },
     methods: {
       populateForm() {
@@ -205,13 +246,68 @@
           this.populateForm();
           alert("Changes saved successfully!");
         } catch (error) {
-          console.error("Failed to save changes:", error);
           alert("Failed to save changes. Please try again.");
         }
       },
+      async fetchUserReviews() {
+        const userStore = useUserStore();
+        const userId = userStore.user?.id;
+        if (!userId) {
+          alert("You must be logged in to see your reviews.");
+          return;
+        }
+        try {
+          const response = await axios.get("/api/reviews/user-reviews", { params: { userId } });
+          this.userReviews = response.data.reviews.map((review) => ({
+            ...review,
+            coffeeName: review.coffee.name,
+            userName: review.user.fullName,
+            isEditing: false,
+          }));
+        } catch (error) {
+          alert("Could not load reviews. Please try again later.");
+        }
+      },
+      async deleteReview(reviewId) {
+        try {
+          const response = await axios.delete(`/api/reviews/${reviewId}`);
+          if (response.status === 200) {
+            this.userReviews = this.userReviews.filter((review) => review.id !== reviewId);
+            alert("Review deleted successfully.");
+          }
+        } catch (error) {
+          alert("Could not delete the review. Please try again.");
+        }
+      },
+      editReview(review) {
+        this.userReviews.forEach((r) => (r.isEditing = false));
+        review.isEditing = true;
+      },
+      async saveReview(review) {
+        try {
+          const response = await axios.put(`/api/reviews/${review.id}`, {
+            comment: review.comment,
+            rating: review.rating,
+          });
+          if (response.status === 200) {
+            alert("Review updated successfully!");
+            review.isEditing = false;
+            this.fetchUserReviews();
+          }
+        } catch (error) {
+          alert("Could not update the review. Please try again.");
+        }
+      },
+      cancelEdit(review) {
+        review.isEditing = false;
+        this.fetchUserReviews();
+      },
+      updateRating(review, newRating) {
+        review.rating = newRating;
+      },
     },
   };
-  </script>  
+  </script>
   
   
   <style scoped>
