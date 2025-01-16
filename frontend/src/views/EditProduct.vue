@@ -1,5 +1,8 @@
 <template>
   <div class="background-container">
+    <div v-if="toastMessage" class="toast" :class="[toastType, { show: toastMessage }]">
+      {{ toastMessage }}
+    </div>
     <div class="container mt-5">
       <!-- Header Section -->
       <div class="header-section text-white mb-4 p-3 mx-auto">
@@ -152,6 +155,19 @@ export default {
     });
 
     const categories = ref([]);
+    const toastMessage = ref(null);
+    const toastType = ref("");
+
+    const showToast = (message, type = "success") => {
+      toastMessage.value = message;
+      toastType.value = type;
+
+      setTimeout(() => {
+        toastMessage.value = null;
+        toastType.value = "";
+      }, 3000); // Toast disappears after 3 seconds
+    };
+
     const brands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];
     const roastDegrees = ["Light roast", "Medium roast", "Medium-dark roast", "Dark roast"];
     const beanTypes = ["Arabica", "Robusta", "Lieberica", "Excelsa"];
@@ -171,6 +187,7 @@ export default {
         product.value = response.data;
       } catch (error) {
         console.error("Error fetching product:", error);
+        showToast("Failed to fetch product details.", "error");
       }
     };
 
@@ -180,16 +197,17 @@ export default {
         categories.value = response.data;
       } catch (error) {
         console.error("Error fetching categories:", error);
+        showToast("Failed to fetch categories.", "error");
       }
     };
 
     const updateProduct = async () => {
       try {
         await axios.put(`/Coffee/${route.params.id}`, product.value);
-        alert("Product updated successfully!");
-        router.push("/ManageCoffee");
+        showToast("Product updated successfully!", "success");
       } catch (error) {
         console.error("Error updating product:", error);
+        showToast("Failed to update product.", "error");
       }
     };
 
@@ -208,6 +226,8 @@ export default {
       origins,
       grindTypes,
       updateProduct,
+      toastMessage,
+      toastType,
     };
   },
 };

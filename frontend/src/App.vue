@@ -602,4 +602,29 @@ h3 {
 .cookie-modal button:hover {
   background-color: #45a049;
 }
+.toast {
+  position: fixed;
+  top: 40px; /* Adjust the distance from the top */
+  left: 40%; /* Align to the center horizontally */
+  transform: translateX(-50%); /* Center it perfectly */
+  background-color: #4caf50; /* Green for success */
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s, transform 0.5s;
+  z-index: 1000;
+}
+
+.toast.error {
+  background-color: #f44336; /* Rot für Fehler */
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>

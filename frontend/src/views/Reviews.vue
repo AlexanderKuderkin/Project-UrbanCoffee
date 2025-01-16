@@ -1,5 +1,9 @@
 <template>
   <div class="Container-main">
+    <div v-if="toastMessage" class="toast" :class="[toastType, { show: toastMessage }]">
+      {{ toastMessage }}
+    </div>
+
     <div class="container">
       <h1>Give us your Review</h1>
 
@@ -88,6 +92,8 @@ export default {
   name: "Reviews",
   data() {
     return {
+      toastMessage: null,
+      toastType: "",
       coffees: [],
       userReviews: [],
     };
@@ -103,7 +109,7 @@ export default {
 
       if (!userId) {
         console.error("No user logged in. Cannot fetch coffees.");
-        alert("You must be logged in to see your reviews.");
+        this.showToast("You must be logged in to see your reviews.","error");
         return;
       }
 
@@ -124,9 +130,18 @@ export default {
         }));
       } catch (error) {
         console.error("Error fetching data:", error);
-        alert("Could not load data. Please try again later.");
+        this.showToast("Could not load data. Please try again later.","error");
       }
     },
+
+    showToast(message, type = "success") {
+        this.toastMessage = message;
+        this.toastType = type;
+        setTimeout(() => {
+        this.toastMessage = null;
+        this.toastType = "";
+        }, 3000); 
+      },
 
     initEventListeners() {
       const stars = document.querySelectorAll(".star");
@@ -161,13 +176,13 @@ export default {
         const selectedCoffee = coffeeSelect.value;
 
         if (!selectedCoffee) {
-          alert("Please select a coffee to review.");
+          this.showToast("Please select a coffee to review.","error");
           return;
         }
 
         if (!rating || !review) {
-          alert(
-            "Please select a rating and provide a review before submitting."
+          this.showToast(
+            "Please select a rating and provide a review before submitting.", "error"
           );
           return;
         }
@@ -177,7 +192,7 @@ export default {
           const userId = userStore.user?.id;
 
           if (!userId) {
-            alert("You must be logged in to submit a review.");
+            this.showToast("You must be logged in to submit a review.", "error");
             return;
           }
 
@@ -189,7 +204,7 @@ export default {
           });
 
           if (response.status === 201) {
-            alert("Review submitted successfully!");
+            this.showToast("Review submitted successfully!","success");
 
             const updatedResponse = await axios.get(
               "/api/reviews/user-reviews",
@@ -204,7 +219,7 @@ export default {
               isEditing: false,
             }));
           } else {
-            alert("Something went wrong. Please try again.");
+            this.showToast("Something went wrong. Please try again.","error");
           }
 
           coffeeSelect.selectedIndex = 0;
@@ -215,7 +230,7 @@ export default {
           );
         } catch (error) {
           console.error("Error submitting review:", error);
-          alert("Could not submit review. Please try again later.");
+          this.showToast("Could not submit review. Please try again later.","error");
         }
       });
 
@@ -245,17 +260,17 @@ export default {
           this.userReviews = this.userReviews.filter(
             (review) => review.id !== reviewId
           );
-          alert("Review deleted successfully.");
+          this.showToast("Review deleted successfully.","success");
           this.fetchUserReviews();
         } else {
-          alert("Could not delete the review. Please try again.");
+          this.showToast("Could not delete the review. Please try again.","error");
         }
       } catch (error) {
         console.error(
           "Error deleting review:",
           error.response ? error.response.data : error.message
         );
-        alert("Could not delete the review. Please try again.");
+        this.showToast("Could not delete the review. Please try again.","error");
       }
     },
 
@@ -271,15 +286,15 @@ export default {
           rating: review.rating,
         });
         if (response.status === 200) {
-          alert("Review updated successfully!");
+          this.showToast("Review updated successfully!","success");
           review.isEditing = false;
           this.fetchUserReviews();
         } else {
-          alert("Failed to update the review. Please try again.");
+          this.showToast("Failed to update the review. Please try again.","error");
         }
       } catch (error) {
         console.error("Error updating review:", error);
-        alert("Could not update the review. Please try again.");
+        this.showToast("Could not update the review. Please try again.","error");
       }
     },
 

@@ -1,5 +1,8 @@
 <template>
   <div class="container-fluid mt-5 mb-5">
+    <div v-if="toastMessage" class="toast" :class="[toastType, { show: toastMessage }]">
+      {{ toastMessage }}
+    </div>
     <div class="row g-2">
       <!-- Sidebar for Filters -->
       <div class="col-md-3">
@@ -219,6 +222,19 @@ import { useRouter } from "vue-router";
 export default {
   name: "Coffee",
   setup() {
+    const toastMessage = ref(null);
+    const toastType = ref("");
+
+    function showToast(message, type = "success") {
+      toastMessage.value = message;
+      toastType.value = type;
+
+      setTimeout(() => {
+        toastMessage.value = null;
+        toastType.value = "";
+      }, 3000);
+    }
+
     const coffees = ref([]);
     const searchQuery = ref("");
     const minPrice = ref(null);
@@ -253,6 +269,7 @@ export default {
         coffees.value = response.data;
       } catch (error) {
         console.error("Error fetching coffees:", error);
+        showToast("Failed to fetch coffees. Please try again.", "error");
       }
     };
 
@@ -262,6 +279,7 @@ export default {
         availableCategories.value = response.data;
       } catch (error) {
         console.error("Error fetching categories:", error);
+        showToast("Failed to fetch categories. Please try again.", "error");
       }
     };
 
@@ -320,12 +338,13 @@ export default {
             price: coffee.price,
           });
           console.log("Current cart:", shopCart.cart);
+          showToast("Added to cart successfully!", "success");
         } catch (error) {
           console.error("Failed to add to cart:", error);
-          alert("Failed to add item to cart.");
+          showToast("Failed to add item to cart.", "error");
         }
       } else {
-        alert("You must be logged in to add items to the cart!");
+        showToast("You must be logged in to add items to the cart!", "error");
         router.push("/login");
       }
     }
@@ -357,6 +376,9 @@ export default {
       selectedCategories,
       sortedAndFilteredCoffees,
       handleAddToCart,
+      toastMessage,
+      toastType,
+      showToast,
     };
   },
 };

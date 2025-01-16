@@ -1,5 +1,8 @@
 <template>
     <div class="profile-container">
+        <div class="toast" :class="['toast', toastType, { show: toastMessage }]">
+            {{ toastMessage }}
+        </div>
       <div class="row">
         <div class="col-lg-4">
           <div class="card profile-card">
@@ -173,6 +176,8 @@
   export default {
     data() {
       return {
+        toastMessage: null,
+        toastType: "",
         user: null,
         originalData: null,
         form: {
@@ -221,6 +226,14 @@
           this.originalData = { ...this.user };
         }
       },
+      showToast(message, type = "success") {
+        this.toastMessage = message;
+        this.toastType = type;
+        setTimeout(() => {
+        this.toastMessage = null;
+        this.toastType = "";
+        }, 3000); 
+      },
       validateFullName() {
         this.validFullName = /^[a-zA-Z\s]+$/.test(this.form.fullName);
       },
@@ -244,16 +257,16 @@
           const response = await axios.put("/updateUser", this.form);
           this.user = response.data;
           this.populateForm();
-          alert("Changes saved successfully!");
+          this.showToast("Profile updated successfully.", "success");
         } catch (error) {
-          alert("Failed to save changes. Please try again.");
+            this.showToast("Failed to save changes. Please try again.", "error");
         }
       },
       async fetchUserReviews() {
         const userStore = useUserStore();
         const userId = userStore.user?.id;
         if (!userId) {
-          alert("You must be logged in to see your reviews.");
+            this.showToast("You must be logged in to see your reviews.", "error");
           return;
         }
         try {
@@ -265,7 +278,7 @@
             isEditing: false,
           }));
         } catch (error) {
-          alert("Could not load reviews. Please try again later.");
+            this.showToast("Could not load reviews. Please try again later.", "error");
         }
       },
       async deleteReview(reviewId) {
@@ -273,10 +286,10 @@
           const response = await axios.delete(`/api/reviews/${reviewId}`);
           if (response.status === 200) {
             this.userReviews = this.userReviews.filter((review) => review.id !== reviewId);
-            alert("Review deleted successfully.");
+            this.showToast("Review deleted successfully.", "success");
           }
         } catch (error) {
-          alert("Could not delete the review. Please try again.");
+            this.showToast("Could not delete the review. Please try again.", "error");
         }
       },
       editReview(review) {
@@ -290,12 +303,12 @@
             rating: review.rating,
           });
           if (response.status === 200) {
-            alert("Review updated successfully!");
+            this.showToast("Review updated successfully!", "success");
             review.isEditing = false;
             this.fetchUserReviews();
           }
         } catch (error) {
-          alert("Could not update the review. Please try again.");
+            this.showToast("Could not update the review. Please try again.","error");
         }
       },
       cancelEdit(review) {

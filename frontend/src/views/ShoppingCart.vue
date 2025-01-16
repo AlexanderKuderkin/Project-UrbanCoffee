@@ -1,5 +1,8 @@
 <template>
   <section class="h-100">
+    <div v-if="toastMessage" class="toast" :class="[toastType, { show: toastMessage }]">
+      {{ toastMessage }}
+    </div>
     <!-- Neuer Wrapper mit Hintergrundfarbe -->
     <div class="custom-wrapper">
       <div class="card">
@@ -105,12 +108,25 @@ const router = useRouter();
 const userStore = useUserStore();
 const shoppingCartStore = useShoppingCartStore();
 
+const toastMessage = ref(null);
+const toastType = ref("");
+
+function showToast(message, type = "success") {
+  toastMessage.value = message;
+  toastType.value = type;
+
+  setTimeout(() => {
+    toastMessage.value = null;
+    toastType.value = "";
+  }, 3000); // The toast disappears after 3 seconds
+};
+
 async function checkout() {
   try {
     const userId = userStore.user?.id;
 
     if (!userId) {
-      alert("You need to log in to proceed with the checkout.");
+        showToast("You need to log in to proceed with the checkout.","error");
       router.push("/Login");
       return;
     }
@@ -128,15 +144,14 @@ async function checkout() {
     const response = await axios.post("/api/order/createOrder", payload);
 
     if (response.status === 200) {
-      alert("Order placed successfully!");
+        showToast("Order placed successfully!","success");
       shoppingCartStore.clearCart();
-      router.push("/Coffee");
     } else {
-      alert("Failed to place order.");
+        showToast("Failed to place order.","error");
     }
   } catch (error) {
     console.error("Checkout error:", error);
-    alert("An error occurred while placing the order.");
+    showToast("An error occurred while placing the order.","error");
   }
 }
 

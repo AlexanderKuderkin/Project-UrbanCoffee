@@ -23,18 +23,8 @@ actions: {
       // Speichere den aktuellen Warenkorb in localStorage
       localStorage.setItem("cart", JSON.stringify(this.cart));
   
-      alert(`${coffee.name} was added to the cart.`);
     },
-    /*
-    async removeFromCart(productId) {
-      try {
-        const response = await axios.delete(`/cart/${productId}`);
-        this.cart = response.data.cart; // Backend-Daten im Store aktualisieren
-      } catch (error) {
-        console.error("Error removing item from cart:", error);
-      }
-    },
-    */
+
     async clearCart() {
         try {
             this.cart = [];

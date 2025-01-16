@@ -1,5 +1,8 @@
 <template>
   <div class="background-container">
+    <div v-if="toastMessage" class="toast" :class="[toastType, { show: toastMessage }]">
+      {{ toastMessage }}
+    </div>
     <div class="container mt-5">
       <!-- Header Section -->
       <div class="header-section mb-4 p-3 text-white">
@@ -179,6 +182,19 @@ export default {
     const categoryName = ref("");
     const categoryDescription = ref("");
 
+    const toastMessage = ref(null);
+    const toastType = ref("");
+
+    const showToast = (message, type = "success") => {
+      toastMessage.value = message;
+      toastType.value = type;
+
+      setTimeout(() => {
+        toastMessage.value = null;
+        toastType.value = "";
+      }, 3000); // Toast disappears after 3 seconds
+    };
+
     const fetchCoffees = async () => {
       try {
         const response = await axios.get("/Coffee");
@@ -216,10 +232,10 @@ export default {
         closeDialog();
         fetchCategories();
 
-        alert("Category created successfully!");
+        showToast("Category created successfully!", "success");
       } catch (error) {
         console.error("Error creating category:", error);
-        alert("Failed to create category.");
+        showToast("Failed to create category.", "error");
       }
     };
 
@@ -229,8 +245,10 @@ export default {
         categories.value = categories.value.filter(
           (category) => category.id !== id
         );
+        showToast("Category deleted successfully!", "success");
       } catch (error) {
         console.error("Error deleting category:", error);
+        showToast("Failed to delete category.", "error");
       }
     };
 
@@ -247,10 +265,10 @@ export default {
         category.name = category.editName;
         category.description = category.editDescription;
         category.isEditing = false;
-        alert("Category updated successfully!");
+        showToast("Category updated successfully!", "success");
       } catch (error) {
         console.error("Error updating category:", error);
-        alert("Failed to update category.");
+        showToast("Failed to update category.", "error");
       }
     };
 
@@ -271,8 +289,10 @@ export default {
       try {
         await axios.delete(`/Coffee/${id}`);
         coffees.value = coffees.value.filter((coffee) => coffee.id !== id);
+        showToast("Coffee deleted successfully!", "success");
       } catch (error) {
         console.error("Error deleting coffee:", error);
+        showToast("Failed to delete coffee.", "error");
       }
     };
 
@@ -310,6 +330,8 @@ export default {
       closeDialog,
       toggleViewCategories,
       closeCategoriesDialog,
+      toastMessage,
+      toastType,
     };
   },
 };
