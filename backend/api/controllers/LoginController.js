@@ -52,27 +52,44 @@ module.exports = {
   
   
   register: async function (req, res) {
-    let params = req.body;
-    let newEmailAddress = params.emailAddress.toLowerCase();
+    try {
+      let params = req.body;
+      sails.log.debug("Received registration params:", params);
   
-    let user = await User.create({
-      emailAddress: newEmailAddress,
-      fullName: params.fullName,
-      password: await sails.helpers.passwords.hashPassword(params.password),
-      addressStreet: params.addressStreet,
-      addressCity: params.addressCity,
-      addressPostalCode: params.addressPostalCode,
-      addressCountry: params.addressCountry,
-      isSuperAdmin: false,
-    })
-      .intercept("E_UNIQUE", "emailAlreadyInUse")
-      .intercept({ name: "UsageError" }, "invalid")
-      .fetch();
+      if (!params.fullName || !params.emailAddress || !params.password) {
+        sails.log.error("Missing required fields:", params);
+        return res.badRequest({ message: "Missing required fields" });
+      }
   
-    req.session.userId = user.id;
-    req.session.user = user;
-    return res.json(user);
+      let user = await User.create({
+        emailAddress: params.emailAddress.toLowerCase(),
+        fullName: params.fullName,
+        password: await sails.helpers.passwords.hashPassword(params.password),
+        addressStreet: params.addressStreet,
+        addressCity: params.addressCity,
+        addressPostalCode: params.addressPostalCode,
+        addressCountry: params.addressCountry,
+        isSuperAdmin: false,
+      })
+        .intercept("E_UNIQUE", (err) => {
+          sails.log.error("E-Mail already in use:", err);
+          return res.badRequest({ message: "E-Mail address is already in use." });
+        })
+        .intercept({ name: "UsageError" }, (err) => {
+          sails.log.error("Invalid input data:", err);
+          return res.badRequest({ message: "Invalid input data", details: err });
+        })
+        .fetch();
+  
+      req.session.userId = user.id;
+      req.session.user = user;
+      return res.json(user);
+    } catch (err) {
+      sails.log.error("Unexpected error during registration:", err);
+      return res.serverError({ message: "Registration failed.", details: err });
+    }
   },
+  
 
   updateUser: async function (req, res) {
     if (!req.session.userId) {

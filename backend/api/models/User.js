@@ -5,6 +5,8 @@
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
+const { custom } = require("../../config/env/production");
+
 module.exports = {
 
   attributes: {
@@ -37,6 +39,24 @@ module.exports = {
       example: '2$28a8eabna301089103-13948134nad'
     },    
 
+    addressPostalCode: { type: 'string', 
+      columnType: 'varchar(10)', 
+      required: true,
+      custom: function (value) {
+        return /^\d{4,6}$/u.test(value);
+      },
+    },
+
+
+/*
+    addressCity: { type: 'string', 
+      columnType: 'varchar(100)', 
+      required: true,
+      custom: function (value) {
+        return /^[a-zA-ZÀ-ÿ\s]+$/u.test(value);
+      },
+    },
+
     addressStreet: { 
       type: 'string', 
       columnType: 'varchar(100)', 
@@ -47,22 +67,6 @@ module.exports = {
       
      },
 
-    addressCity: { type: 'string', 
-      columnType: 'varchar(100)', 
-      required: true,
-      custom: function (value) {
-        return /^[a-zA-ZÀ-ÿ\s]+$/u.test(value);
-      },
-    },
-
-    addressPostalCode: { type: 'string', 
-      columnType: 'varchar(10)', 
-      required: true,
-      custom: function (value) {
-        return /^\d{4,6}$/u.test(value);
-      },
-    },
-
     addressCountry: { 
       type: 'string', 
       columnType: 'varchar(100)', 
@@ -71,6 +75,12 @@ module.exports = {
         return /^[a-zA-Z\s]+$/u.test(value);
       },
     },
+    regex: /^[a-zA-ZÀ-ÿß\s\-]+\s\d{1,5}$/i
+*/
+    addressStreet: { type: 'string', required: true,  },
+    addressCity: { type: 'string', required: true },
+    addressCountry: { type: 'string', required: true },
+
 
     isSuperAdmin: {
       type: 'boolean',

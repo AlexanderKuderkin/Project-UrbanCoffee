@@ -43,6 +43,8 @@ export const useUserStore = defineStore("user", {
           addressCountry: addressCountry,
         };
       
+        console.log("Sending registration data:", registerInformation);
+      
         axios
           .post("/register", registerInformation)
           .then((response) => {
