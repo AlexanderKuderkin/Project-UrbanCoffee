@@ -325,107 +325,109 @@
   
   <style scoped>
   body {
-	background: #f7f7ff;
-	margin-top: 20px;
+    background: #f7f7ff;
+    margin-top: 20px;
   }
   
   .profile-container {
-	background-color: rgb(212, 205, 205);
-	margin: 20px 0;
-	padding: 20px;
-	border-radius: 20px;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: rgb(212, 205, 205);
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
   
   .card {
-	background-color: white;
-	color: black;
-	border: 0;
-	border-radius: 20px;
-	margin-bottom: 1.5rem;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten hinzugefügt */
+    background-color: white;
+    color: black;
+    border: 0;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten hinzugefügt */
   }
   
   .profile-card {
-	text-align: center;
-	border-radius: 20px;
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center; 
+    text-align: center;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
   }
   
   .profile-placeholder {
-	width: 110px;
-	height: 110px;
-	border-radius: 50%;
-	background-color: #ccc;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 14px;
-	font-weight: bold;
-	color: #555;
-	margin: 0 auto 15px auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin: 0 auto 15px auto;
   }
   
   .card-body {
-	color: black;
-	border-radius: 20px;
-	padding: 20px;
+    color: black;
+    border-radius: 20px;
+    padding: 20px;
   }
   
   .card-body input {
-	background-color: #fff;
-	color: black;
-	border: 1px solid #ccc;
+    background-color: #fff;
+    color: black;
+    border: 1px solid #ccc;
   }
   
   .order-history-button {
-	background-color: #1e160d;
-	color: white;
-	border: none;
-	border-radius: 15px;
-	padding: 10px 20px;
-	width: 150px;
-	transition: background-color 0.3s ease;
+    background-color: #1e160d;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    width: 150px;
+    transition: background-color 0.3s ease;
   }
   
   .order-history-button:hover {
-	background-color: #5a6268;
+    background-color: #5a6268;
   }
   
   .save-changes-button {
-	background-color: #A8865F !important;
-	color: black !important;
-	border: none;
-	border-radius: 15px !important;
-	padding: 10px 20px;
-	transition: background-color 0.3s ease;
+    background-color: #A8865F !important;
+    color: black !important;
+    border: none;
+    border-radius: 15px !important;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
   }
   
   .save-changes-button:hover {
-	background-color: #A8765F !important;
+    background-color: #A8765F !important;
   }
   
   .btn-danger {
-	background-color: #dc3545 !important;
-	color: black !important;
-	border: none;
-	border-radius: 15px;
-	padding: 5px 15px;
+    background-color: #dc3545 !important;
+    color: black !important;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 15px;
   }
   
   .btn-outline-primary {
-	color: black !important;
-	border-color: #007bff;
-	border-radius: 15px;
-	padding: 5px 15px;
+    color: black !important;
+    border-color: #007bff;
+    border-radius: 15px;
+    padding: 5px 15px;
   }
   
   .btn-outline-primary:hover {
-	background-color: #007bff;
-	color: black !important;
+    background-color: #007bff;
+    color: black !important;
   }
   </style>
+
+

@@ -1,0 +1,134 @@
+<template>
+	<div class="background-container">
+	  <div class="container mt-5">
+		<!-- Header Section -->
+		<div class="header-section mb-4 p-3 text-white">
+		  <h1 class="text-center mb-3">Manage Customers</h1>
+		  <!-- Search Bar -->
+		  <input
+			type="text"
+			placeholder="Search for customer name ..."
+			class="form-control mb-3 search-bar"
+		  />
+		</div>
+  
+		<!-- Customers Table -->
+		<div class="table-responsive-wrapper">
+		  <table class="table table-bordered table-hover">
+			<thead>
+			  <tr>
+				<th style="width: 50px;">ID</th>
+				<th style="width: auto;">Name</th>
+				<th style="width: 150px;">Orders</th>
+				<th style="width: 250px;">Actions</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<td>1</td>
+				<td>John Doe</td>
+				<td>5</td>
+				<td>
+				  <div class="button-container d-flex justify-content-between">
+					<button class="btn btn-view-more">Order History</button>
+					<button class="btn btn-edit">Information</button>
+				  </div>
+				</td>
+			  </tr>
+			  <!-- No data -->
+			  <tr>
+				<td colspan="4" class="text-center">No customers found.</td>
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
+	  </div>
+	</div>
+  </template>
+  
+  <style scoped>
+  .background-container {
+	background-color: rgb(212, 205, 205);
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 20px;
+	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+  }
+  
+  .container {
+	max-width: 800px;
+	width: 100%;
+  }
+  
+  .header-section {
+	background-color: #735340;
+	border-radius: 10px;
+	text-align: center;
+  }
+  
+  .search-bar {
+	max-width: 100%;
+	margin: 0 auto;
+  }
+  
+  /* Button Container */
+  .button-container {
+	align-items: center;
+	gap: 10px;
+  }
+  
+  /* Action Buttons in the Table */
+  .btn-view-more, .btn-edit {
+	color: white;
+	border-radius: 15px;
+	padding: 8px 16px;
+	height: 40px;
+	width: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+  }
+  
+  .btn-view-more {
+	background-color: #A8865F;
+  }
+  
+  .btn-view-more:hover {
+	background-color: #A8765F;
+  }
+  
+  .btn-edit {
+	background-color: #1e160d;
+  }
+  
+  .btn-edit:hover {
+	background-color: #5a6268;
+  }
+  
+  /* Table Styles */
+  .table-responsive-wrapper {
+	overflow-x: auto;
+	margin-top: 20px;
+	margin-bottom: 40px;
+	border-radius: 10px;
+	background-color: #f5f5f5;
+	padding: 10px;
+  }
+  
+  .table {
+	table-layout: auto;
+	width: 100%;
+	border-collapse: collapse;
+  }
+  
+  th, td {
+	white-space: nowrap;
+	text-align: left;
+	vertical-align: middle;
+	padding: 5px 10px;
+  }
+  </style>
+  
