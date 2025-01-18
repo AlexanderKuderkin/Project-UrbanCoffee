@@ -9,6 +9,7 @@
 			type="text"
 			placeholder="Search for customer name ..."
 			class="form-control mb-3 search-bar"
+			v-model="searchQuery"
 		  />
 		</div>
   
@@ -24,10 +25,10 @@
 			  </tr>
 			</thead>
 			<tbody>
-			  <tr>
-				<td>1</td>
-				<td>John Doe</td>
-				<td>5</td>
+			  <tr v-for="user in filteredUsers" :key="user.id">
+				<td>{{ user.id }}</td>
+				<td>{{ user.fullName }}</td>
+				<td>{{ user.orderCount || 0 }}</td>
 				<td>
 				  <div class="button-container d-flex justify-content-between">
 					<button class="btn btn-view-more">Order History</button>
@@ -35,8 +36,7 @@
 				  </div>
 				</td>
 			  </tr>
-			  <!-- No data -->
-			  <tr>
+			  <tr v-if="filteredUsers.length === 0">
 				<td colspan="4" class="text-center">No customers found.</td>
 			  </tr>
 			</tbody>
@@ -45,6 +45,37 @@
 	  </div>
 	</div>
   </template>
+  
+  <script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      users: [],
+      searchQuery: "",
+    };
+  },
+  computed: {
+    filteredUsers() {
+      if (!this.searchQuery) {
+        return this.users;
+      }
+      return this.users.filter((user) =>
+        user.fullName.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
+  },
+  async created() {
+    try {
+      const response = await axios.get("/api/users-with-orders");
+      this.users = response.data;
+    } catch (error) {
+      console.error("Failed to fetch users or orders:", error);
+    }
+  },
+};
+</script>
   
   <style scoped>
   .background-container {

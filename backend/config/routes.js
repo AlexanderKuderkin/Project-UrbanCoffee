@@ -36,5 +36,6 @@ module.exports.routes = {
   'POST /api/order/createOrder': 'OrderController.createOrder',
   'GET /api/orders': 'OrderController.findByUser',
 
+  'GET /api/users-with-orders': 'UserController.getAllUsersWithOrders',
 };
 

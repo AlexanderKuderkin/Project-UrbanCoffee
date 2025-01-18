@@ -53,5 +53,14 @@ module.exports = {
           return res.serverError({ error: 'Failed to fetch orders.' });
         }
       },
+      findAllOrders: async function (req, res) {
+        try {
+          const orders = await Order.find().populate('orderPosition');
+          return res.ok(orders);
+        } catch (error) {
+          console.error('Error fetching all orders:', error);
+          return res.serverError({ error: 'Failed to fetch all orders.' });
+        }
+      },
   };
   

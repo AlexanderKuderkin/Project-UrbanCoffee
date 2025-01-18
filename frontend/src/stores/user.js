@@ -13,7 +13,7 @@ export const useUserStore = defineStore("user", {
         try {
           const response = await axios.get("/sessionUser");
           console.log("Antwort vom Server:", response.data);
-          this.user = response.data; // Speichere die Benutzerdaten
+          this.user = response.data;
         } catch (error) {
           console.error("Fehler bei fetchUser:", error);
           this.user = null;
