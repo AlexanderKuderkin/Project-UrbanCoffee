@@ -35,3 +35,9 @@ function logout() {
   userStore.logout();
 }
 </script>
+
+<style scoped>
+.btn{
+  padding: 0px 45px;
+}
+</style>
