@@ -205,35 +205,35 @@ body {
 }
 
 .signup-container {
-  margin: 20px auto; /* Margin oben und unten zum nächsten Container */
-  background-color: rgb(212, 205, 205); /* Hintergrundfarbe */
-  border-radius: 20px; /* Abgerundete Ecken */
-  padding: 20px; /* Abstand innerhalb */
-  min-height: calc(100vh - 40px); /* Dynamische Höhe */
+  margin: 20px auto; 
+  background-color: rgb(212, 205, 205); 
+  border-radius: 20px; 
+  padding: 20px; 
+  min-height: calc(100vh - 40px); 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .card {
-  margin: 40px auto; /* Margin oben und unten */
-  background-color: #735340; /* Neue Hintergrundfarbe */
-  border-radius: 20px; /* Card-Rundung für Konsistenz */
+  margin: 40px auto; 
+  background-color: #735340; 
+  border-radius: 20px; 
   width: 100%;
-  max-width: 500px; /* Breite wie bei der Login-Seite */
+  max-width: 500px; 
 }
 
 .btn-signup {
-  background-color: #A8865F; /* Button-Farbe */
+  background-color: #A8865F; 
   color: white;
   border: none;
-  border-radius: 15px; /* Rundung des Buttons */
+  border-radius: 15px; 
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
 .btn-signup:hover {
-  background-color: #A8765F; /* Hover-Farbe */
+  background-color: #A8765F; 
 }
 </style>

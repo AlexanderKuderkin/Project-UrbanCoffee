@@ -4,7 +4,6 @@
       {{ toastMessage }}
     </div>
     <div class="container mt-5">
-      <!-- Header Section -->
       <div class="header-section text-white mb-4 p-3 mx-auto">
         <h1 class="text-center mb-0">Edit Product</h1>
       </div>
@@ -165,7 +164,7 @@ export default {
       setTimeout(() => {
         toastMessage.value = null;
         toastType.value = "";
-      }, 3000); // Toast disappears after 3 seconds
+      }, 3000); 
     };
 
     const brands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];

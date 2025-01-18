@@ -239,8 +239,8 @@ export default {
     const searchQuery = ref("");
     const minPrice = ref(null);
     const maxPrice = ref(null);
-    const minCaffeineContent = ref(null); // Neuer Filter für minimalen Koffeingehalt
-    const maxCaffeineContent = ref(null); // Neuer Filter für maximalen Koffeingehalt
+    const minCaffeineContent = ref(null); 
+    const maxCaffeineContent = ref(null); 
     const sortOption = ref("name-asc");
 
     const availableBrands = ["Tchibo", "Jacobs", "Mellitta", "Eduscho"];
@@ -254,7 +254,7 @@ export default {
       "Bird-Friendly",
     ];
     const availableOrigins = ["Europe", "Asia", "Africa", "North-America", "South-America", "Australia"];
-    const availableCategories = ref([]); // Verfügbare Kategorien
+    const availableCategories = ref([]); 
 
     const selectedBrands = ref([]);
     const selectedRoasts = ref([]);
@@ -311,7 +311,7 @@ export default {
             matchesCertificates &&
             matchesOrigins &&
             matchesCategory &&
-            matchesCaffeineContent && // Koffeingehalt-Filter
+            matchesCaffeineContent &&
             matchesPrice
           );
         })

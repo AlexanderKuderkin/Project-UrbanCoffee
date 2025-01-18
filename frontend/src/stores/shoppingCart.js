@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 export const useShoppingCartStore = defineStore("shoppingCart", {
   state: () => ({
-    cart: JSON.parse(localStorage.getItem("cart")) || [], // Lade Daten aus localStorage
+    cart: JSON.parse(localStorage.getItem("cart")) || [],
 }),
 actions: {
     async addToCart(coffee) {
@@ -20,7 +20,6 @@ actions: {
         });
       }
   
-      // Speichere den aktuellen Warenkorb in localStorage
       localStorage.setItem("cart", JSON.stringify(this.cart));
   
     },

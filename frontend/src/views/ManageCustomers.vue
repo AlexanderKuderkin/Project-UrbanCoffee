@@ -115,13 +115,11 @@ export default {
 	margin: 0 auto;
   }
   
-  /* Button Container */
   .button-container {
 	align-items: center;
 	gap: 10px;
   }
   
-  /* Action Buttons in the Table */
   .btn-view-more, .btn-edit {
 	color: white;
 	border-radius: 15px;
@@ -150,7 +148,6 @@ export default {
 	background-color: #5a6268;
   }
   
-  /* Table Styles */
   .table-responsive-wrapper {
 	overflow-x: auto;
 	margin-top: 20px;

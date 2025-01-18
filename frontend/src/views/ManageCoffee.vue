@@ -192,7 +192,7 @@ export default {
       setTimeout(() => {
         toastMessage.value = null;
         toastType.value = "";
-      }, 3000); // Toast disappears after 3 seconds
+      }, 3000); 
     };
 
     const fetchCoffees = async () => {

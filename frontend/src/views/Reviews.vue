@@ -454,16 +454,16 @@ export default {
 }
 
 .card-body {
-  text-align: center; /* Zentriert den Inhalt innerhalb der Card */
+  text-align: center; 
   display: flex;
-  flex-direction: column; /* Stellt sicher, dass die Buttons untereinander angezeigt werden */
-  justify-content: center; /* Zentriert den Inhalt entlang der vertikalen Achse */
-  align-items: center; /* Zentriert den Inhalt entlang der horizontalen Achse */
-  height: 100%; /* Stellt sicher, dass der Card-Body die ganze Höhe der Karte nutzt */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100%; 
 }
 
 .star-color {
-  color: #735340; /* Farbe für Sterne */
+  color: #735340; 
 }
 
 .btn-view-more,
@@ -474,8 +474,8 @@ export default {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  display: block; /* Button auf eine neue Zeile setzen */
-  width: 80%; /* Optional: Breite der Buttons für Klarheit */
+  display: block; 
+  width: 80%; 
   margin-left: auto;
   margin-right: auto;
   text-align: center;

@@ -65,43 +65,36 @@ body {
     margin: 0;
     padding: 0;
 }
-/* the Header styling*/
-/*done*/
 .header {
     background-color: #535352; 
     color: #000000; 
     padding: 15px 20px; 
     display: flex;
     align-items: center; 
-    justify-content: space-between; /* space between logo and other */
+    justify-content: space-between; 
     border-bottom-left-radius: 20px; 
     border-bottom-right-radius: 20px; 
 }
-/*done*/
 #NameWeb{
     font-family: 'Platypi', sans-serif;
 }
 
-/*done*/
 .header .logo {
     display: flex;
-    flex-direction: column; /* Logo and Text underneath each other */
+    flex-direction: column; 
     align-items: center; 
 }
-/*done*/
 #NameWeb{
     font-weight: bold;
 }
 
-/*done*/
 .header .search-container {
-    flex-grow: 1; /* takes the space that is free */
+    flex-grow: 1; 
     display: flex;
     justify-content: center; 
     margin: 0 20px;
 }
 
-/*done*/
 .header .nav-buttons .btn-traditional {
     border: none;
     background-color: #A8865F; 
@@ -112,11 +105,9 @@ body {
     font-weight: bold;
 }
 
-/*done*/
 .header .nav-buttons .btn-traditional:hover {
     background-color: #A8765F;
 }
-/*done*/
 .navbar-toggler-icon {
     display: inline-block;
     width: 2em;
@@ -135,8 +126,6 @@ body {
 
 
 
-/* Sidebar Styling */
-/*done*/
 .sidebar {
     position: fixed;
     top: 0;
@@ -152,14 +141,11 @@ body {
     justify-content: flex-start;
 }
 
-/*done*/
 .btn{
     color: white;
     font-weight: 700;
 }
 
-/* Sidebar Header */
-/*done*/
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -167,14 +153,11 @@ body {
     margin-bottom: 20px;
 }
 
-/* Sidebar Body ~ buttons are underneath each other */
-/*done*/
 .sidebar-body {
     display: flex;
     flex-direction: column;
 }
 
-/*done*/
 .sidebar-body .btn {
     width: 70%; 
     margin-bottom: 10px; 
@@ -183,8 +166,6 @@ body {
     margin-left: 10px;
 }
 
-/* First picture and text*/
-/*done*/
 .firstText {
     position: relative; 
     width: 100%;
@@ -199,8 +180,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-/* style for the first text */
-/*done*/
 .firstText .text {
     position: absolute;
     top: 47%;
@@ -211,7 +190,6 @@ body {
     text-align: center;
 }
 
-/*done*/
 .viewMoreBtn{
     margin-top: 10px;
     padding: 8px 12px;
@@ -229,8 +207,6 @@ body {
     color: #ffffff;
 }
 
-/*Between things*/
-/*done*/
 .offer-container {
     display: flex;
     flex-direction: column;
@@ -238,35 +214,29 @@ body {
     margin: 40px 0; 
 }
 
-/*done*/
 .vertical-line {
-    width: 4px; /* thickness of the line */
-    height: 90px; /* how long the line is */
+    width: 4px; 
+    height: 90px; 
     background-color: #D9B68b; 
     margin-bottom: 10px;
     border-radius: 20px;
 }
 
-/*done*/
 .offer-container h3 {
     color: #D9B68b; 
     font-weight: bold; 
 }
 
-/*What we Offer container*/
-/*done*/
 .description-container {
     margin: 0px 30px;
 }
 
-/*done*/
 .description-row {
     display: flex; 
     justify-content: space-between;
     margin-bottom: 10px; 
 }
 
-/*done*/
 .description-item {
     display: flex;
     flex-direction: row; 
@@ -275,7 +245,6 @@ body {
     margin-bottom: 20; 
 }
 
-/*done*/
 .description-image {
     width: 260px; 
     height: 250px; 
@@ -283,7 +252,6 @@ body {
     margin-right: 15px; 
 }
 
-/*done*/
 .description-text h3 {
     color: #A8865F; 
     margin-top: 5px;
@@ -292,7 +260,6 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
-/*done*/
 .description-text p {
     color: #000000; 
     padding-left: 30px;
@@ -301,7 +268,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-/*done*/
 @media (max-width: 1000px) {
     .description-row {
         flex-direction: column; 
@@ -321,11 +287,9 @@ body {
     }
 }
 
-/*Advertising container*/
-/*done*/
 .advertising-container {
     position: relative; 
-    margin: 20px 20px; /* Zentriert den Container und gibt vertikalen Abstand */
+    margin: 20px 20px; 
     min-height: 200px;
     background-image: url('src/assets/kaffeepulver_cleanup.jpg');
     background-size: cover; 
@@ -336,19 +300,16 @@ body {
     text-align: center; 
 }
 
-/*done*/
 .advertising-text {
     position: relative; 
     color: white;
     font-size: 20px;
-    margin-bottom: 30px; /* Abstand unter dem Text */
+    margin-bottom: 30px; 
     font-size: xx-large;
     font-family: 'Roboto', sans-serif;
 }
 
-/*done*/
 .signInBtn, .btn-traditional {
-    /* Übernehme exakt die gleichen Stile */
     border: none;
     background-color: #A8865F;
     color: #ffffff;
@@ -357,19 +318,16 @@ body {
     font-weight: bold;
     cursor: pointer;
     margin-left: 10px;
-    width: 81.75px; /* Exakte Breite des Header-Buttons */
-    height: 37px;   /* Exakte Höhe des Header-Buttons */
+    width: 81.75px; 
+    height: 37px;   
 }
 
-/*done*/
 .signInBtn:hover, .btn-traditional:hover {
     background-color: #A8765F;
 }
 
-/* the footer styling */
-/*done*/
 .footer {
-    background-image: url('src/assets/Kaffe_Footer.jpg'); /* our background */
+    background-image: url('src/assets/Kaffe_Footer.jpg'); 
     background-size: cover;
     background-position: center;
     color: #ffffff;
@@ -382,37 +340,32 @@ body {
     position: static; 
     bottom: 0;
     width: 100%;
-    min-height: 200px; /* Minimum height for the footer */
+    min-height: 200px; 
     margin-top: 20px;
 }
 
-/*done*/
 .footer-content {
     position: relative;
     z-index: 2;
-    max-width: 300px; /* Limit width on larger screens */
-    padding: 0 10px; /* Add padding for smaller screens */
+    max-width: 300px; 
+    padding: 0 10px; 
     font-family: 'Roboto', sans-serif;
 }
 
-/*done*/
 .footer h5 {
     color: #ffffff;
     margin-bottom: 10px;
 }
 
-/*done*/
 .footer a {
     color: #e0c097;
     text-decoration: none;
 }
 
-/*done*/
 .footer a:hover {
     text-decoration: underline;
 }
 
-/*done*/
 @media (max-width: 768px) {
     .footer {
         padding: 20px 10px;
@@ -422,11 +375,7 @@ body {
     }
 }
 
-/*
-Florent Gjoshi
-*/
 
-/*done*/
 .explanation-container {
     display: flex;
     flex-direction: row;
@@ -434,10 +383,9 @@ Florent Gjoshi
     align-items: center;
     gap: 20px;
     margin: 20px;
-    flex-wrap: wrap; /* Ermöglicht Umbruch bei kleineren Bildschirmen */
+    flex-wrap: wrap; 
 }
 
-/*done*/
 @media (max-width: 860px) {
     .explanation-container {
         flex-direction: column; 
@@ -445,7 +393,6 @@ Florent Gjoshi
     }
 }
 
-/*done*/
 .KaffeePour {
     flex: 1;
     display: flex;
@@ -455,20 +402,16 @@ Florent Gjoshi
     max-width: 280px;
 }
 
-/*done*/
 .KaffeePour img {
     max-width: 100%;
     height: auto;
-    border-radius: 20px; /* Für abgerundete Ecken beim Bild */
+    border-radius: 20px; 
 }
 
-/*done*/
 h3 {
     margin-top: 0;
 }
 
-/* Container für Our Story und Our Goal */
-/*done*/
 .OurStory-Container,
 .OurGoal-Container {
     flex: 1;
@@ -476,38 +419,33 @@ h3 {
     min-width: 250px;
     padding: 20px;
     box-sizing: border-box;
-    text-align: center;            /* Zentriert den Inhalt */
+    text-align: center;            
     display: flex;
-    flex-direction: column;        /* Stellt sicher, dass Überschrift über dem Text bleibt */
-    align-items: center;           /* Zentriert Inhalt horizontal */
+    flex-direction: column;        
+    align-items: center;           
     font-family: 'Roboto', sans-serif;
 }
 
-/* Überschrift und Text innerhalb des Containers zentrieren */
-/*done*/
 .OurStory-Container h3,
 .OurGoal-Container h3,
 .OurStory-Container p,
 .OurGoal-Container p {
-    display: inline-block;         /* Nimmt nur die Breite des Inhalts ein */
-    text-align: center;            /* Zentriert den Text innerhalb des Elements */
-    margin: 0 auto;                /* Zentriert das Element im Container */
+    display: inline-block;         
+    text-align: center;            
+    margin: 0 auto;                
     font-family: 'Roboto', sans-serif;
 }
 
 
 
-/*Alex seins*/
 .card{
     border-radius: 30px;
 }
 
-/*done*/
 .star-color {
-    color: #735340; /* Farbe für Sterne */
+    color: #735340; 
   }
 
-  /*done*/
   .btn-view-more, .btn-buy-more {
     margin-top: 10px;
     padding: 8px 20px;
@@ -515,8 +453,8 @@ h3 {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: block; /* Button auf eine neue Zeile setzen */
-    width: 80%; /* Optional: Breite der Buttons für Klarheit */
+    display: block; 
+    width: 80%; 
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -524,28 +462,23 @@ h3 {
     background-color: #735340;
   }
 
-  /*done*/
   .btn-view-more {
     color: #fff;
   }
 
-  /*done*/
   .btn-view-more:hover {
     background-color: #D9B68b;
   }
 
-  /*done*/
   .btn-buy-more {
     background-color: #735340;
     color: #fff;
   }
 
-  /*done*/
   .btn-buy-more:hover {
     background-color: #D9B68b;
   }
 
-  /*done*/
   .mb-2 {
     margin-bottom: 30px!important;
     font-family: 'Roboto', sans-serif;
@@ -563,7 +496,6 @@ h3 {
   z-index: 1000;
 }
 
-/* Modal Box */
 .cookie-modal {
   background: #fff;
   padding: 20px;
@@ -574,21 +506,18 @@ h3 {
   max-width: 400px;
 }
 
-/* Modal Title */
 .cookie-modal h3 {
   margin-top: 0;
   font-size: 1.5rem;
   color: #333;
 }
 
-/* Modal Text */
 .cookie-modal p {
   font-size: 1rem;
   color: #555;
   margin-bottom: 20px;
 }
 
-/* Accept Button */
 .cookie-modal button {
   background-color: #4caf50;
   color: #fff;
@@ -604,10 +533,10 @@ h3 {
 }
 .toast {
   position: fixed;
-  top: 40px; /* Adjust the distance from the top */
-  left: 40%; /* Align to the center horizontally */
-  transform: translateX(-50%); /* Center it perfectly */
-  background-color: #4caf50; /* Green for success */
+  top: 40px; 
+  left: 40%; 
+  transform: translateX(-50%); 
+  background-color: #4caf50; 
   color: white;
   padding: 15px 20px;
   border-radius: 5px;
@@ -619,7 +548,7 @@ h3 {
 }
 
 .toast.error {
-  background-color: #f44336; /* Rot für Fehler */
+  background-color: #f44336; 
 }
 
 .toast.show {

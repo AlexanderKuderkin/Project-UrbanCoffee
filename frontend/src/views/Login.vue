@@ -77,32 +77,32 @@ body {
 }
 
 .login-container {
-  background-color: rgb(212, 205, 205); /* Hintergrundfarbe */
-  margin: 20px auto; /* Margin oben und unten */
-  border-radius: 20px; /* Abgerundete Ecken */
-  padding: 20px; /* Abstand innerhalb */
-  min-height: calc(100vh - 40px); /* Dynamische Höhe */
+  background-color: rgb(212, 205, 205);
+  margin: 20px auto; 
+  border-radius: 20px; 
+  padding: 20px; 
+  min-height: calc(100vh - 40px); 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .card {
-  background-color: #735340; /* Neue Hintergrundfarbe */
-  border-radius: 20px; /* Card-Rundung für Konsistenz */
+  background-color: #735340; 
+  border-radius: 20px; 
 }
 
 .btn-login {
-  background-color: #A8865F; /* Button-Farbe */
+  background-color: #A8865F; 
   color: white;
   border: none;
-  border-radius: 15px; /* Rundung des Buttons */
+  border-radius: 15px; 
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
 .btn-login:hover {
-  background-color: #A8765F; /* Hover-Farbe */
+  background-color: #A8765F; 
 }
 </style>

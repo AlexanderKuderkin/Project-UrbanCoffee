@@ -16,7 +16,7 @@ if (!import.meta.env.PROD) {
 
 const app = createApp(App)
 
-app.use(router) // Router aktivieren
+app.use(router)
 app.use(createPinia())
 
-app.mount('#app') // App mounten
+app.mount('#app')

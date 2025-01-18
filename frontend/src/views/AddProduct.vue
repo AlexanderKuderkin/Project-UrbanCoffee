@@ -2,7 +2,6 @@
   <div class="outer-container">
     <div class="background-container">
       <div class="form-wrapper">
-        <!-- Header Section -->
         <div class="header-section text-white mb-4 p-3">
           <h1 class="text-center mb-0">Add New Product</h1>
         </div>
@@ -272,7 +271,7 @@ export default {
       certificates,
       origins,
       grindTypes,
-      categories, // Rückgabe der dynamischen Kategorien
+      categories,
       addProduct,
     };
   },
@@ -281,41 +280,41 @@ export default {
 
 <style scoped>
 .outer-container {
-  background-color: rgb(212, 205, 205); /* Hintergrundfarbe */
-  border-radius: 20px; /* Abgerundete Ecken */
-  margin: 20px 0; /* Oben und unten Abstand */
-  padding: 20px; /* Innerer Abstand */
+  background-color: rgb(212, 205, 205); 
+  border-radius: 20px; 
+  margin: 20px 0; 
+  padding: 20px; 
 }
 
 .background-container {
-  background-color: #735340; /* Hintergrundfarbe */
-  width: 500px; /* Feste Breite */
-  margin: 40px auto; /* Zentriert */
-  padding: 20px; /* Innenabstand */
-  border-radius: 20px; /* Abgerundete Ecken */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional */
+  background-color: #735340; 
+  width: 500px; 
+  margin: 40px auto; 
+  padding: 20px; 
+  border-radius: 20px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .header-section {
-  background-color: #735340; /* Hintergrundfarbe */
-  border-radius: 10px; /* Abgerundete Ecken */
+  background-color: #735340; 
+  border-radius: 10px; 
 }
 
 label {
   font-weight: bold;
-  color: white; /* Überschriften in Weiß */
+  color: white; 
 }
 
 button.btn-add-product {
   background-color: #A8865F;
   color: white;
-  width: 250px; /* Feste Breite */
+  width: 250px; 
   border: none;
   padding: 10px;
-  border-radius: 15px; /* Abgerundete Ecken */
+  border-radius: 15px; 
   cursor: pointer;
-  margin: 0 auto; /* Zentriert */
-  display: block; /* Für Zentrierung erforderlich */
+  margin: 0 auto; 
+  display: block; 
 }
 
 button.btn-add-product:hover {

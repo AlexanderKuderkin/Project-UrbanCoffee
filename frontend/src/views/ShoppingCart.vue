@@ -118,7 +118,7 @@ function showToast(message, type = "success") {
   setTimeout(() => {
     toastMessage.value = null;
     toastType.value = "";
-  }, 3000); // The toast disappears after 3 seconds
+  }, 3000); 
 };
 
 async function checkout() {
