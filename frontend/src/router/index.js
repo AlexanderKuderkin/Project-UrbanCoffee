@@ -15,6 +15,7 @@ import ShoppingCart from "@/views/ShoppingCart.vue";
 import Profile from "@/views/Profile.vue";
 import OrderHistory from "@/views/OrderHistory.vue";
 import ManageCustomers from '@/views/ManageCustomers.vue';
+import CustomersView from '@/views/CustomersView.vue';
 
 const routes = [
   {
@@ -83,6 +84,11 @@ const routes = [
       name: 'ManageCustomers',
       component: ManageCustomers,
     },
+    {
+      path: '/CustomersView',
+        name: 'CustomersView',
+        component: CustomersView,
+      },
 ];
 
 const router = createRouter({
