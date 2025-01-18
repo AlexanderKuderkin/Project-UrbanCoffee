@@ -37,5 +37,6 @@ module.exports.routes = {
 
   'GET /api/users-with-orders': 'UserController.getAllUsersWithOrders',
   'GET /api/users/:id': 'UserController.getUserById',
+  'DELETE /api/users/:id': 'UserController.deleteUser',
 };
 

@@ -43,6 +43,9 @@
 						>
 						Information
 						</RouterLink>
+						<button	v-if="!user.isSuperAdmin" class="btn btn-danger" @click="deleteUser(user.id)">
+						Delete User
+						</button>
 					</div>
 				</td>
 			  </tr>
@@ -75,6 +78,28 @@ export default {
       return this.users.filter((user) =>
         user.fullName.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
+    },
+  },
+  methods: {
+    async deleteUser(userId) {
+      try {
+        const confirmation = confirm(
+          "Are you sure you want to delete this user? This action cannot be undone."
+        );
+        if (!confirmation) return;
+
+        const response = await axios.delete(`/api/users/${userId}`);
+
+        if (response.status === 200) {
+          this.users = this.users.filter((user) => user.id !== userId);
+          alert("User deleted successfully!");
+        } else {
+          alert("Failed to delete user. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error deleting user:", error);
+        alert("An error occurred while deleting the user.");
+      }
     },
   },
   async created() {
@@ -169,5 +194,18 @@ export default {
 	vertical-align: middle;
 	padding: 5px 10px;
   }
+  .btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
   </style>
   

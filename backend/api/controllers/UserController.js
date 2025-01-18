@@ -33,5 +33,29 @@ module.exports = {
           return res.serverError({ error: "Failed to fetch user data" });
         }
       },
+    deleteUser: async function (req, res) {
+         try {
+           const userId = req.params.id;
+     
+           if (!userId) {
+             return res.badRequest({ error: "User ID is required." });
+           }
+      
+            const user = await User.findOne({ id: userId });
+            if (!user) {
+              return res.notFound({ error: "User not found." });
+            }
+      
+            if (user.isSuperAdmin) {
+              return res.forbidden({ error: "Cannot delete an admin user." });
+            }
+      
+            await User.destroyOne({ id: userId });
+            return res.ok({ message: "User deleted successfully." });
+          } catch (error) {
+            console.error("Error deleting user:", error);
+            return res.serverError({ error: "Failed to delete user." });
+          }
+    },      
   };
   
