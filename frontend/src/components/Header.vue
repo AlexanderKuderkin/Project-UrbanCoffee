@@ -4,9 +4,6 @@
       <img src="@/assets/UrbanCoffee_Loggo.png" alt="Logo" width="50">
       <span id="NameWeb">UrbanCoffee</span>
     </div>
-    <div class="search-container">
-      <input type="text" class="form-control" placeholder="Search" aria-label="Search">
-    </div>
     <div class="nav-buttons d-none d-md-flex">
       <router-link to="/" class="btn">Homepage</router-link>
       <router-link to="/Profile" class="btn" v-if="userStore.user">Profile</router-link>
