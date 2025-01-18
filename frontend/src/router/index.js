@@ -85,9 +85,10 @@ const routes = [
       component: ManageCustomers,
     },
     {
-      path: '/CustomersView',
+      path: '/CustomersView/:id',
         name: 'CustomersView',
         component: CustomersView,
+        props: true,
       },
 ];
 

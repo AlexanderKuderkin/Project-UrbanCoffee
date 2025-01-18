@@ -1,33 +1,64 @@
 <template>
-    <div class="outer-container">
-      <div class="container mt-5">
-        <div class="card shadow-lg">
-          <img
-            class="card-img-top rounded-circle"
-            src="https://dummyimage.com/200x200/cccccc/000000&text=Customer+Photo"
-            alt="Customer Photo"
-          />
-          <div class="card-body text-center">
-            <h2 class="card-title fw-bold">Customer Name</h2>
-            <ul class="list-group list-group-flush mt-3">
-              <li class="list-group-item"><strong>Email:</strong> customer@example.com</li>
-              <li class="list-group-item"><strong>Country:</strong> Country Name</li>
-              <li class="list-group-item"><strong>City:</strong> City Name</li>
-              <li class="list-group-item"><strong>Postal Code:</strong> 12345</li>
-              <li class="list-group-item"><strong>Street:</strong> Street Name</li>
-              <li class="list-group-item"><strong>House Number:</strong> 123</li>
-            </ul>
-  
-            <div class="mt-4">
-              <button class="btn btn-secondary back-button">
-                <i class="fas fa-arrow-left me-2"></i> Back to Customers
-              </button>
-            </div>
+  <div class="outer-container">
+    <div class="container mt-5">
+      <div class="card shadow-lg">
+        <img
+          class="card-img-top rounded-circle"
+          src="https://dummyimage.com/200x200/cccccc/000000&text=Customer+Photo"
+          alt="Customer Photo"
+        />
+        <div class="card-body text-center" v-if="user">
+          <h2 class="card-title fw-bold">{{ user.fullName }}</h2>
+          <ul class="list-group list-group-flush mt-3">
+            <li class="list-group-item"><strong>Email:</strong> {{ user.emailAddress }}</li>
+            <li class="list-group-item"><strong>Country:</strong> {{ user.addressCountry }}</li>
+            <li class="list-group-item"><strong>City:</strong> {{ user.addressCity }}</li>
+            <li class="list-group-item"><strong>Postal Code:</strong> {{ user.addressPostalCode }}</li>
+            <li class="list-group-item"><strong>Street:</strong> {{ user.addressStreet }}</li>
+          </ul>
+
+          <div class="mt-4">
+            <RouterLink to="/ManageCustomers" class="btn btn-secondary back-button">
+              <i class="fas fa-arrow-left me-2"></i> Back to Customers
+            </RouterLink>
           </div>
+        </div>
+        <div v-else>
+          <p>Loading user data...</p>
         </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
+
+
+<script>
+import axios from "axios";
+import { RouterLink } from "vue-router";
+
+export default {
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      user: null, 
+    };
+  },
+  async created() {
+    try {
+      const response = await axios.get(`/api/users/${this.id}`);
+      this.user = response.data;
+    } catch (error) {
+      console.error("Failed to fetch user data:", error);
+    }
+  },
+};
+</script>
+
   
   <style scoped>
   .outer-container {

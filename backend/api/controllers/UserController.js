@@ -18,5 +18,20 @@ module.exports = {
           return res.serverError({ error: 'Failed to fetch users and orders.' });
         }
       },
+      getUserById: async function (req, res) {
+        try {
+          const userId = req.params.id;
+          const user = await User.findOne({ id: userId });
+    
+          if (!user) {
+            return res.status(404).json({ error: "User not found" });
+          }
+    
+          return res.ok(user);
+        } catch (error) {
+          console.error("Error fetching user by ID:", error);
+          return res.serverError({ error: "Failed to fetch user data" });
+        }
+      },
   };
   

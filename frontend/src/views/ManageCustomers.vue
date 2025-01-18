@@ -30,10 +30,11 @@
 				<td>{{ user.fullName }}</td>
 				<td>{{ user.orderCount || 0 }}</td>
 				<td>
-				  <div class="button-container d-flex justify-content-between">
-					<button class="btn btn-view-more">Order History</button>
-					<button class="btn btn-edit">Information</button>
-				  </div>
+					<div class="button-container d-flex justify-content-between">
+						<button class="btn btn-view-more">Order History</button>
+						<RouterLink	:to="{ name: 'CustomersView', params: { id: user.id } }"
+						class="btn btn-edit">Information</RouterLink>
+					</div>
 				</td>
 			  </tr>
 			  <tr v-if="filteredUsers.length === 0">
@@ -48,6 +49,7 @@
   
   <script>
 import axios from "axios";
+import { RouterLink } from "vue-router";
 
 export default {
   data() {
