@@ -184,7 +184,7 @@
                 :alt="coffee.name"
               />
               <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
-                <a href="#" class="h5">{{ coffee.name }}</a>
+                <a class="h5">{{ coffee.name }}</a>
 
                 <p>{{ coffee.description }}</p>
 
