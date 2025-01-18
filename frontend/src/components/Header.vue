@@ -28,13 +28,7 @@
     </button>
   </header>
 </template>
-<!--
-<script>
-export default {
-  name: "Header",
-};
-</script>
--->
+
 <script setup>
 import { useUserStore } from "@/stores/user";
 
