@@ -31,9 +31,18 @@
 				<td>{{ user.orderCount || 0 }}</td>
 				<td>
 					<div class="button-container d-flex justify-content-between">
-						<button class="btn btn-view-more">Order History</button>
-						<RouterLink	:to="{ name: 'CustomersView', params: { id: user.id } }"
-						class="btn btn-edit">Information</RouterLink>
+						<RouterLink
+						:to="{ name: 'OrderHistoryUser', params: { id: user.id } }"
+						class="btn btn-view-more"
+						>
+						Order History
+						</RouterLink>
+						<RouterLink
+						:to="{ name: 'CustomersView', params: { id: user.id } }"
+						class="btn btn-edit"
+						>
+						Information
+						</RouterLink>
 					</div>
 				</td>
 			  </tr>

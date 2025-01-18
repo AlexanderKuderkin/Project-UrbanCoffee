@@ -16,6 +16,7 @@ import Profile from "@/views/Profile.vue";
 import OrderHistory from "@/views/OrderHistory.vue";
 import ManageCustomers from '@/views/ManageCustomers.vue';
 import CustomersView from '@/views/CustomersView.vue';
+import OrderHistoryUser from '@/views/OrderHistoryUser.vue';
 
 const routes = [
   {
@@ -80,16 +81,23 @@ const routes = [
     component: OrderHistory,
   },
   {
-    path: '/ManageCustomers',
-      name: 'ManageCustomers',
-      component: ManageCustomers,
-    },
-    {
-      path: '/CustomersView/:id',
-        name: 'CustomersView',
-        component: CustomersView,
-        props: true,
-      },
+  path: '/ManageCustomers',
+    name: 'ManageCustomers',
+    component: ManageCustomers,
+  },
+  {
+  path: '/CustomersView/:id',
+    name: 'CustomersView',
+    component: CustomersView,
+    props: true,
+  },
+  {
+  path: '/OrderHistoryUser/:id',
+    name: 'OrderHistoryUser',
+    component: OrderHistoryUser,
+    props: true,
+  },
+      
 ];
 
 const router = createRouter({
@@ -97,9 +105,16 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore();
   const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView'];
+  const adminOnlyRoutes = ['ManageCoffee', 'ManageCustomers', 'OrderHistoryUser', 'EditProduct', 'AddProduct'];
+  const routeExists = router.getRoutes().some((route) => route.name === to.name);
+
+  if (!routeExists) {
+    next({ name: 'Home' }); 
+    return;
+  }
 
   if (!userStore.user) {
     await userStore.fetchUser(); 
@@ -109,16 +124,15 @@ router.beforeEach(async(to, from, next) => {
     next(); 
   } else {
     if (!userStore.user) {
-      next({ name: 'Login' });
+      next({ name: 'Login' }); 
     } else {
-      if (to.name === 'ManageCoffee' && !userStore.user.isSuperAdmin) {
-        next({ name: 'Home' });
+      if (adminOnlyRoutes.includes(to.name) && !userStore.user.isSuperAdmin) {
+        next({ name: 'Home' }); 
       } else {
-        next(); 
+        next();
       }
     }
   }
 });
-
 
 export default router;

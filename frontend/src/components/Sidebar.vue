@@ -22,6 +22,7 @@
       <router-link to="/ShoppingCart" class="btn" v-if="userStore.user">Shopping Cart</router-link>
       <router-link to="/Reviews" class="btn" v-if="userStore.user">Review</router-link>
       <router-link to="/ManageCoffee" class="btn" v-if="userStore.user && userStore.user.isSuperAdmin">Manage Coffee</router-link>
+      <router-link to="/ManageCustomers" class="btn" v-if="userStore.user && userStore.user.isSuperAdmin">Manage Users</router-link>
       <button class="btn btn-danger" @click="logout" v-if="userStore.user">Logout</button>
     </div>
   </div>
