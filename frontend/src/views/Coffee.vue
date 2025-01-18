@@ -416,6 +416,8 @@ body {
 }
 .p-2{
   background-color: white;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
 .mb-5{
   padding: 0 0;
@@ -492,5 +494,8 @@ body {
   .g-2{
     justify-content: center;
   }
+}
+p{
+  font-weight:700;
 }
 </style>
