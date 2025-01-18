@@ -21,7 +21,6 @@ module.exports.routes = {
   'POST /login': 'LoginController.login',
   'POST /register': 'LoginController.register',
   'GET /logout': "login.logout",
-  'GET /restricted': 'RestrictedController.example',
   'GET /sessionUser': "login.sessionUser",
 
   'GET /api/reviews/user-reviews': 'ReviewsController.getUserReviews',
