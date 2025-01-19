@@ -174,26 +174,22 @@
 
       <!-- Product List -->
       <div class="col-md-9">
-        <!-- Coffee Cards -->
         <div class="row g-2">
-          <div v-for="coffee in sortedAndFilteredCoffees" :key="coffee.id" class="col-12 col-md-6">
+          <div v-for="(coffee, index) in sortedAndFilteredCoffees" :key="coffee.id" class="col-12 col-md-6">
             <div class="card shadow">
               <img
                 class="searchImg"
-                src="https://dummyimage.com/300x200/cccccc/000000&text=Coffee+Placeholder"
+                :src="getImageForCoffee(index)"
                 :alt="coffee.name"
               />
               <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
                 <a class="h5">{{ coffee.name }}</a>
-
                 <p>{{ coffee.description }}</p>
-
                 <button class="btn btn-secondary view-more-btn">
                   <router-link :to="`/coffee/${coffee.id}`" class="btn btn-secondary view-more-btn text-white text-decoration-none">
                     <i class="fas fa-eye me-2"></i> View More
                   </router-link>
                 </button>
-
                 <div class="d-flex justify-content-between align-items-center mt-3">
                   <span class="h6 mb-0 text-gray">${{ coffee.price.toFixed(2) }}</span>
                   <button @click="handleAddToCart(coffee)" class="btn btn-xs btn-tertiary">
@@ -323,6 +319,13 @@ export default {
         });
     });
 
+    const getImageForCoffee = (index) => {
+      if (index === 0) return "src/assets/Kaffenum1.jpg";
+      if (index === 1) return "src/assets/Kaffenum2.jpg";
+      if (index === 2) return "src/assets/Kaffeenum3.jpg";
+      return "src/assets/KaffeAll.jpg";
+    };
+
     const userStore = useUserStore();
     const router = useRouter();
     const shopCart = useShoppingCartStore();
@@ -375,6 +378,7 @@ export default {
       selectedOrigins,
       selectedCategories,
       sortedAndFilteredCoffees,
+      getImageForCoffee,
       handleAddToCart,
       toastMessage,
       toastType,
