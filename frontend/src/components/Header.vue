@@ -38,6 +38,15 @@ function logout() {
 
 <style scoped>
 .btn{
-  padding: 0px 45px;
+  padding: 6px 45px;
+}
+.header .nav-buttons .btn-traditional {
+    border: none;
+    background-color: #A8865F;
+    color: #ffffff;
+    border-radius: 20px;
+    margin-left: 10px;
+    padding: 6px 11px;
+    font-weight: bold;
 }
 </style>
