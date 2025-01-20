@@ -17,7 +17,7 @@
               @input="validateFullName"
             />
             <label class="form-label">Full Name</label>
-            <div v-if="!validFullName" class="text-danger small">Name must only contain letters and spaces.</div>
+            <div v-if="!validFullName" class="text-danger small">Name must only contain letters.</div>
           </div>
 
           <!-- Email -->
@@ -148,7 +148,7 @@ const validPostalCode = ref(true);
 const validStreet = ref(true);
 
 function validateFullName() {
-  validFullName.value = /^[a-zA-Z\s]+$/.test(fullName.value);
+  validFullName.value = /^[a-zA-ZÀ-ÿ\s]+$/.test(fullName.value);
 }
 function validateEmail() {
   validEmail.value = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
@@ -157,10 +157,10 @@ function validatePassword() {
   validPassword.value = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password.value);
 }
 function validateCountry() {
-  validCountry.value = /^[a-zA-Z\s]+$/.test(addressCountry.value);
+  validCountry.value = /^[a-zA-ZÀ-ÿ\s]+$/.test(addressCountry.value);
 }
 function validateCity() {
-  validCity.value = /^[a-zA-Z\s]+$/.test(addressCity.value);
+  validCity.value = /^[a-zA-ZÀ-ÿ\s]+$/.test(addressCity.value);
 }
 function validatePostalCode() {
   validPostalCode.value = /^\d{4,6}$/.test(addressPostalCode.value);
