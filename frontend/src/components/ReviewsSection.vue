@@ -25,7 +25,7 @@
               <p class="mb-2">
                 <i class="fas fa-quote-left pe-2"></i>{{ review.comment }}
               </p>
-              <button class="btn-view-more">View More</button>
+              <RouterLink to="/Coffee" class="btn-view-more">View More</RouterLink>
             </div>
           </div>
         </div>
