@@ -150,8 +150,24 @@ module.exports = {
           console.error("Error fetching reviews for coffee:", err);
           return res.status(500).json({ error: "An error occurred.", details: err.message });
         }
-      }
+      },
+      async getReviewsByIds(req, res) {
+        try {
+          const ids = req.query.ids;
+          if (!ids || !Array.isArray(ids)) {
+            return res.status(400).json({ error: "Invalid or missing review IDs." });
+          }
       
+          const reviews = await Reviews.find({ id: ids })
+            .populate("user")
+            .populate("coffee");
+      
+          return res.json({ reviews });
+        } catch (err) {
+          console.error("Error fetching reviews by IDs:", err);
+          return res.status(500).json({ error: "An error occurred.", details: err.message });
+        }
+      },      
 
 };
   
