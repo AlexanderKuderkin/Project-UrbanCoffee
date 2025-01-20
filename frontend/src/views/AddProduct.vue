@@ -230,7 +230,7 @@ export default {
 
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("/Category"); // API-Aufruf
+        const response = await axios.get("/Category");
         categories.value = response.data;
       } catch (error) {
         console.error("Error fetching categories:", error);
