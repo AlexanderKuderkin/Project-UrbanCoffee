@@ -17,12 +17,17 @@ import OrderHistory from "@/views/OrderHistory.vue";
 import ManageCustomers from '@/views/ManageCustomers.vue';
 import CustomersView from '@/views/CustomersView.vue';
 import OrderHistoryUser from '@/views/OrderHistoryUser.vue';
-
+import UrbanHome from '@/views/UrbanHome.vue';
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: HomePage,
+  },
+  {
+    path: '/UrbanHome',
+    name: 'UrbanHome',
+    component: UrbanHome,
   },
   {
     path: '/Coffee',
@@ -107,7 +112,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore();
-  const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView'];
+  const publicRoutes = ['Coffee', 'SignUp', 'Home', 'Login', 'CoffeeView','UrbanHome'];
   const adminOnlyRoutes = ['ManageCoffee', 'ManageCustomers', 'OrderHistoryUser', 'EditProduct', 'AddProduct'];
   const routeExists = router.getRoutes().some((route) => route.name === to.name);
 
