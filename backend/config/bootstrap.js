@@ -78,7 +78,8 @@ module.exports.bootstrap = async function() {
       certificates: ["UTZ Certified"],
       origin: "South-America",
       grindType: "Medium",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeNum1.jpg"
     },
     {
       name: "Forest Aroma",
@@ -91,7 +92,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified"],
       origin: "Africa",
       grindType: "Whole bean",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Sunrise Delight",
@@ -104,7 +106,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Fair Trade Certified"],
       origin: "Asia",
       grindType: "Medium-coarse",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Mountain Roast",
@@ -117,7 +120,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Direct Trade"],
       origin: "North-America",
       grindType: "Fine",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Sunset Blend",
@@ -130,7 +134,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Bird-Friendly"],
       origin: "Australia",
       grindType: "Extra fine",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Rainforest Gold",
@@ -143,7 +148,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified", "Fair Trade Certified"],
       origin: "South-America",
       grindType: "Medium",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Urban Espresso",
@@ -156,7 +162,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Direct Trade"],
       origin: "Europe",
       grindType: "Fine",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Jungle Breeze",
@@ -169,7 +176,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Fair Trade Certified"],
       origin: "Africa",
       grindType: "Coarse",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Morning Sun",
@@ -182,7 +190,8 @@ module.exports.bootstrap = async function() {
       certificates: ["UTZ Certified", "Bird-Friendly"],
       origin: "Asia",
       grindType: "Medium",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Twilight Brew",
@@ -195,7 +204,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified", "Direct Trade"],
       origin: "North-America",
       grindType: "Whole bean",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Golden Horizon",
@@ -208,7 +218,8 @@ module.exports.bootstrap = async function() {
       certificates: ["UTZ Certified", "Rainforest Alliance Certified"],
       origin: "South-America",
       grindType: "Medium",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Espresso Intense",
@@ -221,7 +232,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Fair Trade Certified"],
       origin: "Asia",
       grindType: "Fine",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Tropical Bliss",
@@ -234,7 +246,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Bird-Friendly"],
       origin: "Australia",
       grindType: "Coarse",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Morning Glory",
@@ -247,7 +260,8 @@ module.exports.bootstrap = async function() {
       certificates: ["UTZ Certified"],
       origin: "North-America",
       grindType: "Whole bean",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Rainforest Delight",
@@ -260,7 +274,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified", "Fair Trade Certified"],
       origin: "Africa",
       grindType: "Medium-coarse",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Urban Classic",
@@ -273,7 +288,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Direct Trade"],
       origin: "Europe",
       grindType: "Fine",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Velvet Roast",
@@ -286,7 +302,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Bird-Friendly", "Fair Trade Certified"],
       origin: "Asia",
       grindType: "Extra fine",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Coastal Morning",
@@ -299,7 +316,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified"],
       origin: "Australia",
       grindType: "Medium",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Twilight Essence",
@@ -312,7 +330,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Direct Trade", "UTZ Certified"],
       origin: "South-America",
       grindType: "Whole bean",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Savanna Breeze",
@@ -325,7 +344,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Fair Trade Certified"],
       origin: "Africa",
       grindType: "Coarse",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Amber Brew",
@@ -338,7 +358,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Fair Trade Certified", "UTZ Certified"],
       origin: "South-America",
       grindType: "Medium",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeNum3.jpg"
     },
     {
       name: "Crimson Espresso",
@@ -351,7 +372,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Direct Trade"],
       origin: "Asia",
       grindType: "Fine",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Frosted Morning",
@@ -364,7 +386,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Bird-Friendly"],
       origin: "Australia",
       grindType: "Coarse",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Hazelnut Delight",
@@ -377,7 +400,8 @@ module.exports.bootstrap = async function() {
       certificates: ["UTZ Certified"],
       origin: "Europe",
       grindType: "Medium",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Spiced Twilight",
@@ -390,7 +414,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified"],
       origin: "Africa",
       grindType: "Medium-coarse",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Velvet Morning",
@@ -403,7 +428,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Fair Trade Certified"],
       origin: "North-America",
       grindType: "Fine",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Rainforest Serenade",
@@ -416,7 +442,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified", "Direct Trade"],
       origin: "South-America",
       grindType: "Whole bean",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Dark Ember",
@@ -429,7 +456,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Bird-Friendly"],
       origin: "Asia",
       grindType: "Extra fine",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Autumn Blend",
@@ -442,7 +470,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Fair Trade Certified", "UTZ Certified"],
       origin: "Australia",
       grindType: "Medium",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeNum2.jpg"
     },
     {
       name: "Sunrise Symphony",
@@ -455,7 +484,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Bird-Friendly", "Direct Trade"],
       origin: "Africa",
       grindType: "Coarse",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Royal Reserve",
@@ -468,7 +498,8 @@ module.exports.bootstrap = async function() {
       certificates: ["UTZ Certified", "Fair Trade Certified"],
       origin: "South-America",
       grindType: "Medium",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Black Velvet",
@@ -481,7 +512,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Bird-Friendly"],
       origin: "Asia",
       grindType: "Fine",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Emerald Blend",
@@ -494,7 +526,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified"],
       origin: "Africa",
       grindType: "Whole bean",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Golden Peaks",
@@ -507,7 +540,8 @@ module.exports.bootstrap = async function() {
       certificates: ["UTZ Certified", "Direct Trade"],
       origin: "Europe",
       grindType: "Medium-coarse",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Platinum Roast",
@@ -520,7 +554,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified", "Bird-Friendly"],
       origin: "North-America",
       grindType: "Extra fine",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Diamond Espresso",
@@ -533,7 +568,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Fair Trade Certified"],
       origin: "South-America",
       grindType: "Fine",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Celestial Brew",
@@ -546,7 +582,8 @@ module.exports.bootstrap = async function() {
       certificates: ["UTZ Certified", "Bird-Friendly"],
       origin: "Asia",
       grindType: "Coarse",
-      category: categories[0].id
+      category: categories[0].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Velvet Dark Symphony",
@@ -559,7 +596,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Rainforest Alliance Certified"],
       origin: "Africa",
       grindType: "Whole bean",
-      category: categories[1].id
+      category: categories[1].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Majestic Sunrise",
@@ -572,7 +610,8 @@ module.exports.bootstrap = async function() {
       certificates: ["Direct Trade", "Bird-Friendly"],
       origin: "Australia",
       grindType: "Medium",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     },
     {
       name: "Crown Jewel Espresso",
@@ -585,7 +624,8 @@ module.exports.bootstrap = async function() {
       certificates: ["UTZ Certified", "Fair Trade Certified", "Bird-Friendly"],
       origin: "Europe",
       grindType: "Extra fine",
-      category: categories[2].id
+      category: categories[2].id,
+      imagePath: "src/assets/CoffeeAll.jpg"
     }
   ]);
 

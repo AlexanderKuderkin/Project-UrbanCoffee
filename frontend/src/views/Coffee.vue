@@ -175,11 +175,11 @@
       <!-- Product List -->
       <div class="col-md-9">
         <div class="row g-2">
-          <div v-for="(coffee, index) in sortedAndFilteredCoffees" :key="coffee.id" class="col-12 col-md-6">
+          <div v-for="(coffee) in sortedAndFilteredCoffees" :key="coffee.id" class="col-12 col-md-6">
             <div class="card shadow">
               <img
                 class="searchImg"
-                :src="getImageForCoffee(index)"
+                :src="coffee.imagePath"
                 :alt="coffee.name"
               />
               <div class="card-footer bg-gray-200 border-top border-gray-300 p-4">
@@ -319,12 +319,6 @@ export default {
         });
     });
 
-    const getImageForCoffee = (index) => {
-      if (index === 0) return "src/assets/Kaffenum1.jpg";
-      if (index === 1) return "src/assets/Kaffenum2.jpg";
-      if (index === 2) return "src/assets/Kaffeenum3.jpg";
-      return "src/assets/KaffeAll.jpg";
-    };
 
     const userStore = useUserStore();
     const router = useRouter();
@@ -378,7 +372,6 @@ export default {
       selectedOrigins,
       selectedCategories,
       sortedAndFilteredCoffees,
-      getImageForCoffee,
       handleAddToCart,
       toastMessage,
       toastType,

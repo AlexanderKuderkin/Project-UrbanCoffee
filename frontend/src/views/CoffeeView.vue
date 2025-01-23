@@ -3,8 +3,8 @@
     <div class="container mt-5">
       <div v-if="coffee" class="card shadow-lg">
         <img
-          class="card-img-top"
-          src="https://dummyimage.com/300x200/cccccc/000000&text=Coffee+Placeholder"
+          class="searchImg"
+          :src="coffee.imagePath"
           :alt="coffee.name"
         />
         <div class="card-body">

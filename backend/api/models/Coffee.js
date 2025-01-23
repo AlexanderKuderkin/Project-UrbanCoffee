@@ -63,13 +63,8 @@ module.exports = {
       description: 'The reviews associated with this coffee.'
     },
   
-    //imagePath: { type: 'string', required: false }
-/*
-    reviews: {
-      collection: 'review',
-      via: 'coffeeID'
-    }
-      */
+    imagePath: { type: 'string', required: false }
+
   },
 
 };
