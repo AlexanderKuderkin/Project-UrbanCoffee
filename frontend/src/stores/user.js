@@ -32,15 +32,15 @@ export const useUserStore = defineStore("user", {
           console.error("Login failed:", error);
         });
     },
-    async signUp(fullName, email, password, addressStreet, addressCity, addressPostalCode, addressCountry) {
+    async signUp(fullName, email, password, addressCountry, addressCity, addressPostalCode, addressStreet) {
         let registerInformation = {
           fullName: fullName,
           emailAddress: email,
           password: password,
-          addressStreet: addressStreet,
+          addressCountry: addressCountry,
           addressCity: addressCity,
           addressPostalCode: addressPostalCode,
-          addressCountry: addressCountry,
+          addressStreet: addressStreet,
         };
       
         console.log("Sending registration data:", registerInformation);

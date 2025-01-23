@@ -56,7 +56,7 @@ module.exports = {
         return /^[a-zA-ZÀ-ÿ\s]+$/u.test(value);
       },
     },
-    /*
+    
     addressCountry: { type: 'string', 
       columnType: 'varchar(100)', 
       required: true,
@@ -64,20 +64,15 @@ module.exports = {
         return /^[a-zA-ZÀ-ÿ\s]+$/u.test(value);
       },
     },
-/*
     addressStreet: { 
       type: 'string', 
       columnType: 'varchar(100)', 
       required: true, 
       custom: function (value) {
-        return /^[a-zA-ZÀ-ÿ\s]+ \d{1,3}$/u.test(value);
+        return /^[a-zA-ZÀ-ÿß\s\-]+\s\d{1,5}$/u.test(value);
       },
       
      },
-*/
-    addressStreet: { type: 'string', required: true,  },
-    addressCountry: { type: 'string', required: true,  },
-
 
     isSuperAdmin: {
       type: 'boolean',
