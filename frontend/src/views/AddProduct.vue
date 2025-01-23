@@ -289,6 +289,7 @@ export default {
 .background-container {
   background-color: #735340; 
   width: 500px; 
+  max-width: 90%;
   margin: 40px auto; 
   padding: 20px; 
   border-radius: 20px; 
@@ -315,6 +316,7 @@ button.btn-add-product {
   cursor: pointer;
   margin: 0 auto; 
   display: block; 
+  max-width: 90%;
 }
 
 button.btn-add-product:hover {
