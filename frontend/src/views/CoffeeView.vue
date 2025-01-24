@@ -82,7 +82,10 @@ export default {
     const fetchCoffee = async () => {
       try {
         const response = await axios.get(`/Coffee/${route.params.id}?populate=category`);
-        coffee.value = response.data;
+        coffee.value = {
+          ...response.data,
+          imagePath: `/${response.data.imagePath}`,
+        };
       } catch (error) {
         console.error("Error fetching coffee details:", error);
       }
