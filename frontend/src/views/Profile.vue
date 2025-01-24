@@ -115,10 +115,10 @@
             <div
               v-for="review in userReviews"
               :key="review.id"
-              class="col-md-6 mb-4"
+              class="review-card mb-4 text-center"
             >
               <div class="card">
-                <div class="card-body py-4 mt-2">
+                <div class="card-body py-4 mt-2 d-flex flex-column align-items-center">
                   <h5 class="font-weight-bold">{{ review.userName }}</h5>
                   <h6 class="font-weight-bold my-3">{{ review.coffeeName }}</h6>
                   <ul class="list-unstyled d-flex justify-content-center mb-3">
@@ -142,8 +142,8 @@
   
                     <textarea v-model="review.comment" class="edit-textarea"></textarea>
   
-                    <div class="button-group">
-                      <button class="btn-save" @click="saveReview(review)">Save</button>
+                    <div class="button-group d-flex justify-content-center mt-2">
+                      <button class="btn-save me-2" @click="saveReview(review)">Save</button>
                       <button class="btn-cancel" @click="cancelEdit(review)">Cancel</button>
                     </div>
                   </div>
@@ -152,12 +152,14 @@
                     <p class="mb-2">
                       <i class="fas fa-quote-left pe-2"></i>{{ review.comment }}
                     </p>
-                    <button class="btn-view-more" @click="deleteReview(review.id)">
-                      Delete
-                    </button>
-                    <button class="btn-buy-more" @click="editReview(review)">
-                      Edit
-                    </button>
+                    <div class="button-group d-flex justify-content-center mt-2">
+                      <button class="btn-view-more me-2" @click="deleteReview(review.id)">
+                        Delete
+                      </button>
+                      <button class="btn-buy-more" @click="editReview(review)">
+                        Edit
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -241,7 +243,7 @@
         this.validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.emailAddress);
       },
       validateStreet() {
-        this.validStreet = /^[a-zA-ZÀ-ÿß\s\-]+\s\d{1,5}$/.test(this.form.addressStreet);
+        this.validStreet = /^[a-zA-ZÀ-ſ\s\-]+\s\d{1,5}$/.test(this.form.addressStreet);
       },
       validateCity() {
         this.validCity = /^[a-zA-Z\s]+$/.test(this.form.addressCity);
@@ -343,7 +345,7 @@
     border: 0;
     border-radius: 20px;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten hinzugefügt */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .profile-card {
@@ -428,6 +430,22 @@
     background-color: #007bff;
     color: black !important;
   }
-  </style>
 
+  .review-card {
+    width: 100%;
+  }
 
+  .button-group {
+    display: flex;
+    justify-content: center; /* Zentriere Buttons */
+    align-items: center; /* Vertikale Ausrichtung */
+    gap: 5px; /* Reduziere den Abstand zwischen Buttons */
+}
+
+.button-group button {
+    margin: 0; /* Entferne zusätzliche Außenabstände */
+    padding: 10px 15px; /* Einheitliches Padding */
+	border-radius: 15px;
+}
+
+</style>
