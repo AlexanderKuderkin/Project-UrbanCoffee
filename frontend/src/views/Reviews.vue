@@ -330,11 +330,12 @@ export default {
 
   .container {
     background-color: white;
-    padding: 20px;
+    padding: 100px 50px;
     border-radius: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 400px;
+    width: 500px;
+    height: 500px;
   }
 
   h1 {
