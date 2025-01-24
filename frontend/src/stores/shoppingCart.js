@@ -16,6 +16,7 @@ actions: {
           productId: coffee.id,
           name: coffee.name,
           price: coffee.price,
+          imagePath: coffee.imagePath,
           quantity: 1,
         });
       }

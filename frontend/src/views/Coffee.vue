@@ -333,6 +333,7 @@ export default {
             id: coffee.id,
             name: coffee.name,
             price: coffee.price,
+            imagePath: coffee.imagePath,
           });
           console.log("Current cart:", shopCart.cart);
           showToast("Added to cart successfully!", "success");

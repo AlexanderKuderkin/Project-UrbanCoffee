@@ -25,7 +25,7 @@
                 <div class="card-body">
                   <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                     <div class="d-flex flex-row align-items-center">
-                      <img :src="item.image" class="img-fluid rounded-3 cart-item-image" alt="Shopping item">
+                      <img :src="item.imagePath" class="img-fluid rounded-3 cart-item-image" alt="Shopping item">
                       <div class="ms-3">
                         <h5>{{ item.name }}</h5>
                         <p class="small mb-0">{{ item.description }}</p>
@@ -153,6 +153,9 @@ function removeItem(index) {
 </script>
 
 <style scoped>
+.cart-item-image{
+  width: 150px;
+}
 .custom-wrapper {
   background-color: rgb(212, 205, 205);
   margin-top: 20px;
