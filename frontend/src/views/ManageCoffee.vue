@@ -48,10 +48,10 @@
             ></textarea>
           </div>
           <div class="form-actions mt-3">
-            <button type="submit" class="btn btn-success">Save</button>
+            <button type="submit" class="btn btn-save">Save</button>
             <button
               type="button"
-              class="btn btn-secondary ms-2"
+              class="btn btn-cancel ms-2"
               @click="closeDialog"
             >
               Cancel
@@ -69,55 +69,70 @@
           placeholder="Search for category name ..."
           class="form-control mb-3"
         />
-        <ul class="list-group">
-          <li
-            class="list-group-item d-flex justify-content-between align-items-center"
-            v-for="category in filteredCategories"
-            :key="category.id"
-          >
-            <div v-if="!category.isEditing">
-              <span>{{ category.name }}</span>
-              <span class="ms-2">{{ category.description }}</span>
-            </div>
-            <div v-else>
-              <input
-                type="text"
-                v-model="category.editName"
-                placeholder="Edit name"
-                class="form-control me-2"
-              />
-              <input
-                type="text"
-                v-model="category.editDescription"
-                placeholder="Edit description"
-                class="form-control"
-              />
-            </div>
-            <button
-              class="btn btn-danger btn-sm"
-              @click="deleteCategory(category.id)"
-            >
-              Delete
-            </button>
-            <button
-              class="btn btn-primary btn-sm"
-              v-if="!category.isEditing"
-              @click="enableEditCategory(category)"
-            >
-              Edit
-            </button>
-            <button
-              class="btn btn-success btn-sm"
-              v-if="category.isEditing"
-              @click="saveEditCategory(category)"
-            >
-              Save
-            </button>
-          </li>
-        </ul>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Category Info</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="category in filteredCategories"
+                :key="category.id"
+              >
+                <!-- Spalte 1: Text -->
+                <td>
+                  <div v-if="!category.isEditing">
+                    <strong>{{ category.name }}</strong><br />
+                    <span>{{ category.description }}</span>
+                  </div>
+                  <div v-else>
+                    <input
+                      type="text"
+                      v-model="category.editName"
+                      placeholder="Edit name"
+                      class="form-control mb-2"
+                    />
+                    <textarea
+                      v-model="category.editDescription"
+                      placeholder="Edit description"
+                      class="form-control"
+                    ></textarea>
+                  </div>
+                </td>
+
+                <!-- Spalte 2: Buttons -->
+                <td class="d-flex flex-column gap-2">
+                  <button
+                    class="btn btn-delete-category"
+                    @click="deleteCategory(category.id)"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    class="btn btn-edit-category"
+                    v-if="!category.isEditing"
+                    @click="enableEditCategory(category)"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    class="btn btn-save-category"
+                    v-if="category.isEditing"
+                    @click="saveEditCategory(category)"
+                  >
+                    Save
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <button
           type="button"
-          class="btn btn-secondary mt-3"
+          class="btn btn-close-category mt-3"
           @click="closeCategoriesDialog"
         >
           Close
@@ -338,7 +353,7 @@ export default {
 </script>
 
 <style scoped>
-
+/* Responsive Styling */
 @media (max-width: 768px) {
   .button-group {
     flex-direction: column; /* Buttons untereinander anordnen */
@@ -348,8 +363,7 @@ export default {
 
 .background-container {
   background-color: rgb(212, 205, 205);
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0;
   padding: 20px;
   border-radius: 20px;
 }
@@ -366,7 +380,11 @@ export default {
 }
 
 /* Buttons in the header */
-.btn-add-coffee {
+.btn-add-coffee,
+.btn-add-category,
+.btn-view-categories {
+  background-color: #A8865F;
+  color: white;
   border: none;
   padding: 8px 16px;
   border-radius: 15px;
@@ -374,40 +392,17 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
   height: 40px;
-  background-color: #A8865F;
-  color: white;
+  width: 145px; /* Einheitliche Breite */
 }
 
-.btn-add-coffee:hover {
-  background-color: #A8765F;
-}
-
-.btn-add-category {
-  border: none;
-  padding: 8px 16px;
-  border-radius: 15px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  height: 40px;
-  background-color: #A8865F;
-  color: white;
-}
-
-.btn-add-category:hover {
+.btn-add-coffee:hover,
+.btn-add-category:hover,
+.btn-view-categories:hover {
   background-color: #A8765F;
 }
 
 .btn-view-categories {
-  border: none;
-  padding: 8px 16px;
-  border-radius: 15px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  height: 40px;
   background-color: #1e160d;
-  color: white;
 }
 
 .btn-view-categories:hover {
@@ -415,59 +410,46 @@ export default {
 }
 
 /* Action Buttons in the Table */
-.btn-view-more {
+.btn-view-more,
+.btn-edit,
+.btn-delete {
   background-color: #A8865F;
   color: white;
   border-radius: 15px;
   padding: 8px 16px;
   height: 40px;
-  width: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.btn-view-more {
+  width: 120px;
   margin: 0;
 }
 
-.btn-view-more:hover {
-  background-color: #A8765F;
-}
-
-.btn-edit {
-  background-color: #A8865F;
-  color: white;
-  border-radius: 15px;
-  padding: 8px 16px;
-  height: 40px;
+.btn-edit,
+.btn-delete {
   width: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-edit:hover {
-  background-color: #A8765F;
 }
 
 .btn-delete {
   background-color: #1e160d;
-  color: white;
-  border-radius: 15px;
-  padding: 8px 16px;
-  height: 40px;
-  width: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .btn-delete:hover {
   background-color: #5a6268;
 }
 
+.btn-view-more:hover,
+.btn-edit:hover {
+  background-color: #A8765F;
+}
+
 /* Table Styles */
 .table-responsive-wrapper {
+  margin: 40px 0; /* Abstand nach oben und unten */
   overflow-x: auto;
-  margin-top: 20px;
   border-radius: 10px;
   background-color: #f5f5f5;
   padding: 10px;
@@ -479,24 +461,78 @@ export default {
   border-collapse: collapse;
 }
 
-.table-responsive-wrapper {
-  margin-top: 40px; /* Abstand nach oben */
-  margin-bottom: 40px; /* Abstand nach unten, falls benötigt */
-  overflow-x: auto;
-  border-radius: 10px;
-  background-color: #f5f5f5;
-  padding: 10px;
-}
-
-th, td {
+th,
+td {
   white-space: nowrap;
   text-align: left;
   vertical-align: middle; /* Ensures proper alignment in table cells */
 }
 
-.btn-add-coffee,
-.btn-add-category,
-.btn-view-categories {
-  width: 145px; /* Gleiche Breite wie View Categories */
+/* Save and Cancel Buttons */
+.btn-save,
+.btn-cancel {
+  border: none;
+  border-radius: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 10px 20px;
+}
+
+.btn-save {
+  background-color: #A8865F;
+  color: white;
+}
+
+.btn-save:hover {
+  background-color: #A8765F;
+}
+
+.btn-cancel {
+  background-color: #1e160d;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+}
+
+/* Buttons im "View Categories"-Pop-up */
+.btn-delete-category,
+.btn-close-category {
+  background-color: #1e160d; /* Dunkles Braun */
+  color: white;
+  border: none;
+  border-radius: 15px; /* Einheitlicher Radius */
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete-category:hover,
+.btn-close-category:hover {
+  background-color: #5a6268; /* Dunkleres Grau beim Hover */
+}
+
+.btn-edit-category {
+  background-color: #A8865F; /* Helles Braun */
+  color: white;
+  border: none;
+  border-radius: 15px; /* Einheitlicher Radius */
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit-category:hover {
+  background-color: #A8765F; /* Etwas dunkleres Braun beim Hover */
+}
+dialog {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 </style>
