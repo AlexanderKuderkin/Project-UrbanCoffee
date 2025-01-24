@@ -529,10 +529,13 @@ td {
 .btn-edit-category:hover {
   background-color: #A8765F; /* Etwas dunkleres Braun beim Hover */
 }
+
 dialog {
-  border: none;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border: none; /* Entfernt den Standardrahmen des Dialogs */
+  border-radius: 20px; /* Rundet die Ecken der Pop-ups */
+  overflow: hidden; /* Sorgt dafür, dass der Inhalt nicht über den Rahmen hinausragt */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Fügt einen leichten Schatten hinzu */
+  padding: 20px; /* Innenabstand, um den Inhalt angenehmer darzustellen */
+  background-color: white; /* Einheitlicher Hintergrund */
 }
 </style>
