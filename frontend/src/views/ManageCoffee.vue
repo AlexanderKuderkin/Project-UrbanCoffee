@@ -338,6 +338,14 @@ export default {
 </script>
 
 <style scoped>
+
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column; /* Buttons untereinander anordnen */
+    gap: 12px; /* Abstand zwischen den Buttons */
+  }
+}
+
 .background-container {
   background-color: rgb(212, 205, 205);
   margin-top: 20px;
@@ -368,7 +376,6 @@ export default {
   height: 40px;
   background-color: #A8865F;
   color: white;
-  width: 120px;
 }
 
 .btn-add-coffee:hover {
@@ -385,7 +392,6 @@ export default {
   height: 40px;
   background-color: #A8865F;
   color: white;
-  width: 145px;
 }
 
 .btn-add-category:hover {
@@ -402,7 +408,6 @@ export default {
   height: 40px;
   background-color: #1e160d;
   color: white;
-  width: 145px;
 }
 
 .btn-view-categories:hover {
@@ -487,5 +492,11 @@ th, td {
   white-space: nowrap;
   text-align: left;
   vertical-align: middle; /* Ensures proper alignment in table cells */
+}
+
+.btn-add-coffee,
+.btn-add-category,
+.btn-view-categories {
+  width: 145px; /* Gleiche Breite wie View Categories */
 }
 </style>
