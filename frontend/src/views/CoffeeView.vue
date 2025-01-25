@@ -173,13 +173,13 @@ export default {
 }
 
 .btn {
-  border-radius: 15px; /* Runde Ecken für alle Buttons */
+  border-radius: 15px;
   padding: 8px 16px;
   text-align: center;
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  min-width: 150px; /* Gleiche Breite für alle Buttons */
+  min-width: 150px;
 }
 
 .back-button {
@@ -194,66 +194,66 @@ export default {
 }
 
 .back-to-manage {
-  background-color: #A8865F; /* Helles Braun */
+  background-color: #A8865F;
   border-color: #A8865F;
-  color: #fff; /* Weißer Text */
+  color: #fff;
 }
 
 .back-to-manage:hover {
-  background-color: #A8765F; /* Etwas dunkleres Braun beim Hover */
+  background-color: #A8765F;
   border-color: #A8765F;
 }
 
 .button-group {
   display: flex;
-  justify-content: center; /* Zentriere die Buttons horizontal */
-  align-items: center; /* Stelle sicher, dass die Buttons vertikal ausgerichtet sind */
-  gap: 20px; /* Platz zwischen den Buttons */
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 @media (max-width: 768px) {
   .button-group {
-    flex-direction: column; /* Ordne die Buttons untereinander an */
-    align-items: center; /* Zentriere die Buttons im responsiven Layout */
-    gap: 10px; /* Reduziere den Abstand zwischen den Buttons */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 }
 
 .reviews .card {
   border: 1px solid #ddd;
   border-radius: 10px;
-  text-align: center; /* Zentriert alle Inhalte innerhalb der Karte */
-  padding: 20px; /* Fügt etwas Innenabstand hinzu */
+  text-align: center;
+  padding: 20px;
 }
 
 .reviews .card-body {
   display: flex;
-  flex-direction: column; /* Ordne alle Inhalte vertikal */
-  align-items: center; /* Zentriere die Inhalte horizontal */
+  flex-direction: column;
+  align-items: center;
 }
 
 .reviews h5 {
   font-weight: bold;
-  margin-bottom: 10px; /* Abstand unterhalb des Namens */
+  margin-bottom: 10px;
 }
 
 .reviews ul {
   display: flex;
-  justify-content: center; /* Zentriere die Sterne */
+  justify-content: center;
   list-style: none;
   padding: 0;
-  margin: 10px 0; /* Abstand um die Sterne */
+  margin: 10px 0;
 }
 
 .reviews p {
-  margin: 10px 0; /* Abstand um den Kommentar */
+  margin: 10px 0;
 }
 
 .star-color {
-  color: #69450c; /* Farbe für Sterne */
+  color: #69450c;
 }
 
 .reviews .card-body {
-  text-align: center; /* Zentriere den gesamten Text */
+  text-align: center;
 }
 </style>

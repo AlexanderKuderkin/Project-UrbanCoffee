@@ -22,7 +22,6 @@
         </a>
       </div>
 
-      <!-- Dialog for Policies -->
       <dialog id="policy-dialog">
         <h2>{{ dialogTitle }}</h2>
         <p v-html="dialogContent"></p>
@@ -90,25 +89,25 @@ export default {
 
 <style scoped>
 .footer {
-  background-image: url('@/assets/Kaffe_Footer.jpg'); /* Hintergrundbild */
+  background-image: url('@/assets/Kaffe_Footer.jpg'); 
   background-size: cover;
   background-position: center;
   color: #ffffff;
   padding: 40px 20px;
   display: flex;
-  flex-direction: column; /* Inhalte untereinander anordnen */
-  align-items: flex-start; /* Gesamter Block bleibt links */
-  justify-content: flex-start; /* Von oben nach unten ausrichten */
+  flex-direction: column; 
+  align-items: flex-start; 
+  justify-content: flex-start; 
   width: 100%;
   min-height: 200px;
   margin-top: 20px;
 }
 
 .footer-content {
-  max-width: 300px; /* Breite des Inhaltsblocks begrenzen */
+  max-width: 300px; 
   font-family: 'Roboto', sans-serif;
-  text-align: center; /* Inhalt innerhalb des Blocks zentrieren */
-  margin-left: 0; /* Block bleibt auf der linken Seite */
+  text-align: center; 
+  margin-left: 0; 
 }
 
 .footer h5 {
@@ -129,20 +128,20 @@ export default {
 }
 
 .social-icons {
-  margin-top: 20px; /* Abstand nach oben für die Icons */
+  margin-top: 20px; 
   display: flex;
-  justify-content: center; /* Icons innerhalb des Blocks zentrieren */
-  gap: 15px; /* Abstand zwischen den Icons */
+  justify-content: center; 
+  gap: 15px; 
 }
 
 .social-icons a {
   color: #ffffff;
-  font-size: 20px; /* Standardgröße der Icons */
+  font-size: 20px; 
   transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-  color: #e0c097; /* Farbe beim Hover */
+  color: #e0c097; 
 }
 
 @media (max-width: 768px) {
@@ -151,7 +150,7 @@ export default {
   }
 
   .footer-content {
-    max-width: 100%; /* Für kleinere Bildschirme */
+    max-width: 100%; 
   }
 }
 

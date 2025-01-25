@@ -84,26 +84,25 @@ onMounted(() => {
 
 <style scoped>
 .review-button {
-  background-color: #735340; /* Brauner Hintergrund */
-  color: white; /* Weißer Text */
-  border: none; /* Entfernt die Linie vollständig */
-  padding: 10px 20px; /* Größerer Button */
-  border-radius: 15px; /* Runde Ecken */
-  font-size: 1.25rem; /* Größere Schrift */
-  font-weight: normal; /* Normale Schriftart (nicht fett) */
-  text-decoration: none; /* Entfernt die Unterstreichung */
-  display: inline-block; /* Block-ähnlicher Button */
-  cursor: pointer; /* Zeiger bei Hover */
+  background-color: #735340; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 15px; 
+  font-size: 1.25rem; 
+  font-weight: normal; 
+  text-decoration: none; 
+  display: inline-block; 
+  cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
 
 .review-button:hover {
-  background-color: #a8865f; /* Helleres Braun beim Hover */
-  text-decoration: none; /* Keine Unterstreichung beim Hover */
+  background-color: #a8865f; 
+  text-decoration: none; 
 }
 
 
-/* Bestehende Styles (unverändert) */
 .min-h-screen {
   min-height: 100vh;
 }

@@ -434,14 +434,14 @@
 
   .button-group {
     display: flex;
-    justify-content: center; /* Zentriere Buttons */
-    align-items: center; /* Vertikale Ausrichtung */
-    gap: 5px; /* Reduziere den Abstand zwischen Buttons */
+    justify-content: center;
+    align-items: center; 
+    gap: 5px; 
 }
 
 .button-group button {
-    margin: 0; /* Entferne zusätzliche Außenabstände */
-    padding: 10px 15px; /* Einheitliches Padding */
+    margin: 0; 
+    padding: 10px 15px; 
 	border-radius: 15px;
 }
 

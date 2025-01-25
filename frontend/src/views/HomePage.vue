@@ -203,339 +203,339 @@ methods: {
 
 <style scoped>
 .reviews-section {
-background-color: #f3f2f2;
-padding: 40px 0;
+  background-color: #f3f2f2;
+  padding: 40px 0;
 }
 
 .card {
-border-radius: 30px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-body {
-text-align: center;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .star-color {
-color: #735340;
+  color: #735340;
 }
 
 .btn-view-more {
-margin-top: 10px;
-padding: 10px 20px; /* Ausreichend Platz für den Button */
-border: none;
-border-radius: 15px; /* Border-Radius auf 15px geändert */
-cursor: pointer;
-transition: background-color 0.3s ease;
-background-color: #735340; /* Gleiche Farbe wie vorher */
-color: #ffffff;
-text-decoration: none; /* Unterstrich entfernt */
-font-size: 16px; /* Schriftgröße angepasst */
-display: inline-block; /* Sicherstellen, dass Text und Button normal aussehen */
-width: auto; /* Dynamische Breite */
-max-width: 150px; /* Maximale Breite festgelegt */
-text-align: center; /* Text zentriert */
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #735340;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-block;
+  width: auto;
+  max-width: 150px;
+  text-align: center;
 }
 
 .btn-view-more:hover {
-background-color: #A8765F;
-text-decoration: none; /* Sicherstellen, dass auch beim Hover kein Unterstrich erscheint */
+  background-color: #A8765F;
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
-.btn-view-more {
-  width: auto; /* Normale Größe auch auf kleinen Bildschirmen */
-  text-align: center; /* Text bleibt zentriert */
-  padding: 10px 15px; /* Leicht reduzierte Padding für kleinere Bildschirme */
-  max-width: 150px; /* Maximale Breite auch im Responsive-Modus */
-}
+  .btn-view-more {
+    width: auto;
+    text-align: center;
+    padding: 10px 15px;
+    max-width: 150px;
+  }
 }
 
 .explanation-container {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-gap: 20px;
-margin: 20px;
-flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 860px) {
-.explanation-container {
-  flex-direction: column;
-  align-items: center;
-}
+  .explanation-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .our-story-container,
 .our-goal-container {
-flex: 1;
-color: #735340;
-min-width: 250px;
-padding: 20px;
-box-sizing: border-box;
-text-align: center;
-display: flex;
-flex-direction: column;
-align-items: center;
-font-family: 'Roboto', sans-serif;
+  flex: 1;
+  color: #735340;
+  min-width: 250px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .kaffee-pour {
-flex: 1;
-display: flex;
-justify-content: center;
-align-items: center;
-min-width: 250px;
-max-width: 280px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+  max-width: 280px;
 }
 
 .kaffee-pour img {
-max-width: 100%;
-height: auto;
-border-radius: 20px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
 }
 
 h4, p {
-display: inline-block;
-text-align: center;
-margin: 0 auto;
-font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
 }
 
 h4 {
-margin-top: 0;
+  margin-top: 0;
 }
+
 .popular-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0;
 }
 
 .vertical-line {
-width: 4px;
-height: 90px;
-background-color: #D9B68b;
-margin-bottom: 10px;
-border-radius: 20px;
+  width: 4px;
+  height: 90px;
+  background-color: #D9B68b;
+  margin-bottom: 10px;
+  border-radius: 20px;
 }
 
 .popular-container h3 {
-color: #D9B68b;
-font-weight: bold;
+  color: #D9B68b;
+  font-weight: bold;
 }
 
 .advertising-container {
-position: relative;
-margin: 40px 20px; /* Abstand nach unten erhöht */
-min-height: 250px; /* Höhe leicht vergrößert */
-background-image: url('@/assets/kaffeepulver_cleanup.jpg');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-border-radius: 20px;
-padding: 30px; /* Padding angepasst */
-text-align: center;
+  position: relative;
+  margin: 40px 20px;
+  min-height: 250px;
+  background-image: url('@/assets/kaffeepulver_cleanup.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
 }
 
 .advertising-text {
-position: relative; 
-color: white;
-font-size: 20px;
-margin-bottom: 30px;
-font-size: xx-large;
-font-family: 'Roboto', sans-serif;
-margin-top: 20px; /* Text etwas weiter nach unten verschoben */
+  position: relative; 
+  color: white;
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-size: xx-large;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 20px;
 }
 
 .signInBtn {
-border: none;
-background-color: #A8865F;
-color: #ffffff;
-border-radius: 15px; /* Border-Radius auf 15px geändert */
-padding: 10px 20px; /* Button vergrößert */
-font-size: 20px; /* Schriftgröße angepasst (gleich wie im View more-Button) */
-font-weight: normal; /* Text ist nicht fett */
-cursor: pointer;
-margin-left: 10px;
-width: auto; /* Breite dynamisch */
-text-decoration: none; /* Unterstrich entfernt */
+  border: none;
+  background-color: #A8865F;
+  color: #ffffff;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: normal;
+  cursor: pointer;
+  margin-left: 10px;
+  width: auto;
+  text-decoration: none;
 }
 
 .signInBtn:hover {
-background-color: #A8765F;
-text-decoration: none; /* Sicherstellen, dass auch beim Hover kein Unterstrich erscheint */
+  background-color: #A8765F;
+  text-decoration: none;
 }
 
-
 .description-container {
-margin: 0px 30px;
+  margin: 0px 30px;
 }
 
 .description-row {
-display: flex;
-justify-content: space-between;
-margin-bottom: 20px;
-align-items: center; /* Sicherstellen, dass Bild und Text zentriert ausgerichtet sind */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
 }
 
 .description-item {
-display: flex;
-flex-direction: row; /* Bild links, Text rechts */
-align-items: center;
-flex: 0 0 50%;
-margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 0 0 50%;
+  margin-bottom: 20px;
 }
 
 .description-item.reverse {
-flex-direction: row-reverse; /* Bild rechts, Text links */
+  flex-direction: row-reverse;
 }
 
 .description-image {
-width: 260px;
-height: 250px;
-border-radius: 20px;
-margin-right: 15px;
+  width: 260px;
+  height: 250px;
+  border-radius: 20px;
+  margin-right: 15px;
 }
 
 .description-item.reverse .description-image {
-margin-left: 15px; /* Abstände für reverse-Bilder */
-margin-right: 0;
+  margin-left: 15px;
+  margin-right: 0;
 }
 
 .description-text {
-flex: 1;
+  flex: 1;
 }
 
 .description-text h3 {
-color: #A8865F; 
-margin-top: 5px;
-margin-bottom: 5px;
-text-align: center; 
-font-family: 'Noto Sans', sans-serif;
+  color: #A8865F; 
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center; 
+  font-family: 'Noto Sans', sans-serif;
 }
 
 .description-text p {
-color: #000000; 
-padding-left: 30px;
-padding-right: 30px;
-text-align: center;
-font-family: 'Roboto', sans-serif;
+  color: #000000; 
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 @media (max-width: 768px) {
-.description-row {
-  flex-direction: column; /* Stacking für kleine Bildschirme */
-  align-items: center; 
-}
+  .description-row {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.description-item {
-  flex: 1 0 100%; 
-  margin-bottom: 20px; 
-  display: flex;
-  flex-direction: column; /* Bild oben, Text unten */
-  align-items: center; 
-}
+  .description-item {
+    flex: 1 0 100%; 
+    margin-bottom: 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.description-item.reverse {
-  flex-direction: column; /* Auch für reverse: Bild oben, Text unten */
-}
+  .description-item.reverse {
+    flex-direction: column;
+  }
 
-.description-image {
-  order: -1; /* Bild immer zuerst */
-  margin-right: 0; /* Keine Abstände für kleine Bildschirme */
-  margin-bottom: 10px; /* Abstand zwischen Bild und Text */
-}
+  .description-image {
+    order: -1;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 
-.description-item.reverse .description-image {
-  order: -1; /* Sicherstellen, dass reverse-Bilder auch oben stehen */
-}
+  .description-item.reverse .description-image {
+    order: -1;
+  }
 }
 
 .offer-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0;
 }
 
 .vertical-line {
-width: 4px;
-height: 90px;
-background-color: #D9B68b;
-margin-bottom: 10px;
-border-radius: 20px;
+  width: 4px;
+  height: 90px;
+  background-color: #D9B68b;
+  margin-bottom: 10px;
+  border-radius: 20px;
 }
 
 .offer-container h3 {
-color: #D9B68b;
-font-weight: bold;
+  color: #D9B68b;
+  font-weight: bold;
 }
 
 .hero-section {
-position: relative;
-width: 100%;
-min-height: 450px;
-background-image: url('@/assets/StartseiteBild.png');
-background-size: cover; 
-background-position: center;
-margin-top: 20px;
-margin-bottom: 20px;
-background-repeat: no-repeat;
-border-radius: 20px;
-font-family: 'Roboto', sans-serif;
+  position: relative;
+  width: 100%;
+  min-height: 450px;
+  background-image: url('@/assets/StartseiteBild.png');
+  background-size: cover; 
+  background-position: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .hero-text {
-position: absolute;
-top: 47%;
-left: 35%;
-transform: translate(-40%, -50%);
-color: white;
-font-size: 20px;
-text-align: center;
+  position: absolute;
+  top: 47%;
+  left: 35%;
+  transform: translate(-40%, -50%);
+  color: white;
+  font-size: 20px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
-.hero-text {
-  font-size: 18px;
-  padding: 0 15px;
-}
+  .hero-text {
+    font-size: 18px;
+    padding: 0 15px;
+  }
 }
 
 @media (max-width: 480px) {
-.hero-text {
-  font-size: 16px;
-}
+  .hero-text {
+    font-size: 16px;
+  }
 }
 
 .view-more-btn {
-margin-top: 10px;
-padding: 8px 12px;
-border: none;
-border-radius: 15px;
-cursor: pointer;
-transition: background-color 0.3s ease;
-display: block;
-width: 80%;
-margin-left: auto;
-margin-right: auto;
-text-align: center;
-width: 119px;
-background-color: #735340;
-color: #ffffff;
-text-decoration: none;
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 119px;
+  background-color: #735340;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .view-more-btn:hover {
-background-color: #A8765F;
-text-decoration: none;
+  background-color: #A8765F;
+  text-decoration: none;
 }
 </style>

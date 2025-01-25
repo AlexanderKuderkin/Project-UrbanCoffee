@@ -42,23 +42,5 @@ module.exports = {
       }
       return res.ok();
     },      
-    
-/*
-    uploadImage: async function (req, res) {
-      req.file('image').upload({
-        dirname: require('path').resolve(sails.config.appPath, 'assets/images'),
-        maxBytes: 10000000
-      },     
-      const imagePath = '/images/' + uploadedFiles[0].filename;
-      const coffee = await Coffee.create({
-        name: req.body.name,
-        price: req.body.price,
-        imagePath: imagePath
-      }).fetch();
-
-      return res.json({ coffee, message: 'Image uploaded successfully!!!!!!' });
-    },);
-  },
-      */
 };
 

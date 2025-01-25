@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useUserStore } from "../stores/user";
 
-// Seiten-Imports
 import HomePage from '@/views/HomePage.vue';
 import Coffee from '@/views/Coffee.vue';
 import ManageCoffee from '@/views/ManageCoffee.vue';

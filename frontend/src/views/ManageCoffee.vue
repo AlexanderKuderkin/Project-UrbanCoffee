@@ -373,7 +373,6 @@ export default {
   gap: 8px;
 }
 
-/* Buttons in the header */
 .btn-add-coffee,
 .btn-add-category,
 .btn-view-categories {
@@ -403,7 +402,6 @@ export default {
   background-color: #5a6268;
 }
 
-/* Action Buttons in the Table */
 .btn-view-more,
 .btn-edit,
 .btn-delete {
@@ -440,7 +438,6 @@ export default {
   background-color: #A8765F;
 }
 
-/* Table Styles */
 .table-responsive-wrapper {
   margin: 40px 0; 
   overflow-x: auto;
@@ -459,10 +456,9 @@ th,
 td {
   white-space: nowrap;
   text-align: left;
-  vertical-align: middle; /* Ensures proper alignment in table cells */
+  vertical-align: middle; 
 }
 
-/* Save and Cancel Buttons */
 .btn-save,
 .btn-cancel {
   border: none;
@@ -491,7 +487,6 @@ td {
   background-color: #5a6268;
 }
 
-/* Buttons im "View Categories"-Pop-up */
 .btn-delete-category,
 .btn-close-category {
   background-color: #1e160d; 

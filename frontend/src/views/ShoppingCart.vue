@@ -212,7 +212,6 @@ function removeItem(index) {
   background-color: #5a6268;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .card {
     margin: 20px 10px;

@@ -1,7 +1,7 @@
 <template>
   <div class="outer-container">
     <div class="container mt-5">
-      <!-- Kundeninformationen -->
+      <!-- user information -->
       <div class="info-card card shadow-lg">
         <div class="card-body text-center" v-if="user">
           <h2 class="card-title fw-bold">{{ user.fullName }}</h2>
@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <!-- Reviews anzeigen -->
+      <!-- reviews -->
       <div class="reviews mt-5">
         <h3 class="text-center mb-4">User Reviews</h3>
         <div v-if="userReviews.length > 0">
@@ -112,7 +112,6 @@ export default {
 </script>
 
 <style scoped>
-/* Äußeres Styling */
 .outer-container {
   background-color: rgb(212, 205, 205);
   border-radius: 20px;
@@ -120,50 +119,43 @@ export default {
   padding: 20px;
 }
 
-/* Zentrierter Container für gleiche Breite */
 .container {
-  max-width: 600px; /* Gleiche maximale Breite */
+  max-width: 600px; 
 }
 
-/* Info-Card Styling */
 .info-card {
   margin-bottom: 20px;
 }
 
 .info-card .list-group {
-  text-align: left; /* Links ausrichten */
-  margin-left: auto; /* Abstand nach links für Zentrierung der Liste */
-  margin-right: auto; /* Abstand nach rechts, um innerhalb der Karte zentriert zu bleiben */
-  max-width: 400px; /* Optionale Begrenzung der Breite */
+  text-align: left; 
+  margin-left: auto; 
+  margin-right: auto; 
+  max-width: 400px; 
 }
 
 .info-card .card-title {
-  text-align: center; /* Name bleibt zentriert */
+  text-align: center; 
 }
 
-/* Review-Card Styling */
 .review-card {
-  margin: 0 auto 20px auto; /* Zentriere die Reviews */
+  margin: 0 auto 20px auto; 
 }
 
-/* Einheitliches Card-Styling */
 .card {
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Zentrierte Inhalte */
 .card-body {
   text-align: center;
   padding: 20px;
 }
 
-/* Sterne Styling */
 .star-color {
   color: #735340;
 }
 
-/* Button-Styling */
 .btn-danger {
   background-color: #dc3545;
   color: white;
@@ -178,7 +170,6 @@ export default {
   background-color: #c82333;
 }
 
-/* Back-Button */
 .back-button {
   background-color: #1e160d;
   border-color: #1e160d;
@@ -190,14 +181,13 @@ export default {
   border-color: #5a6268;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .container {
-    max-width: 90%; /* Reduziere die Breite auf kleinen Geräten */
+    max-width: 90%; 
   }
 
   .card {
-    padding: 15px; /* Weniger Innenabstand für kleinere Bildschirme */
+    padding: 15px; 
   }
 }
 </style>
