@@ -6,7 +6,7 @@
       </div>
       <div class="container mt-5">
         <div class="header-section text-white mb-4 p-3 mx-auto">
-          <h1 class="text-center mb-0">Edit Product</h1>
+          <h1 class="text-center mb-0">Edit Coffee</h1>
         </div>
 
         <form @submit.prevent="updateProduct">
@@ -151,7 +151,7 @@ export default {
     const originalProduct = ref({});
     const categories = ref([]);
     const toastMessage = ref(null);
-    const toastType = ref("");
+    const toastType = ref("success");
 
     const showToast = (message, type = "success") => {
       toastMessage.value = message;
@@ -201,6 +201,10 @@ export default {
     };
 
     const updateProduct = async () => {
+      if (!product.value.certificates.length) {
+        showToast("At least one certificate must be selected!", "error");
+        return;
+      }
       try {
         await axios.put(`/Coffee/${route.params.id}`, {
           ...product.value,
