@@ -250,7 +250,7 @@ export default {
 }
 
 .star-color {
-  color: #f39c12; /* Farbe für Sterne */
+  color: #69450c; /* Farbe für Sterne */
 }
 
 .reviews .card-body {
