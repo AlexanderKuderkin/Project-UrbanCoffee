@@ -130,6 +130,17 @@ export default {
   margin-bottom: 20px;
 }
 
+.info-card .list-group {
+  text-align: left; /* Links ausrichten */
+  margin-left: auto; /* Abstand nach links für Zentrierung der Liste */
+  margin-right: auto; /* Abstand nach rechts, um innerhalb der Karte zentriert zu bleiben */
+  max-width: 400px; /* Optionale Begrenzung der Breite */
+}
+
+.info-card .card-title {
+  text-align: center; /* Name bleibt zentriert */
+}
+
 /* Review-Card Styling */
 .review-card {
   margin: 0 auto 20px auto; /* Zentriere die Reviews */

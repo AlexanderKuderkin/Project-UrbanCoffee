@@ -44,6 +44,7 @@
   </div>
 </template>
 
+
 <script setup>
 import { ref, onMounted } from "vue";
 import { useUserStore } from "@/stores/user";
@@ -82,6 +83,27 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.review-button {
+  background-color: #735340; /* Brauner Hintergrund */
+  color: white; /* Weißer Text */
+  border: none; /* Entfernt die Linie vollständig */
+  padding: 10px 20px; /* Größerer Button */
+  border-radius: 15px; /* Runde Ecken */
+  font-size: 1.25rem; /* Größere Schrift */
+  font-weight: normal; /* Normale Schriftart (nicht fett) */
+  text-decoration: none; /* Entfernt die Unterstreichung */
+  display: inline-block; /* Block-ähnlicher Button */
+  cursor: pointer; /* Zeiger bei Hover */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.review-button:hover {
+  background-color: #a8865f; /* Helleres Braun beim Hover */
+  text-decoration: none; /* Keine Unterstreichung beim Hover */
+}
+
+
+/* Bestehende Styles (unverändert) */
 .min-h-screen {
   min-height: 100vh;
 }
@@ -177,16 +199,5 @@ onMounted(() => {
 .rounded-t-lg {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-}
-.review-button {
-  background-color: #735340;
-  color: white;
-  border: none;
-  padding: 2px 6px;
-  border-radius: 8px;
-  transition: background-color 0.2s ease-in-out;
-}
-.review-button:hover {
-  background-color: #a8865f;
 }
 </style>
