@@ -256,6 +256,10 @@ export default {
 
     const addProduct = async () => {
       try {
+        if (newProduct.value.certificates.length === 0) {
+          showToast("Please select at least one certificate.", "error");
+          return;
+        }
         await axios.post("/Coffee", newProduct.value);
         showToast("Coffee added successfully!", "success");
         newProduct.value = {
@@ -273,6 +277,7 @@ export default {
         };
       } catch (error) {
         console.error("Error adding product:", error);
+        showToast("Error adding product. Please try again.", "error");
       }
     };
 
