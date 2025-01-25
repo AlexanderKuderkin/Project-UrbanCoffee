@@ -124,7 +124,14 @@
             </select>
           </div>
 
-          <button type="submit" class="btn btn-update-product">Update Product</button>
+          <button
+            type="submit"
+            class="btn btn-update-product"
+            :disabled="!isProductChanged"
+          >
+            Update Product
+          </button>
+          <RouterLink to="/ManageCoffee" type="submit" class="btn btn-add-product">Back</RouterLink>
         </form>
       </div>
     </div>
@@ -133,28 +140,15 @@
 
 <script>
 import axios from "axios";
-import { ref, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { ref, onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
 
 export default {
   name: "EditProduct",
   setup() {
     const route = useRoute();
-    const router = useRouter();
-    const product = ref({
-      name: "",
-      description: "",
-      price: 0,
-      caffeineContent: 0,
-      brand: "",
-      roastDegree: "",
-      beanType: "",
-      certificates: [],
-      origin: "",
-      grindType: "",
-      category: null,
-    });
-
+    const product = ref({});
+    const originalProduct = ref({});
     const categories = ref([]);
     const toastMessage = ref(null);
     const toastType = ref("");
@@ -185,7 +179,11 @@ export default {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`/Coffee/${route.params.id}`);
-        product.value = response.data;
+        product.value = {
+          ...response.data,
+          category: response.data.category ? response.data.category.id : null,
+        };
+        originalProduct.value = JSON.parse(JSON.stringify(product.value));
       } catch (error) {
         console.error("Error fetching product:", error);
         showToast("Failed to fetch product details.", "error");
@@ -204,13 +202,21 @@ export default {
 
     const updateProduct = async () => {
       try {
-        await axios.put(`/Coffee/${route.params.id}`, product.value);
+        await axios.put(`/Coffee/${route.params.id}`, {
+          ...product.value,
+          category: product.value.category,
+        });
         showToast("Product updated successfully!", "success");
+        originalProduct.value = JSON.parse(JSON.stringify(product.value));
       } catch (error) {
         console.error("Error updating product:", error);
         showToast("Failed to update product.", "error");
       }
     };
+
+    const isProductChanged = computed(() => {
+      return JSON.stringify(product.value) !== JSON.stringify(originalProduct.value);
+    });
 
     onMounted(() => {
       fetchProduct();
@@ -219,6 +225,7 @@ export default {
 
     return {
       product,
+      originalProduct,
       categories,
       brands,
       roastDegrees,
@@ -227,6 +234,7 @@ export default {
       origins,
       grindTypes,
       updateProduct,
+      isProductChanged,
       toastMessage,
       toastType,
     };
