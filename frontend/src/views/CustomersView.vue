@@ -1,12 +1,8 @@
 <template>
   <div class="outer-container">
     <div class="container mt-5">
-      <div class="card shadow-lg">
-        <img
-          class="card-img-top rounded-circle"
-          src="https://dummyimage.com/200x200/cccccc/000000&text=Customer+Photo"
-          alt="Customer Photo"
-        />
+      <!-- Kundeninformationen -->
+      <div class="info-card card shadow-lg">
         <div class="card-body text-center" v-if="user">
           <h2 class="card-title fw-bold">{{ user.fullName }}</h2>
           <ul class="list-group list-group-flush mt-3">
@@ -35,24 +31,22 @@
           <div
             v-for="review in userReviews"
             :key="review.id"
-            class="col-md-6 mb-4"
+            class="review-card card shadow-lg"
           >
-            <div class="card">
-              <div class="card-body py-4 mt-2">
-                <h5 class="font-weight-bold">{{ review.coffeeName }}</h5>
-                <ul class="list-unstyled d-flex justify-content-center mb-3">
-                  <li v-for="n in review.rating" :key="n">
-                    <i class="fas fa-star star-color"></i>
-                  </li>
-                </ul>
-                <p class="mb-2">
-                  <i class="fas fa-quote-left pe-2"></i>{{ review.comment }}
-                </p>
-                <!-- Delete-Button -->
-                <button class="btn btn-danger" @click="deleteReview(review.id)">
-                  Delete Review
-                </button>
-              </div>
+            <div class="card-body py-4 mt-2 text-center">
+              <h5 class="font-weight-bold">{{ review.coffeeName }}</h5>
+              <ul class="list-unstyled d-flex justify-content-center mb-3">
+                <li v-for="n in review.rating" :key="n">
+                  <i class="fas fa-star star-color"></i>
+                </li>
+              </ul>
+              <p class="mb-2">
+                <i class="fas fa-quote-left pe-2"></i>{{ review.comment }}
+              </p>
+              <!-- Delete-Button -->
+              <button class="btn btn-danger" @click="deleteReview(review.id)">
+                Delete Review
+              </button>
             </div>
           </div>
         </div>
@@ -63,7 +57,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import axios from "axios";
@@ -118,13 +111,53 @@ export default {
 };
 </script>
 
-  
-  <style scoped>
-  .btn-danger {
+<style scoped>
+/* Äußeres Styling */
+.outer-container {
+  background-color: rgb(212, 205, 205);
+  border-radius: 20px;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+/* Zentrierter Container für gleiche Breite */
+.container {
+  max-width: 600px; /* Gleiche maximale Breite */
+}
+
+/* Info-Card Styling */
+.info-card {
+  margin-bottom: 20px;
+}
+
+/* Review-Card Styling */
+.review-card {
+  margin: 0 auto 20px auto; /* Zentriere die Reviews */
+}
+
+/* Einheitliches Card-Styling */
+.card {
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Zentrierte Inhalte */
+.card-body {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Sterne Styling */
+.star-color {
+  color: #735340;
+}
+
+/* Button-Styling */
+.btn-danger {
   background-color: #dc3545;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 8px 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -133,68 +166,27 @@ export default {
 .btn-danger:hover {
   background-color: #c82333;
 }
-  .reviews {
-  margin-top: 20px;
-  text-align: left;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+
+/* Back-Button */
+.back-button {
+  background-color: #1e160d;
+  border-color: #1e160d;
+  border-radius: 15px;
 }
 
-.card {
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.back-button:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
 }
 
-.card-body {
-  text-align: center;
-  padding: 20px;
-}
-
-.star-color {
-  color: #735340;
-}
-  .outer-container {
-    background-color: rgb(212, 205, 205);
-    border-radius: 20px;
-    margin: 20px 0;
-    padding: 20px;
-  }
+/* Responsive Design */
+@media (max-width: 768px) {
   .container {
-    max-width: 600px;
+    max-width: 90%; /* Reduziere die Breite auf kleinen Geräten */
   }
+
   .card {
-    border: none;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    padding: 15px; /* Weniger Innenabstand für kleinere Bildschirme */
   }
-  .card-img-top {
-    object-fit: cover;
-    height: 200px;
-    width: 200px;
-    margin: 20px auto 0 auto;
-  }
-  .card-title {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  .list-group-item {
-    font-size: 1rem;
-    text-align: left;
-  }
-  .btn {
-    border-radius: 25px;
-  }
-  .back-button {
-    background-color: #1e160d;
-    border-color: #1e160d;
-    border-radius: 15px;
-  }
-  .back-button:hover {
-    background-color: #5a6268;
-    border-color: #5a6268;
-  }
-  </style>
-  
+}
+</style>

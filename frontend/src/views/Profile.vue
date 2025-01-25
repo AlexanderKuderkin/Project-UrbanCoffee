@@ -6,9 +6,6 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="card profile-card">
-            <div class="profile-placeholder">
-              <span>No Image</span>
-            </div>
             <h4 class="mt-3">{{ form.fullName || "No Name" }}</h4>
             <RouterLink to="/OrderHistory" class="btn order-history-button mt-3">Order History</RouterLink>
           </div>
@@ -349,13 +346,13 @@
   }
   
   .profile-card {
-    text-align: center;
-    border-radius: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; 
+  	text-align: center;
+  	border-radius: 20px;
+  	padding: 20px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center; 
   }
   
   .profile-placeholder {
