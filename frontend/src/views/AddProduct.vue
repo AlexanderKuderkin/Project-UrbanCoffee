@@ -1,5 +1,8 @@
 <template>
   <div class="outer-container">
+    <div v-if="toastMessage" class="toast" :class="[toastType, { show: toastMessage }]">
+      {{ toastMessage }}
+    </div>
     <div class="background-container">
       <div class="form-wrapper">
         <div class="header-section text-white mb-4 p-3">
@@ -187,6 +190,7 @@
           </div>
 
           <button type="submit" class="btn btn-add-product">Add Product</button>
+          <RouterLink to="/ManageCoffee" type="submit" class="btn btn-add-product">Back</RouterLink>
         </form>
       </div>
     </div>
@@ -200,6 +204,19 @@ import { ref, onMounted } from "vue";
 export default {
   name: "AddProduct",
   setup() {
+    const toastMessage = ref(null);
+    const toastType = ref("");
+
+    function showToast(message, type = "success") {
+      toastMessage.value = message;
+      toastType.value = type;
+
+      setTimeout(() => {
+        toastMessage.value = null;
+        toastType.value = "";
+      }, 3000);
+    };
+
     const newProduct = ref({
       name: "",
       description: "",
@@ -240,7 +257,7 @@ export default {
     const addProduct = async () => {
       try {
         await axios.post("/Coffee", newProduct.value);
-        alert("Product added successfully!");
+        showToast("Coffee added successfully!", "success");
         newProduct.value = {
           name: "",
           description: "",
@@ -273,6 +290,9 @@ export default {
       grindTypes,
       categories,
       addProduct,
+      toastMessage,
+      toastType,
+      showToast,
     };
   },
 };
