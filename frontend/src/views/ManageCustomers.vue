@@ -21,7 +21,8 @@
 				<th style="width: 50px;">ID</th>
 				<th style="width: auto;">Name</th>
 				<th style="width: 150px;">Orders</th>
-				<th style="width: 250px;">Actions</th>
+				<th style="width: 250px;">Data</th>
+				<th style="width: 250px;">Remove</th>
 			  </tr>
 			</thead>
 			<tbody>
@@ -43,10 +44,13 @@
 						>
 						Information
 						</RouterLink>
-						<button	v-if="!user.isSuperAdmin" class="btn btn-danger" @click="deleteUser(user.id)">
+						
+					</div>
+				</td>
+				<td>
+					<button	v-if="!user.isSuperAdmin" class="btn btn-danger" @click="deleteUser(user.id)">
 						Delete User
 						</button>
-					</div>
 				</td>
 			  </tr>
 			  <tr v-if="filteredUsers.length === 0">
