@@ -77,15 +77,14 @@ body {
 }
 #NameWeb{
     font-family: 'Platypi', sans-serif;
+    font-weight: bold;
+    color: #ffffff;
 }
 
 .header .logo {
     display: flex;
     flex-direction: column; 
     align-items: center; 
-}
-#NameWeb{
-    font-weight: bold;
 }
 
 .header .search-container {
