@@ -60,7 +60,6 @@
         </form>
       </dialog>
 
-      <!-- View Categories Modal -->
       <dialog id="categoriesDialog">
         <h2>Categories</h2>
         <input
@@ -82,7 +81,6 @@
                 v-for="category in filteredCategories"
                 :key="category.id"
               >
-                <!-- Spalte 1: Text -->
                 <td>
                   <div v-if="!category.isEditing">
                     <strong>{{ category.name }}</strong><br />
@@ -103,7 +101,6 @@
                   </div>
                 </td>
 
-                <!-- Spalte 2: Buttons -->
                 <td class="d-flex flex-column gap-2">
                   <button
                     class="btn btn-delete-category"
@@ -148,7 +145,6 @@
               <th>Name</th>
               <th>Description</th>
               <th>Price</th>
-              <th>Bean Variety</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -158,7 +154,6 @@
               <td>{{ coffee.name }}</td>
               <td>{{ coffee.description }}</td>
               <td>${{ coffee.price.toFixed(2) }}</td>
-              <td>{{ coffee.beanType }}</td>
               <td class="d-flex gap-2 align-items-center">
                 <router-link :to="`/coffee/${coffee.id}`" class="btn btn-view-more">
                   View More
@@ -353,11 +348,10 @@ export default {
 </script>
 
 <style scoped>
-/* Responsive Styling */
 @media (max-width: 768px) {
   .button-group {
-    flex-direction: column; /* Buttons untereinander anordnen */
-    gap: 12px; /* Abstand zwischen den Buttons */
+    flex-direction: column; 
+    gap: 12px;
   }
 }
 
@@ -392,7 +386,7 @@ export default {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
   height: 40px;
-  width: 145px; /* Einheitliche Breite */
+  width: 145px; 
 }
 
 .btn-add-coffee:hover,
@@ -448,7 +442,7 @@ export default {
 
 /* Table Styles */
 .table-responsive-wrapper {
-  margin: 40px 0; /* Abstand nach oben und unten */
+  margin: 40px 0; 
   overflow-x: auto;
   border-radius: 10px;
   background-color: #f5f5f5;
@@ -500,10 +494,10 @@ td {
 /* Buttons im "View Categories"-Pop-up */
 .btn-delete-category,
 .btn-close-category {
-  background-color: #1e160d; /* Dunkles Braun */
+  background-color: #1e160d; 
   color: white;
   border: none;
-  border-radius: 15px; /* Einheitlicher Radius */
+  border-radius: 15px; 
   font-size: 14px;
   cursor: pointer;
   padding: 10px 20px;
@@ -512,14 +506,14 @@ td {
 
 .btn-delete-category:hover,
 .btn-close-category:hover {
-  background-color: #5a6268; /* Dunkleres Grau beim Hover */
+  background-color: #5a6268; 
 }
 
 .btn-edit-category {
-  background-color: #A8865F; /* Helles Braun */
+  background-color: #A8865F; 
   color: white;
   border: none;
-  border-radius: 15px; /* Einheitlicher Radius */
+  border-radius: 15px; 
   font-size: 14px;
   cursor: pointer;
   padding: 10px 20px;
@@ -527,15 +521,15 @@ td {
 }
 
 .btn-edit-category:hover {
-  background-color: #A8765F; /* Etwas dunkleres Braun beim Hover */
+  background-color: #A8765F; 
 }
 
 dialog {
-  border: none; /* Entfernt den Standardrahmen des Dialogs */
-  border-radius: 20px; /* Rundet die Ecken der Pop-ups */
-  overflow: hidden; /* Sorgt dafür, dass der Inhalt nicht über den Rahmen hinausragt */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Fügt einen leichten Schatten hinzu */
-  padding: 20px; /* Innenabstand, um den Inhalt angenehmer darzustellen */
-  background-color: white; /* Einheitlicher Hintergrund */
+  border: none; 
+  border-radius: 20px; 
+  overflow: hidden; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+  padding: 20px; 
+  background-color: white; 
 }
 </style>
