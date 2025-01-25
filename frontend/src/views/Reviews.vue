@@ -29,59 +29,6 @@
       </div>
     </div>
   </div>
-
-  <div class="reviews">
-    <div
-      v-for="review in userReviews"
-      :key="review.id"
-      class="col-md-6 mb-4"
-    >
-      <div class="card">
-        <div class="card-body py-4 mt-2">
-          <h5 class="font-weight-bold">{{ review.userName }}</h5>
-          <h6 class="font-weight-bold my-3">{{ review.coffeeName }}</h6>
-          <ul class="list-unstyled d-flex justify-content-center mb-3">
-            <li v-for="n in review.rating" :key="n">
-              <i class="fas fa-star star-color"></i>
-            </li>
-          </ul>
-
-          <div v-if="review.isEditing">
-            <div class="stars" id="edit-stars">
-              <span
-                class="star"
-                v-for="n in 5"
-                :key="n"
-                :class="{ selected: n <= review.rating }"
-                @click="updateRating(review, n)"
-              >
-                ★
-              </span>
-            </div>
-
-            <textarea v-model="review.comment" class="edit-textarea"></textarea>
-
-            <div class="button-group">
-              <button class="btn-save" @click="saveReview(review)">Save</button>
-              <button class="btn-cancel" @click="cancelEdit(review)">Cancel</button>
-            </div>
-          </div>
-
-          <div v-else>
-            <p class="mb-2">
-              <i class="fas fa-quote-left pe-2"></i>{{ review.comment }}
-            </p>
-            <button class="btn-view-more" @click="deleteReview(review.id)">
-              Delete
-            </button>
-            <button class="btn-buy-more" @click="editReview(review)">
-              Edit
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -148,7 +95,6 @@ export default {
       const reviewText = document.getElementById("review");
       const coffeeSelect = document.getElementById("coffeeSelect");
       const submitBtn = document.getElementById("submit");
-      const backBtn = document.getElementById("back");
 
       let rating = 0;
 
@@ -251,60 +197,6 @@ export default {
         default:
           return "";
       }
-    },
-
-    async deleteReview(reviewId) {
-      try {
-        const response = await axios.delete(`/api/reviews/${reviewId}`);
-        if (response.status === 200) {
-          this.userReviews = this.userReviews.filter(
-            (review) => review.id !== reviewId
-          );
-          this.showToast("Review deleted successfully.","success");
-          this.fetchUserReviews();
-        } else {
-          this.showToast("Could not delete the review. Please try again.","error");
-        }
-      } catch (error) {
-        console.error(
-          "Error deleting review:",
-          error.response ? error.response.data : error.message
-        );
-        this.showToast("Could not delete the review. Please try again.","error");
-      }
-    },
-
-    editReview(review) {
-      this.userReviews.forEach((r) => (r.isEditing = false));
-      review.isEditing = true;
-    },
-
-    async saveReview(review) {
-      try {
-        const response = await axios.put(`/api/reviews/${review.id}`, {
-          comment: review.comment,
-          rating: review.rating,
-        });
-        if (response.status === 200) {
-          this.showToast("Review updated successfully!","success");
-          review.isEditing = false;
-          this.fetchUserReviews();
-        } else {
-          this.showToast("Failed to update the review. Please try again.","error");
-        }
-      } catch (error) {
-        console.error("Error updating review:", error);
-        this.showToast("Could not update the review. Please try again.","error");
-      }
-    },
-
-    cancelEdit(review) {
-      review.isEditing = false;
-      this.fetchUserReviews();
-    },
-
-    updateRating(review, newRating) {
-      review.rating = newRating;
     },
   },
 };
