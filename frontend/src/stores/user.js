@@ -15,7 +15,6 @@ export const useUserStore = defineStore("user", {
           console.log("Antwort vom Server:", response.data);
           this.user = response.data;
         } catch (error) {
-          console.error("Fehler bei fetchUser:", error);
           this.user = null;
         }
       },      
