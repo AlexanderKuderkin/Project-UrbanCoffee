@@ -227,19 +227,35 @@ export default {
 
 .btn-view-more {
   margin-top: 10px;
-  padding: 8px 20px;
+  padding: 10px 20px; /* Ausreichend Platz für den Button */
   border: none;
-  border-radius: 10px;
+  border-radius: 15px; /* Border-Radius auf 15px geändert */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 20%;
-  background-color: #735340;
-  color: #fff;
+  background-color: #735340; /* Gleiche Farbe wie vorher */
+  color: #ffffff;
+  text-decoration: none; /* Unterstrich entfernt */
+  font-size: 16px; /* Schriftgröße angepasst */
+  display: inline-block; /* Sicherstellen, dass Text und Button normal aussehen */
+  width: auto; /* Dynamische Breite */
+  max-width: 150px; /* Maximale Breite festgelegt */
+  text-align: center; /* Text zentriert */
 }
 
 .btn-view-more:hover {
-  background-color: #d9b68b;
+  background-color: #A8765F;
+  text-decoration: none; /* Sicherstellen, dass auch beim Hover kein Unterstrich erscheint */
 }
+
+@media (max-width: 768px) {
+  .btn-view-more {
+    width: auto; /* Normale Größe auch auf kleinen Bildschirmen */
+    text-align: center; /* Text bleibt zentriert */
+    padding: 10px 15px; /* Leicht reduzierte Padding für kleinere Bildschirme */
+    max-width: 150px; /* Maximale Breite auch im Responsive-Modus */
+  }
+}
+
 .explanation-container {
   display: flex;
   flex-direction: row;
@@ -260,16 +276,15 @@ export default {
 .our-story-container,
 .our-goal-container {
   flex: 1;
-    color: #735340;
-    min-width: 250px;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;            
-    display: flex;
-    flex-direction: column;        
-    align-items: center;           
-    font-family: 'Roboto', sans-serif;
-
+  color: #735340;
+  min-width: 250px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
 }
 
 .kaffee-pour {
@@ -284,13 +299,13 @@ export default {
 .kaffee-pour img {
   max-width: 100%;
   height: auto;
-  border-radius: 20px; 
+  border-radius: 20px;
 }
 
 h4, p {
-  display: inline-block;        
-  text-align: center;           
-  margin: 0 auto;                
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -298,62 +313,68 @@ h4 {
   margin-top: 0;
 }
 .popular-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 40px 0;
-  }
-  
-  .vertical-line {
-    width: 4px;
-    height: 90px;
-    background-color: #D9B68b;
-    margin-bottom: 10px;
-    border-radius: 20px;
-  }
-  
-  .popular-container h3 {
-    color: #D9B68b;
-    font-weight: bold;
-  }
-.advertising-container {
-    position: relative;
-    margin: 20px 20px;
-    min-height: 200px;
-    background-image: url('@/assets/kaffeepulver_cleanup.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0;
 }
-   
-  .advertising-text {
-    position: relative; 
-    color: white;
-    font-size: 20px;
-    margin-bottom: 30px;
-    font-size: xx-large;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  .signInBtn {
-    border: none;
-    background-color: #A8865F;
-    color: #ffffff;
-    border-radius: 20px;
-    padding: 3px 11px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 10px;
-    width: 81.75px;
-    height: 37px;
-  }
-  
-  .signInBtn:hover {
-    background-color: #A8765F;
-  }
+
+.vertical-line {
+  width: 4px;
+  height: 90px;
+  background-color: #D9B68b;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+
+.popular-container h3 {
+  color: #D9B68b;
+  font-weight: bold;
+}
+
+.advertising-container {
+  position: relative;
+  margin: 40px 20px; /* Abstand nach unten erhöht */
+  min-height: 250px; /* Höhe leicht vergrößert */
+  background-image: url('@/assets/kaffeepulver_cleanup.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  padding: 30px; /* Padding angepasst */
+  text-align: center;
+}
+
+.advertising-text {
+  position: relative; 
+  color: white;
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-size: xx-large;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 20px; /* Text etwas weiter nach unten verschoben */
+}
+
+.signInBtn {
+  border: none;
+  background-color: #A8865F;
+  color: #ffffff;
+  border-radius: 15px; /* Border-Radius auf 15px geändert */
+  padding: 10px 20px; /* Button vergrößert */
+  font-size: 20px; /* Schriftgröße angepasst (gleich wie im View more-Button) */
+  font-weight: normal; /* Text ist nicht fett */
+  cursor: pointer;
+  margin-left: 10px;
+  width: auto; /* Breite dynamisch */
+  text-decoration: none; /* Unterstrich entfernt */
+}
+
+.signInBtn:hover {
+  background-color: #A8765F;
+  text-decoration: none; /* Sicherstellen, dass auch beim Hover kein Unterstrich erscheint */
+}
+
+
 .description-container {
   margin: 0px 30px;
 }
@@ -362,18 +383,19 @@ h4 {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  align-items: center; /* Sicherstellen, dass Bild und Text zentriert ausgerichtet sind */
 }
 
 .description-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Bild links, Text rechts */
   align-items: center;
   flex: 0 0 50%;
   margin-bottom: 20px;
 }
 
 .description-item.reverse {
-  flex-direction: column-reverse;
+  flex-direction: row-reverse; /* Bild rechts, Text links */
 }
 
 .description-image {
@@ -383,10 +405,14 @@ h4 {
   margin-right: 15px;
 }
 
+.description-item.reverse .description-image {
+  margin-left: 15px; /* Abstände für reverse-Bilder */
+  margin-right: 0;
+}
+
 .description-text {
   flex: 1;
 }
-
 
 .description-text h3 {
   color: #A8865F; 
@@ -406,41 +432,53 @@ h4 {
 
 @media (max-width: 768px) {
   .description-row {
-        flex-direction: column; 
-        align-items: center; 
-    }
+    flex-direction: column; /* Stacking für kleine Bildschirme */
+    align-items: center; 
+  }
 
-    .description-item {
-        flex: 1 0 100%; 
-        margin-bottom: 20px; 
-        flex-direction: column; 
-        align-items: center; 
-    }
-
-    .description-image {
-        margin-right: 0; 
-        margin-bottom: 10px; 
-    }
-}
-.offer-container {
+  .description-item {
+    flex: 1 0 100%; 
+    margin-bottom: 20px; 
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 40px 0;
+    flex-direction: column; /* Bild oben, Text unten */
+    align-items: center; 
   }
-  
-  .vertical-line {
-    width: 4px;
-    height: 90px;
-    background-color: #D9B68b;
-    margin-bottom: 10px;
-    border-radius: 20px;
+
+  .description-item.reverse {
+    flex-direction: column; /* Auch für reverse: Bild oben, Text unten */
   }
-  
-  .offer-container h3 {
-    color: #D9B68b;
-    font-weight: bold;
+
+  .description-image {
+    order: -1; /* Bild immer zuerst */
+    margin-right: 0; /* Keine Abstände für kleine Bildschirme */
+    margin-bottom: 10px; /* Abstand zwischen Bild und Text */
   }
+
+  .description-item.reverse .description-image {
+    order: -1; /* Sicherstellen, dass reverse-Bilder auch oben stehen */
+  }
+}
+
+.offer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0;
+}
+
+.vertical-line {
+  width: 4px;
+  height: 90px;
+  background-color: #D9B68b;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+
+.offer-container h3 {
+  color: #D9B68b;
+  font-weight: bold;
+}
+
 .hero-section {
   position: relative;
   width: 100%;
@@ -456,7 +494,6 @@ h4 {
 }
 
 .hero-text {
-
   position: absolute;
   top: 47%;
   left: 35%;
@@ -466,24 +503,39 @@ h4 {
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .hero-text {
+    font-size: 18px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text {
+    font-size: 16px;
+  }
+}
+
 .view-more-btn {
   margin-top: 10px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: block;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    width: 119px;
-    background-color: #735340;
-    color: #ffffff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 119px;
+  background-color: #735340;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .view-more-btn:hover {
   background-color: #A8765F;
+  text-decoration: none;
 }
 </style>
