@@ -26,11 +26,15 @@
             <li class="list-group-item"><strong>Grind Type:</strong> {{ coffee.grindType }}</li>
           </ul>
 
-          <div class="mt-4">
+          <div class="mt-4 button-group">
             <router-link to="/Coffee" class="btn btn-secondary back-button">
               <i class="fas fa-arrow-left me-2"></i> Back to Coffee List
             </router-link>
-            <router-link to="/ManageCoffee" class="btn btn-primary mt-3" v-if="userStore.user && userStore.user.isSuperAdmin">
+            <router-link
+              to="/ManageCoffee"
+              class="btn btn-primary back-to-manage"
+              v-if="userStore.user && userStore.user.isSuperAdmin"
+            >
               Back to ManageCoffee
             </router-link>
           </div>
@@ -42,7 +46,11 @@
         <router-link to="/Coffee" class="btn btn-primary mt-3">
           Back to Coffee List
         </router-link>
-        <router-link to="/ManageCoffee" class="btn btn-primary mt-3" v-if="userStore.user && userStore.user.isSuperAdmin">
+        <router-link
+          to="/ManageCoffee"
+          class="btn btn-primary back-to-manage mt-3"
+          v-if="userStore.user && userStore.user.isSuperAdmin"
+        >
           Back to ManageCoffee
         </router-link>
       </div>
@@ -55,8 +63,8 @@
           class="card mb-3 shadow-sm"
         >
           <div class="card-body">
-            <h5 class="font-weight-bold">{{ review.userName }}</h5>
-            <ul class="list-unstyled d-flex mb-3">
+            <h5>{{ review.userName }}</h5>
+            <ul>
               <li v-for="n in review.rating" :key="n">
                 <i class="fas fa-star star-color"></i>
               </li>
@@ -134,36 +142,66 @@ export default {
   margin: 20px 0;
   padding: 20px;
 }
+
 .container {
   max-width: 800px;
 }
+
 .card {
   border: none;
   border-radius: 10px;
   overflow: hidden;
 }
+
 .card-img-top {
   object-fit: cover;
   height: 300px;
 }
+
 .card-title {
   font-size: 2rem;
   font-weight: bold;
 }
+
 .card-text {
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
+
 .list-group-item {
   font-size: 1rem;
 }
+
 .btn {
-  border-radius: 15px;
+  border-radius: 15px; /* Runde Ecken für alle Buttons */
   padding: 8px 16px;
   text-align: center;
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
+  min-width: 150px; /* Gleiche Breite für alle Buttons */
+}
+
+.back-button {
+  background-color: #1e160d;
+  border-color: #1e160d;
+  margin-right: 10px;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
+}
+
+.back-to-manage {
+  background-color: #A8865F; /* Helles Braun */
+  border-color: #A8865F;
+  color: #fff; /* Weißer Text */
+}
+
+.back-to-manage:hover {
+  background-color: #A8765F; /* Etwas dunkleres Braun beim Hover */
+  border-color: #A8765F;
 }
 
 .button-group {
@@ -173,38 +211,49 @@ export default {
   gap: 20px; /* Platz zwischen den Buttons */
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .button-group {
     flex-direction: column; /* Ordne die Buttons untereinander an */
     align-items: center; /* Zentriere die Buttons im responsiven Layout */
-    gap: 10px;
+    gap: 10px; /* Reduziere den Abstand zwischen den Buttons */
   }
 }
 
-.back-button {
-  background-color: #1e160d;
-  border-color: #1e160d;
-  margin-right: 10px;
-}
-.back-button:hover {
-  background-color: #5a6268;
-  border-color: #5a6268;
-}
 .reviews .card {
   border: 1px solid #ddd;
   border-radius: 10px;
+  text-align: center; /* Zentriert alle Inhalte innerhalb der Karte */
+  padding: 20px; /* Fügt etwas Innenabstand hinzu */
 }
+
+.reviews .card-body {
+  display: flex;
+  flex-direction: column; /* Ordne alle Inhalte vertikal */
+  align-items: center; /* Zentriere die Inhalte horizontal */
+}
+
+.reviews h5 {
+  font-weight: bold;
+  margin-bottom: 10px; /* Abstand unterhalb des Namens */
+}
+
+.reviews ul {
+  display: flex;
+  justify-content: center; /* Zentriere die Sterne */
+  list-style: none;
+  padding: 0;
+  margin: 10px 0; /* Abstand um die Sterne */
+}
+
+.reviews p {
+  margin: 10px 0; /* Abstand um den Kommentar */
+}
+
 .star-color {
-  color: #f39c12;
+  color: #f39c12; /* Farbe für Sterne */
 }
 
 .reviews .card-body {
   text-align: center; /* Zentriere den gesamten Text */
 }
-
-.reviews ul {
-  justify-content: center; /* Zentriere die Sterne */
-}
-
 </style>
