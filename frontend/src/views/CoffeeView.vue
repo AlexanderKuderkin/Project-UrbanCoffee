@@ -158,10 +158,30 @@ export default {
   font-size: 1rem;
 }
 .btn {
-  border-radius: 25px;
-  background-color:#3d270d;
-  border-color: #3d270d;
+  border-radius: 15px;
+  padding: 8px 16px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
 }
+
+.button-group {
+  display: flex;
+  justify-content: center; /* Zentriere die Buttons horizontal */
+  align-items: center; /* Stelle sicher, dass die Buttons vertikal ausgerichtet sind */
+  gap: 20px; /* Platz zwischen den Buttons */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column; /* Ordne die Buttons untereinander an */
+    align-items: center; /* Zentriere die Buttons im responsiven Layout */
+    gap: 10px;
+  }
+}
+
 .back-button {
   background-color: #1e160d;
   border-color: #1e160d;
@@ -178,4 +198,13 @@ export default {
 .star-color {
   color: #f39c12;
 }
+
+.reviews .card-body {
+  text-align: center; /* Zentriere den gesamten Text */
+}
+
+.reviews ul {
+  justify-content: center; /* Zentriere die Sterne */
+}
+
 </style>
