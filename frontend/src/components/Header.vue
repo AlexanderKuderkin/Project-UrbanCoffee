@@ -37,16 +37,75 @@ function logout() {
 </script>
 
 <style scoped>
-.btn{
-  padding: 6px 45px;
+.header {
+  display: flex;
+  justify-content: space-between; /* Platz zwischen Logo und Navigation */
+  align-items: center; /* Vertikale Zentrierung */
+  padding: 10px 20px; /* Innenabstand für den Header */
 }
+
+.nav-buttons {
+  display: flex;
+  justify-content: flex-start; /* Buttons weiter nach links ausrichten */
+  align-items: center; /* Vertikale Zentrierung */
+  gap: 5px; /* Abstand zwischen den Buttons verringert */
+}
+
+.nav-buttons .btn {
+  text-align: center; /* Text im Button zentrieren */
+  padding: 6px 20px; /* Innenabstand der Buttons */
+  border: none; /* Keine Rahmen */
+  background: none; /* Kein Hintergrund */
+  color: #000; /* Textfarbe schwarz */
+  cursor: pointer;
+  text-decoration: none; /* Kein Unterstrich */
+}
+
+.nav-buttons .btn:hover {
+  color: #A8865F; /* Textfarbe beim Hover */
+}
+
 .header .nav-buttons .btn-traditional {
-    border: none;
-    background-color: #A8865F;
-    color: #ffffff;
-    border-radius: 20px;
-    margin-left: 10px;
-    padding: 6px 11px;
-    font-weight: bold;
+  border: none;
+  background-color: #A8865F; /* Hintergrundfarbe für "Login" und "SignUp" */
+  color: #ffffff; /* Textfarbe weiß */
+  border-radius: 20px; /* Abgerundete Ecken */
+  margin-left: 10px; /* Abstand zwischen Buttons */
+  padding: 6px 11px; /* Innenabstand */
+  font-weight: bold; /* Fettgedruckt */
+  text-decoration: none; /* Kein Unterstrich */
+}
+
+.header .nav-buttons .btn-traditional:hover {
+  background-color: #A8765F; /* Hover-Farbe für "Login" und "SignUp" */
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Vertikale Zentrierung */
+  gap: 10px; /* Abstand zwischen Logo und Text */
+}
+
+.logo img {
+  height: 50px; /* Größe des Logos */
+}
+
+.navbar-toggler {
+  display: none; /* Standardmäßig versteckt */
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  font-size: 24px; /* Größe des Icons */
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-buttons {
+    display: none; /* Navigation ausblenden und Hamburger-Menü zeigen */
+  }
+
+  .navbar-toggler {
+    display: block; /* Hamburger-Menü auf kleinen Bildschirmen anzeigen */
+  }
 }
 </style>
