@@ -30,6 +30,9 @@
             <router-link to="/Coffee" class="btn btn-secondary back-button">
               <i class="fas fa-arrow-left me-2"></i> Back to Coffee List
             </router-link>
+            <router-link to="/ManageCoffee" class="btn btn-primary mt-3" v-if="userStore.user && userStore.user.isSuperAdmin">
+              Back to ManageCoffee
+            </router-link>
           </div>
         </div>
       </div>
@@ -38,6 +41,9 @@
         <h3>Product not found</h3>
         <router-link to="/Coffee" class="btn btn-primary mt-3">
           Back to Coffee List
+        </router-link>
+        <router-link to="/ManageCoffee" class="btn btn-primary mt-3" v-if="userStore.user && userStore.user.isSuperAdmin">
+          Back to ManageCoffee
         </router-link>
       </div>
 
@@ -71,6 +77,7 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { useUserStore } from "@/stores/user";
 
 export default {
   name: "CoffeeView",
@@ -78,6 +85,7 @@ export default {
     const route = useRoute();
     const coffee = ref(null);
     const reviews = ref([]);
+    const userStore = useUserStore();
 
     const fetchCoffee = async () => {
       try {
@@ -113,6 +121,7 @@ export default {
     return {
       coffee,
       reviews,
+      userStore,
     };
   },
 };
@@ -150,10 +159,13 @@ export default {
 }
 .btn {
   border-radius: 25px;
+  background-color:#3d270d;
+  border-color: #3d270d;
 }
 .back-button {
   background-color: #1e160d;
   border-color: #1e160d;
+  margin-right: 10px;
 }
 .back-button:hover {
   background-color: #5a6268;
