@@ -4,7 +4,7 @@
       <img src="@/assets/UrbanCoffee_Loggo.png" alt="Logo" width="50">
       <span id="NameWeb">UrbanCoffee</span>
     </div>
-    <div class="nav-buttons d-none d-md-flex">
+    <div class="nav-buttons">
       <router-link to="/" class="btn">Homepage</router-link>
       <router-link to="/Profile" class="btn" v-if="userStore.user">Profile</router-link>
       <router-link to="/Coffee" class="btn">Coffee</router-link>
@@ -17,7 +17,7 @@
       <button class="btn btn-danger" @click="logout" v-if="userStore.user">Logout</button>
     </div>
     <button
-      class="navbar-toggler d-md-none"
+      class="navbar-toggler"
       type="button"
       @click="$emit('toggle-sidebar')"
     >
@@ -39,73 +39,74 @@ function logout() {
 <style scoped>
 .header {
   display: flex;
-  justify-content: space-between; /* Platz zwischen Logo und Navigation */
-  align-items: center; /* Vertikale Zentrierung */
-  padding: 10px 20px; /* Innenabstand für den Header */
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 }
 
 .nav-buttons {
   display: flex;
-  justify-content: flex-start; /* Buttons weiter nach links ausrichten */
-  align-items: center; /* Vertikale Zentrierung */
-  gap: 5px; /* Abstand zwischen den Buttons verringert */
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
 }
 
 .nav-buttons .btn {
-  text-align: center; /* Text im Button zentrieren */
-  padding: 6px 20px; /* Innenabstand der Buttons */
-  border: none; /* Keine Rahmen */
-  background: none; /* Kein Hintergrund */
-  color: #000; /* Textfarbe schwarz */
+  text-align: center;
+  padding: 6px 20px;
+  border: none;
+  background: none;
+  color: #000;
   cursor: pointer;
-  text-decoration: none; /* Kein Unterstrich */
+  text-decoration: none;
 }
 
 .nav-buttons .btn:hover {
-  color: #A8865F; /* Textfarbe beim Hover */
+  color: #A8865F;
 }
 
 .header .nav-buttons .btn-traditional {
   border: none;
-  background-color: #A8865F; /* Hintergrundfarbe für "Login" und "SignUp" */
-  color: #ffffff; /* Textfarbe weiß */
-  border-radius: 20px; /* Abgerundete Ecken */
-  margin-left: 10px; /* Abstand zwischen Buttons */
-  padding: 6px 11px; /* Innenabstand */
-  font-weight: bold; /* Fettgedruckt */
-  text-decoration: none; /* Kein Unterstrich */
+  background-color: #A8865F;
+  color: #ffffff;
+  border-radius: 20px;
+  margin-left: 10px;
+  padding: 6px 11px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .header .nav-buttons .btn-traditional:hover {
-  background-color: #A8765F; /* Hover-Farbe für "Login" und "SignUp" */
+  background-color: #A8765F;
 }
 
 .logo {
   display: flex;
-  align-items: center; /* Vertikale Zentrierung */
-  gap: 10px; /* Abstand zwischen Logo und Text */
+  align-items: center;
+  gap: 10px;
 }
 
 .logo img {
-  height: 50px; /* Größe des Logos */
+  height: 50px;
 }
 
 .navbar-toggler {
-  display: none; /* Standardmäßig versteckt */
+  display: none;
 }
 
 .navbar-toggler .navbar-toggler-icon {
-  font-size: 24px; /* Größe des Icons */
+  font-size: 24px;
   cursor: pointer;
+  padding-top: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 990px) {
   .nav-buttons {
-    display: none; /* Navigation ausblenden und Hamburger-Menü zeigen */
+    display: none;
   }
 
   .navbar-toggler {
-    display: block; /* Hamburger-Menü auf kleinen Bildschirmen anzeigen */
+    display: block;
   }
 }
 </style>
