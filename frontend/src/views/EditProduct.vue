@@ -124,14 +124,12 @@
             </select>
           </div>
 
-          <button
-            type="submit"
-            class="btn btn-update-product"
-            :disabled="!isProductChanged"
-          >
-            Update Product
-          </button>
-          <RouterLink to="/ManageCoffee" type="submit" class="btn btn-add-product">Back</RouterLink>
+          <div class="button-container">
+            <RouterLink to="/ManageCoffee" class="btn btn-back">Back</RouterLink>
+            <button type="submit" class="btn btn-update-product" :disabled="!isProductChanged">
+              Update Product
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -281,20 +279,57 @@ label {
   color: white;
 }
 
-button.btn-update-product {
-  background-color: #A8865F;
-  color: white;
-  width: 250px;
-  max-width: 90%;
-  border: none;
-  padding: 10px;
-  border-radius: 15px;
-  cursor: pointer;
-  margin: 0 auto;
-  display: block;
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
 }
 
-button.btn-update-product:hover {
+.btn {
+  min-width: 160px;
+  max-width: 160px;
+  padding: 10px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-back {
+  background-color: #1e160d;
+  color: white;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-back:hover {
+  background-color: #5a6268;
+}
+
+.btn-update-product {
+  background-color: #A8865F;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-update-product:hover {
   background-color: #A8765F;
+}
+
+.btn-update-product:disabled {
+  background-color: #A8865F;
+  color: white;
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .button-container {
+    flex-direction: column; /* Buttons werden vertikal angeordnet */
+    align-items: center; /* Zentriert Buttons auch im vertikalen Layout */
+    gap: 10px; /* Weniger Abstand im vertikalen Layout */
+  }
 }
 </style>
