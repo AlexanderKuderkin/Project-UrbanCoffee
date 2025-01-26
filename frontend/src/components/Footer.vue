@@ -24,8 +24,38 @@
 
       <dialog id="policy-dialog">
         <h2 class="dialog-title">{{ dialogTitle }}</h2>
-        <div class="dialog-content" v-html="dialogContent"></div>
-        <button class="dialog-close" @click="closeDialog">Close</button>
+        
+        <!-- Kontaktformular -->
+        <div v-if="dialogTitle === 'Contact Form'">
+          <form @submit.prevent="handleFormSubmit">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="form-input" required />
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-input" required />
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" class="form-textarea" required></textarea>
+            <div class="button-container">
+              <button type="button" class="btn btn-back" @click="closeDialog">Back</button>
+              <button type="submit" class="btn btn-submit">Send</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Impressum -->
+        <div v-else-if="dialogTitle === 'Impressum'">
+          <div class="dialog-content" v-html="dialogContent"></div>
+          <div class="button-container">
+            <button type="button" class="btn btn-back" @click="closeDialog">Back</button>
+          </div>
+        </div>
+
+        <!-- Privacy Policy -->
+        <div v-else-if="dialogTitle === 'Privacy Policy'">
+          <div class="dialog-content" v-html="dialogContent"></div>
+          <div class="button-container">
+            <button type="button" class="btn btn-back" @click="closeDialog">Back</button>
+          </div>
+        </div>
       </dialog>
     </div>
   </footer>
@@ -56,17 +86,7 @@ export default {
           break;
         case 'contact':
           this.dialogTitle = 'Contact Form';
-          this.dialogContent = `
-            <form>
-              <label for="name">Name:</label><br />
-              <input type="text" id="name" name="name" required /><br /><br />
-              <label for="email">Email:</label><br />
-              <input type="email" id="email" name="email" required /><br /><br />
-              <label for="message">Message:</label><br />
-              <textarea id="message" name="message" rows="4" required></textarea><br /><br />
-              <button type="submit">Send</button>
-            </form>
-          `;
+          this.dialogContent = '';
           break;
         case 'privacy':
           this.dialogTitle = 'Privacy Policy';
@@ -119,11 +139,15 @@ export default {
       const dialog = document.getElementById('policy-dialog');
       dialog.close();
     },
+    handleFormSubmit() {
+      alert('Form submitted successfully!');
+      this.closeDialog();
+    },
   },
 };
 </script>
 
-<style scoped>
+<style>
 .footer {
   background-image: url('@/assets/Kaffe_Footer.jpg');
   background-size: cover;
@@ -193,15 +217,21 @@ export default {
   }
 }
 
+/* Dialog Styling */
 dialog {
   border: none;
-  border-radius: 10px;
+  border-radius: 20px; /* Abgerundete Ecken für alle Pop-ups */
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 400px;
-  max-width: 90%;
+  width: 400px; /* Standardbreite */
+  max-width: 90%; /* Für kleinere Bildschirme */
   background-color: #ffffff;
   text-align: left;
+}
+
+dialog.privacy-policy {
+  width: 600px; /* Ursprüngliche Breite für Privacy Policy */
+  max-width: 95%;
 }
 
 dialog::backdrop {
@@ -219,18 +249,60 @@ dialog::backdrop {
   line-height: 1.6;
 }
 
-.dialog-close {
-  margin-top: 20px;
-  background-color: #e0c097;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  color: #ffffff;
-  cursor: pointer;
+/* Eingabefelder */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px; /* Mehr Padding für Komfort */
+  margin-bottom: 20px; /* Abstand zwischen den Feldern */
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Leichte Abrundung */
   font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
 
-.dialog-close:hover {
-  background-color: #d1a87c;
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #A8865F; /* Fokusfarbe */
+  outline: none;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: flex-start; /* Buttons linksbündig */
+  gap: 20px; /* Abstand zwischen den Buttons */
+  margin-top: 20px; /* Abstand nach oben */
+}
+
+/* Allgemeine Button-Stile */
+.btn {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px; /* Abgerundete Ecken */
+  cursor: pointer;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Back-Button */
+.btn-back {
+  background-color: #1e160d;
+  color: #ffffff;
+}
+
+.btn-back:hover {
+  background-color: #5a6268;
+}
+
+/* Send-Button */
+.btn-submit {
+  background-color: #A8865F;
+  color: #ffffff;
+}
+
+.btn-submit:hover {
+  background-color: #A8765F;
 }
 </style>
