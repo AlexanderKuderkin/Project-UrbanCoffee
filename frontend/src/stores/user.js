@@ -9,10 +9,8 @@ export const useUserStore = defineStore("user", {
 
   actions: {
     async fetchUser() {
-        console.log("fetchUser wird aufgerufen");
         try {
           const response = await axios.get("/sessionUser");
-          console.log("Antwort vom Server:", response.data);
           this.user = response.data;
         } catch (error) {
           this.user = null;
@@ -32,7 +30,7 @@ export const useUserStore = defineStore("user", {
         });
     },
     async signUp(fullName, email, password, addressCountry, addressCity, addressPostalCode, addressStreet) {
-        let registerInformation = {
+      let registerInformation = {
           fullName: fullName,
           emailAddress: email,
           password: password,
@@ -40,26 +38,34 @@ export const useUserStore = defineStore("user", {
           addressCity: addressCity,
           addressPostalCode: addressPostalCode,
           addressStreet: addressStreet,
-        };
-      
-        console.log("Sending registration data:", registerInformation);
-      
-        axios
-          .post("/register", registerInformation)
-          .then((response) => {
-            console.log("Registered user:", response.data);
-            this.user = response.data;
-      
-            if (this.user.isSuperAdmin) {
+      };
+  
+      console.log("Sending registration data:", registerInformation);
+  
+      try {
+          const response = await axios.post("/register", registerInformation);
+          console.log("Registered user:", response.data);
+          this.user = response.data;
+  
+          if (this.user.isSuperAdmin) {
               router.push({ name: "ManageCoffee" });
-            } else {
+          } else {
               router.push({ name: "Coffee" });
-            }
-          })
-          .catch((error) => {
-            console.error("Registration failed:", error);
-          });
-      },
+          }
+      } catch (error) {
+          console.error("Registration failed:", error);
+          throw error;
+      }
+  },
+  
+  showToast(message, type = "success") {
+      this.toastMessage = message;
+      this.toastType = type;
+      setTimeout(() => {
+          this.toastMessage = null;
+          this.toastType = "";
+      }, 3000);
+  },  
       
       
       async logout() {

@@ -1,5 +1,9 @@
 <template>
   <section class="signup-container">
+    <div v-if="toastMessage" class="toast" :class="[toastType, { show: toastMessage }]">
+      {{ toastMessage }}
+    </div>
+
     <div class="card text-white">
       <div class="card-body p-5">
         <h2 class="fw-bold mb-2 text-uppercase text-center">Create an account</h2>
@@ -147,6 +151,18 @@ const validCity = ref(true);
 const validPostalCode = ref(true);
 const validStreet = ref(true);
 
+const toastMessage = ref(null); 
+const toastType = ref("");
+
+function showToast(message, type = "success") {
+  toastMessage.value = message;
+  toastType.value = type;
+  setTimeout(() => {
+    toastMessage.value = null;
+    toastType.value = "";
+  }, 3000);
+}
+
 function validateFullName() {
   validFullName.value = /^[a-zA-ZÀ-ÿ\s]+$/.test(fullName.value);
 }
@@ -181,19 +197,31 @@ const allValid = computed(() =>
 
 const userStore = useUserStore();
 async function register() {
-  if (allValid.value) {
-    userStore.signUp(
-      fullName.value,
-      email.value,
-      password.value,
-      addressCountry.value,
-      addressCity.value,
-      addressPostalCode.value,
-      addressStreet.value
-    );
-  } else {
-    console.log("Invalid input!");
-  }
+    if (allValid.value) {
+        try {
+            await userStore.signUp(
+                fullName.value,
+                email.value,
+                password.value,
+                addressCountry.value,
+                addressCity.value,
+                addressPostalCode.value,
+                addressStreet.value
+            );
+        } catch (error) {
+            if (
+                error.response &&
+                error.response.status === 400 &&
+                error.response.data.message === "E-Mail address is already in use."
+            ) {
+                showToast("The email address is already registered. Please use a different one.", "error");
+            } else {
+                showToast("An unexpected error occurred. Please try again later.", "error");
+            }
+        }
+    } else {
+        console.log("Invalid input!");
+    }
 }
 </script>
 
