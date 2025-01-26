@@ -189,8 +189,11 @@
             </select>
           </div>
 
-          <button type="submit" class="btn btn-add-product">Add Product</button>
-          <RouterLink to="/ManageCoffee" type="submit" class="btn btn-add-product">Back</RouterLink>
+          <!-- Buttons -->
+          <div class="button-group">
+            <RouterLink to="/ManageCoffee" class="btn btn-back">Back</RouterLink>
+            <button type="submit" class="btn btn-add-product">Add Product</button>
+          </div>
         </form>
       </div>
     </div>
@@ -314,7 +317,7 @@ export default {
 .background-container {
   background-color: #735340; 
   width: 500px; 
-  max-width: 90%;
+  max-width: 90%; 
   margin: 40px auto; 
   padding: 20px; 
   border-radius: 20px; 
@@ -331,20 +334,57 @@ label {
   color: white; 
 }
 
+.button-group {
+  display: flex; /* Buttons nebeneinander anordnen */
+  justify-content: center; /* Zentriere die Buttons */
+  gap: 20px; /* Abstand zwischen den Buttons */
+  margin-top: 20px;
+  flex-wrap: wrap; /* Buttons umbrechen bei wenig Platz */
+}
+
+button.btn-add-product,
+.btn-back {
+  width: 125px; /* Exakte Breite von 125px */
+  max-width: 125px; /* Maximale Breite bleibt 125px */
+  min-width: 125px; /* Minimale Breite bleibt 125px */
+  border-radius: 15px; /* Runde Ecken */
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
 button.btn-add-product {
   background-color: #A8865F;
   color: white;
-  width: 250px; 
   border: none;
-  padding: 10px;
-  border-radius: 15px; 
-  cursor: pointer;
-  margin: 0 auto; 
-  display: block; 
-  max-width: 90%;
 }
 
 button.btn-add-product:hover {
   background-color: #A8765F;
+}
+
+.btn-back {
+  background-color: #1e160d; /* Dunkles Braun */
+  color: white;
+  border: none; /* Keine Linie */
+  text-decoration: none; /* Entfernt mögliche Unterstreichung */
+}
+
+.btn-back:hover {
+  background-color: #5a6268; /* Helleres Grau beim Hover */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .button-group {
+    flex-wrap: wrap; /* Buttons umbrechen bei wenig Platz */
+    gap: 10px; /* Weniger Abstand im responsiven Layout */
+    justify-content: center; /* Zentriere Buttons weiterhin */
+  }
+
+  button.btn-add-product,
+  .btn-back {
+    width: 125px; /* Exakte Breite bleibt auch im responsiven Layout */
+  }
 }
 </style>

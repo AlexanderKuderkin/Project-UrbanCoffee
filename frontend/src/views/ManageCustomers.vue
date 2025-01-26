@@ -202,7 +202,7 @@ export default {
   background-color: #dc3545;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 8px 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
