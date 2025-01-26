@@ -56,7 +56,32 @@ export default {
   transition: transform 0.3s ease-in-out;
   transform: translateX(100%);
 }
+
 .sidebar-open {
   transform: translateX(0);
+}
+
+.sidebar .btn {
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none; /* Kein Unterstrich */
+}
+
+.sidebar .btn:hover {
+  color: #A8865F; /* Hover-Farbe */
+}
+
+.sidebar .btn-danger {
+  background-color: #1e160d; /* Standard Hintergrundfarbe des Logout-Buttons */
+  color: #fff; /* Textfarbe bleibt Weiß */
+  border: none;
+  padding: 6px 20px;
+  border-radius: 15px; /* Abrundung hinzugefügt */
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar .btn-danger:hover {
+  background-color: #5a6268; /* Hover-Hintergrundfarbe des Logout-Buttons */
 }
 </style>
