@@ -25,7 +25,6 @@
       <dialog id="policy-dialog">
         <h2 class="dialog-title">{{ dialogTitle }}</h2>
         
-        <!-- Kontaktformular -->
         <div v-if="dialogTitle === 'Contact Form'">
           <form @submit.prevent="handleFormSubmit">
             <label for="name">Name:</label>
@@ -41,7 +40,6 @@
           </form>
         </div>
 
-        <!-- Impressum -->
         <div v-else-if="dialogTitle === 'Impressum'">
           <div class="dialog-content" v-html="dialogContent"></div>
           <div class="button-container">
@@ -49,7 +47,6 @@
           </div>
         </div>
 
-        <!-- Privacy Policy -->
         <div v-else-if="dialogTitle === 'Privacy Policy'">
           <div class="dialog-content" v-html="dialogContent"></div>
           <div class="button-container">
@@ -217,20 +214,19 @@ export default {
   }
 }
 
-/* Dialog Styling */
 dialog {
   border: none;
-  border-radius: 20px; /* Abgerundete Ecken für alle Pop-ups */
+  border-radius: 20px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 400px; /* Standardbreite */
-  max-width: 90%; /* Für kleinere Bildschirme */
+  width: 400px;
+  max-width: 90%;
   background-color: #ffffff;
   text-align: left;
 }
 
 dialog.privacy-policy {
-  width: 600px; /* Ursprüngliche Breite für Privacy Policy */
+  width: 600px;
   max-width: 95%;
 }
 
@@ -249,14 +245,13 @@ dialog::backdrop {
   line-height: 1.6;
 }
 
-/* Eingabefelder */
 .form-input,
 .form-textarea {
   width: 100%;
-  padding: 12px; /* Mehr Padding für Komfort */
-  margin-bottom: 20px; /* Abstand zwischen den Feldern */
+  padding: 12px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 10px; /* Leichte Abrundung */
+  border-radius: 10px;
   font-size: 1em;
   font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
@@ -264,29 +259,26 @@ dialog::backdrop {
 
 .form-input:focus,
 .form-textarea:focus {
-  border-color: #A8865F; /* Fokusfarbe */
+  border-color: #A8865F;
   outline: none;
 }
 
-/* Button Container */
 .button-container {
   display: flex;
-  justify-content: flex-start; /* Buttons linksbündig */
-  gap: 20px; /* Abstand zwischen den Buttons */
-  margin-top: 20px; /* Abstand nach oben */
+  justify-content: flex-start;
+  gap: 20px;
+  margin-top: 20px;
 }
 
-/* Allgemeine Button-Stile */
 .btn {
   border: none;
   padding: 10px 20px;
-  border-radius: 15px; /* Abgerundete Ecken */
+  border-radius: 15px;
   cursor: pointer;
   font-size: 1em;
   font-family: 'Roboto', sans-serif;
 }
 
-/* Back-Button */
 .btn-back {
   background-color: #1e160d;
   color: #ffffff;
@@ -296,7 +288,6 @@ dialog::backdrop {
   background-color: #5a6268;
 }
 
-/* Send-Button */
 .btn-submit {
   background-color: #A8865F;
   color: #ffffff;

@@ -56,19 +56,19 @@ function logout() {
   padding: 6px 20px;
   border: none;
   background: none;
-  color: #ffffff; /* Schriftfarbe auf Weiß geändert */
+  color: #ffffff; 
   cursor: pointer;
   text-decoration: none;
 }
 
 .nav-buttons .btn:hover {
-  color: #A8865F; /* Hover-Farbe */
+  color: #A8865F;
 }
 
 .header .nav-buttons .btn-traditional {
   border: none;
   background-color: #A8865F;
-  color: #ffffff; /* Schriftfarbe bleibt Weiß */
+  color: #ffffff; 
   border-radius: 20px;
   margin-left: 10px;
   padding: 6px 11px;
@@ -78,21 +78,21 @@ function logout() {
 
 .header .nav-buttons .btn-traditional:hover {
   background-color: #A8765F;
-  color: #ffffff; /* Schriftfarbe bleibt Weiß im Hover */
+  color: #ffffff;
 }
 
 .nav-buttons .btn-danger {
-  background-color: #1e160d; /* Hintergrundfarbe des Logout-Buttons */
-  color: #ffffff; /* Schriftfarbe auf Weiß geändert */
+  background-color: #1e160d;
+  color: #ffffff; 
   border: none;
   padding: 6px 20px;
-  border-radius: 15px; /* Abrundung hinzugefügt */
+  border-radius: 15px;
   cursor: pointer;
   text-align: center;
 }
 
 .nav-buttons .btn-danger:hover {
-  background-color: #5a6268; /* Hover-Hintergrundfarbe des Logout-Buttons */
+  background-color: #5a6268;
 }
 
 .logo {

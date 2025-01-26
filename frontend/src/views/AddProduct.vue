@@ -335,19 +335,19 @@ label {
 }
 
 .button-group {
-  display: flex; /* Buttons nebeneinander anordnen */
-  justify-content: center; /* Zentriere die Buttons */
-  gap: 20px; /* Abstand zwischen den Buttons */
+  display: flex;
+  justify-content: center; 
+  gap: 20px; 
   margin-top: 20px;
-  flex-wrap: wrap; /* Buttons umbrechen bei wenig Platz */
+  flex-wrap: wrap;
 }
 
 button.btn-add-product,
 .btn-back {
-  width: 125px; /* Exakte Breite von 125px */
-  max-width: 125px; /* Maximale Breite bleibt 125px */
-  min-width: 125px; /* Minimale Breite bleibt 125px */
-  border-radius: 15px; /* Runde Ecken */
+  width: 125px;
+  max-width: 125px;
+  min-width: 125px;
+  border-radius: 15px;
   padding: 10px;
   text-align: center;
   cursor: pointer;
@@ -364,27 +364,26 @@ button.btn-add-product:hover {
 }
 
 .btn-back {
-  background-color: #1e160d; /* Dunkles Braun */
+  background-color: #1e160d;
   color: white;
-  border: none; /* Keine Linie */
-  text-decoration: none; /* Entfernt mögliche Unterstreichung */
+  border: none; 
+  text-decoration: none;
 }
 
 .btn-back:hover {
-  background-color: #5a6268; /* Helleres Grau beim Hover */
+  background-color: #5a6268;
 }
 
-/* Responsive Design */
 @media (max-width: 600px) {
   .button-group {
-    flex-wrap: wrap; /* Buttons umbrechen bei wenig Platz */
-    gap: 10px; /* Weniger Abstand im responsiven Layout */
-    justify-content: center; /* Zentriere Buttons weiterhin */
+    flex-wrap: wrap;
+    gap: 10px; 
+    justify-content: center;
   }
 
   button.btn-add-product,
   .btn-back {
-    width: 125px; /* Exakte Breite bleibt auch im responsiven Layout */
+    width: 125px; 
   }
 }
 </style>

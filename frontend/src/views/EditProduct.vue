@@ -324,12 +324,11 @@ label {
   cursor: not-allowed;
 }
 
-/* Responsive Design */
 @media (max-width: 600px) {
   .button-container {
-    flex-direction: column; /* Buttons werden vertikal angeordnet */
-    align-items: center; /* Zentriert Buttons auch im vertikalen Layout */
-    gap: 10px; /* Weniger Abstand im vertikalen Layout */
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px;
   }
 }
 </style>
