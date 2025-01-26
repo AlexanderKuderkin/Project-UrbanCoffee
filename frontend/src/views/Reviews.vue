@@ -77,7 +77,7 @@ export default {
         }));
       } catch (error) {
         console.error("Error fetching data:", error);
-        this.showToast("Could not load data. Please try again later.","error");
+        this.showToast("Could not load data. You have to buy an coffee first.","error");
       }
     },
 
@@ -218,6 +218,8 @@ export default {
     align-items: center;
     min-height: calc(100vh - 80px);
     overflow: auto;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 
   .container {
