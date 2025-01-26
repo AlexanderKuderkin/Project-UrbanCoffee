@@ -39,12 +39,9 @@ export const useUserStore = defineStore("user", {
           addressPostalCode: addressPostalCode,
           addressStreet: addressStreet,
       };
-  
-      console.log("Sending registration data:", registerInformation);
-  
+    
       try {
           const response = await axios.post("/register", registerInformation);
-          console.log("Registered user:", response.data);
           this.user = response.data;
   
           if (this.user.isSuperAdmin) {

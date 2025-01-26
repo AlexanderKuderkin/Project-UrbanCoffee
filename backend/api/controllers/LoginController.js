@@ -31,10 +31,7 @@ module.exports = {
       isSuperAdmin: user.isSuperAdmin,
     });
   },
-  sessionUser: async function (req, res) {
-    console.log("Session userId:", req.session.userId);
-    console.log("Session:", req.session);
-  
+  sessionUser: async function (req, res) {  
     if (!req.session.userId) {
       return res.status(403).json({ message: "Not logged in" });
     }

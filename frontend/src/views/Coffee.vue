@@ -335,7 +335,6 @@ export default {
             price: coffee.price,
             imagePath: coffee.imagePath,
           });
-          console.log("Current cart:", shopCart.cart);
           showToast("Added to cart successfully!", "success");
         } catch (error) {
           console.error("Failed to add to cart:", error);
