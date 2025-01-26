@@ -64,24 +64,32 @@ export default {
 .sidebar .btn {
   text-align: center;
   cursor: pointer;
-  text-decoration: none; /* Kein Unterstrich */
+  text-decoration: none;
 }
 
 .sidebar .btn:hover {
-  color: #A8865F; /* Hover-Farbe */
+  color: #A8865F;
 }
 
 .sidebar .btn-danger {
-  background-color: #1e160d; /* Standard Hintergrundfarbe des Logout-Buttons */
-  color: #fff; /* Textfarbe bleibt Weiß */
+  background-color: #1e160d; 
+  color: #fff;
   border: none;
   padding: 6px 20px;
-  border-radius: 15px; /* Abrundung hinzugefügt */
+  border-radius: 15px; 
   cursor: pointer;
   text-align: center;
 }
 
 .sidebar .btn-danger:hover {
-  background-color: #5a6268; /* Hover-Hintergrundfarbe des Logout-Buttons */
+  background-color: #5a6268;
+}
+.sidebar-body .btn {
+    width: 70%;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
+    margin-left: 10px;
+    padding-top: 8px;
 }
 </style>
